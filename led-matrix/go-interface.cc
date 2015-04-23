@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-
+#include <fstream>
 #include <algorithm>
 
 using std::min;
@@ -43,6 +43,24 @@ public:
       canvas()->SetPixel(i, board_size - 1, 200, 100, 100);
     }
   }
+};
+
+class Menu : public ThreadedCanvasManipulator { 
+public: 
+	Menu(Canvas *m)  : ThreadedCanvasManipulator(m) {}
+  	void Run() {
+	    const int board_size = 32;
+	    int value = 0;
+	    for (int i = 0; i < board_size; ++i) {
+	     	for (int j = 0; j < board_size; j++) {
+	     		fs >> value;
+	     		if (!fs.good()) break;
+	     		if (value == 1) canvas()->SetPixel(j, i, 200, 0, 0);
+	     		if (value == 2) canvas()->SetPixel(j, i, 200, 200, 200);
+	     	}
+	    }
+	    fs.close();
+  	}
 };
  
 
