@@ -394,7 +394,7 @@ main(int argc, char *argv[])
       case 'B': mandated_backfill_depth = atoi(gg_optarg); break;
       case 'F': mandated_fourlib_depth = atoi(gg_optarg); break;
       case 'K': mandated_ko_depth = atoi(gg_optarg); break;
-	  case 'P': players = 0; break; //change ****************************
+	  case 'P': players = 1; break; //change ****************************
 
       case 'L':
 	untilstring = gg_optarg;

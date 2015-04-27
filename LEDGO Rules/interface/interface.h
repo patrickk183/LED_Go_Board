@@ -33,6 +33,7 @@
 #include "sgftree.h"
 
 int players = 1;
+int which_player = 1;
 
 void play_ascii(SGFTree *tree, Gameinfo *gameinfo, 
 		char *filename, char *until);

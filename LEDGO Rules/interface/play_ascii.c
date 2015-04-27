@@ -551,7 +551,16 @@ do_move(Gameinfo *gameinfo, char *command, int *passes, int force)
   if(players == 1)
 	return computer_move(gameinfo, passes);
   else {
-	int move = string_to_location(board_size, command);
+	which_player = 2;
+	return do_move2(gameinfo, command, passes, force);
+  
+  }
+}
+
+static int
+do_move2(Gameinfo *gameinfo, char *command, int *passes, int force)
+{
+  int move = string_to_location(board_size, command);
 
   if (move == NO_MOVE) {
     printf("\nInvalid move: %s\n", command);
@@ -585,9 +594,14 @@ do_move(Gameinfo *gameinfo, char *command, int *passes, int force)
 
   gameinfo->to_move = OTHER_COLOR(gameinfo->to_move);
   
+  if(players == 1)
+	return computer_move(gameinfo, passes);
+  else {
+	which_player = 1;
+	return do_move(gameinfo, command, passes, force);
+  
   }
 }
-
 
 /*
  * Make a pass.
@@ -611,7 +625,12 @@ do_pass(Gameinfo *gameinfo, int *passes, int force)
   }
 	if(players == 1)
 		return computer_move(gameinfo, passes);
-	else return 0;
+	else if (players == 2) {
+		if(which_player == 1) 
+			do_move2(gameinfo, 0, passes, force);
+		else if (which_player == 2)
+			do_move(gameinfo, 0, passes, force);
+	}
 }
 
 
