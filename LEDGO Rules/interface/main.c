@@ -178,6 +178,7 @@ enum mode {
   MODE_LOAD_AND_SCORE,
   MODE_LOAD_AND_PRINT,
   MODE_SOLO,
+  MODE_2PLAYER
   MODE_REPLAY,
   MODE_DECIDE_STRING,
   MODE_DECIDE_CONNECTION,
@@ -394,7 +395,7 @@ main(int argc, char *argv[])
       case 'B': mandated_backfill_depth = atoi(gg_optarg); break;
       case 'F': mandated_fourlib_depth = atoi(gg_optarg); break;
       case 'K': mandated_ko_depth = atoi(gg_optarg); break;
-	  case 'P': players = 1; break; //change ****************************
+	  case 'P': players = 1; playmode = MODE_2PLAYER; break; //change ****************************
 
       case 'L':
 	untilstring = gg_optarg;
@@ -1108,6 +1109,10 @@ main(int argc, char *argv[])
     play_solo(&gameinfo, benchmark);
     break;
     
+  case MODE_2PLAYER:
+	players = 2;
+	break; 
+	
   case MODE_REPLAY:    
     if (!infilename) {
       fprintf(stderr, "You must use -l infile with replay mode.\n");

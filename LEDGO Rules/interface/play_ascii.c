@@ -510,7 +510,20 @@ computer_move(Gameinfo *gameinfo, int *passes)
 /*
  * Make a move.
  */
-
+static int
+do_move_comm(Gameinfo *gameinfo, char *command, int *passes, int force)
+{
+		if(players == 2) {
+			if(which_player == 1) {
+				return do_move2(gameinfo,command,passes,force);
+			} else if (which_player == 2) {
+				return do_move(gameinfo, command, passes, force);
+			}
+		} else if (players == 1) {
+			return do_move(gameinfo, command, passes, force);
+		}
+}
+ 
 static int
 do_move(Gameinfo *gameinfo, char *command, int *passes, int force)
 {
@@ -627,9 +640,9 @@ do_pass(Gameinfo *gameinfo, int *passes, int force)
 		return computer_move(gameinfo, passes);
 	else if (players == 2) {
 		if(which_player == 1) 
-			do_move2(gameinfo, 0, passes, force);
+			do_move2(gameinfo, 0, passes, force); //************
 		else if (which_player == 2)
-			do_move(gameinfo, 0, passes, force);
+			do_move(gameinfo, 0, passes, force); //************
 	}
 }
 
@@ -860,7 +873,7 @@ do_play_ascii(Gameinfo *gameinfo)
 	  command += 6; /* skip the force part... */
 	  switch (get_command(command)) {
 	  case MOVE:
-	    state = do_move(gameinfo, command, &passes, 1);
+	    state = do_move_comm(gameinfo, command, &passes, 1);
 	    break;
 	  case PASS:
 	    state = do_pass(gameinfo, &passes, 1);
@@ -873,7 +886,7 @@ do_play_ascii(Gameinfo *gameinfo)
 	  break;
 
 	case MOVE:
-	  state = do_move(gameinfo, command, &passes, 0);
+	  state = do_move_comm(gameinfo, command, &passes, 0);
 	  break;
 
 	case PASS:
