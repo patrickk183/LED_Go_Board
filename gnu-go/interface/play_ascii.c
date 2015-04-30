@@ -549,9 +549,8 @@ do_move(Gameinfo *gameinfo, char *command, int *passes, int force)
 
   gameinfo->to_move = OTHER_COLOR(gameinfo->to_move);
   
-  return 0;
   if(players == 1)
-	return computer_move(gameinfo, passes);
+	  return computer_move(gameinfo, passes);
   else {
    /* if (is_pass(move))
       (*passes)++;
