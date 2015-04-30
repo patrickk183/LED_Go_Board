@@ -56,6 +56,10 @@
 #include "sgftree.h"
 #include "random.h"
 
+#include "../../led-matrix/include/led-matrix.h"
+#include "../../led-matrix/include/threaded-canvas-manipulator.h"
+#include "ShowGoBoad.h"
+
 static void show_copyright(void);
 static void show_version(void);
 static void show_help(void);
@@ -324,6 +328,74 @@ static struct gg_option const long_options[] =
 int
 main(int argc, char *argv[])
 {
+	//Go interface section of startup
+	int rows = 32;
+	int chain = 1;
+	int parallel = 1;
+	bool do_luminance_correct = true;
+
+	if (getuid() != 0) {
+	//"Must run as root to be able to access /dev/mem
+	//Prepend 'sudo' to the command
+	return 1;
+	}
+
+	// Initialize GPIO pins. This might fail when we don't have permissions.
+	GPIO io;
+	if (!io.Init())
+	return 1;
+
+	// The matrix, our 'frame buffer' and display updater.
+	RGBMatrix *matrix = new RGBMatrix(&io, rows, chain, parallel);
+	matrix->set_luminance_correct(do_luminance_correct);
+
+	Canvas *canvas = matrix;
+
+	int players = 1;
+	int mode = 1;
+	int size = 1;
+	int difficulty = 1;
+
+	// The ThreadedCanvasManipulator objects are filling
+	// the matrix continuously.
+	ThreadedCanvasManipulator *image_gen = NULL;
+	image_gen = new Menu(canvas, mode, players, difficulty, size);
+
+	if (image_gen == NULL)
+	return -1;
+
+	// Image generating demo is created. Now start the thread.
+	image_gen->Start();
+	getchar();
+	canvas->Clear();
+	delete image_gen;
+
+	// Now, the image generation runs in the background. We can do arbitrary
+	// things here in parallel.
+	if (as_daemon) {
+	sleep(INT_MAX);
+	} else {
+	//press any key to exit
+	getchar();
+	}
+
+	// Stop image generating thread.
+	delete image_gen;
+	delete canvas;
+
+
+
+
+
+
+
+
+
+
+
+
+
+  //gnu go section of startup
   Gameinfo gameinfo;
   SGFTree sgftree;
 
