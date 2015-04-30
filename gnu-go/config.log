@@ -116,8 +116,8 @@ configure:3495: result: gcc3
 configure:3517: checking for library containing pow
 configure:3558: gcc -o conftest -g -O2   conftest.c  >&5
 conftest.c:18:6: warning: conflicting types for built-in function 'pow' [enabled by default]
-/tmp/ccAZea0Y.o: In function `main':
-/home/pi/Documents/led-go/gnugo-3.8/conftest.c:22: undefined reference to `pow'
+/tmp/cc2gQ8HP.o: In function `main':
+/home/pi/Documents/led-go/LED_Go_Board/gnu-go/conftest.c:22: undefined reference to `pow'
 collect2: ld returned 1 exit status
 configure:3564: $? = 1
 configure: failed program was:
@@ -835,14 +835,14 @@ gnugo_cv_transparent_unions=yes
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /home/pi/Documents/led-go/gnugo-3.8/missing --run aclocal-1.9'
+ACLOCAL='${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run aclocal-1.9'
 AMDEPBACKSLASH='\'
 AMDEP_FALSE='#'
 AMDEP_TRUE=''
-AMTAR='${SHELL} /home/pi/Documents/led-go/gnugo-3.8/missing --run tar'
-AUTOCONF='${SHELL} /home/pi/Documents/led-go/gnugo-3.8/missing --run autoconf'
-AUTOHEADER='${SHELL} /home/pi/Documents/led-go/gnugo-3.8/missing --run autoheader'
-AUTOMAKE='${SHELL} /home/pi/Documents/led-go/gnugo-3.8/missing --run automake-1.9'
+AMTAR='${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run tar'
+AUTOCONF='${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run autoconf'
+AUTOHEADER='${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run autoheader'
+AUTOMAKE='${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run automake-1.9'
 AWK='mawk'
 CC='gcc'
 CCDEPMODE='depmode=gcc3'
@@ -876,7 +876,7 @@ LTLIBOBJS=''
 MAINT='#'
 MAINTAINER_MODE_FALSE=''
 MAINTAINER_MODE_TRUE='#'
-MAKEINFO='${SHELL} /home/pi/Documents/led-go/gnugo-3.8/missing --run makeinfo'
+MAKEINFO='${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run makeinfo'
 OBJEXT='o'
 PACKAGE='gnugo'
 PACKAGE_BUGREPORT=''
@@ -910,7 +910,7 @@ host_alias=''
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='/home/pi/Documents/led-go/gnugo-3.8/install-sh'
+install_sh='/home/pi/Documents/led-go/LED_Go_Board/gnu-go/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 localedir='${datarootdir}/locale'

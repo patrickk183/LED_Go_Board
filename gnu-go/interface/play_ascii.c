@@ -553,10 +553,10 @@ do_move(Gameinfo *gameinfo, char *command, int *passes, int force)
   if(players == 1)
 	return computer_move(gameinfo, passes);
   else {
-    if (is_pass(move))
+   /* if (is_pass(move))
       (*passes)++;
     else
-      *passes = 0;
+      *passes = 0;*/
     which_player = 2;
     return 0;
   }
@@ -573,7 +573,6 @@ do_move2(Gameinfo *gameinfo, char *command, int *passes, int force)
     return 0;
   }
   
-  if (command == )
   if (!is_allowed_move(move, gameinfo->to_move)) {
     printf("\nIllegal move: %s", command);
     return 0;
@@ -604,10 +603,10 @@ do_move2(Gameinfo *gameinfo, char *command, int *passes, int force)
   if(players == 1)
 	  return computer_move(gameinfo, passes);
   else {
-    if (is_pass(move))
+   /* if (is_pass(move))
       (*passes)++;
     else
-      *passes = 0;
+      *passes = 0;*/
     which_player = 1;
     return 0;
   }
@@ -660,9 +659,9 @@ do_pass(Gameinfo *gameinfo, int *passes, int force)
     return 0;
   /*
     if(which_player == 1) 
-      return do_move2(gameinfo, command, passes, force); //************
+      return do_move2(gameinfo, command, passes, force);
     else if (which_player == 2)
-      return do_move(gameinfo, command, passes, force); //************
+      return do_move(gameinfo, command, passes, force);
     */
 }
 
