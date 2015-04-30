@@ -1,5 +1,5 @@
-#include "../../led-matrix/include/led-matrix.h"
-#include "../../led-matrix/include/threaded-canvas-manipulator.h"
+#include "led-matrix/include/led-matrix.h"
+#include "led-matrix/include/threaded-canvas-manipulator.h"
 
 #include <stdio.h>
 #include <stdlib.h>
