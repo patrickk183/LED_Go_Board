@@ -66,7 +66,7 @@ public:
   				break;
   		}
 
-  		fstream fs(filename.c_str(), ios_base::in);
+  		std::fstream fs(filename.c_str(), std::ios_base::in);
 
 	    const int board_size = 32;
 	    int value = 0;
