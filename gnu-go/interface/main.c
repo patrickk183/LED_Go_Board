@@ -56,9 +56,9 @@
 #include "sgftree.h"
 #include "random.h"
 
-#include "../../led-matrix/include/led-matrix.h"
-#include "../../led-matrix/include/threaded-canvas-manipulator.h"
-#include "ShowGoBoad.h"
+#include "led-matrix/include/led-matrix.h"
+#include "led-matrix/include/threaded-canvas-manipulator.h"
+#include "ShowGoBoard.h"
 
 static void show_copyright(void);
 static void show_version(void);
@@ -366,34 +366,63 @@ main(int argc, char *argv[])
 
 	// Image generating demo is created. Now start the thread.
 	image_gen->Start();
-	getchar();
+
+	while(mode < 4) {
+		char input = getchar();
+
+		//change settings
+		switch (mode) {
+			case 1:
+				if (input == "w" && players == 1) {
+					players++;
+				}
+				else if (input == "s" && players == 2) {
+					players--;
+				}
+				else if (input == "\n") {
+					if (players == 1) { mode = 2; }
+					else { mode = 3; }
+				}
+				break;
+			case 2:
+				if (input == "w" && difficulty < 3) {
+					difficulty++;
+				}
+				else if (input == "s" && difficulty > 1) {
+					difficulty--;
+				}
+				else if (input == "\n") {
+					mode++;
+				}
+				break;
+			case 3;
+				if (input == "w" && size == 1) {
+					size++;
+				}
+				else if (input == "s" && size == 2) {
+					size--;
+				}
+				else if (input == "\n") {
+					mode++;
+				}
+				break;
+			default:
+				std::cerr << "menu failed in main.c" << std::endl;
+				break;
+		}
+
+		canvas->Clear();
+		delete image_gen;
+		image_gen = new Menu(canvas, mode, players, difficulty, size);
+		image_gen->Start();
+	}
 	canvas->Clear();
 	delete image_gen;
 
-	// Now, the image generation runs in the background. We can do arbitrary
-	// things here in parallel.
-	if (as_daemon) {
-	sleep(INT_MAX);
-	} else {
-	//press any key to exit
-	getchar();
-	}
 
 	// Stop image generating thread.
 	delete image_gen;
 	delete canvas;
-
-
-
-
-
-
-
-
-
-
-
-
 
   //gnu go section of startup
   Gameinfo gameinfo;
