@@ -527,6 +527,7 @@ do_move(Gameinfo *gameinfo, char *command, int *passes, int force)
   }
 
   *passes = 0;
+
   TRACE("\nyour move: %1m\n\n", move);
   init_sgf(gameinfo);
   gnugo_play_move(move, gameinfo->to_move);
@@ -548,13 +549,18 @@ do_move(Gameinfo *gameinfo, char *command, int *passes, int force)
 
   gameinfo->to_move = OTHER_COLOR(gameinfo->to_move);
   
+  return 0;
   if(players == 1)
 	return computer_move(gameinfo, passes);
   else {
-	which_player = 2;
-	return do_move2(gameinfo, command, passes, force);
-  
+    if (is_pass(move))
+      (*passes)++;
+    else
+      *passes = 0;
+    which_player = 2;
+    return 0;
   }
+	//return do_move2(gameinfo, command, passes, force);
 }
 
 static int
@@ -567,6 +573,7 @@ do_move2(Gameinfo *gameinfo, char *command, int *passes, int force)
     return 0;
   }
   
+  if (command == )
   if (!is_allowed_move(move, gameinfo->to_move)) {
     printf("\nIllegal move: %s", command);
     return 0;
@@ -595,12 +602,16 @@ do_move2(Gameinfo *gameinfo, char *command, int *passes, int force)
   gameinfo->to_move = OTHER_COLOR(gameinfo->to_move);
   
   if(players == 1)
-	return computer_move(gameinfo, passes);
+	  return computer_move(gameinfo, passes);
   else {
-	which_player = 1;
-	return do_move(gameinfo, command, passes, force);
-  
+    if (is_pass(move))
+      (*passes)++;
+    else
+      *passes = 0;
+    which_player = 1;
+    return 0;
   }
+	//return do_move(gameinfo, command, passes, force);
 }
 
 /*
@@ -610,9 +621,9 @@ static int
 do_move_comm(Gameinfo *gameinfo, char *command, int *passes, int force)
 {
   if(players == 2) {
-    if(which_player == 1) {
+    if(which_player == 2) {
       return do_move2(gameinfo,command,passes,force);
-    } else if (which_player == 2) {
+    } else if (which_player == 1) {
       return do_move(gameinfo, command, passes, force);
     }
   } else if (players == 1) {
@@ -645,14 +656,14 @@ do_pass(Gameinfo *gameinfo, int *passes, int force)
 
   if(players == 1)
     return computer_move(gameinfo, passes);
-  else if (players == 2) {
+  else
+    return 0;
+  /*
     if(which_player == 1) 
-      return do_move2(gameinfo, 0, passes, force); //************
+      return do_move2(gameinfo, command, passes, force); //************
     else if (which_player == 2)
-      return do_move(gameinfo, 0, passes, force); //************
-  }
-
-  return 0;
+      return do_move(gameinfo, command, passes, force); //************
+    */
 }
 
 
