@@ -78,7 +78,7 @@ AUTOCONF = ${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run 
 AUTOHEADER = ${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run autoheader
 AUTOMAKE = ${SHELL} /home/pi/Documents/led-go/LED_Go_Board/gnu-go/missing --run automake-1.9
 AWK = mawk
-CC = gcc
+CC = g++
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E

@@ -18,11 +18,10 @@ surround.o: surround.c gnugo.h board.h \
  /usr/include/limits.h /usr/include/arm-linux-gnueabihf/bits/posix1_lim.h \
  /usr/include/arm-linux-gnueabihf/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h clock.h \
- /usr/include/string.h /usr/include/xlocale.h \
- /usr/include/arm-linux-gnueabihf/bits/string.h \
- /usr/include/arm-linux-gnueabihf/bits/string2.h /usr/include/stdlib.h \
- /usr/include/math.h /usr/include/arm-linux-gnueabihf/bits/huge_val.h \
+ /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h \
+ /usr/include/arm-linux-gnueabihf/bits/xopen_lim.h clock.h \
+ /usr/include/string.h /usr/include/xlocale.h /usr/include/math.h \
+ /usr/include/arm-linux-gnueabihf/bits/huge_val.h \
  /usr/include/arm-linux-gnueabihf/bits/huge_valf.h \
  /usr/include/arm-linux-gnueabihf/bits/huge_vall.h \
  /usr/include/arm-linux-gnueabihf/bits/inf.h \
@@ -96,17 +95,13 @@ hash.h:
 
 /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h:
 
+/usr/include/arm-linux-gnueabihf/bits/xopen_lim.h:
+
 clock.h:
 
 /usr/include/string.h:
 
 /usr/include/xlocale.h:
-
-/usr/include/arm-linux-gnueabihf/bits/string.h:
-
-/usr/include/arm-linux-gnueabihf/bits/string2.h:
-
-/usr/include/stdlib.h:
 
 /usr/include/math.h:
 

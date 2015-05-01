@@ -315,16 +315,17 @@ showboard(int xo)
  * in the engine code than here.
  */
 
-static const char *status_names[] = {
+/*static const char *status_names[] = {
   DRAGON_STATUS_NAMES
-};
+};*/
 
 /* Convert a status value to a string. */
-const char *
-status_to_string(enum dragon_status status)
+//const char *
+/*status_to_string(dragon_status status)
 {
   return status_names[(int) status];
 }
+*/
 
 
 /* Convert a read result to a string */

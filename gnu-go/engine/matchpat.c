@@ -322,14 +322,14 @@ do_matchpat(int anchor, matchpat_callback_fn_ptr callback, int color,
     merged_val = 0;
     for (i = m-1; i <= m+2; ++i)
       for (j = n-1; j <= n+2; shift -= 2, ++j) {
-	unsigned int this;
+	unsigned int this_sucks;
 	if (!ON_BOARD2(i, j))
-	  this = 3;
-	else if ((this = BOARD(i, j)) == 0)
+	  this_sucks = 3;
+	else if ((this_sucks = BOARD(i, j)) == 0)
 	  continue;
 	else if (color == 2)
-	  this = OTHER_COLOR(this);
-	merged_val |= (this << shift);
+	  this_sucks = OTHER_COLOR(this_sucks);
+	merged_val |= (this_sucks << shift);
       }
   }
 
@@ -448,7 +448,7 @@ do_matchpat(int anchor, matchpat_callback_fn_ptr callback, int color,
 	  /* Check out the class_X, class_O, class_x, class_o
 	   * attributes - see patterns.db and above.
 	   */
-	  if ((pattern->class
+	  if ((pattern->pat_class
 	       & class_mask[dragon[pos].status][board[pos]]) != 0)
 	    goto match_failed; 
 	  
@@ -765,7 +765,7 @@ check_pattern_light(int anchor, matchpat_callback_fn_ptr callback, int color,
 
     /* class check */
     ASSERT1(dragon[pos].status < 4, anchor);
-    if ((pattern->class & class_mask[dragon[pos].status][board[pos]]) != 0)
+    if ((pattern->pat_class & class_mask[dragon[pos].status][board[pos]]) != 0)
       goto match_failed;
     
   } /* loop over elements */

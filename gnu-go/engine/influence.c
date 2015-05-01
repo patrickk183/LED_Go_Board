@@ -536,8 +536,8 @@ enter_intrusion_source(int source_pos, int strength_pos,
 static int
 compare_intrusions(const void *p1, const void *p2)
 {
-  const struct intrusion_data *intr1 = p1;
-  const struct intrusion_data *intr2 = p2;
+  const struct intrusion_data *intr1 = (intrusion_data*) p1;
+  const struct intrusion_data *intr2 = (intrusion_data*) p2;
   if (intr1->source_pos - intr2->source_pos != 0)
     return (intr1->source_pos - intr2->source_pos);
   else if (intr1->strength_pos - intr2->strength_pos != 0)
@@ -670,21 +670,21 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
 {
   int pos = AFFINE_TRANSFORM(pattern->move_offset, ll, anchor);
   int k;
-  struct influence_data *q = data;
+  struct influence_data *q = (influence_data*) data;
   
   /* We also ignore enhancement patterns in territorial influence. */
-  if ((pattern->class & CLASS_E) && q->is_territorial_influence)
+  if ((pattern->pat_class & CLASS_E) && q->is_territorial_influence)
     return;
 
   /* Don't use invasion (I) patterns when scoring. */
-  if (doing_scoring && (pattern->class & CLASS_I))
+  if (doing_scoring && (pattern->pat_class & CLASS_I))
     return;
   
   /* Loop through pattern elements to see if an A or D pattern
    * can possibly have any effect. If not we can skip evaluating
    * constraint and/or helper.
    */
-  if (pattern->class & (CLASS_A | CLASS_D)) {
+  if (pattern->pat_class & (CLASS_A | CLASS_D)) {
     int something_to_do = 0;
     gg_assert(q->is_territorial_influence);
     for (k = 0; k < pattern->patlen; ++k) { /* match each point */
@@ -697,7 +697,7 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
 
       ii = AFFINE_TRANSFORM(pattern->patn[k].offset, ll, anchor);
 
-      if (pattern->class & CLASS_D)
+      if (pattern->pat_class & CLASS_D)
 	blocking_color = color;
       else
 	blocking_color = OTHER_COLOR(color);
@@ -719,18 +719,18 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
    *
    * Patterns also having class s are an exception from this rule.
    */
-  if ((pattern->class & (CLASS_D | CLASS_A | CLASS_B | CLASS_E | CLASS_t))
-      && !(pattern->class & CLASS_s)) {
+  if ((pattern->pat_class & (CLASS_D | CLASS_A | CLASS_B | CLASS_E | CLASS_t))
+      && !(pattern->pat_class & CLASS_s)) {
     for (k = 0; k < pattern->patlen; ++k) { /* match each point */
       int ii = AFFINE_TRANSFORM(pattern->patn[k].offset, ll, anchor);
       if (pattern->patn[k].att == ATT_O) {
-	if ((pattern->class & (CLASS_B | CLASS_t | CLASS_E | CLASS_D))
+	if ((pattern->pat_class & (CLASS_B | CLASS_t | CLASS_E | CLASS_D))
 	    && ((color == WHITE && q->white_strength[ii] == 0.0)
 	        || (color == BLACK && q->black_strength[ii] == 0.0)))
 	  return;
       }
       else if (pattern->patn[k].att == ATT_X) {
-	if ((pattern->class & (CLASS_A | CLASS_t))
+	if ((pattern->pat_class & (CLASS_A | CLASS_t))
 	    && ((color == BLACK && q->white_strength[ii] == 0.0)
 	        || (color == WHITE && q->black_strength[ii] == 0.0)))
 	  return; /* Match failed. */
@@ -749,7 +749,7 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
 	pattern->name, ll, anchor);
 
   /* For t patterns, everything happens in the action. */
-  if ((pattern->class & CLASS_t)
+  if ((pattern->pat_class & CLASS_t)
       && (pattern->autohelper_flag & HAVE_ACTION)) {
     pattern->autohelper(ll, pos, color, INFLUENCE_CALLBACK);
     return;
@@ -758,12 +758,12 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
   /* For I patterns, add a low intensity, both colored, influence
    * source at *.
    */
-  if (pattern->class & CLASS_I) {
+  if (pattern->pat_class & CLASS_I) {
     int this_color = EMPTY;
     float strength;
     float attenuation;
 
-    if (q->color_to_move == EMPTY || (pattern->class & CLASS_s))
+    if (q->color_to_move == EMPTY || (pattern->pat_class & CLASS_s))
       this_color = BLACK | WHITE;
     else if (q->color_to_move != color)
       this_color = q->color_to_move;
@@ -781,7 +781,7 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
     }
 
     /* Increase strength if we're computing escape influence. */
-    if (!q->is_territorial_influence && (pattern->class & CLASS_e))
+    if (!q->is_territorial_influence && (pattern->pat_class & CLASS_e))
       add_influence_source(pos, this_color, 20 * strength, attenuation, q);
     else
       add_influence_source(pos, this_color, strength, attenuation, q);
@@ -795,7 +795,7 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
   /* For E patterns, add a new influence source of the same color and
    * pattern defined strength at *.
    */
-  if (pattern->class & CLASS_E) {
+  if (pattern->pat_class & CLASS_E) {
     add_influence_source(pos, color, pattern->value, DEFAULT_ATTENUATION, q);
     DEBUG(DEBUG_INFLUENCE,
 	  "  extra %C source at %1m, strength %f\n", color,
@@ -804,7 +804,7 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
   }
 
   /* For B patterns add intrusions sources at "!" points. */
-  if (pattern->class & CLASS_B) {
+  if (pattern->pat_class & CLASS_B) {
     float strength;
     if (cosmic_gnugo) {
       float t = 0.15 + (1.0 - cosmic_importance);
@@ -832,7 +832,7 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
   }
   
 
-  gg_assert(pattern->class & (CLASS_D | CLASS_A));
+  gg_assert(pattern->pat_class & (CLASS_D | CLASS_A));
   /* For A, D patterns, add blocks for all "," or "!" points.  */
   for (k = 0; k < pattern->patlen; ++k) { /* match each point */
     if (pattern->patn[k].att == ATT_comma
@@ -840,7 +840,7 @@ influence_callback(int anchor, int color, struct pattern *pattern, int ll,
       /* transform pattern real coordinate */
       int ii = AFFINE_TRANSFORM(pattern->patn[k].offset, ll, anchor);
       int blocking_color;
-      if (pattern->class & CLASS_D)
+      if (pattern->pat_class & CLASS_D)
 	blocking_color = color;
       else
 	blocking_color = OTHER_COLOR(color);
@@ -883,11 +883,11 @@ followup_influence_callback(int anchor, int color, struct pattern *pattern,
 {
   int k;
   int t;
-  struct influence_data *q = data;
+  struct influence_data *q = (influence_data*) data;
   UNUSED(color);
  
   /* We use only B  patterns in followup influence. */
-  if (!(pattern->class & CLASS_B))
+  if (!(pattern->pat_class & CLASS_B))
     return;
 
   t = AFFINE_TRANSFORM(pattern->move_offset, ll, anchor);

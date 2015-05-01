@@ -3679,7 +3679,7 @@ analyze_eyegraph(const char *coded_eyegraph, struct eyevalue *value,
     table_size *= 3;
 
   /* Allocate memory for the cache. */
-  tactical_life_results = malloc(table_size);
+  tactical_life_results = (unsigned char*) malloc(table_size);
   if (!tactical_life_results) {
     gprintf("analyze_eyegraph: failed to allocate %d bytes\n", table_size);
     gg_assert(tactical_life_results != NULL);

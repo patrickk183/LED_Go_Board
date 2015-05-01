@@ -1274,7 +1274,7 @@ mc_load_patterns_from_db(const char *filename, unsigned int *values)
     return 0;
   }
 
-  matching_geometries = malloc((NUM_GEOMETRIES + 1)
+  matching_geometries = (int*) malloc((NUM_GEOMETRIES + 1)
 			       * sizeof(*matching_geometries));
 
   /* Set unloaded patterns to a "-1" value. */
@@ -2138,14 +2138,14 @@ uct_genmove(int color, int *move, int *forbidden_moves, int *allowed_moves,
 
   tree.game = starting_position;
   /* FIXME: Don't reallocate between moves. */
-  tree.nodes = malloc(nodes * sizeof(*tree.nodes));
+  tree.nodes = (uct_node*) malloc(nodes * sizeof(*tree.nodes));
   gg_assert(tree.nodes);
-  tree.arcs = malloc(nodes * sizeof(*tree.arcs));
+  tree.arcs = (uct_arc*) malloc(nodes * sizeof(*tree.arcs));
   gg_assert(tree.arcs);
   tree.hashtable_size = nodes;
-  tree.hashtable_odd = calloc(tree.hashtable_size,
+  tree.hashtable_odd = (unsigned int*) calloc(tree.hashtable_size,
 			      sizeof(*tree.hashtable_odd));
-  tree.hashtable_even = calloc(tree.hashtable_size,
+  tree.hashtable_even = (unsigned int*) calloc(tree.hashtable_size,
 			       sizeof(*tree.hashtable_even));
   gg_assert(tree.hashtable_odd);
   gg_assert(tree.hashtable_even);

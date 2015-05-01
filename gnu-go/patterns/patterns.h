@@ -249,7 +249,7 @@ struct pattern {
   unsigned int val_mask[8]; /* 4x4 grid around anchor */
 #endif
 
-  unsigned int class;   /* classification of pattern */
+  unsigned int pat_class;   /* classification of pattern */
 
   /* Value (owl-style, used for pattern sorting) is not stored as an
    * attribute, because it is very common.
@@ -388,7 +388,7 @@ struct corner_pattern {
   int second_corner_offset; /* Offset of pattern's second corner. */
   int symmetric;	/* If the pattern is symmetric ('/' symmetry). */
 
-  unsigned int class;	/* Pattern class. */
+  unsigned int pat_class;	/* Pattern class. */
   const char *name;	/* Pattern name (optional). */
 
   /* Pattern attributes like shape (the only one used currently). */

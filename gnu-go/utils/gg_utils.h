@@ -65,8 +65,58 @@ double gg_cputime(void);
 
 float gg_normalize_float(float x, float a);
 int gg_normalize_float2int(float x, float a);
-void gg_sort(void *base, size_t nel, size_t width,
-	     int (*compar)(const void *, const void *));
+
+/* A sorting algorithm, call-compatible with the libc qsort() function.
+ *
+ * The reason to prefer this to standard qsort() is that quicksort is
+ * an unstable sorting algorithm, i.e. the relative ordering of
+ * elements with the same comparison value may change. Exactly how the
+ * ordering changes depends on implementation specific details like
+ * the strategy for choosing the pivot element. Thus a list with
+ * "equal" values may be sorted differently between platforms, which
+ * potentially can lead to significant differences in the move
+ * generation.
+ *
+ * This is an implementation of the combsort algorithm.
+ *
+ * Testing shows that it is faster than the GNU libc qsort() function
+ * on small data sets and within a factor of two slower for large
+ * random data sets. Its performance does not degenerate for common
+ * special cases (i.e. sorted or reversed data) but it seems to be
+ * susceptible to O(N^2) behavior for repetitive data with specific
+ * cycle lengths.
+ *
+ * Like qsort() this algorithm is unstable, but since the same
+ * implementation (this one) is used on all platforms, the reordering
+ * of equal elements will be consistent.
+ */
+void
+gg_sort(void *base, size_t nel, size_t width,
+	int (*cmp)(const void *, const void *))
+{
+  int gap = nel;
+  int swap_made;
+  char *end = (char *) base + width * (nel - 1);
+  do {
+    char *a, *b;
+    swap_made = 0;
+    gap = (10 * gap + 3) / 13;
+    for (a = (char*) base, b = a + gap * width; b <= end; a += width, b += width) {
+      if (cmp((void *) a, (void *) b) > 0) {
+	char *c = a;
+	char *d = b;
+	size_t size = width;
+	while (size-- > 0) {
+	  char tmp = *c;
+	  *c++ = *d;
+	  *d++ = tmp;
+	}
+	swap_made = 1;
+      }
+    }
+  } while (gap > 1 || swap_made);
+}
+
 
 #define MAX_INTERPOLATION_STEPS 20
 struct interpolation_data

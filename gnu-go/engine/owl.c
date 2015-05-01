@@ -3805,7 +3805,7 @@ check_pattern_hard(int move, int color, struct pattern *pattern, int ll)
   /* The very first check is whether we can disregard the pattern due
    * due to an owl safe_move_cache lookup.
    */
-  if (!(pattern->class & CLASS_s))
+  if (!(pattern->pat_class & CLASS_s))
     if (current_owl_data->safe_move_cache[move]) {
       if (current_owl_data->safe_move_cache[move] == 1)
         return 0;
@@ -3825,7 +3825,7 @@ check_pattern_hard(int move, int color, struct pattern *pattern, int ll)
    * not checked. Otherwise we discard moves which can be captured. 
    * Illegal ko captures are accepted for ko analysis.
    */
-  if (!(pattern->class & CLASS_s) && !safe_move_checked) {
+  if (!(pattern->pat_class & CLASS_s) && !safe_move_checked) {
     if (!owl_safe_move(move, color)) {
       if (0)
 	TRACE("  move at %1m wasn't safe, discarded\n", move);
@@ -3843,7 +3843,7 @@ check_pattern_hard(int move, int color, struct pattern *pattern, int ll)
    *
    * We can't use owl_safe_move() here because we would try the wrong color.
    */
-  if (pattern->class & CLASS_n) {
+  if (pattern->pat_class & CLASS_n) {
     if (safe_move(move, OTHER_COLOR(color)) == 0) {
       if (0)
 	TRACE("  opponent can't play safely at %1m, move discarded\n", move);
@@ -3877,7 +3877,7 @@ init_pattern_list(struct matched_patterns_list_data *list)
   list->counter = 0;
   list->used = 0;
 
-  list->pattern_list = malloc(200 * sizeof(list->pattern_list[0]));
+  list->pattern_list = (matched_pattern_data*) malloc(200 * sizeof(list->pattern_list[0]));
   list->list_size = 200;
   gg_assert(list->pattern_list != NULL);
   list->pattern_heap = NULL;
@@ -3982,7 +3982,7 @@ static void
 collect_owl_shapes_callbacks(int anchor, int color, struct pattern *pattern,
                              int ll, void *data)
 {
-  struct matched_patterns_list_data *matched_patterns = data;
+  struct matched_patterns_list_data *matched_patterns = (matched_patterns_list_data*) data;
   struct matched_pattern_data *next_pattern;
 
   UNUSED(color); /* The calling function has to remember that. */
@@ -3990,7 +3990,7 @@ collect_owl_shapes_callbacks(int anchor, int color, struct pattern *pattern,
   if (matched_patterns->counter >= matched_patterns->list_size) {
     matched_patterns->list_size += 100;
     matched_patterns->pattern_list
-        = realloc(matched_patterns->pattern_list,
+        = (matched_pattern_data*) realloc(matched_patterns->pattern_list,
 	          matched_patterns->list_size
 	          * sizeof(matched_patterns->pattern_list[0]));
   }
@@ -4181,7 +4181,7 @@ pattern_list_prepare(struct matched_patterns_list_data *list)
    * heap elements first.
    */
   if (list->counter > 0) { /* avoid malloc(0) */
-    list->pattern_heap = malloc(list->counter * sizeof(*(list->pattern_heap)));
+    list->pattern_heap = (matched_pattern_data**) malloc(list->counter * sizeof(*(list->pattern_heap)));
     gg_assert(list->pattern_heap != NULL);
   }
   else {
@@ -4202,7 +4202,7 @@ pattern_list_prepare(struct matched_patterns_list_data *list)
     /* Allocate heap elements for normal patterns.  Link combinable
      * patterns in chains.
      */
-    if (!(list->pattern_list[k].pattern->class & CLASS_c))
+    if (!(list->pattern_list[k].pattern->pat_class & CLASS_c))
       list->pattern_heap[list->heap_num_patterns++] = &list->pattern_list[k];
     else {
       list->pattern_list[k].next_pattern_index = list->first_pattern_index[move];
@@ -4445,12 +4445,12 @@ get_next_move_from_list(struct matched_patterns_list_data *list, int color,
       clear_cut_list(moves[k].cuts);
       move_found = 1;
 
-      if (pattern && !(pattern->class & CLASS_c)) {
+      if (pattern && !(pattern->pat_class & CLASS_c)) {
 	moves[k].name = pattern->name;
 	TRACE("Pattern %s found at %1m with value %d\n",
 	      pattern->name, move, moves[k].value);
 
-	if (pattern->class & CLASS_C) {
+	if (pattern->pat_class & CLASS_C) {
 	  /* Cut possible. (Only used in attack patterns). Try to find
 	   * goal strings in the pattern area and store them in the cut list
 	   * if there is more than one.
@@ -4460,13 +4460,13 @@ get_next_move_from_list(struct matched_patterns_list_data *list, int color,
 	  generate_cut_list(pattern, ll, anchor, moves[k].cuts, owl);
 	}
 
-	if (pattern->class & CLASS_B)
+	if (pattern->pat_class & CLASS_B)
 	  moves[k].same_dragon = SAME_DRAGON_NOT_CONNECTED;
-	else if (pattern->class & CLASS_a) {
+	else if (pattern->pat_class & CLASS_a) {
 	  moves[k].same_dragon = SAME_DRAGON_ALL_CONNECTED;
 	  moves[k].pattern_data = pattern_data;
 	}
-	else if (!(pattern->class & CLASS_b))
+	else if (!(pattern->pat_class & CLASS_b))
 	  moves[k].same_dragon = SAME_DRAGON_CONNECTED;
 	else {
 	  int i;
@@ -4480,15 +4480,15 @@ get_next_move_from_list(struct matched_patterns_list_data *list, int color,
 
 	    if (pattern_data->pattern
 		&& pattern_data->move == move
-		&& ((pattern_data->pattern->class & CLASS_B)
-		    || !(pattern_data->pattern->class & CLASS_b))) {
+		&& ((pattern_data->pattern->pat_class & CLASS_B)
+		    || !(pattern_data->pattern->pat_class & CLASS_b))) {
 	      if (check_pattern_hard(move, color, pattern_data->pattern,
 				     pattern_data->ll)) {
 		TRACE("Additionally pattern %s found at %1m\n",
 		      pattern_data->pattern->name, move);
-		if (pattern_data->pattern->class & CLASS_B)
+		if (pattern_data->pattern->pat_class & CLASS_B)
 		  same_dragon = SAME_DRAGON_NOT_CONNECTED;
-		else if (pattern_data->pattern->class & CLASS_a) {
+		else if (pattern_data->pattern->pat_class & CLASS_a) {
 		  same_dragon = SAME_DRAGON_ALL_CONNECTED;
 		  moves[k].pattern_data = pattern_data;
 		}
@@ -4515,9 +4515,9 @@ get_next_move_from_list(struct matched_patterns_list_data *list, int color,
 	 *	  chain have the same class.  When the last pattern in
 	 *	  chain didn't match, this will not work at all.
 	 */
-	if (pattern && pattern->class & CLASS_B)
+	if (pattern && pattern->pat_class & CLASS_B)
 	  moves[k].same_dragon = SAME_DRAGON_NOT_CONNECTED;
-	else if (pattern && pattern->class & CLASS_a) {
+	else if (pattern && pattern->pat_class & CLASS_a) {
 	  moves[k].same_dragon = SAME_DRAGON_ALL_CONNECTED;
 	  moves[k].pattern_data = list->pattern_heap[0];
 	}
@@ -4525,7 +4525,7 @@ get_next_move_from_list(struct matched_patterns_list_data *list, int color,
 	  moves[k].same_dragon = SAME_DRAGON_CONNECTED;
       }
 
-      if (pattern && pattern->class & CLASS_E)
+      if (pattern && pattern->pat_class & CLASS_E)
 	moves[k].escape = 1;
       else
 	moves[k].escape = 0;
@@ -4533,7 +4533,7 @@ get_next_move_from_list(struct matched_patterns_list_data *list, int color,
       break;
     }
     else {			/* !check_pattern_hard(...) */
-      if (!(pattern->class & CLASS_c)) {
+      if (!(pattern->pat_class & CLASS_c)) {
 	/* Just forget about it. */
 	pattern_list_pop_heap_once(list);
       }
@@ -4570,7 +4570,7 @@ owl_shapes_callback(int anchor, int color, struct pattern *pattern,
 {
   int tval;  /* trial move and its value */
   int move;
-  struct owl_move_data *moves = data; /* considered moves passed as data */
+  struct owl_move_data *moves = (owl_move_data*) data; /* considered moves passed as data */
   enum same_dragon_value same_dragon = SAME_DRAGON_MAYBE_CONNECTED;
   int escape = 0;
   int defense_pos;
@@ -4627,11 +4627,11 @@ owl_shapes_callback(int anchor, int color, struct pattern *pattern,
 
   TRACE("Pattern %s found at %1m with value %d\n", pattern->name, move, tval);
 
-  if (pattern->class & CLASS_B)
+  if (pattern->pat_class & CLASS_B)
     same_dragon = SAME_DRAGON_NOT_CONNECTED;
-  else if (pattern->class & CLASS_b)
+  else if (pattern->pat_class & CLASS_b)
     same_dragon = SAME_DRAGON_MAYBE_CONNECTED;
-  else if (pattern->class & CLASS_a) {
+  else if (pattern->pat_class & CLASS_a) {
     same_dragon = SAME_DRAGON_ALL_CONNECTED;
     /* FIXME: Currently this code is only used with vital attack
      * moves, so there is no use for the "a" classification. If it
@@ -4646,7 +4646,7 @@ owl_shapes_callback(int anchor, int color, struct pattern *pattern,
   else
     same_dragon = SAME_DRAGON_CONNECTED;
 
-  if (pattern->class & CLASS_E)
+  if (pattern->pat_class & CLASS_E)
     escape = 1;
   else 
     escape = 0;
@@ -5140,7 +5140,7 @@ owl_test_cuts(signed char goal[BOARDMAX], int color, int cuts[MAX_CUTS])
      */
     memset(component2, -1, BOARDMAX);
     memset(component_size, 0, sizeof(int) * num_components);
-    conn_data = malloc(sizeof(struct connection_data) * num_components);
+    conn_data = (connection_data*) malloc(sizeof(struct connection_data) * num_components);
     for (c_id = 0; c_id < num_components; c_id++) {
       signed char this_goal[BOARDMAX];
       memset(this_goal, 0, BOARDMAX);
@@ -6981,7 +6981,7 @@ static void
 check_owl_stack_size(void)
 {
   while (owl_stack_size <= owl_stack_pointer) {
-    owl_stack[owl_stack_size] = malloc(sizeof(*owl_stack[0]));
+    owl_stack[owl_stack_size] = (local_owl_data*) malloc(sizeof(*owl_stack[0]));
     gg_assert(owl_stack[owl_stack_size] != NULL);
     owl_stack_size++;
   }

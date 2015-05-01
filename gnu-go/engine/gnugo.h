@@ -324,6 +324,63 @@ int get_connection_node_counter(void);
 /*                         Low level functions                      */
 /* ================================================================ */
 
+/* This is used for both the dragon status and safety fields.
+ * Also used for unconditional status in struct worm_data and for the
+ * final status computed by the aftermath code.
+ */
+enum dragon_status {
+  DEAD,
+  ALIVE,
+  CRITICAL,
+  UNKNOWN,
+  UNCHECKED,
+  CAN_THREATEN_ATTACK,
+  CAN_THREATEN_DEFENSE, 
+  INESSENTIAL,
+  TACTICALLY_DEAD,
+  ALIVE_IN_SEKI,
+  STRONGLY_ALIVE,
+  INVINCIBLE,
+  INSUBSTANTIAL,
+  WHITE_TERRITORY,
+  BLACK_TERRITORY,
+  DAME,
+  NUM_DRAGON_STATUS
+};
+
+#define DRAGON_STATUS_NAMES \
+  "dead", \
+  "alive", \
+  "critical", \
+  "unknown", \
+  "unchecked", \
+  "can threaten attack", \
+  "can threaten defense", \
+  "inessential", \
+  "tactically dead", \
+  "alive in seki", \
+  "strongly alive", \
+  "invincible", \
+  "insubstantial", \
+  "white_territory", \
+  "black_territory", \
+  "dame"
+
+/* Some print utility function that don't really have a better place
+ * in the engine code than here.
+ */
+
+static const char *status_names[] = {
+  DRAGON_STATUS_NAMES
+};
+
+/* Convert a status value to a string. */
+const char *
+status_to_string(enum dragon_status status)
+{
+  return status_names[(int) status];
+}
+
 /* utils.c */
 void who_wins(int color, FILE *outfile);
 
@@ -343,8 +400,8 @@ void compute_worm_influence(void);
 void make_dragons(int stop_before_owl);
 void initialize_dragon_data(void);
 void show_dragons(void);
-enum dragon_status crude_status(int pos);
-enum dragon_status dragon_status(int pos);
+dragon_status crude_status(int pos);
+dragon_status dragon_status(int pos);
 int same_dragon(int dr1, int dr2);
 
 /* debugging functions */

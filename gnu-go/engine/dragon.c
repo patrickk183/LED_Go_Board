@@ -700,7 +700,7 @@ initialize_supplementary_dragon_data(void)
   if (dragon2 != NULL)
     free(dragon2);
   
-  dragon2 = malloc(number_of_dragons * sizeof(*dragon2));
+  dragon2 = (dragon_data2*) malloc(number_of_dragons * sizeof(*dragon2));
   gg_assert(dragon2 != NULL);
   
   /* Find the origins of the dragons to establish the mapping back to
@@ -722,7 +722,7 @@ initialize_supplementary_dragon_data(void)
 
     dragon2[d].moyo_size	        = -1;
     dragon2[d].moyo_territorial_value   = 0.0;
-    dragon2[d].safety                   = -1;
+    dragon2[d].safety                   = static_cast<enum dragon_status>(-1);
     dragon2[d].escape_route             = 0;
     dragon2[d].heye                     = NO_MOVE;
     dragon2[d].lunch                    = NO_MOVE;
@@ -2233,7 +2233,7 @@ compute_refined_dragon_weaknesses()
 void
 compute_strategic_sizes()
 {
-  float *bonus = calloc(number_of_dragons, sizeof(float));
+  float *bonus = (float*) calloc(number_of_dragons, sizeof(float));
   int d;
   int k;
 

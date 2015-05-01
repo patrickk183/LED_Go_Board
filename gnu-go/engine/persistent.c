@@ -552,7 +552,7 @@ store_persistent_cache(struct persistent_cache *cache,
 static void
 init_cache(struct persistent_cache *cache)
 {
-  cache->table = malloc(cache->max_size*sizeof(struct persistent_cache_entry));
+  cache->table = (persistent_cache_entry*) malloc(cache->max_size*sizeof(struct persistent_cache_entry));
   gg_assert(cache->table);
 }
 

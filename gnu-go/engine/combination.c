@@ -1054,7 +1054,7 @@ atari_atari_attack_callback(int anchor, int color,
        * capture in snapback it's okay. For s class patterns we don't
        * have this requirement.
        */
-      if (!(pattern->class & CLASS_s) && is_self_atari(move, color)) {
+      if (!(pattern->pat_class & CLASS_s) && is_self_atari(move, color)) {
 	if (countlib(str) > 2)
 	  continue;
 
@@ -1077,7 +1077,7 @@ atari_atari_attack_callback(int anchor, int color,
 	popgo();
 
 	if (acode != 0) {
-	  if ((pattern->class & CLASS_c)
+	  if ((pattern->pat_class & CLASS_c)
 	      && !aa_move_known(current_attacks, move, NO_MOVE)) {
 	    /* Conditional pattern. */
 	    DEBUG(DEBUG_ATARI_ATARI,
@@ -1515,8 +1515,8 @@ target_comp_func(const void *a, const void *b)
 static int
 move_comp_func(const void *a, const void *b)
 {
-  const struct aa_move *aa = a;
-  const struct aa_move *bb = b;
+  const struct aa_move *aa = (aa_move*) a;
+  const struct aa_move *bb = (aa_move*) b;
   int asize = get_aa_value(aa->target[0]);
   int bsize = get_aa_value(bb->target[0]);
   return asize - bsize;

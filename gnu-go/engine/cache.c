@@ -103,7 +103,7 @@ tt_init(Transposition_table *table, int memsize)
     num_entries = DEFAULT_NUMBER_OF_CACHE_ENTRIES;
 
   table->num_entries = num_entries;
-  table->entries     = malloc(num_entries * sizeof(table->entries[0]));
+  table->entries     = (Hashentry*) malloc(num_entries * sizeof(table->entries[0]));
 
   if (table->entries == NULL) {
     perror("Couldn't allocate memory for transposition table. \n");

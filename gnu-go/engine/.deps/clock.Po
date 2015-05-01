@@ -18,7 +18,8 @@ clock.o: clock.c clock.h gnugo.h board.h \
  /usr/include/limits.h /usr/include/arm-linux-gnueabihf/bits/posix1_lim.h \
  /usr/include/arm-linux-gnueabihf/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h ../utils/gg_utils.h \
+ /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h \
+ /usr/include/arm-linux-gnueabihf/bits/xopen_lim.h ../utils/gg_utils.h \
  /usr/include/arm-linux-gnueabihf/sys/time.h /usr/include/time.h \
  /usr/include/arm-linux-gnueabihf/bits/time.h \
  /usr/include/arm-linux-gnueabihf/sys/select.h \
@@ -86,6 +87,8 @@ hash.h:
 /usr/include/linux/limits.h:
 
 /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h:
+
+/usr/include/arm-linux-gnueabihf/bits/xopen_lim.h:
 
 ../utils/gg_utils.h:
 

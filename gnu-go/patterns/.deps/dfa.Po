@@ -18,12 +18,13 @@ dfa.o: dfa.c ../engine/liberty.h ../engine/board.h \
  /usr/include/limits.h /usr/include/arm-linux-gnueabihf/bits/posix1_lim.h \
  /usr/include/arm-linux-gnueabihf/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h ../engine/gnugo.h \
+ /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h \
+ /usr/include/arm-linux-gnueabihf/bits/xopen_lim.h ../engine/gnugo.h \
  ../engine/clock.h patterns.h dfa-mkpat.h dfa.h /usr/include/stdlib.h \
  /usr/include/arm-linux-gnueabihf/bits/waitflags.h \
  /usr/include/arm-linux-gnueabihf/bits/waitstatus.h /usr/include/endian.h \
  /usr/include/arm-linux-gnueabihf/bits/endian.h \
- /usr/include/arm-linux-gnueabihf/bits/byteswap.h \
+ /usr/include/arm-linux-gnueabihf/bits/byteswap.h /usr/include/xlocale.h \
  /usr/include/arm-linux-gnueabihf/sys/types.h /usr/include/time.h \
  /usr/include/arm-linux-gnueabihf/sys/select.h \
  /usr/include/arm-linux-gnueabihf/bits/select.h \
@@ -35,11 +36,8 @@ dfa.o: dfa.c ../engine/liberty.h ../engine/board.h \
  /usr/include/arm-linux-gnueabihf/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/arm-linux-gnueabihf/asm/errno.h \
  /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/string.h /usr/include/xlocale.h \
- /usr/include/arm-linux-gnueabihf/bits/string.h \
- /usr/include/arm-linux-gnueabihf/bits/string2.h ../utils/random.h \
- /usr/include/assert.h /usr/include/unistd.h \
- /usr/include/arm-linux-gnueabihf/bits/posix_opt.h \
+ /usr/include/string.h ../utils/random.h /usr/include/assert.h \
+ /usr/include/unistd.h /usr/include/arm-linux-gnueabihf/bits/posix_opt.h \
  /usr/include/arm-linux-gnueabihf/bits/environments.h \
  /usr/include/arm-linux-gnueabihf/bits/confname.h /usr/include/getopt.h
 
@@ -103,6 +101,8 @@ dfa.o: dfa.c ../engine/liberty.h ../engine/board.h \
 
 /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h:
 
+/usr/include/arm-linux-gnueabihf/bits/xopen_lim.h:
+
 ../engine/gnugo.h:
 
 ../engine/clock.h:
@@ -124,6 +124,8 @@ dfa.h:
 /usr/include/arm-linux-gnueabihf/bits/endian.h:
 
 /usr/include/arm-linux-gnueabihf/bits/byteswap.h:
+
+/usr/include/xlocale.h:
 
 /usr/include/arm-linux-gnueabihf/sys/types.h:
 
@@ -156,12 +158,6 @@ dfa.h:
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/string.h:
-
-/usr/include/xlocale.h:
-
-/usr/include/arm-linux-gnueabihf/bits/string.h:
-
-/usr/include/arm-linux-gnueabihf/bits/string2.h:
 
 ../utils/random.h:
 

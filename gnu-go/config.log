@@ -116,7 +116,7 @@ configure:3495: result: gcc3
 configure:3517: checking for library containing pow
 configure:3558: gcc -o conftest -g -O2   conftest.c  >&5
 conftest.c:18:6: warning: conflicting types for built-in function 'pow' [enabled by default]
-/tmp/cc2gQ8HP.o: In function `main':
+/tmp/ccMmAfBn.o: In function `main':
 /home/pi/Documents/led-go/LED_Go_Board/gnu-go/conftest.c:22: undefined reference to `pow'
 collect2: ld returned 1 exit status
 configure:3564: $? = 1

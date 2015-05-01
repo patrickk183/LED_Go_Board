@@ -18,11 +18,12 @@ optics.o: optics.c gnugo.h board.h \
  /usr/include/limits.h /usr/include/arm-linux-gnueabihf/bits/posix1_lim.h \
  /usr/include/arm-linux-gnueabihf/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h clock.h \
+ /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h \
+ /usr/include/arm-linux-gnueabihf/bits/xopen_lim.h clock.h \
  /usr/include/stdlib.h /usr/include/arm-linux-gnueabihf/bits/waitflags.h \
  /usr/include/arm-linux-gnueabihf/bits/waitstatus.h /usr/include/endian.h \
  /usr/include/arm-linux-gnueabihf/bits/endian.h \
- /usr/include/arm-linux-gnueabihf/bits/byteswap.h \
+ /usr/include/arm-linux-gnueabihf/bits/byteswap.h /usr/include/xlocale.h \
  /usr/include/arm-linux-gnueabihf/sys/types.h /usr/include/time.h \
  /usr/include/arm-linux-gnueabihf/sys/select.h \
  /usr/include/arm-linux-gnueabihf/bits/select.h \
@@ -30,10 +31,8 @@ optics.o: optics.c gnugo.h board.h \
  /usr/include/arm-linux-gnueabihf/bits/time.h \
  /usr/include/arm-linux-gnueabihf/sys/sysmacros.h \
  /usr/include/arm-linux-gnueabihf/bits/pthreadtypes.h \
- /usr/include/alloca.h /usr/include/string.h /usr/include/xlocale.h \
- /usr/include/arm-linux-gnueabihf/bits/string.h \
- /usr/include/arm-linux-gnueabihf/bits/string2.h liberty.h \
- ../patterns/eyes.h liberty.h ../utils/gg_utils.h \
+ /usr/include/alloca.h /usr/include/string.h liberty.h ../patterns/eyes.h \
+ liberty.h ../utils/gg_utils.h \
  /usr/include/arm-linux-gnueabihf/sys/time.h
 
 gnugo.h:
@@ -96,6 +95,8 @@ hash.h:
 
 /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h:
 
+/usr/include/arm-linux-gnueabihf/bits/xopen_lim.h:
+
 clock.h:
 
 /usr/include/stdlib.h:
@@ -109,6 +110,8 @@ clock.h:
 /usr/include/arm-linux-gnueabihf/bits/endian.h:
 
 /usr/include/arm-linux-gnueabihf/bits/byteswap.h:
+
+/usr/include/xlocale.h:
 
 /usr/include/arm-linux-gnueabihf/sys/types.h:
 
@@ -129,12 +132,6 @@ clock.h:
 /usr/include/alloca.h:
 
 /usr/include/string.h:
-
-/usr/include/xlocale.h:
-
-/usr/include/arm-linux-gnueabihf/bits/string.h:
-
-/usr/include/arm-linux-gnueabihf/bits/string2.h:
 
 liberty.h:
 

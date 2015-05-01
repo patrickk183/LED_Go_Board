@@ -119,6 +119,7 @@ const char *routine_id_to_string(enum routine_id routine);
  * Also used for unconditional status in struct worm_data and for the
  * final status computed by the aftermath code.
  */
+/*
 enum dragon_status {
   DEAD,
   ALIVE,
@@ -138,7 +139,8 @@ enum dragon_status {
   DAME,
   NUM_DRAGON_STATUS
 };
-
+*/
+/*
 #define DRAGON_STATUS_NAMES \
   "dead", \
   "alive", \
@@ -156,9 +158,8 @@ enum dragon_status {
   "white_territory", \
   "black_territory", \
   "dame"
-
-const char *status_to_string(enum dragon_status status);
-
+*/
+//const char *status_to_string(dragon_status status);
 
 /* Forward struct declarations. */
 struct pattern;

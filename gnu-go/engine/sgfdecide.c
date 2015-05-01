@@ -397,15 +397,15 @@ decide_tactical_semeai(int apos, int bpos)
   gprintf("After %s at %1m, %1m is %s, %1m is %s (%d nodes)\n",
 	  color_to_string(color),
 	  move,
-	  apos, status_to_string(resulta),
-  	  bpos, status_to_string(resultb),
+	  apos, status_to_string((enum dragon_status) resulta),
+  	  bpos, status_to_string((enum dragon_status) resultb),
 	  count_variations);
   owl_analyze_semeai(bpos, apos, &resultb, &resulta, &move, 0, &dummy);
   gprintf("After %s at %1m, %1m is %s, %1m is %s (%d nodes)\n",
 	  color_to_string(color),
 	  move,
-	  apos, status_to_string(resulta),
-  	  bpos, status_to_string(resultb),
+	  apos, status_to_string((enum dragon_status) resulta),
+  	  bpos, status_to_string((enum dragon_status) resultb),
 	  count_variations);
 
   sgffile_enddump(outfilename);
