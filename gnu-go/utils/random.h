@@ -45,7 +45,7 @@
  */
 
 /* Internal state of the random number generator. */
-struct gg_rand_state {
+static struct gg_rand_state {
   unsigned int x[25];   /* Internal state. */
   int k;                /* Word counter. */
 };
@@ -86,7 +86,7 @@ static int rand_initialized = 0;
  * matter much.
  */
 
-void
+static void
 gg_srand(unsigned int seed)
 {
   int i;
@@ -143,7 +143,7 @@ next_rand(void)
 /* Obtain one random integer value in the interval [0, 2^31-1].
  */
 
-int
+static int
 gg_rand(void)
 {
   return (int) (next_rand() & 0x7fffffff);
@@ -153,7 +153,7 @@ gg_rand(void)
 /* Obtain one random integer value in the interval [0, 2^32-1].
  */
 
-unsigned int
+static unsigned int
 gg_urand(void)
 {
   return next_rand();
@@ -168,7 +168,7 @@ gg_urand(void)
  * unusually short), the value 1.0 may be attained.
  */
 
-double
+static double
 gg_drand(void)
 {
   return next_rand() * 2.328306436538696e-10;
@@ -178,7 +178,7 @@ gg_drand(void)
 /* Retrieve the internal state of the random generator.
  */
 
-void
+static void
 gg_get_rand_state(struct gg_rand_state *state)
 {
   int i;
@@ -191,7 +191,7 @@ gg_get_rand_state(struct gg_rand_state *state)
 /* Set the internal state of the random number generator.
  */
 
-void
+static void
 gg_set_rand_state(struct gg_rand_state *state)
 {
   int i;

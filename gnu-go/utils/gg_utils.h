@@ -90,7 +90,7 @@ int gg_normalize_float2int(float x, float a);
  * implementation (this one) is used on all platforms, the reordering
  * of equal elements will be consistent.
  */
-void
+static void
 gg_sort(void *base, size_t nel, size_t width,
 	int (*cmp)(const void *, const void *))
 {
