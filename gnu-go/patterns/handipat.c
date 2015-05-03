@@ -969,7 +969,7 @@ static struct patval handipat48[] = {
   {649,0},	{686,0},	{723,0}
 };
 
-static struct pattern handipat[50];
+//static struct pattern handipat[50];
 
 static int
 autohelperhandipat6(int trans, int move, int color, int action)

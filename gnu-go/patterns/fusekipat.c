@@ -2449,7 +2449,7 @@ static struct patval fusekipat167[] = {
   {835,0},	{872,0}
 };
 
-static struct pattern fusekipat[169];
+//static struct pattern fusekipat[169];
 
 static int
 autohelperfusekipat3(int trans, int move, int color, int action)
@@ -3199,7 +3199,7 @@ autohelperfusekipat162(int trans, int move, int color, int action)
 }
 
 static struct pattern_attribute attributes[] = {
-#ifdef HAVE_TRANSPARENT_UNIONS
+/*#ifdef HAVE_TRANSPARENT_UNIONS
   {LAST_ATTRIBUTE,{.offset=0}},
   {SHAPE,{.value=1.000000}},
   {LAST_ATTRIBUTE,{.offset=0}},
@@ -3347,7 +3347,7 @@ static struct pattern_attribute attributes[] = {
   {LAST_ATTRIBUTE,{.offset=0}},
   {MIN_VALUE,{.value=35.000000}},
   {LAST_ATTRIBUTE,{.offset=0}}
-#else
+#else*/
   {LAST_ATTRIBUTE,0.0,0},
   {SHAPE,1.000000,0},
   {LAST_ATTRIBUTE,0.0,0},
@@ -3495,7 +3495,7 @@ static struct pattern_attribute attributes[] = {
   {LAST_ATTRIBUTE,0.0,0},
   {MIN_VALUE,35.000000,0},
   {LAST_ATTRIBUTE,0.0,0}
-#endif
+//#endif
 };
 
 static struct pattern fusekipat[] = {
