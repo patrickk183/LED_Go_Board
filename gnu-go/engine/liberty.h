@@ -159,6 +159,17 @@ enum dragon_status {
   "black_territory", \
   "dame"
 */
+
+static const char *status_names[] = {
+  DRAGON_STATUS_NAMES
+};
+
+/* Convert a status value to a string. */
+static const char *
+status_to_string(enum dragon_status status)
+{
+  return status_names[(int) status];
+}
 //const char *status_to_string(dragon_status status);
 
 /* Forward struct declarations. */
@@ -858,8 +869,8 @@ struct worm_data {
 extern struct worm_data worm[BOARDMAX];
 
 /* Unconditionally meaningless moves. */
-int meaningless_black_moves[BOARDMAX];
-int meaningless_white_moves[BOARDMAX];
+extern int meaningless_black_moves[BOARDMAX];
+extern int meaningless_white_moves[BOARDMAX];
 
 /* Surround cache (see surround.c) */
 

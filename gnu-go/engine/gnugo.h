@@ -369,18 +369,18 @@ enum dragon_status {
 /* Some print utility function that don't really have a better place
  * in the engine code than here.
  */
-
+/*
 static const char *status_names[] = {
   DRAGON_STATUS_NAMES
 };
-
+*/
 /* Convert a status value to a string. */
-const char *
+/*extern const char *
 status_to_string(enum dragon_status status)
 {
   return status_names[(int) status];
 }
-
+*/
 /* utils.c */
 void who_wins(int color, FILE *outfile);
 

@@ -293,8 +293,8 @@ static void exchange (char **);
 #endif
 
 static void
-exchange (argv)
-     char **argv;
+exchange (char **argv)
+//     char **argv;
 {
   int bottom = first_nonopt;
   int middle = last_nonopt;
@@ -378,10 +378,10 @@ exchange (argv)
 static const char *_getopt_initialize (int, char *const *, const char *);
 #endif
 static const char *
-_getopt_initialize (argc, argv, optstring)
-     int argc;
-     char *const *argv;
-     const char *optstring;
+_getopt_initialize (int argc, char *const *argv, const char *optstring)
+//     int argc;
+//     char *const *argv;
+//     const char *optstring;
 {
   /* Start processing options with ARGV-element 1 (since ARGV-element 0
      is the program name); the sequence of previously skipped
@@ -500,13 +500,13 @@ _getopt_initialize (argc, argv, optstring)
    long-named options.  */
 
 int
-_getopt_internal (argc, argv, optstring, longopts, longind, long_only)
-     int argc;
-     char *const *argv;
-     const char *optstring;
-     const struct gg_option *longopts;
-     int *longind;
-     int long_only;
+_getopt_internal (int argc, char *const *argv, const char *optstring, const struct gg_option *longopts, int *longind, int long_only)
+//     int argc;
+//     char *const *argv;
+//     const char *optstring;
+//     const struct gg_option *longopts;
+//     int *longind;
+//     int long_only;
 {
   gg_optarg = NULL;
 
@@ -760,7 +760,7 @@ _getopt_internal (argc, argv, optstring, longopts, longind, long_only)
 
   {
     char c = *nextchar++;
-    char *temp = my_index (optstring, c);
+    const char *temp = my_index (optstring, c);
 
     /* Increment `optind' when we start to process its last character.  */
     if (*nextchar == '\0')
@@ -956,10 +956,10 @@ _getopt_internal (argc, argv, optstring, longopts, longind, long_only)
 }
 
 int
-gg_getopt (argc, argv, optstring)
-     int argc;
-     char *const *argv;
-     const char *optstring;
+gg_getopt (int argc, char *const *argv, const char *optstring)
+//     int argc;
+//     char *const *argv;
+//     const char *optstring;
 {
   return _getopt_internal (argc, argv, optstring,
 			   (const struct gg_option *) 0,
