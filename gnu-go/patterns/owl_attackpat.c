@@ -5194,19 +5194,11 @@ autohelperowl_attackpat396(int trans, int move, int color, int action)
 }
 
 static struct pattern_attribute attributes[] = {
-#ifdef HAVE_TRANSPARENT_UNIONS
-  {LAST_ATTRIBUTE,{.offset=0}},
-  {THREATENS_TO_CAPTURE,{.offset=757}},
-  {LAST_ATTRIBUTE,{.offset=0}},
-  {THREATENS_EYE,{.offset=682}},
-  {LAST_ATTRIBUTE,{.offset=0}}
-#else
   {LAST_ATTRIBUTE,0.0,0},
   {THREATENS_TO_CAPTURE,0.0,757},
   {LAST_ATTRIBUTE,0.0,0},
   {THREATENS_EYE,0.0,682},
   {LAST_ATTRIBUTE,0.0,0}
-#endif
 };
 
 static struct pattern owl_attackpat[] = {

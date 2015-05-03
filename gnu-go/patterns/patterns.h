@@ -203,29 +203,11 @@ enum attribute_type {
   LAST_ATTRIBUTE = NUM_ATTRIBUTES
 };
 
-
-#ifdef HAVE_TRANSPARENT_UNIONS
-
-struct pattern_attribute {
-  enum attribute_type type;
-
-  /* GCC allows unnamed (and transparent) unions. */
-  union {
-    float value;
-    int offset;
-  };
-};
-
-#else
-
 struct pattern_attribute {
   enum attribute_type type;
   float value;
   int offset;
 };
-
-#endif
-
 
 /*
  * Each pattern as a whole is compiled to an instance of this structure.

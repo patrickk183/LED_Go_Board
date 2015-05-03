@@ -90,7 +90,7 @@
 #define HAVE_TIMES 1
 
 /* Define if your compiler supports transparent unions */
-#define HAVE_TRANSPARENT_UNIONS 1
+#define HAVE_TRANSPARENT_UNIONS 0
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
