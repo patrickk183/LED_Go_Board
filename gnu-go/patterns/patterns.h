@@ -204,19 +204,19 @@ enum attribute_type {
 };
 
 
-//#ifdef HAVE_TRANSPARENT_UNIONS
+#ifdef HAVE_TRANSPARENT_UNIONS
 
-//struct pattern_attribute {
-//  enum attribute_type type;
+struct pattern_attribute {
+  enum attribute_type type;
 
   /* GCC allows unnamed (and transparent) unions. */
-//  union {
-//    float value;
-//    int offset;
-//  };
-//};
+  union {
+    float value;
+    int offset;
+  };
+};
 
-//#else
+#else
 
 struct pattern_attribute {
   enum attribute_type type;
@@ -224,7 +224,7 @@ struct pattern_attribute {
   int offset;
 };
 
-//#endif
+#endif
 
 
 /*
