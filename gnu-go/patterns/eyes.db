@@ -3,7 +3,7 @@
 # http://www.gnu.org/software/gnugo/ for more information.          #
 #                                                                   #
 # Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   #
-# 2008, 2009 and 2010 by the Free Software Foundation.              #
+# 2008 and 2009 by the Free Software Foundation.                    #
 #                                                                   #
 # This program is free software; you can redistribute it and/or     #
 # modify it under the terms of the GNU General Public License       #
@@ -167,21 +167,21 @@
 #          1 element          #
 ###############################
 
-Pattern 100
+Pattern 101
 
 x
 
 :1111
 
 
-Pattern 101
+Pattern 102
 
 $
 
 :0000
 
 
-Pattern 102
+Pattern 103
 
 !
 
@@ -192,21 +192,21 @@ Pattern 102
 #          2 elements         #
 ###############################
 
-Pattern 200
+Pattern 201
 
 xx
 
 :1111
 
 
-Pattern 201
+Pattern 202
 
 @x
 
 :0011
 
 
-Pattern 202
+Pattern 203
 
 $.
 
@@ -217,42 +217,43 @@ $.
 #          3 elements         #
 ###############################
 
-Pattern 300
+Pattern 301
+# Must be matched before 302.
 
 X.X
 
-:2222
+:1222
 
 
-Pattern 301
+Pattern 302
 
 x*x
 
 :1122
 
 
-Pattern 302
+Pattern 303
 
 xXx
 
 :1111
 
 
-Pattern 310
+Pattern 304
 
-(.x
+!.x
 
 :0111
 
 
-Pattern 311
+Pattern 305
 
 @Xx
 
 :0011
 
 
-Pattern 320
+Pattern 306
 # A chimera.
 
 x@x
@@ -260,30 +261,30 @@ x@x
 :0022
 
 
-Pattern 330
+Pattern 307
 
 $*.
 
 :0011
 
 
-Pattern 331
+Pattern 308
 
 $.X
 
 :1111
 
 
-Pattern 332
+Pattern 309
 
-$X>
+$X.
 
 :0001
 
 
-Pattern 340
+Pattern 310
 
-)x)
+!x!
 
 :0001
 
@@ -295,16 +296,9 @@ Pattern 340
 # Special cases in corners and on edges. These must be matched before
 # the same shape is matched in the center.
 
-Pattern 4000
-# Bent four in the corner. An attack depends on a ko and sufficiently
+Pattern 401
+# Bent four in the corner. The attack depends on a ko and sufficiently
 # few outer liberties.
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 
-# |.
-# |.<.
-# +---
-# 
-# :1222
 
 |.
 |.*.
@@ -313,61 +307,7 @@ Pattern 4000
 :1122
 
 
-Pattern 4001
-
-|x
-|..@
-+---
-
-:0112
-
-
-Pattern 4002
-
-|@
-|..x
-+---
-
-:0112
-
-
-Pattern 4003
-
-|X
-|.X@
-+---
-
-:0022
-
-
-Pattern 4004
-
-|.
-|.X@
-+---
-
-:0012
-
-
-Pattern 4005
-
-|@
-|.Xx
-+---
-
-:0011
-
-
-Pattern 4006
-
-|)
-|.X)
-+---
-
-:0001
-
-
-Pattern 4007
+Pattern 402
 #tm new pattern (3.1.14)
 #see trevor:1001
 
@@ -383,7 +323,7 @@ Pattern 4007
 #
 
 
-Pattern 4100
+Pattern 410
 # The XXXX pattern is a special case. It can only come up when dealing
 # with false marginals. In that case it is equivalent
 # to .... which yields 2 eyes.
@@ -393,147 +333,147 @@ XxxX
 :2222
 
 
-Pattern 4101
+Pattern 411
 
-x<<.
+x...
 
 :1222
 
 
-Pattern 4102
+Pattern 412
 
 x*Xx
 
 :1122
 
 
-Pattern 4103
+Pattern 413
 
-XXX>
+XXX.
 
 :1112
 
 
-Pattern 4104
+Pattern 414
 
 .XX.
 
 :1111
 
 
-Pattern 4110
+Pattern 416
 
 @X.X
 
 :0122
 
 
-Pattern 4111
-
-(.Xx
-
-:0111
-
-
-Pattern 4112
-
-)..x
-
-:1112
-
-
-Pattern 4113
-
-@X..
-
-:0112
-
-
-Pattern 4114
-
-@XXX
-
-:0012
-
-
-Pattern 4115
-
-@XX.
-
-:0011
-
-
-Pattern 4120
+Pattern 417
 
 x@.x
 
 :0122
 
 
-Pattern 4121
+Pattern 418
 
 x@Xx
 
 :0022
 
 
-Pattern 4130
+Pattern 419
+
+!.Xx
+
+:0111
+
+
+Pattern 420
+
+!..x
+
+:1112
+
+
+Pattern 421
+
+!X..
+
+:0112
+
+
+Pattern 422
+
+@XXX
+
+:0012
+
+
+Pattern 423
+
+@XX.
+
+:0011
+
+
+Pattern 424
 
 @..@
 
 :0011
 
 
-Pattern 4131
+Pattern 425
 
 (.X@
 
 :0011
 
 
-Pattern 4132
-
-)XX)
-
-:0001
-
-
-Pattern 4140
+Pattern 426
 
 !x@x
 
 :0012
 
 
-Pattern 4150
+Pattern 427
 
-!>x$
+!XX!
 
 :0001
 
 
-Pattern 4151
+Pattern 428
+
+!.x$
+
+:0001
+
+
+Pattern 429
 
 @X.$
 
 :0011
 
 
-Pattern 4152
+Pattern 430
 
 .XX$
 
 :1111
 
 
-Pattern 4153
+Pattern 431
 
-$>X$
+$.X$
 
 :0001
 
 
-Pattern 4154
+Pattern 432
 
 $xx$
 
@@ -544,15 +484,16 @@ $xx$
 # Topology: ...
 #
 
-Pattern 4200
+Pattern 441
+# Match before 442
 
  X
 X.X
 
-:2222
+:1222
 
 
-Pattern 4201
+Pattern 442
 
  x
 x*x
@@ -560,15 +501,15 @@ x*x
 :1122
 
 
-Pattern 4202
+Pattern 443
 
- >
+ .
 XXX
 
 :1112
 
 
-Pattern 4203
+Pattern 444
 
  x
 xXx
@@ -576,39 +517,23 @@ xXx
 :1111
 
 
-Pattern 4210
+Pattern 445
 
- X
-!*X
+ !
+X*X
 
 :1122
 
 
-Pattern 4211
+Pattern 446
 
- x
-!*x
+ !
+x*x
 
 :0122
 
 
-Pattern 4212
-
- X
-@XX
-
-:0012
-
-
-Pattern 4213
-
- x
-@Xx
-
-:0011
-
-
-Pattern 4220
+Pattern 447
 
  x
 x@x
@@ -616,7 +541,7 @@ x@x
 :0022
 
 
-Pattern 4230
+Pattern 448
 
  )
 )*x
@@ -624,35 +549,35 @@ Pattern 4230
 :0011
 
 
-Pattern 4231
+Pattern 449
 
- )
-)Xx
+ X
+@XX
 
-:0001
+:0012
 
 
-Pattern 4240
+Pattern 450
 
- $
-!*.
+ x
+@Xx
 
 :0011
 
 
-Pattern 4241
+Pattern 451
 
- $
-!X.
+ x
+!X!
 
-:0000
+:0001
 
 
 #           ..
 # Topology: ..
 #
 
-Pattern 4300
+Pattern 461
 
 *X
 X.
@@ -660,31 +585,23 @@ X.
 :1122
 
 
-Pattern 4301
+Pattern 462
 
->>
->>
-
-:1112
-
-
-Pattern 4302
-
->.
-X>
+..
+x.
 
 :1112
 
 
-Pattern 4303
+Pattern 463
 
 XX
-X>
+X.
 
 :1112
 
 
-Pattern 4304
+Pattern 464
 
 xx
 xx
@@ -692,7 +609,8 @@ xx
 :1111
 
 
-Pattern 4310
+Pattern 465
+# Must be matched before 466.
 
 @X
 X.
@@ -700,7 +618,7 @@ X.
 :0022
 
 
-Pattern 4311
+Pattern 466
 
 @x
 x.
@@ -708,7 +626,7 @@ x.
 :0012
 
 
-Pattern 4312
+Pattern 467
 
 @X
 XX
@@ -716,7 +634,7 @@ XX
 :0012
 
 
-Pattern 4313
+Pattern 468
 
 @x
 xX
@@ -724,27 +642,39 @@ xX
 :0011
 
 
-Pattern 4320
+Pattern 469
 
 !@
 .x
 
 :0011
 
-Pattern 4321
+#
+# Completely dead patterns.
+#
 
-))
+Pattern 491
+
+!!
 XX
 
 :0001
 
 
-Pattern 4330
+Pattern 492
 
-)x
-x)
+!x
+x!
 
 :0002
+
+
+Pattern 493
+
+ !
+!x!
+
+:0000
 
 
 ###############################
@@ -752,41 +682,35 @@ x)
 ###############################
 
 
-# 5 vertices.
 #
+# 5 vertices.  Now it is getting tricky...  
+# At least we will get all the linear patterns correct.
+#
+
 # Special cases in corners and on edges. These must be matched before
 # the same shape is matched in the center.
 #
 # Special care must be taken to get these patterns in the right order.
-# In particular the bent patterns in the corner (i.e. including the
-# very corner vertex) must be matched before the edge patterns, which
-# in turn must come before the patterns of topology
+# In particular the bent four in the corner patterns must be matched
+# before the patterns of topology
 #
-# |...     |..
-# |. . and | ...
-# +---     +----
-
-Pattern 5000
-
-|.
-|<
-|x<.
-+---
-
-:1222
-
+# |...
+# |. .
+# +---
 
 Pattern 5001
+# Bent four in the corner.
 
-|>
+|.
 |X
-|.X>
+|.X.
 +---
 
 :1112
 
 
 Pattern 5002
+# Bent four in the corner.
 
 |.
 |X
@@ -797,14 +721,23 @@ Pattern 5002
 
 
 Pattern 5003
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 
-# |.
-# |X
-# |.XX
-# +---
-# 
-# :2222
+# Bent four in the corner.
+
+|.
+|XXX.
++---
+
+:1111
+
+
+Pattern 5004
+# Bent four in the corner.
+#
+# This one is tricky. Black has two certain eyes if there are at least
+# two outside liberties, but at most one if they are fewer.
+# It seems likely that calling this only one eye leads to the fewest
+# errors in the surrounding code. (Unfortunately we have no provisions
+# to check the number of liberties at this point.)
 
 |.
 |X
@@ -814,15 +747,12 @@ Pattern 5003
 :1111
 
 
-Pattern 5004
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 
-# |.
-# |X
-# |XXX
-# +---
-# 
-# :2222
+Pattern 5005
+# Bent four in the corner.
+#
+# This pattern is similar to the previous one. Black has two certain eyes
+# if there are at least two outside liberties, but needs to fight a ko
+# if there is only one.
 
 |.
 |X
@@ -832,7 +762,54 @@ Pattern 5004
 :1111
 
 
-Pattern 5005
+Pattern 5006
+# Bent four in the corner.
+#
+# This pattern behaves identically to the previous one.
+
+|X
+|XXX.
++---
+
+:1111
+
+
+Pattern 5007
+# Bent four in the corner. The attack depends on ko and sufficiently
+# few outer liberties if the corner vertex is empty.
+
+|.
+|xX*.
++---
+
+:1122
+
+
+Pattern 5008
+# Bent four in the corner. The attack depends on ko and sufficiently
+# few outer liberties if the corner vertex is empty.
+
+|.
+|x*X.
++---
+
+:1122
+
+
+Pattern 5009
+# Bent four in the corner. An O move in the corner may or may not give
+# another eye (depending on ko and/or outer liberties). An X move in
+# the corner definitely settles the number of eyes to 1.
+
+|.
+|.XX.
++---
+
+:1111
+
+
+Pattern 5010
+# Bent four in the corner.
 
 |.
 |*
@@ -842,180 +819,17 @@ Pattern 5005
 :1122
 
 
-Pattern 5010
-
-|.
-|XXX.
-+---
-
-:1111
-
-
 Pattern 5011
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 
-# |X
-# |XXX.
-# +---
-# 
-# :2222
+# Bent four shape that X must fight. Ko if at most one outer liberty.
 
 |X
-|XXX.
+|XX*.
 +---
 
-:1111
+:1122
 
 
 Pattern 5012
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 
-# |.
-# |.X<.
-# +---
-# 
-# :1222
-
-|.
-|.X*.
-+---
-
-:1122
-
-
-Pattern 5013
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 
-# |.
-# |.<X.
-# +---
-# 
-# :1222
-
-|.
-|.*X.
-+---
-
-:1122
-
-
-Pattern 5014
-
-|.
-|X<..
-+---
-
-:1222
-
-
-Pattern 5015
-
-|.
-|XX*.
-+---
-
-:1122
-
-
-Pattern 5016
-
-|.
-|X*X.
-+---
-
-:1122
-
-
-Pattern 5017
-
-|.
-|*XX.
-+---
-
-:1122
-
-
-Pattern 5018
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 
-# |X
-# |XX..
-# +---
-# 
-# :2222
-
-|X
-|XX*.
-+---
-
-:1122
-
-
-Pattern 5020
-
-|@
-|.
-|.Xx
-+---
-
-:0112
-
-
-Pattern 5030
-
-|@
-|....
-+---
-
-:1122
-
-
-Pattern 5031
-
-|)
-|.X.X
-+---
-
-:1112
-
-
-Pattern 5032
-
-|(
-|.XXX
-+---
-
-:0111
-
-
-Pattern 5033
-
-|@
-|.XX.
-+---
-
-:0011
-
-
-Pattern 5034
-
-|@
-|.xx.
-+---
-
-:0112
-
-
-Pattern 5040
-
-|@
-|.x.!
-+---
-
-:0011
-
-
-Pattern 5050
 
 xxxxx
 -----
@@ -1023,61 +837,7 @@ xxxxx
 :2222
 
 
-Pattern 5060
-
-|.<.
-|X .
-+---
-
-:1222
-
-
-Pattern 5061
-
-|.<.
-|. X
-+---
-
-:1222
-
-
-Pattern 5062
-
-|.<X
-|. .
-+---
-
-:1222
-
-
-Pattern 5063
-
-|X<.
-|. .
-+---
-
-:1222
-
-
-Pattern 5064
-
-|X<.
-|X X
-+---
-
-:1222
-
-
-Pattern 5065
-
-|.<X
-|X X
-+---
-
-:1222
-
-
-Pattern 5066
+Pattern 5021
 
 |XX*
 |. .
@@ -1086,7 +846,7 @@ Pattern 5066
 :1122
 
 
-Pattern 5067
+Pattern 5022
 
 |X*X
 |. .
@@ -1095,7 +855,7 @@ Pattern 5067
 :1122
 
 
-Pattern 5068
+Pattern 5023
 
 |*XX
 |. .
@@ -1104,7 +864,7 @@ Pattern 5068
 :1122
 
 
-Pattern 5069
+Pattern 5024
 
 |.X>
 |< X
@@ -1113,25 +873,7 @@ Pattern 5069
 :1122
 
 
-Pattern 5070
-
-|.X>
-|X <
-+---
-
-:1122
-
-
-Pattern 5071
-
-|.*.
-|X X
-+---
-
-:1122
-
-
-Pattern 5072
+Pattern 5025
 
 |XXX
 |. .
@@ -1140,79 +882,7 @@ Pattern 5072
 :1111
 
 
-Pattern 5073
-
-|XXX
-|x x
-+---
-
-:2222
-
-
-Pattern 5074
-
-|xXx
-|< X
-+---
-
-:1222
-
-
-Pattern 5075
-
-|xXx
-|X <
-+---
-
-:1222
-
-
-Pattern 5076
-
-|.X.
-|< <
-+---
-
-:1222
-
-
-Pattern 5080
-
-|..
-| <X.
-+----
-
-:1222
-
-
-Pattern 5081
-
-|..
-| X<.
-+----
-
-:1222
-
-
-Pattern 5082
-
-|.X
-| .<.
-+----
-
-:1222
-
-
-Pattern 5083
-
-|XX
-| <X.
-+----
-
-:1222
-
-
-Pattern 5084
+Pattern 5031
 
 |.X
 | X*.
@@ -1221,7 +891,7 @@ Pattern 5084
 :1122
 
 
-Pattern 5085
+Pattern 5032
 
 |.X
 | *X.
@@ -1230,7 +900,7 @@ Pattern 5085
 :1122
 
 
-Pattern 5086
+Pattern 5033
 
 |.*
 | XX.
@@ -1239,49 +909,13 @@ Pattern 5086
 :1122
 
 
-Pattern 5087
+Pattern 5034
 
 |.X
 | XX.
 +----
 
 :1111
-
-
-Pattern 5090
-
-|x.
-| .X@
-+----
-
-:0122
-
-
-Pattern 5091
-
-|X.
-| XX@
-+----
-
-:0022
-
-
-Pattern 5092
-
-|..
-| XX@
-+----
-
-:0012
-
-
-Pattern 5093
-
-|X>
-| ..(
-+----
-
-:1122
 
 
 #
@@ -1292,7 +926,7 @@ Pattern 5093
 # Linear, no marginal vertices.
 #
 
-Pattern 5100
+Pattern 5101
 # Usually at least seki.
 #
 # There are rare exceptions where this is only
@@ -1309,140 +943,140 @@ xxxxx
 #
 
 
-Pattern 5110
+Pattern 5111
 
 @X.<.
 
 :1122
 
-
-Pattern 5111
+  
+Pattern 5112
 
 @..<x
 
 :1122
 
-
-Pattern 5112
+  
+Pattern 5113
 
 @x..x
 
 :1122
 
-
-Pattern 5113
+  
+Pattern 5114
 
 !.X*x
 
 :1122
 
 
-Pattern 5114
+Pattern 5115
 
 @XXXX
 
 :0022
 
 
-Pattern 5115
+Pattern 5116
 
 @XXX.
 
 :0011
 
 
-Pattern 5116
+Pattern 5117
 
 @X.XX
 
 :0122
 
 
-Pattern 5117
+Pattern 5118
 
-@X.X.
+!X.X.
 
 :0112
 
 
-Pattern 5118
+Pattern 5119
 
 @XX.X
 
 :0122
 
 
-Pattern 5119
+Pattern 5120
 
-@XX..
+!XX..
 
 :0112
 
 
-Pattern 5120
-
-)..Xx
-
-:1112
-
-
 Pattern 5121
 
-!>XXX
+!..Xx
 
 :1112
 
 
 Pattern 5122
 
-(.XX.
+!.XXX
+
+:1112
+
+
+Pattern 5123
+
+!.XX.
 
 :0111
 
 
-Pattern 5130
+Pattern 5131
 
 x@.Xx
 
 :0122
 
 
-Pattern 5131
+Pattern 5132
 
 x@..x
 
 :1122
 
 
-Pattern 5132
+Pattern 5133
 
 x@X.x
 
 :0122
 
 
-Pattern 5133
+Pattern 5134
 
 x@XXx
 
 :0022
 
 
-Pattern 5140
+Pattern 5141
 
 x.@.x
 
 :1122
 
 
-Pattern 5141
+Pattern 5142
 
 x.@Xx
 
 :0122
 
 
-Pattern 5142
+Pattern 5143
 
 xX@Xx
 
@@ -1453,79 +1087,80 @@ xX@Xx
 # Linear, two marginal vertices.
 #
 
-Pattern 5150
+Pattern 5151
 
-(.x.(
+!.x.!
 
 :0111
 
 
-Pattern 5151
+Pattern 5152
 
 !.>X@
 
 :0011
 
 
-Pattern 5152
+Pattern 5153
 
 @X.X@
 
 :0011
 
 
-Pattern 5153
+Pattern 5154
 
-)XXX)
+!XXX!
 
 :0001
 
 
-Pattern 5154
+Pattern 5155
 
 @Xxx!
 
 :0011
 
 
-Pattern 5155
+Pattern 5156
 
-!x@.x
+!x!.x
 
 :0112
 
 
-Pattern 5156
+Pattern 5157
 
 !x@Xx
 
 :0012
 
 
-Pattern 5157
+Pattern 5158
+# Must be matched before 5159.
 
 !.x@x
 
 :0022
 
 
-Pattern 5158
+Pattern 5159
 
 !x.@x
 
 :0012
 
 
-Pattern 5159
+Pattern 5160
 
 !XX@x
 
 :0012
 
 
-Pattern 5160
+Pattern 5161
 
-x@x@x
+x!x!x
 
 :0112
 
@@ -1534,21 +1169,21 @@ x@x@x
 # Linear, three marginal vertices.
 #
 
-Pattern 5170
+Pattern 5171
 
 !x@x!
 
 :0011
 
 
-Pattern 5180
+Pattern 5181
 
 xx.x$
 
 :1111
 
 
-Pattern 5181
+Pattern 5182
 
 x*XX$
 
@@ -1559,7 +1194,7 @@ x*XX$
 # Topology: ....
 #
 
-Pattern 5200
+Pattern 5201
 
  x
 x..X
@@ -1567,15 +1202,15 @@ x..X
 :2222
 
 
-Pattern 5201
+Pattern 5202
 
  x
-x<<.
+x...
 
 :1222
 
 
-Pattern 5202
+Pattern 5203
 
  x
 xXXX
@@ -1583,15 +1218,15 @@ xXXX
 :2222
 
 
-Pattern 5203
+Pattern 5204
 
  X
-XXX>
+XXX.
 
 :1112
 
 
-Pattern 5204
+Pattern 5205
 
  x
 xXX.
@@ -1599,7 +1234,7 @@ xXX.
 :1111
 
 
-Pattern 5205
+Pattern 5211
 
  x
 xX*.
@@ -1607,7 +1242,7 @@ xX*.
 :1122
 
 
-Pattern 5206
+Pattern 5212
 
  x
 x*X.
@@ -1615,15 +1250,16 @@ x*X.
 :1122
 
 
-Pattern 5210
+Pattern 5213
+# Must be matched before 5214.
 
  X
-(<.X
+!..X
 
 :1222
 
 
-Pattern 5211
+Pattern 5214
 
  x
 )*.x
@@ -1631,15 +1267,16 @@ Pattern 5211
 :1122
 
 
-Pattern 5212
+Pattern 5215
+# Must be matched before 5216.
 
  X
-(<XX
+!.XX
 
 :0222
 
 
-Pattern 5213
+Pattern 5216
 
  x
 !*Xx
@@ -1647,7 +1284,7 @@ Pattern 5213
 :0122
 
 
-Pattern 5214
+Pattern 5217
 
  X
 @X.X
@@ -1655,15 +1292,15 @@ Pattern 5214
 :0122
 
 
-Pattern 5215
+Pattern 5218
 
  x
-@X<x
+!X.x
 
 :0112
 
 
-Pattern 5216
+Pattern 5219
 
  X
 @XXX
@@ -1671,7 +1308,7 @@ Pattern 5216
 :0022
 
 
-Pattern 5217
+Pattern 5220
 
  x
 @XXx
@@ -1679,7 +1316,7 @@ Pattern 5217
 :0011
 
 
-Pattern 5220
+Pattern 5221
 
  x
 x@.x
@@ -1687,7 +1324,7 @@ x@.x
 :0122
 
 
-Pattern 5221
+Pattern 5222
 
  x
 x@Xx
@@ -1695,15 +1332,15 @@ x@Xx
 :0022
 
 
-Pattern 5230
+Pattern 5223
 
  x
-x<(x
+x.!x
 
 :0222
 
 
-Pattern 5231
+Pattern 5224
 
  x
 xX@x
@@ -1711,23 +1348,23 @@ xX@x
 :0022
 
 
-Pattern 5240
+Pattern 5225
 
  X
-XX>!
+XX.!
 
 :1112
 
 
-Pattern 5241
+Pattern 5226
 
  x
-xX<(
+xX.!
 
 :0111
 
 
-Pattern 5242
+Pattern 5227
 
  X
 XXX@
@@ -1735,7 +1372,7 @@ XXX@
 :0012
 
 
-Pattern 5243
+Pattern 5228
 
  x
 xXX@
@@ -1743,15 +1380,15 @@ xXX@
 :0011
 
 
-Pattern 5250
+Pattern 5231
 
  ! 
-!<.x
+!..x
 
 :0111
 
 
-Pattern 5251
+Pattern 5232
 
  !
 !*Xx
@@ -1759,7 +1396,7 @@ Pattern 5251
 :0011
 
 
-Pattern 5252
+Pattern 5233
 
  )
 )X<X
@@ -1767,7 +1404,7 @@ Pattern 5252
 :0011
 
 
-Pattern 5253
+Pattern 5234
 
  )
 )X<.
@@ -1775,23 +1412,23 @@ Pattern 5253
 :0011
 
 
-Pattern 5254
+Pattern 5235
 
- )
-)XXx
+ !
+!XXx
 
 :0001
 
 
-Pattern 5260
+Pattern 5236
 
  x
-!*.(
+!..!
 
 :0112
 
 
-Pattern 5261
+Pattern 5237
 
  x
 @X.(
@@ -1799,7 +1436,7 @@ Pattern 5261
 :0011
 
 
-Pattern 5262
+Pattern 5238
 
  x
 !*X!
@@ -1807,15 +1444,15 @@ Pattern 5262
 :0012
 
 
-Pattern 5263
+Pattern 5239
 
  x
-)XX)
+!XX!
 
 :0001
 
 
-Pattern 5270
+Pattern 5240
 
  x
 !.@x
@@ -1823,7 +1460,7 @@ Pattern 5270
 :0122
 
 
-Pattern 5271
+Pattern 5241
 
  x
 !X@x
@@ -1831,7 +1468,7 @@ Pattern 5271
 :0012
 
 
-Pattern 5280
+Pattern 5242
 
  x
 x*.!
@@ -1839,7 +1476,7 @@ x*.!
 :1122
 
 
-Pattern 5281
+Pattern 5243
 
  X
 X*X!
@@ -1847,7 +1484,7 @@ X*X!
 :1122
 
 
-Pattern 5282
+Pattern 5244
 
  x
 x*X!
@@ -1855,7 +1492,7 @@ x*X!
 :0122
 
 
-Pattern 5283
+Pattern 5245
 
  x
 x@x!
@@ -1863,7 +1500,7 @@ x@x!
 :0022
 
 
-Pattern 5290
+Pattern 5251
 
  !
 !x@x
@@ -1871,18 +1508,18 @@ Pattern 5290
 :0011
 
 
-Pattern 5291
+Pattern 5252
 
  !
-!>x)
+!.x!
 
 :0001
 
 
-Pattern 5292
+Pattern 5253
 
- )
-)X.!
+ !
+!X.!
 
 :0001
 
@@ -1891,18 +1528,23 @@ Pattern 5292
 # Topology: ...
 #
 
-Pattern 5300
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-#        covered by 5301.
-
-|XX
-|.XX
-+---
-
-:1111
-
-
 Pattern 5301
+
+X.
+XXX
+
+:1222
+
+
+Pattern 5302
+
+XX
+X.X
+
+:1222
+
+
+Pattern 5303
 
 Xx
 xxX
@@ -1910,7 +1552,7 @@ xxX
 :2222
 
 
-Pattern 5302
+Pattern 5304
 
 xx
 x*x
@@ -1918,23 +1560,23 @@ x*x
 :1122
 
 
-Pattern 5303
+Pattern 5305
 
-x>
->Xx
+x.
+.Xx
 
 :1112
 
 
-Pattern 5304
+Pattern 5306
 
->X
+.X
 XXX
 
 :1112
 
 
-Pattern 5305
+Pattern 5307
 
 xx
 xXx
@@ -1942,7 +1584,7 @@ xXx
 :1111
 
 
-Pattern 5310
+Pattern 5311
 
 ..
 @.x
@@ -1950,7 +1592,7 @@ Pattern 5310
 :1122
 
 
-Pattern 5311
+Pattern 5312
 
 X.
 @.x
@@ -1958,7 +1600,7 @@ X.
 :0122
 
 
-Pattern 5312
+Pattern 5313
 
 Xx
 @XX
@@ -1966,7 +1608,7 @@ Xx
 :0022
 
 
-Pattern 5313
+Pattern 5314
 
 x.
 @Xx
@@ -1974,7 +1616,7 @@ x.
 :0012
 
 
-Pattern 5314
+Pattern 5315
 
 xX
 @Xx
@@ -1982,7 +1624,7 @@ xX
 :0011
 
 
-Pattern 5315
+Pattern 5316
 
 .X
 !*x
@@ -1990,7 +1632,7 @@ Pattern 5315
 :0122
 
 
-Pattern 5316
+Pattern 5317
 
 XX
 @.X
@@ -1998,15 +1640,15 @@ XX
 :0122
 
 
-Pattern 5317
+Pattern 5318
 
 xX
-@.x
+!.x
 
 :0112
 
 
-Pattern 5320
+Pattern 5321
 
 xx
 x@x
@@ -2014,135 +1656,95 @@ x@x
 :0022
 
 
-Pattern 5330
+Pattern 5331
 
 .X 
 X*!
-
+ 
 :0122
-
-
-Pattern 5331
-
-.x 
-x*!
-
-:0112
 
 
 Pattern 5332
 
-XX 
-X*!
-
+.x 
+x.!
+ 
 :0112
 
 
 Pattern 5333
 
-Xx 
-x.(
-
-:0111
+XX 
+X.!
+ 
+:0112
 
 
 Pattern 5334
 
-X. 
-.X@
-
-:0012
+Xx 
+x.!
+ 
+:0111
 
 
 Pattern 5335
 
+X. 
+.X@
+ 
+:0012
+
+
+Pattern 5336
+
 xx 
 xX@
-
+ 
 :0011
-
-
-Pattern 5340
-
-@X 
-XXX
-
-:0012
 
 
 Pattern 5341
 
-@x 
-xXx
-
-:0011
+@X 
+XXX
+ 
+:0012
 
 
 Pattern 5342
 
-@X 
-X.X
-
-:0122
+@x 
+xXx
+ 
+:0011
 
 
 Pattern 5343
 
-@x 
+@X 
+X.X
+ 
+:0122
+
+
+Pattern 5344
+
+!x 
 x.x
-
-:0112
-
-
-Pattern 5350
-
-(!
-.*x
-
+ 
 :0112
 
 
 Pattern 5351
 
-!!
-X*x
+!.
+!.x
 
-:0012
+:0112
 
 
 Pattern 5352
-
-))
-XXx
-
-:0001
-
-
-Pattern 5353
-
-(X
-.@x
-
-:0011
-
-
-Pattern 5354
-
-!X
-X)x
-
-:0002
-
-
-Pattern 5355
-
-!.
-.@x
-
-:0012
-
-
-Pattern 5356
 
 ..
 !@.
@@ -2150,7 +1752,7 @@ Pattern 5356
 :0022
 
 
-Pattern 5357
+Pattern 5353
 
 xx
 @.!
@@ -2158,7 +1760,7 @@ xx
 :0011
 
 
-Pattern 5358
+Pattern 5354
 
 X.
 @X(
@@ -2166,7 +1768,7 @@ X.
 :0011
 
 
-Pattern 5359
+Pattern 5355
 
 ..
 @X(
@@ -2174,15 +1776,15 @@ Pattern 5359
 :0011
 
 
-Pattern 5360
+Pattern 5356
 
 xx
-)X)
+!X!
 
 :0001
 
 
-Pattern 5361
+Pattern 5357
 
 @X
 X.(
@@ -2190,7 +1792,7 @@ X.(
 :0012
 
 
-Pattern 5362
+Pattern 5358
 
 @x
 x.(
@@ -2198,15 +1800,23 @@ x.(
 :0011
 
 
-Pattern 5363
+Pattern 5359
 
-)x
-xX)
+!x
+xX!
 
 :0001
 
 
-Pattern 5364
+Pattern 5360
+
+!x
+x@x
+
+:0012
+
+
+Pattern 5361
 
 x)
 )<x
@@ -2214,39 +1824,15 @@ x)
 :0011
 
 
-Pattern 5365
+Pattern 5362
 
-x)
-)Xx
-
-:0002
-
-
-Pattern 5366
-
-.!
-x@x
-
-:0022
-
-
-Pattern 5367
-
-X!
-.@x
-
-:0011
-
-
-Pattern 5368
-
-X!
-X)x
+x!
+!Xx
 
 :0002
 
 
-Pattern 5370
+Pattern 5371
 
 !X
 !X!
@@ -2254,26 +1840,18 @@ Pattern 5370
 :0000
 
 
-Pattern 5371
-
-!.
-)x)
-
-:0001
-
-
 Pattern 5372
 
-)X
-!>!
+!x
+!x!
 
 :0001
 
 
 Pattern 5373
 
-x)
-)x!
+x!
+!x!
 
 :0001
 
@@ -2290,7 +1868,7 @@ Pattern 5401
 X.X
  X
 
-:2222
+:1222
 
 
 Pattern 5402
@@ -2306,7 +1884,7 @@ Pattern 5403
 
  X
 XXX
- >
+ .
 
 :1112
 
@@ -2368,8 +1946,8 @@ x*!
 Pattern 5422
 
  x 
-xX)
- ) 
+xX!
+ ! 
 
 :0001
 
@@ -2391,575 +1969,52 @@ x*!
 # Topology: ......
 #
 
-Pattern 60000
+Pattern 6000
+# Bent four in the corner.
 
 |.
-|....(
+|*
+|...!
 +---
 
-:1222
+:1122
 
 
-Pattern 60001
-
-|X
-|.X.X(
-+---
-
-:0222
-
-
-Pattern 60002
-
-|X
-|.XX.(
-+---
-
-:0222
-
-
-Pattern 60003
+Pattern 6001
+# Bent four in the corner.
 
 |.
-|*Xx.!
+|*X..!
 +---
 
 :1122
 
 
-Pattern 60004
+Pattern 6002
+# Bent four in the corner.
 
-|.
-|X*X.!
-+---
-
-:1122
-
-
-Pattern 60005
-
-|X
-|XX..@
-+---
-
-:1122
-
-
-Pattern 60006
-
-|x
-|..XX@
-+---
-
-:0122
-
-
-Pattern 60007
-
-|x
-|.XXX@
-+---
-
-:0022
-
-
-Pattern 60008
-
-|x
-|XX..)
-+---
-
-:1112
-
-
-Pattern 60009
-
-|.
-|XXX.(
-+---
-
-:0111
-
-
-Pattern 60010
-
-|@
-|.x..x
-+---
-
-:1122
-
-
-Pattern 60011
-
-|@
-|..X..
-+---
-
-:1122
-
-
-Pattern 60012
-
-|@
-|...X.
-+---
-
-:1122
-
-
-Pattern 60013
-
-|@
-|.X.XX
-+---
-
-:1122
-
-
-Pattern 60014
-
-|@
-|.XX.X
-+---
-
-:1122
-
-
-Pattern 60015
-
-|@
-|.XXX.
-+---
-
-:0022
-
-
-Pattern 60016
-
-|@
-|.XXXX
-+---
-
-:0122
-
-
-Pattern 60017
-
-|@
-|.xxx.
-+---
-
-:0122
-
-
-Pattern 60020
-
- (
-|.
-|....
-+---
-
-:1222
-
-
-Pattern 60021
-
- @
-|.
-|.X.x
-+---
-
-:1122
-
-
-Pattern 60022
-
- (
-|.
-|X*X.
-+---
-
-:1122
-
-
-Pattern 60023
-
- (
-|.
-|XX*.
-+---
-
-:1122
-
-
-Pattern 60024
-
- @
-|X
-|.X.X
-+---
-
-:1122
-
-
-Pattern 60025
-
- @
-|X
-|..X.
-+---
-
-:0122
-
-
-Pattern 60026
-
- @
-|X
-|.X..
-+---
-
-:0122
-
-
-Pattern 60027
-
- @
-|X
-|.XXX
-+---
-
-:0122
-
-
-Pattern 60028
-
- @
-|X
-|.XXx
-+---
-
-:0022
-
-
-Pattern 60029
-
- @
+ !
 |.
 |.XX.
 +---
 
-:0112
+:1111
 
 
-Pattern 60030
-
- (
-|.
-|XXX.
-+---
-
-:0111
-
-
-Pattern 60040
-
-|X
-|X
-|.X.(
-+---
-
-:0222
-
-
-Pattern 60041
-
-|.
-|*
-|xx.!
-+---
-
-:1122
-
-
-Pattern 60042
-
-|x
-|.
-|.XX@
-+---
-
-:0122
-
-
-Pattern 60043
-
-|x
-|X
-|..X@
-+---
-
-:0122
-
-
-Pattern 60044
-
-|x
-|X
-|.XX@
-+---
-
-:0022
-
-
-Pattern 60045
-
-|.
-|X
-|x..)
-+---
-
-:1112
-
-
-Pattern 60046
-
-|.
-|X
-|.X>!
-+---
-
-:1112
-
-
-Pattern 60047
-
-|.
-|X
-|XX.(
-+---
-
-:0111
-
-
-Pattern 60050
-
-|@
-|....@
-+---
-
-:0112
-
-
-Pattern 60051
-
-|@
-|.Xx.!
-+---
-
-:0011
-
-
-Pattern 60052
-
-|)
-|.X.X@
-+---
-
-:0011
-
-
-Pattern 60060
-
- @
-|.
-|.x.!
-+---
-
-:0112
-
-
-Pattern 60061
-
- (
-|.
-|..X@
-+---
-
-:0112
-
-
-Pattern 60062
-
- @
-|X
-|.x.!
-+---
-
-:0012
-
-
-Pattern 60063
-
- @
-|X
-|..X@
-+---
-
-:0011
-
-
-Pattern 60064
-
- )
-|X
-|.XX)
-+---
-
-:0002
-
-
-Pattern 60070
-
-(..x..
-------
-
-:1222
-
-
-Pattern 60071
-
-(.X..x
-------
-
-:1222
-
-
-Pattern 60072
-
-(.X.XX
-------
-
-:1222
-
-
-Pattern 60073
-
-(.XX.X
-------
-
-:1222
-
-
-Pattern 60074
-
-@..xX.
-------
-
-:1122
-
-
-Pattern 60075
-
-@.XXX.
-------
-
-:0122
-
-
-Pattern 60076
-
-@.Xxx.
-------
-
-:1122
-
-
-Pattern 60080
-
- (
-|.
-|Xx
-| xX
-+---
-
-:0222
-
-
-Pattern 60081
+Pattern 6003
+# Bent four in the corner.
 
  !
 |.
-|xx
-| *.
+|X
+|.*.
 +---
 
 :1122
 
 
-Pattern 60082
-
- )
-|.
-|x.
-| X.
-+---
-
-:1112
-
-
-Pattern 60083
-
- @
-|.
-|.X
-| X.
-+---
-
-:0112
-
-
-Pattern 60084
-
- (
-|.
-|XX
-| X.
-+---
-
-:0111
-
-
-Pattern 60090
-
-|..X
-|. .(
-+----
-
-:0222
-
-
-Pattern 60091
-# Well, this pattern can't exist but included to simplify automated testing.
-
-|.X.
-|X X(
-+----
-
-:0222
-
-
-Pattern 60092
-
-|x>X
-|x .(
-+----
-
-:1122
-
-
-Pattern 60093
+Pattern 6004
+# Special corner shape
 
 |*X.
 |. .)
@@ -2968,536 +2023,441 @@ Pattern 60093
 :1122
 
 
-Pattern 60094
-
-|..X
-|x X@
-+----
-
-:0122
-
-
-Pattern 60095
-
-|>..
-|X X(
-+----
-
-:0122
-
-
-Pattern 60096
-
-|>X.
-|X <!
-+----
-
-:0122
-
-
-Pattern 60097
-
-|X..
-|X X@
-+----
-
-:0122
-
-
-Pattern 60098
-
-|.XX
-|x X@
-+----
-
-:0022
-
-
-Pattern 60099
-
-|>Xx
-|. x(
-+----
-
-:0022
-
-
-Pattern 60100
-
-|.Xx
-|x x@
-+----
-
-:0022
-
-
-Pattern 60101
-
-|XX.
-|. .)
-+----
-
-:1112
-
-
-Pattern 60102
-
-|XXX
-|. .(
-+----
-
-:0111
-
-
-Pattern 60110
-
-$>..*x
-
-:1122
-
-
-Pattern 60111
+Pattern 6005
 
 $X>.*x
 
 :1122
 
 
-Pattern 60112
+Pattern 6006
 
-$X>.Xx
+$X..Xx
 
 :1112
 
 
-Pattern 60200
+Pattern 6011
 
 xxxxxx
 
 :2222
 
 
-Pattern 60300
+Pattern 6021
 
-(.x..x
+!.x..x
 
 :1222
 
 
-Pattern 60301
+Pattern 6022
 
 @..xXx
 
 :1122
 
 
-Pattern 60302
+Pattern 6023
 
 @.XX>.
 
 :1122
 
 
-Pattern 60303
+Pattern 6024
 
-(..X.x
+!..X.x
 
 :1222
 
 
-Pattern 60304
+Pattern 6026
 
-(.XXXX
+!.XXXX
 
 :0222
 
 
-Pattern 60305
+Pattern 6028
 
-(.XxxX
+!.XxxX
 
 :1222
 
 
-Pattern 60306
+Pattern 6029
 
 @.X.X.
 
 :1122
 
 
-Pattern 60307
+Pattern 6030
 
 @.XXX.
 
 :0122
 
 
-Pattern 60308
+Pattern 6031
 
 @X.XXX
 
 :1122
 
 
-Pattern 60309
+Pattern 6032
 
-(X.X.X
+!X.X.X
 
 :1222
 
 
-Pattern 60310
+Pattern 6033
 
 @X.XX.
 
 :0122
 
 
-Pattern 60311
+Pattern 6034
 
 @X.xxx
 
 :1122
 
 
-Pattern 60312
+Pattern 6035
 
 @XX.Xx
 
 :0122
 
 
-Pattern 60313
+Pattern 6036
 
 @Xx.xx
 
 :1122
 
 
-Pattern 60314
+Pattern 6037
 
 @XXX.x
 
 :0122
 
 
-Pattern 60315
+Pattern 6038
 
 @XXXXx
 
 :0022
 
 
-Pattern 60400
+Pattern 6041
 
-x(.X.X
+x!.X.X
 
 :1222
 
 
-Pattern 60401
+Pattern 6042
 
 x@.XX.
 
 :0122
 
 
-Pattern 60402
+Pattern 6043
 
 x@.XXX
 
 :1122
 
 
-Pattern 60403
+Pattern 6044
 
 x@.xxx
 
 :1122
 
 
-Pattern 60404
+Pattern 6045
 
 x@X.Xx
 
 :0122
 
 
-Pattern 60405
+Pattern 6046
 
 x@X..x
 
 :1122
 
 
-Pattern 60406
+Pattern 6047
 
 x@XX.x
 
 :0122
 
 
-Pattern 60407
+Pattern 6048
 
 x@XXXx
 
 :0022
 
 
-Pattern 60500
+Pattern 6051
 
-x.(..x
+x.!..x
 
 :1222
 
 
-Pattern 60501
+Pattern 6052
 
 x.@.Xx
 
 :1122
 
 
-Pattern 60502
+Pattern 6053
 
 x.@XXx
 
 :0122
 
 
-Pattern 60503
+Pattern 6054
 
 x.@X.x
 
 :1122
 
 
-Pattern 60504
+Pattern 6055
 
 xX@.Xx
 
 :0122
 
 
-Pattern 60505
+Pattern 6056
 
 xX@..x
 
 :1122
 
 
-Pattern 60506
+Pattern 6057
 
 xX@X.x
 
 :0122
 
 
-Pattern 60507
+Pattern 6058
 
 xX@XXx
 
 :0022
 
 
-Pattern 60600
+Pattern 6061
 
 !x@..x
 
 :1122
 
 
-Pattern 60601
+Pattern 6062
 
 !x@X.x
 
 :0122
 
 
-Pattern 60602
+Pattern 6063
 
-!x@.Xx
+!x!.Xx
 
 :0112
 
 
-Pattern 60603
+Pattern 6064
 
 !x@XXX
 
 :0022
 
 
-Pattern 60604
+Pattern 6065
 
 !x@XX.
 
 :0012
 
 
-Pattern 60650
+Pattern 6066
 
 !.x@.x
 
 :0122
 
 
-Pattern 60651
+Pattern 6067
 
-!Xx@.x
+!Xx!.x
 
 :0112
 
 
-Pattern 60652
+Pattern 6068
 
 !Xx@Xx
 
 :0012
 
 
-Pattern 60653
+Pattern 6069
 
 !.x@Xx
 
 :0022
 
 
-Pattern 60700
+Pattern 6070
 
 !XX.@x
 
 :0012
 
 
-Pattern 60701
+Pattern 6071
 
 !xx.@x
 
 :0122
 
 
-Pattern 60702
+Pattern 6072
 
 !XXX@x
 
 :0012
 
 
-Pattern 60703
+Pattern 6073
 
 !xxX@x
 
 :0022
 
 
-Pattern 60750
+Pattern 6074
 
-)....)
+!....!
 
 :1112
 
 
-Pattern 60751
+Pattern 6075
 
-(.X>x)
+!.X.x!
 
 :0112
 
 
-Pattern 60752
+Pattern 6076
 
-(.XX.(
+!.XX.!
 
 :0111
 
 
-Pattern 60753
+Pattern 6077
 
-@x..X@
+!x..X!
 
 :0112
 
 
-Pattern 60754
+Pattern 6078
 
 @XX>X!
 
 :0011
 
 
-Pattern 60755
+Pattern 6079
 
 @XXx.!
 
 :0011
 
 
-Pattern 60756
+Pattern 6080
 
-)XXXX)
+!XXXX!
 
 :0002
 
 
-Pattern 60800
+Pattern 6082
 
 x@x!.x
 
 :1122
 
 
-Pattern 60801
+Pattern 6083
 
-x@x@Xx
+x!x!Xx
 
 :0112
 
 
-Pattern 60850
+Pattern 6084
 
 x@..@x
 
 :1122
 
 
-Pattern 60851
+Pattern 6085
 
 x@X.!x
 
 :0122
 
 
-Pattern 60852
+Pattern 6086
 
-x@XX@x
+x!XX!x
 
 :0112
 
 
-Pattern 60900
+Pattern 6087
 
 x@x!x!
 
 :0012
 
 
-Pattern 60910
+Pattern 6091
 
-!.x@x!
-
-:0012
-
-
-Pattern 60950
-
-(....$
+!....$
 
 :0111
 
 
-Pattern 60951
+Pattern 6092
 
 @Xx..$
 
@@ -3508,15 +2468,15 @@ Pattern 60951
 # Topology: .....
 #
 
-Pattern 61000
+Pattern 6101
 
  X
-X<.x(
+X..x!
 
 :1222
 
 
-Pattern 61001
+Pattern 6102
 
  x
 x*x.!
@@ -3524,7 +2484,7 @@ x*x.!
 :1122
 
 
-Pattern 61002
+Pattern 6103
 
  X
 XX*.(
@@ -3532,7 +2492,7 @@ XX*.(
 :1122
 
 
-Pattern 61003
+Pattern 6104
 
  X
 XX>X@
@@ -3540,31 +2500,31 @@ XX>X@
 :1122
 
 
-Pattern 61004
+Pattern 6105
 
  x
-xX>.)
+xX..!
 
 :1112
 
 
-Pattern 61005
+Pattern 6106
 
  X
-XXX>!
+XXX.!
 
 :1112
 
 
-Pattern 61006
+Pattern 6107
 
  x
-xXX.(
+xXX.!
 
 :0111
 
 
-Pattern 61007
+Pattern 6108
 
  x
 xX.X@
@@ -3572,7 +2532,7 @@ xX.X@
 :0122
 
 
-Pattern 61008
+Pattern 6109
 
  x
 xXXX@
@@ -3580,7 +2540,7 @@ xXXX@
 :0022
 
 
-Pattern 61100
+Pattern 6111
 
  x
 x@..x
@@ -3588,7 +2548,7 @@ x@..x
 :1122
 
 
-Pattern 61101
+Pattern 6112
 
  x
 x@XXx
@@ -3596,7 +2556,7 @@ x@XXx
 :0022
 
 
-Pattern 61102
+Pattern 6113
 
  x
 x@xxx
@@ -3604,23 +2564,7 @@ x@xxx
 :0122
 
 
-Pattern 61200
-
- x
-(<XXx
-
-:0222
-
-
-Pattern 61201
-
- x
-(<xxx
-
-:1222
-
-
-Pattern 61202
+Pattern 6121
 
  x
 @X..x
@@ -3628,7 +2572,7 @@ Pattern 61202
 :1122
 
 
-Pattern 61203
+Pattern 6122
 
  x
 @XXXx
@@ -3636,7 +2580,7 @@ Pattern 61203
 :0022
 
 
-Pattern 61204
+Pattern 6123
 
  x
 @Xxxx
@@ -3644,23 +2588,7 @@ Pattern 61204
 :0122
 
 
-Pattern 61300
-
- x
-x.(.x
-
-:1222
-
-
-Pattern 61301
-
- x
-x.(Xx
-
-:0222
-
-
-Pattern 61302
+Pattern 6131
 
  x
 xX@.x
@@ -3668,7 +2596,7 @@ xX@.x
 :0122
 
 
-Pattern 61303
+Pattern 6132
 
  x
 xX@Xx
@@ -3676,23 +2604,7 @@ xX@Xx
 :0022
 
 
-Pattern 61400
-
- x
-x..(x
-
-:1222
-
-
-Pattern 61401
-
- x
-x.X(x
-
-:0222
-
-
-Pattern 61402
+Pattern 6141
 
  X
 XX.@x
@@ -3700,7 +2612,7 @@ XX.@x
 :1122
 
 
-Pattern 61403
+Pattern 6142
 
  x
 xX.@x
@@ -3708,7 +2620,7 @@ xX.@x
 :0122
 
 
-Pattern 61404
+Pattern 6143
 
  x
 xXX@x
@@ -3716,159 +2628,7 @@ xXX@x
 :0022
 
 
-Pattern 61500
-
- x
-x..x(
-
-:1222
-
-
-Pattern 61501
-
- x
-x.Xx(
-
-:0222
-
-
-Pattern 61600
-
- !
-!*X.X
-
-:0122
-
-
-Pattern 61601
-
- )
-)>..x
-
-:1112
-
-
-Pattern 61602
-
- )
-)*X*.
-
-:0112
-
-
-Pattern 61603
-
- )
-)X<<x
-
-:0112
-
-
-Pattern 61604
-
- !
-!*XXX
-
-:0012
-
-
-Pattern 61605
-
- !
-!<.Xx
-
-:0111
-
-
-Pattern 61606
-
- !
-!*XX.
-
-:0011
-
-
-Pattern 61607
-
- !
-!X*Xx
-
-:0011
-
-
-Pattern 61608
-
- !
-!XX*x
-
-:0011
-
-
-Pattern 61609
-
- )
-)XXX.
-
-:0001
-
-
-Pattern 61610
-
- )
-)XXXX
-
-:0002
-
-
-Pattern 61620
-
- !
-x.@.x
-
-:1122
-
-
-Pattern 61621
-
- !
-x.@Xx
-
-:0122
-
-
-Pattern 61622
-
- !
-xX@.x
-
-:0112
-
-
-Pattern 61623
-
- !
-xX@Xx
-
-:0012
-
-
-Pattern 61630
-
- !
-x.x@x
-
-:0122
-
-
-Pattern 61631
-
- !
-xXx@x
-
-:0012
-
-
-Pattern 61640
+Pattern 6151
 
  !
 x*x.!
@@ -3876,119 +2636,7 @@ x*x.!
 :0122
 
 
-Pattern 61641
-
- !
-X..X@
-
-:0122
-
-
-Pattern 61642
-
- !
-X<XX)
-
-:0022
-
-
-Pattern 61643
-
- )
-.*>X@
-
-:0112
-
-
-Pattern 61644
-
- !
-.*XX!
-
-:0012
-
-
-Pattern 61645
-
- )
-XXXX)
-
-:0002
-
-
-Pattern 61646
-
- )
-.XXX)
-
-:0001
-
-
-Pattern 61647
-
- @
-xXxx!
-
-:0011
-
-
-Pattern 61650
-
- x
-x@x!x
-
-:0122
-
-
-Pattern 61660
-
- x
-x@xx!
-
-:0022
-
-
-Pattern 61670
-
- X
-X.(x!
-
-:0222
-
-
-Pattern 61671
-
- x
-x*!x!
-
-:1122
-
-
-Pattern 61672
-
- X
-XX@x!
-
-:0022
-
-
-Pattern 61673
-
- x
-xX@x!
-
-:0012
-
-
-Pattern 61700
-
- !
-!x(.x
-
-:0111
-
-
-Pattern 61710
+Pattern 6152
 
  !
 !..x@
@@ -3996,187 +2644,107 @@ Pattern 61710
 :0011
 
 
-Pattern 61711
-
- !
-!*X.(
-
-:0011
-
-
-Pattern 61712
-
- !
-!XXX!
-
-:0000
-
-
-Pattern 61713
-
- )
-)xx.!
-
-:0001
-
-
-Pattern 61714
-
- !
-!xxX)
-
-:0001
-
-
-Pattern 61720
-
- !
-!.x@x
-
-:0012
-
-
-Pattern 61730
-
- !
-x.@x!
-
-:0112
-
-
-Pattern 61740
-
- !
-!x)x)
-
-:0001
-
-
 #             .
 # Topology: .....
 #
 
-Pattern 62000
+Pattern 6201
 
   x
-!.X*.
+.*X.!
 
 :1122
 
 
-Pattern 62001
+Pattern 6202
 
   .
-@.X>X
+X>X.@
 
 :1122
 
 
-Pattern 62002
+Pattern 6203
 
   x
-!.*X.
+.X*.!
 
 :1122
 
 
-Pattern 62003
+Pattern 6204
 
   X
-(.XXX
+XXX.!
 
 :0222
 
 
-Pattern 62004
-
-  x
-(X.XX
-
-:0222
-
-
-Pattern 62005
+Pattern 6205
 
   .
-@.XXX
+XXX.@
 
 :0122
 
 
-Pattern 62006
+Pattern 6206
 
   x
-(.XX.
+.XX.!
 
 :0111
 
 
-Pattern 62007
+Pattern 6207
 
   x
-)X*..
+..*X)
 
 :1122
 
 
-Pattern 62008
+Pattern 6208
 
   x
-!X*X.
+.X*X!
 
 :0122
 
 
-Pattern 62009
+Pattern 6209
 
   x
-@XX..
+..XX!
 
 :0112
 
 
-Pattern 62010
+Pattern 6210
 
   x
-@XXX.
+.XXX@
 
 :0011
 
 
-Pattern 62011
+Pattern 6211
 
   x
-@XX.X
+X.XX@
 
 :0122
 
 
-Pattern 62012
+Pattern 6212
 
   x
-@XXXX
+XXXX@
 
 :0022
 
 
-Pattern 62013
-
-  X
-!..xX
-
-:2222
-
-
-Pattern 62014
-
-  x
-(xxxx
-
-:1222
-
-
-Pattern 62100
+Pattern 6221
 
   x
 x.@.x
@@ -4184,7 +2752,7 @@ x.@.x
 :1122
 
 
-Pattern 62101
+Pattern 6222
 
   x
 x.@Xx
@@ -4192,7 +2760,7 @@ x.@Xx
 :0122
 
 
-Pattern 62102
+Pattern 6223
 
   x
 xX@Xx
@@ -4200,23 +2768,7 @@ xX@Xx
 :0022
 
 
-Pattern 62200
-
-  x
-x(..x
-
-:1222
-
-
-Pattern 62201
-
-  x
-x(.Xx
-
-:0222
-
-
-Pattern 62202
+Pattern 6231
 
   x
 x@X.x
@@ -4224,7 +2776,7 @@ x@X.x
 :0122
 
 
-Pattern 62203
+Pattern 6232
 
   x
 x@XXx
@@ -4232,7 +2784,7 @@ x@XXx
 :0022
 
 
-Pattern 62300
+Pattern 6241
 
   @
 x.X.x
@@ -4240,7 +2792,7 @@ x.X.x
 :1122
 
 
-Pattern 62301
+Pattern 6242
 
   @
 x.XXx
@@ -4248,7 +2800,7 @@ x.XXx
 :0122
 
 
-Pattern 62302
+Pattern 6243
 
   @
 xXXXx
@@ -4256,23 +2808,7 @@ xXXXx
 :0022
 
 
-Pattern 62303
-
-  (
-xX.Xx
-
-:0222
-
-
-Pattern 62304
-
-  (
-xx.xx
-
-:1222
-
-
-Pattern 62400
+Pattern 6251
 
   x
 !.*.!
@@ -4280,7 +2816,7 @@ Pattern 62400
 :1122
 
 
-Pattern 62401
+Pattern 6252
 
   x
 !X*X!
@@ -4288,7 +2824,7 @@ Pattern 62401
 :0022
 
 
-Pattern 62402
+Pattern 6253
 
   x
 !.*X!
@@ -4296,191 +2832,31 @@ Pattern 62402
 :0122
 
 
-Pattern 62403
+Pattern 6254
 
-  x
-(.X.(
-
-:0111
-
-
-Pattern 62404
-
-  x
-@XX.!
-
-:0011
-
-
-Pattern 62405
-
-  x
-)XXX)
-
-:0001
-
-
-Pattern 62410
-
-  )
-)...x
+  !
+X...!
 
 :1112
 
 
-Pattern 62411
-
-  @
-(.X*x
-
-:0112
-
-
-Pattern 62412
+Pattern 6255
 
   !
-)X<.X
+X.<X)
 
 :0122
 
 
-Pattern 62413
-
-  @
-!.XXx
-
-:0011
-
-
-Pattern 62414
+Pattern 6256
 
   !
-)X<XX
-
-:0022
-
-
-Pattern 62415
-
-  !
-!X*X.
-
-:0012
-
-
-Pattern 62416
-
-  !
-!x*xx
+...X!
 
 :0112
 
 
-Pattern 62417
-
-  !
-!XX*x
-
-:0011
-
-
-Pattern 62418
-
-  )
-)XXXX
-
-:0002
-
-
-Pattern 62419
-
-  )
-)XXX.
-
-:0001
-
-
-Pattern 62420
-
-  !
-x@..x
-
-:1122
-
-
-Pattern 62421
-
-  !
-x@XXx
-
-:0012
-
-
-Pattern 62422
-
-  !
-x@xxx
-
-:0122
-
-
-Pattern 62430
-
-  x
-!x@.x
-
-:0122
-
-
-Pattern 62431
-
-  x
-!x@Xx
-
-:0022
-
-
-Pattern 62440
-
-  x
-!x.@x
-
-:1122
-
-
-Pattern 62441
-
-  x
-!.X@x
-
-:0022
-
-
-Pattern 62442
-
-  x
-!XX@x
-
-:0012
-
-
-Pattern 62450
-
-  x
-x!*!x
-
-:1122
-
-
-Pattern 62451
-
-  x
-x@X@x
-
-:0112
-
-
-Pattern 62500
+Pattern 6261
 # tm New Pattern (3.1.22) (see owl:111)
 
   )
@@ -4489,7 +2865,17 @@ Pattern 62500
 :0011
 
 
-Pattern 62501
+Pattern 6262
+# FIXME: I don't understand this pattern. Is it correct? -pp
+
+  !
+!x..!
+ ---
+
+:0000
+
+
+Pattern 6263
 # tm modified (3.1.22)
 
   !
@@ -4498,204 +2884,20 @@ Pattern 62501
 :0011
 
 
-Pattern 62502
-
-  )
-)XX.!
-
-:0001
-
-
-Pattern 62503
-
-  !
-!XXX!
-
-:0000
-
-
-Pattern 62510
-
-  x
-!x@x!
-
-:0022
-
-
-Pattern 62520
-
-  !
-!XX@x
-
-:0011
-
-
-Pattern 62521
-
-  !
-!xx@x
-
-:0012
-
-
 #            ..
 # Topology: ....
 #
 
-Pattern 63000
+Pattern 6301
 
- XX
-(<.X
-----
-
-:0222
-
-
-Pattern 63001
-
- ..
-!>*.
-----
-
-:1122
-
-
-Pattern 63002
-
- X.
-@..X
-----
-
-:0122
-
-
-Pattern 63003
-
- ..
-(X>x
-----
-
-:0122
-
-
-Pattern 63004
-
- XX
-(.>.
-----
-
-:0022
-
-
-Pattern 63005
-
- xx
+ .X
 !.*.
 ----
 
 :0122
 
 
-Pattern 63006
-
- X.
-@.XX
-----
-
-:0022
-
-
-Pattern 63007
-
- ..
-(>Xx
-----
-
-:0012
-
-
-Pattern 63008
-
- Xx
-@X..
-----
-
-:0012
-
-
-Pattern 63009
-
- .X
-(X>x
-----
-
-:0022
-
-
-Pattern 63010
-
- xx
-@X.x
-----
-
-:0022
-
-
-Pattern 63011
-
- xx
-@.X.
-----
-
-:0011
-
-
-Pattern 63020
-
- ..
-@..@
-----
-
-:0011
-
-
-Pattern 63021
-
- X.
-@..!
-----
-
-:0011
-
-
-Pattern 63022
-
- XX
-@..@
-----
-
-:0011
-
-
-Pattern 63023
-
- ..
-)>X)
-----
-
-:0001
-
-
-Pattern 63024
-
- X.
-).X)
-----
-
-:0001
-
-
-Pattern 63100
+Pattern 6302
 
  xx
 XXXX
@@ -4703,15 +2905,7 @@ XXXX
 :2222
 
 
-Pattern 63101
-
- .x
-X...
-
-:2222
-
-
-Pattern 63102
+Pattern 6303
 
  *x
 XXX.
@@ -4719,15 +2913,15 @@ XXX.
 :1122
 
 
-Pattern 63103
+Pattern 6304
 
  XX
-XXX>
+XXX.
 
 :1112
 
 
-Pattern 63104
+Pattern 6305
 
  xx
 xXXx
@@ -4735,23 +2929,23 @@ xXXx
 :1111
 
 
-Pattern 63105
+Pattern 6306
 
- xx
-X.xX
+ xX
+X.XX
 
 :2222
 
 
-Pattern 63106
+Pattern 6307
 
  .X
-X<X.
+X.X.
 
 :1222
 
 
-Pattern 63107
+Pattern 6308
 
  XX
 X*X.
@@ -4759,7 +2953,7 @@ X*X.
 :1122
 
 
-Pattern 63108
+Pattern 6309
 
  xX
 x*Xx
@@ -4767,7 +2961,7 @@ x*Xx
 :1122
 
 
-Pattern 63109
+Pattern 6310
 
  X.
 X*X.
@@ -4775,7 +2969,7 @@ X*X.
 :1122
 
 
-Pattern 63110
+Pattern 6311
 
  x.
 .*X.
@@ -4783,23 +2977,15 @@ Pattern 63110
 :1122
 
 
-Pattern 63111
-
- xx
-x<xx
-
-:1222
-
-
-Pattern 63200
+Pattern 6312
 
  Xx
-(..X
+!..X
 
 :1222
 
 
-Pattern 63201
+Pattern 6313
 
  xx
 !.*x
@@ -4807,7 +2993,7 @@ Pattern 63201
 :1122
 
 
-Pattern 63202
+Pattern 6314
 
  XX
 !*XX
@@ -4815,31 +3001,31 @@ Pattern 63202
 :1122
 
 
-Pattern 63203
+Pattern 6315
 
  X.
-(.XX
+!.XX
 
 :0222
 
 
-Pattern 63204
+Pattern 6316
 
  x.
-!*Xx
+!.Xx
 
 :0112
 
 
-Pattern 63205
+Pattern 6317
 
  xX
-(.Xx
+!.Xx
 
 :0111
 
 
-Pattern 63206
+Pattern 6318
 
  XX
 @X.X
@@ -4847,7 +3033,7 @@ Pattern 63206
 :0122
 
 
-Pattern 63207
+Pattern 6319
 
  .x
 !X*x
@@ -4855,7 +3041,7 @@ Pattern 63207
 :0122
 
 
-Pattern 63208
+Pattern 6320
 
  Xx
 @X.X
@@ -4863,15 +3049,15 @@ Pattern 63208
 :0122
 
 
-Pattern 63209
+Pattern 6321
 
  Xx
-@X..
+!X..
 
 :0112
 
 
-Pattern 63210
+Pattern 6322
 
  X.
 @XXX
@@ -4879,7 +3065,7 @@ Pattern 63210
 :0022
 
 
-Pattern 63211
+Pattern 6323
 
  XX
 @XXX
@@ -4887,7 +3073,7 @@ Pattern 63211
 :0012
 
 
-Pattern 63212
+Pattern 6324
 
  xx
 @XXx
@@ -4895,7 +3081,7 @@ Pattern 63212
 :0011
 
 
-Pattern 63300
+Pattern 6331
 
  .x
 x@.x
@@ -4903,7 +3089,7 @@ x@.x
 :1122
 
 
-Pattern 63301
+Pattern 6332
 
  Xx
 x@.x
@@ -4911,7 +3097,7 @@ x@.x
 :0122
 
 
-Pattern 63302
+Pattern 6333
 
  xx
 x@Xx
@@ -4919,15 +3105,7 @@ x@Xx
 :0022
 
 
-Pattern 63400
-
- (.
-X..x
-
-:1222
-
-
-Pattern 63401
+Pattern 6341
 
  !x
 .*.x
@@ -4935,7 +3113,7 @@ Pattern 63401
 :1122
 
 
-Pattern 63402
+Pattern 6342
 
  !.
 .*Xx
@@ -4943,7 +3121,7 @@ Pattern 63402
 :0122
 
 
-Pattern 63403
+Pattern 6343
 
  (.
 X>Xx
@@ -4951,7 +3129,7 @@ X>Xx
 :1122
 
 
-Pattern 63404
+Pattern 6344
 
  @X
 x..x
@@ -4959,7 +3137,7 @@ x..x
 :1122
 
 
-Pattern 63405
+Pattern 6345
 
  @X
 X.Xx
@@ -4967,23 +3145,23 @@ X.Xx
 :0122
 
 
-Pattern 63406
+Pattern 6346
 
- @X
+ !X
 ..Xx
 
 :0112
 
 
-Pattern 63407
+Pattern 6347
 
- @x
+ !x
 .X.x
 
 :0112
 
 
-Pattern 63408
+Pattern 6348
 
  @x
 XX.x
@@ -4991,7 +3169,7 @@ XX.x
 :0122
 
 
-Pattern 63409
+Pattern 6349
 
  @x
 .XXx
@@ -4999,7 +3177,7 @@ Pattern 63409
 :0011
 
 
-Pattern 63410
+Pattern 6350
 
  @x
 XXXx
@@ -5007,207 +3185,7 @@ XXXx
 :0022
 
 
-Pattern 63500
-
- X.
-(X@x
-
-:0011
-
-
-Pattern 63501
-
- XX
-)X)x
-
-:0002
-
-
-Pattern 63502
-
- xx
-!x@x
-
-:0022
-
-
-Pattern 63510
-
- xx
-(..(
-
-:0111
-
-
-Pattern 63511
-
- xx
-@x.!
-
-:0011
-
-
-Pattern 63512
-
- xx
-)XX)
-
-:0001
-
-
-Pattern 63520
-
- @x
-!..x
-
-:0112
-
-
-Pattern 63521
-
- !x
-!X*x
-
-:0012
-
-
-Pattern 63522
-
- @x
-!.Xx
-
-:0011
-
-
-Pattern 63523
-
- )x
-)XXx
-
-:0001
-
-
-Pattern 63530
-
- X@
-!..X
-
-:0122
-
-
-Pattern 63531
-
- .@
-@..x
-
-:0112
-
-
-Pattern 63532
-
- X@
-(...
-
-:0112
-
-
-Pattern 63533
-
- X@
-!.XX
-
-:0022
-
-
-Pattern 63534
-
- .!
-!X*x
-
-:0012
-
-
-Pattern 63535
-
- x@
-!.Xx
-
-:0011
-
-
-Pattern 63536
-
- X!
-!X*x
-
-:0011
-
-
-Pattern 63537
-
- X)
-)XXX
-
-:0002
-
-
-Pattern 63538
-
- x)
-)XXx
-
-:0001
-
-
-Pattern 63540
-
- .!
-x@.x
-
-:0122
-
-
-Pattern 63541
-
- X!
-x)<x
-
-:0022
-
-
-Pattern 63542
-
- .!
-x@Xx
-
-:0011
-
-
-Pattern 63543
-
- X!
-x)Xx
-
-:0002
-
-
-Pattern 63600
-
- !.
-!.@x
-
-:0012
-
-
-Pattern 63601
-
- )X
-!X)x
-
-:0002
-
-
-Pattern 63610
+Pattern 6361
 
  !!
 !.*.
@@ -5215,44 +3193,19 @@ Pattern 63610
 :0011
 
 
-Pattern 63620
+Pattern 6362
 
- @x
+ .@
 !..!
 
 :0011
-
-
-Pattern 63630
-
- !x
-!XX!
-
-:0000
-
-
-Pattern 63640
-
- )x
-!xx!
-
-:0001
 
 
 #           ..
 # Topology: ....
 #
 
-Pattern 64000
-
-|..
-|..<.
-+----
-
-:1222
-
-
-Pattern 64001
+Pattern 6400
 
 |.x
 |xX*.
@@ -5261,7 +3214,7 @@ Pattern 64001
 :1122
 
 
-Pattern 64002
+Pattern 6401
 
 |XX
 |<XX>
@@ -5270,7 +3223,7 @@ Pattern 64002
 :1122
 
 
-Pattern 64003
+Pattern 6402
 
 |.x
 |X.*.
@@ -5279,7 +3232,7 @@ Pattern 64003
 :1122
 
 
-Pattern 64004
+Pattern 6403
 
 |.X
 |x.*.
@@ -5288,7 +3241,7 @@ Pattern 64004
 :1122
 
 
-Pattern 64005
+Pattern 6404
 
 |.<
 |.>X.
@@ -5297,189 +3250,37 @@ Pattern 64005
 :1122
 
 
-Pattern 64006
+Pattern 6405
 # Not possible to do better than bent four in the corner.
 
-|.>
+|..
 |.XX.
-+----
-
-:1112
-
-
-Pattern 64007
-# Nothing to do.
-
-|.X
-|.>X.
-+----
-
-:1112
-
-
-Pattern 64008
-# Nothing to do.
-
-|>x
-|X.X.
-+----
-
-:1112
-
-
-Pattern 64009
-# Nothing to do.
-
-|.x
-|xXX.
 +----
 
 :1111
 
 
-Pattern 64010
+Pattern 6406
+# Nothing to do.
 
-|X.
-|.X>!
+|.X
+|..X.
 +----
 
-:1112
+:1111
 
 
-Pattern 64050
+Pattern 6407
+# Nothing to do.
 
-.<
-X.<.
-----
+|.x
+|X.X.
++----
 
-:1222
-
-
-Pattern 64051
-
-.X
-<.<.
-----
-
-:1222
+:1111
 
 
-Pattern 64052
-
-.<
-<.X.
-----
-
-:1222
-
-
-Pattern 64053
-
-.X
-X.*.
-----
-
-:1122
-
-
-Pattern 64054
-
-.*
-X.X.
-----
-
-:1122
-
-
-Pattern 64055
-
-.X
-*.X.
-----
-
-:1122
-
-
-Pattern 64056
-
->X
-X.X>
-----
-
-:1112
-
-
-Pattern 64057
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# 2222.
-
-*X
-X.XX
-----
-
-:1122
-
-
-Pattern 64060
-
-.x
-X.X@
-----
-
-:0012
-
-
-Pattern 64061
-
-.X
-..X@
-----
-
-:0012
-
-
-Pattern 64062
-
-.X
-X..)
-----
-
-:1112
-
-
-Pattern 64100
-
-x.
-.X..
-
-:2222
-
-
-Pattern 64101
-
-x.
-..X.
-
-:2222
-
-
-Pattern 64102
-
-x<
-<XX.
-
-:1222
-
-
-Pattern 64103
-
-xX
-X<<.
-
-:1222
-
-
-Pattern 64104
+Pattern 6411
 
 xX
 X*X.
@@ -5487,7 +3288,7 @@ X*X.
 :1122
 
 
-Pattern 64105
+Pattern 6412
 
 .*
 XXX.
@@ -5495,7 +3296,15 @@ XXX.
 :1122
 
 
-Pattern 64106
+Pattern 6413
+
+..
+.XX.
+
+:1222
+
+
+Pattern 6414
 
 XX
 *XX>
@@ -5503,23 +3312,23 @@ XX
 :1122
 
 
-Pattern 64107
+Pattern 6416
 
 XX
-XXX>
+XXX.
 
 :1112
 
 
-Pattern 64108
+Pattern 6417
 
-.X
+xX
 XXX.
 
 :1111
 
 
-Pattern 64109
+Pattern 6418
 
 xX
 XX*.
@@ -5527,23 +3336,7 @@ XX*.
 :1122
 
 
-Pattern 64110
-
-xx
-xX<.
-
-:1222
-
-
-Pattern 64111
-
-xx
-x<X.
-
-:1222
-
-
-Pattern 64200
+Pattern 6421
 
 .x
 x*.!
@@ -5551,7 +3344,7 @@ x*.!
 :1122
 
 
-Pattern 64201
+Pattern 6422
 
 .x
 x*X!
@@ -5559,7 +3352,7 @@ x*X!
 :0122
 
 
-Pattern 64202
+Pattern 6423
 
 XX
 X*x!
@@ -5567,7 +3360,7 @@ X*x!
 :1122
 
 
-Pattern 64203
+Pattern 6424
 
 Xx
 x.X@
@@ -5575,7 +3368,7 @@ x.X@
 :0122
 
 
-Pattern 64204
+Pattern 6425
 
 XX
 XXX@
@@ -5583,7 +3376,7 @@ XXX@
 :0012
 
 
-Pattern 64205
+Pattern 6426
 
 Xx
 xXX@
@@ -5591,39 +3384,39 @@ xXX@
 :0022
 
 
-Pattern 64206
+Pattern 6427
 
 X.
-x..)
+x..!
 
 :1112
 
 
-Pattern 64207
+Pattern 6429
 
-X>
->X.!
+X.
+.X.!
 
 :1112
 
 
-Pattern 64208
+Pattern 6430
 
-.>
->X.(
+..
+.X.!
 
 :0112
 
 
-Pattern 64209
+Pattern 6431
 
 xx
-xX.(
+xX.!
 
 :0111
 
 
-Pattern 64210
+Pattern 6432
 
 .x
 xXX@
@@ -5631,7 +3424,7 @@ xXX@
 :0011
 
 
-Pattern 64300
+Pattern 6433
 
 xx
 @..x
@@ -5639,7 +3432,7 @@ xx
 :1122
 
 
-Pattern 64301
+Pattern 6434
 
 .x
 @.Xx
@@ -5647,7 +3440,7 @@ Pattern 64301
 :1122
 
 
-Pattern 64302
+Pattern 6435
 
 xx
 @.Xx
@@ -5655,7 +3448,7 @@ xx
 :0122
 
 
-Pattern 64303
+Pattern 6436
 
 xx
 @X.x
@@ -5663,7 +3456,7 @@ xx
 :0122
 
 
-Pattern 64304
+Pattern 6437
 
 xx
 @XXx
@@ -5671,7 +3464,7 @@ xx
 :0022
 
 
-Pattern 64400
+Pattern 6441
 
 @x
 x..x
@@ -5679,7 +3472,7 @@ x..x
 :1122
 
 
-Pattern 64401
+Pattern 6442
 
 @x
 x.XX
@@ -5687,15 +3480,15 @@ x.XX
 :0122
 
 
-Pattern 64402
+Pattern 6443
 
-@x
+!x
 x.X.
 
 :0112
 
 
-Pattern 64403
+Pattern 6444
 
 @.
 .X.X
@@ -5703,23 +3496,23 @@ Pattern 64403
 :0122
 
 
-Pattern 64404
+Pattern 6445
 
-@.
+!.
 .X..
 
 :0112
 
 
-Pattern 64405
+Pattern 6446
 
-@X
+!X
 xX..
 
 :0112
 
 
-Pattern 64406
+Pattern 6447
 
 @X
 xX.X
@@ -5727,7 +3520,7 @@ xX.X
 :0122
 
 
-Pattern 64407
+Pattern 6448
 
 @X
 xXX.
@@ -5735,7 +3528,7 @@ xXX.
 :0011
 
 
-Pattern 64408
+Pattern 6449
 
 @x
 xXXX
@@ -5743,7 +3536,7 @@ xXXX
 :0022
 
 
-Pattern 64409
+Pattern 6450
 
 @x
 xXX.
@@ -5751,23 +3544,7 @@ xXX.
 :0011
 
 
-Pattern 64500
-
-..
-X)<.
-
-:0022
-
-
-Pattern 64501
-
-.X
-X!*x
-
-:0012
-
-
-Pattern 64502
+Pattern 6461
 
 xx
 x@.x
@@ -5775,23 +3552,7 @@ x@.x
 :0122
 
 
-Pattern 64503
-
-..
-X)X.
-
-:0002
-
-
-Pattern 64504
-
->X
-X!Xx
-
-:0002
-
-
-Pattern 64505
+Pattern 6462
 
 xx
 x@Xx
@@ -5799,7 +3560,7 @@ x@Xx
 :0022
 
 
-Pattern 64600
+Pattern 6471
 
 XX
 X.@x
@@ -5807,15 +3568,15 @@ X.@x
 :1122
 
 
-Pattern 64601
+Pattern 6472
 
 .X
-X.(x
+X.!x
 
 :0222
 
 
-Pattern 64602
+Pattern 6473
 
 .x
 x.@x
@@ -5823,7 +3584,7 @@ x.@x
 :1122
 
 
-Pattern 64603
+Pattern 6474
 
 xx
 x.@x
@@ -5831,428 +3592,19 @@ x.@x
 :0122
 
 
-Pattern 64604
+Pattern 6475
 
 xx
 xX@x
 
 :0022
-
-
-Pattern 64700
-
-..
-X)X!
-
-:0002
-
-
-Pattern 64701
-
->X
-X!x)
-
-:0002
-
-
-Pattern 64702
-
-.x
-x@x!
-
-:0022
-
-
-Pattern 64703
-
-XX
-X@x!
-
-:0022
-
-
-Pattern 64704
-
-Xx
-x@x!
-
-:0012
-
-
-Pattern 64710
-
-.X
-(*.(
-
-:0112
-
-
-Pattern 64711
-
-..
-@.x!
-
-:0112
-
-
-Pattern 64712
-
-.X
-!*X!
-
-:0012
-
-
-Pattern 64713
-
-x.
-@x.!
-
-:0012
-
-
-Pattern 64714
-
-XX
-@.x!
-
-:0011
-
-
-Pattern 64715
-
-X.
-@.X!
-
-:0012
-
-
-Pattern 64716
-
-XX
-)XX)
-
-:0002
-
-
-Pattern 64717
-
-.X
-)XX)
-
-:0001
-
-
-Pattern 64718
-
-xx
-@Xx!
-
-:0011
-
-
-Pattern 64720
-
-@x
-x..!
-
-:0012
-
-
-Pattern 64721
-
-@X
-X.X!
-
-:0012
-
-
-Pattern 64722
-
-@x
-x.X!
-
-:0011
-
-
-Pattern 64723
-
-@x
-xX.!
-
-:0011
-
-
-Pattern 64724
-
-)x
-xXX)
-
-:0001
-
-
-Pattern 64730
-
-XX
-!.@x
-
-:0012
-
-
-Pattern 64731
-
-xx
-!.@x
-
-:0112
-
-
-Pattern 64732
-
-xx
-!x@x
-
-:0012
-
-
-Pattern 64740
-
-)x
-x.(x
-
-:0022
-
-
-Pattern 64741
-
-!x
-xX@x
-
-:0012
-
-
-Pattern 64750
-
-!.
-.@Xx
-
-:0012
-
-
-Pattern 64751
-
-!.
-X)<.
-
-:0012
-
-
-Pattern 64752
-
-!.
-x@.x
-
-:0112
-
-
-Pattern 64753
-
-!.
-X@XX
-
-:0012
-
-
-Pattern 64754
-
-)X
-X!Xx
-
-:0002
-
-
-Pattern 64755
-
-!X
-X!*x
-
-:0011
-
-
-Pattern 64756
-
-).
-X)X.
-
-:0002
-
-
-Pattern 64760
-
-x)
-)<<x
-
-:0112
-
-
-Pattern 64761
-
-x!
-!*Xx
-
-:0011
-
-
-Pattern 64762
-
-x!
-!X*x
-
-:0011
-
-
-Pattern 64763
-
-x)
-)XXx
-
-:0002
-
-
-Pattern 64800
-
-)X
-X!X!
-
-:0002
-
-
-Pattern 64801
-
-)x
-X)x!
-
-:0002
-
-
-Pattern 64810
-
-x)
-)x.!
-
-:0002
-
-
-Pattern 64811
-
-x)
-)xX!
-
-:0001
 
 
 #           ...
 # Topology: ...
 #
 
-Pattern 65000
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-#
-# |...
-# |.<.
-# +---
-# 
-# :1222
-
-|.*.
-|.*.
-+---
-
-:1122
-
-
-Pattern 65001
-
-|x*x
-|...
-+---
-
-:1122
-
-
-Pattern 65002
-
-|XX*
-|<XX
-+---
-
-:1122
-
-
-Pattern 65003
-
-|.>.
-|XX.
-+---
-
-:1112
-
-
-Pattern 65004
-
-|...
-|X>X
-+---
-
-:1112
-
-
-Pattern 65005
-
-|.>.
-|.XX
-+---
-
-:1112
-
-
-Pattern 65006
-
-|XX>
-|...
-+---
-
-:1112
-
-
-Pattern 65007
-
-|>XX
-|...
-+---
-
-:1112
-
-
-Pattern 65008
-
-|...
-|XXX
-+---
-
-:1111
-
-
-Pattern 65009
-
-|XXX
-|...
-+---
-
-:1111
-
-
-Pattern 65100
+Pattern 6501
 
 >XX
 X<X
@@ -6261,57 +3613,50 @@ X<X
 :1122
 
 
-Pattern 65101
+Pattern 6502
 
 .*.
-x.X
+..X
 ---
 
 :1122
 
 
-Pattern 65102
+Pattern 6503
 
->X>
+.x.
+X.X
+---
+
+:1111
+
+
+Pattern 6504
+
+.X.
 x.X
 ---
 
-:1112
+:1111
 
 
-Pattern 65200
+Pattern 6511
 
-XxX
+XX.
+..X
+
+:1222
+
+
+Pattern 6512
+
+XXX
 X.X
 
 :2222
 
 
-Pattern 65201
-
-..X
-X..
-
-:2222
-
-
-Pattern 65202
-
-XX.
-.<X
-
-:1222
-
-
-Pattern 65203
-
-x<x
-x<x
-
-:1222
-
-
-Pattern 65204
+Pattern 6513
 
 xXx
 x*x
@@ -6319,7 +3664,7 @@ x*x
 :1122
 
 
-Pattern 65205
+Pattern 6514
 # Need to mark both empty vertices. In the corner one of them may not
 # be a valid defense (suicide move).
 
@@ -6329,15 +3674,15 @@ XX*
 :1122
 
 
-Pattern 65206
+Pattern 6515
 
 XXX
-XX>
+XX.
 
 :1112
 
 
-Pattern 65207
+Pattern 6516
 
 xXx
 xXx
@@ -6345,15 +3690,15 @@ xXx
 :1111
 
 
-Pattern 65300
+Pattern 6521
 
-@.x
+!.x
 ..x
 
 :0112
 
 
-Pattern 65301
+Pattern 6522
 
 @XX
 X.x
@@ -6361,7 +3706,7 @@ X.x
 :0022
 
 
-Pattern 65302
+Pattern 6523
 
 @Xx
 x.x
@@ -6369,7 +3714,7 @@ x.x
 :0012
 
 
-Pattern 65303
+Pattern 6524
 
 @XX
 XXX
@@ -6377,7 +3722,7 @@ XXX
 :0012
 
 
-Pattern 65304
+Pattern 6525
 
 @XX
 XX.
@@ -6385,7 +3730,7 @@ XX.
 :0022
 
 
-Pattern 65305
+Pattern 6526
 
 @Xx
 xXx
@@ -6393,7 +3738,7 @@ xXx
 :0011
 
 
-Pattern 65306
+Pattern 6527
 
 @.X
 X..
@@ -6401,7 +3746,7 @@ X..
 :0122
 
 
-Pattern 65307
+Pattern 6528
 
 @.X
 X.X
@@ -6409,23 +3754,23 @@ X.X
 :0022
 
 
-Pattern 65308
+Pattern 6529
 
-@..
+!..
 X.x
 
 :0112
 
 
-Pattern 65309
+Pattern 6530
 
-(>x
+!.x
 .X.
 
 :0112
 
 
-Pattern 65310
+Pattern 6531
 
 @xX
 .XX
@@ -6433,7 +3778,7 @@ Pattern 65310
 :0011
 
 
-Pattern 65311
+Pattern 6532
 
 @x.
 xXx
@@ -6441,7 +3786,7 @@ xXx
 :0011
 
 
-Pattern 65312
+Pattern 6533
 
 @xX
 XXx
@@ -6449,7 +3794,7 @@ XXx
 :0022
 
 
-Pattern 65400
+Pattern 6541
 
 .@.
 x.x
@@ -6457,31 +3802,7 @@ x.x
 :0122
 
 
-Pattern 65401
-
-x@X
-XXX
-
-:0022
-
-
-Pattern 65402
-
-X!X
->Xx
-
-:0002
-
-
-Pattern 65403
-
-x)X
-xXx
-
-:0002
-
-
-Pattern 65404
+Pattern 6542
 
 x@x
 xXx
@@ -6489,15 +3810,7 @@ xXx
 :0022
 
 
-Pattern 65405
-
-X)X
-..x
-
-:0002
-
-
-Pattern 65406
+Pattern 6543
 
 x@x
 x.x
@@ -6505,155 +3818,19 @@ x.x
 :0022
 
 
-Pattern 65500
+Pattern 6551
 
-@x@
-x.x
-
-:0011
-
-
-Pattern 65501
-
-(*(
-.X.
-
-:0011
-
-
-Pattern 65502
-
-)x)
-xXx
-
-:0001
-
-
-Pattern 65510
-
-!..
-.@x
-
-:0011
-
-
-Pattern 65511
-
-!.X
-.@x
-
-:0011
-
-
-Pattern 65512
-
-!..
-X@.
-
-:0011
-
-
-Pattern 65513
-
-!.X
-X@.
-
-:0011
-
-
-Pattern 65514
-
-)X.
-.)X
-
-:0002
-
-
-Pattern 65515
-
-)X.
-.).
-
-:0002
-
-
-Pattern 65516
-
-)Xx
-X!X
-
-:0002
-
-
-Pattern 65517
-
-)xx
-x)x
-
-:0002
-
-
-Pattern 65520
-
-@..
-x.!
-
-:0012
-
-
-Pattern 65521
-
-@Xx
-x.!
-
-:0011
-
-
-Pattern 65522
-
-@.X
-X.@
-
-:0011
-
-
-Pattern 65523
-
-)XX
-XX)
-
-:0002
-
-
-Pattern 65524
-
-)xx
-xx)
-
-:0001
-
-
-Pattern 65530
-
-(.x
-(.x
+!.x
+!.x
 
 :0111
-
-
-Pattern 65531
-
-)Xx
-)Xx
-
-:0001
 
 
 #            ...
 # Topology: ...
 #
 
-Pattern 66000
+Pattern 6601
 
  ...
 ...
@@ -6661,39 +3838,7 @@ Pattern 66000
 :2222
 
 
-Pattern 66001
-
- ..X
-XXX
-
-:2222
-
-
-Pattern 66002
-
- <<x
-xXX
-
-:1222
-
-
-Pattern 66003
-
- <X.
-xX<
-
-:1222
-
-
-Pattern 66004
-
- X<.
-x<X
-
-:1222
-
-
-Pattern 66005
+Pattern 6602
 
  *Xx
 .XX
@@ -6701,7 +3846,7 @@ Pattern 66005
 :1122
 
 
-Pattern 66006
+Pattern 6603
 
  X*X
 .XX
@@ -6709,7 +3854,7 @@ Pattern 66006
 :1122
 
 
-Pattern 66007
+Pattern 6604
 
  X*.
 xXX
@@ -6717,7 +3862,7 @@ xXX
 :1122
 
 
-Pattern 66008
+Pattern 6605
 
  XX.
 .XX
@@ -6725,47 +3870,47 @@ Pattern 66008
 :1111
 
 
-Pattern 66009
+Pattern 6606
 
  XXX
->XX
+.XX
 
 :1112
 
 
-Pattern 66100
+Pattern 6611
 
  x*x
 !.x
-
+ 
 :1122
 
 
-Pattern 66101
+Pattern 6612
 
  XXX
-!>X
+!.X
 
 :1112
 
 
-Pattern 66102
+Pattern 6613
 
  xXx
-(.x
+!.x
 
 :0111
 
 
-Pattern 66103
+Pattern 6614
 
  x..
-@Xx
+!Xx
 
 :0112
 
 
-Pattern 66104
+Pattern 6615
 
  x.X
 @Xx
@@ -6773,7 +3918,7 @@ Pattern 66104
 :0122
 
 
-Pattern 66105
+Pattern 6616
 
  XXX
 @XX
@@ -6781,7 +3926,7 @@ Pattern 66105
 :0012
 
 
-Pattern 66106
+Pattern 6617
 
  xXX
 @Xx
@@ -6789,7 +3934,7 @@ Pattern 66106
 :0022
 
 
-Pattern 66107
+Pattern 6618
 
  xX.
 @Xx
@@ -6797,140 +3942,51 @@ Pattern 66107
 :0011
 
 
-Pattern 66200
+Pattern 6621
 
  x.x
 x@x
-
+ 
 :0122
 
 
-Pattern 66201
+Pattern 6622
 
  xXx
 x@x
-
+ 
 :0022
 
 
-Pattern 66300
+Pattern 6631
 
  x.x
 x.@
-
+ 
 :1122
 
 
-Pattern 66301
+Pattern 6632
 
  x.x
 xX@
-
+ 
 :0122
 
 
-Pattern 66302
+Pattern 6633
 
  xXx
 xX@
-
+ 
 :0022
-
-
-Pattern 66400
-
- X*!
-!*X
-
-:0112
-
-
-Pattern 66401
-
- x.(
-(.x
-
-:0111
-
-
-Pattern 66402
-
- xX)
-)Xx
-
-:0001
-
-
-Pattern 66403
-
- xx!
-@Xx
-
-:0011
-
-
-Pattern 66410
-
- ..x
-(X@
-
-:0112
-
-
-Pattern 66411
-
- x*x
-!.!
-
-:0112
-
-
-Pattern 66412
-
- XXX
-)X)
-
-:0002
-
-
-Pattern 66413
-
- XX.
-)X)
-
-:0001
-
-
-Pattern 66414
-
- xXx
-!x@
-
-:0011
-
-
-Pattern 66415
-
- X*x
-!X!
-
-:0011
 
 
 #            .
 # Topology: ....
 #            .
 
-Pattern 67000
-
- x
-x<..
- x
-
-:1222
-
-
-Pattern 67001
+Pattern 6701
 
  x
 xX*.
@@ -6939,7 +3995,7 @@ xX*.
 :1122
 
 
-Pattern 67002
+Pattern 6702
 
  x
 x*X.
@@ -6948,16 +4004,16 @@ x*X.
 :1122
 
 
-Pattern 67003
+Pattern 6703
 
  X
-XXX>
+XXX.
  X
 
 :1112
 
 
-Pattern 67004
+Pattern 6704
 
  x
 xXX.
@@ -6966,7 +4022,7 @@ xXX.
 :1111
 
 
-Pattern 67100
+Pattern 6711
 
  x
 !*..
@@ -6975,25 +4031,25 @@ Pattern 67100
 :1122
 
 
-Pattern 67101
+Pattern 6712
 
  x
-(..X
+!..X
  x
 
 :1222
 
 
-Pattern 67102
+Pattern 6713
 
  x
-(.XX
+!.XX
  x
 
 :0222
 
 
-Pattern 67103
+Pattern 6714
 
  x
 !*Xx
@@ -7002,7 +4058,7 @@ Pattern 67103
 :0122
 
 
-Pattern 67104
+Pattern 6715
 
  x
 @X.X
@@ -7011,16 +4067,16 @@ Pattern 67104
 :0122
 
 
-Pattern 67105
+Pattern 6716
 
  x
-@X..
+!X..
  x
 
 :0112
 
 
-Pattern 67106
+Pattern 6717
 
  x
 @XXX
@@ -7029,7 +4085,7 @@ Pattern 67106
 :0022
 
 
-Pattern 67107
+Pattern 6718
 
  x
 @XX.
@@ -7038,7 +4094,27 @@ Pattern 67107
 :0011
 
 
-Pattern 67200
+Pattern 6721
+# Cannot exist.
+
+ x
+x.!x
+ x
+
+:0222
+
+
+Pattern 6722
+# Cannot exist.
+
+ x
+xX@x
+ x
+
+:0022
+
+
+Pattern 6731
 
  x
 x*.!
@@ -7047,7 +4123,7 @@ x*.!
 :1122
 
 
-Pattern 67201
+Pattern 6732
 
  X
 X*X!
@@ -7056,7 +4132,7 @@ X*X!
 :1122
 
 
-Pattern 67202
+Pattern 6733
 
  x
 x*X!
@@ -7065,25 +4141,25 @@ x*X!
 :0122
 
 
-Pattern 67203
+Pattern 6734
 
  X
-XX>!
+XX.!
  X
 
 :1112
 
 
-Pattern 67204
+Pattern 6735
 
  x
-xX.(
+xX.!
  x
 
 :0111
 
 
-Pattern 67205
+Pattern 6736
 
  X
 XXX@
@@ -7092,7 +4168,7 @@ XXX@
 :0012
 
 
-Pattern 67206
+Pattern 6737
 
  x
 xXX@
@@ -7101,182 +4177,20 @@ xXX@
 :0011
 
 
-Pattern 67300
-
- !
-!*.x
- x
-
-:0122
-
-
-Pattern 67301
-
- !
-!*Xx
- x
-
-:0022
-
-
-Pattern 67302
-
- !
-!X*x
- x
-
-:0011
-
-
-Pattern 67303
-
- )
-)XXX
- X
-
-:0002
-
-
-Pattern 67304
-
- )
-)XXx
- x
-
-:0001
-
-
-Pattern 67310
-
- x
-!*.!
- x
-
-:0122
-
-
-Pattern 67311
-
- x
-!*X!
- x
-
-:0022
-
-
-Pattern 67312
-
- x
-@X.!
- x
-
-:0011
-
-
-Pattern 67313
-
- x
-)XX)
- x
-
-:0001
-
-
-Pattern 67400
-
- !
-!<.x
- !
-
-:0111
-
-
-Pattern 67401
-
- !
-!*Xx
- !
-
-:0011
-
-
-Pattern 67402
-
- !
-!X*x
- !
-
-:0011
-
-
-Pattern 67403
-
- !
-!XXx
- !
-
-:0000
-
-
-Pattern 67410
-
- !
-!*x!
- x
-
-:0012
-
-
-Pattern 67411
-
- )
-)X.!
- x
-
-:0001
-
-
-Pattern 67412
-
- !
-!XX!
- x
-
-:0000
-
-
-Pattern 67500
-
- !
-!>x)
- !
-
-:0001
-
-
 #            .
 # Topology: ....
 #             .
 
-Pattern 68000
+Pattern 6801
 
  x
-x<<!
-  .
-
-:1222
-
-
-Pattern 68001
-
- x
-xX.(
+xX.!
   X
 
 :0222
 
 
-Pattern 68002
+Pattern 6802
 
  x
 xX*!
@@ -7285,16 +4199,16 @@ xX*!
 :0122
 
 
-Pattern 68003
+Pattern 6803
 
  x
-x.X(
+x.X!
   X
 
 :0222
 
 
-Pattern 68004
+Pattern 6804
 
  x
 x*X!
@@ -7303,7 +4217,7 @@ x*X!
 :0122
 
 
-Pattern 68005
+Pattern 6805
 
  x
 xXX@
@@ -7312,7 +4226,7 @@ xXX@
 :0011
 
 
-Pattern 68006
+Pattern 6806
 
  x
 xXX@
@@ -7321,130 +4235,24 @@ xXX@
 :0022
 
 
-Pattern 68100
+Pattern 6811
+# Cannot exist.
 
- !
-!.*X
-  X
-
-:1122
-
-
-Pattern 68101
-
- !
-!.*x
+ x
+x.!x
   x
-
-:0122
-
-
-Pattern 68102
-
- !
-!X*x
-  x
-
-:0022
-
-
-Pattern 68103
-
- !
-!*XX
-  X
-
-:0012
-
-
-Pattern 68104
-
- !
-!*Xx
-  x
-
-:0011
-
-
-Pattern 68105
-
- )
-)XXx
-  x
-
-:0001
-
-
-Pattern 68110
-
- X
-!<<!
-  X
 
 :0222
 
 
-Pattern 68111
+Pattern 6812
+# Cannot exist.
 
  x
-!**!
+xX@x
   x
-
-:1122
-
-
-Pattern 68112
-
- X
-!<X)
-  X
 
 :0022
-
-
-Pattern 68113
-
- x
-!*X!
-  x
-
-:0012
-
-
-Pattern 68114
-
- X
-)XX)
-  X
-
-:0002
-
-
-Pattern 68115
-
- x
-)XX)
-  x
-
-:0001
-
-
-Pattern 68120
-
- !
-!.X)
-  x
-
-:0001
-
-
-Pattern 68121
-
- !
-!XX!
-  x
-
-:0000
 
 
 #           ..
@@ -7452,25 +4260,17 @@ Pattern 68121
 #            .
 
 
-Pattern 69000
+Pattern 6901
+# This pattern must be matched before 6902.
 
 XX
 X.X
  X
 
-:2222
-
-
-Pattern 69001
-
-XX
-<<.
- x
-
 :1222
 
 
-Pattern 69002
+Pattern 6902
 
 .x
 x*x
@@ -7479,7 +4279,7 @@ x*x
 :1122
 
 
-Pattern 69003
+Pattern 6903
 
 XX
 X*x
@@ -7488,7 +4288,7 @@ X*x
 :1122
 
 
-Pattern 69004
+Pattern 6904
 
 X.
 .XX
@@ -7497,25 +4297,25 @@ X.
 :2222
 
 
-Pattern 69005
+Pattern 6905
 
-X<
-<Xx
+X.
+.Xx
  x
 
 :1222
 
 
-Pattern 69006
+Pattern 6906
 
 XX
 .XX
  X
 
-:2222
+:1222
 
 
-Pattern 69007
+Pattern 6907
 
 XX
 *Xx
@@ -7524,34 +4324,34 @@ XX
 :1122
 
 
-Pattern 69008
+Pattern 6908
 
-.>
->Xx
+..
+.Xx
  x
 
 :1112
 
 
-Pattern 69009
+Pattern 6909
 
 XX
 XXX
- >
+ .
 
 :1112
 
 
-Pattern 69010
+Pattern 6910
 
->X
+.X
 XXX
  X
 
 :1112
 
 
-Pattern 69011
+Pattern 6911
 
 xx
 xXx
@@ -7560,7 +4360,7 @@ xXx
 :1111
 
 
-Pattern 69100
+Pattern 6912
 
 !.
 .*x
@@ -7569,7 +4369,7 @@ Pattern 69100
 :0122
 
 
-Pattern 69101
+Pattern 6913
 
 !X
 X*X
@@ -7578,7 +4378,7 @@ X*X
 :1122
 
 
-Pattern 69102
+Pattern 6914
 
 !x
 x*x
@@ -7587,7 +4387,7 @@ x*x
 :0122
 
 
-Pattern 69103
+Pattern 6915
 
 @.
 .Xx
@@ -7596,7 +4396,7 @@ Pattern 69103
 :0011
 
 
-Pattern 69104
+Pattern 6916
 
 @X
 XXX
@@ -7605,7 +4405,7 @@ XXX
 :0012
 
 
-Pattern 69105
+Pattern 6917
 
 @x
 xXx
@@ -7614,16 +4414,7 @@ xXx
 :0011
 
 
-Pattern 69200
-
-X(
-x<x
- x
-
-:0222
-
-
-Pattern 69201
+Pattern 6921
 
 .!
 .*x
@@ -7632,7 +4423,7 @@ Pattern 69201
 :1122
 
 
-Pattern 69202
+Pattern 6922
 
 .!
 X*x
@@ -7641,7 +4432,7 @@ X*x
 :0122
 
 
-Pattern 69203
+Pattern 6923
 
 .@
 .Xx
@@ -7650,7 +4441,7 @@ Pattern 69203
 :0012
 
 
-Pattern 69204
+Pattern 6924
 
 .@
 XXx
@@ -7659,7 +4450,7 @@ XXx
 :0011
 
 
-Pattern 69205
+Pattern 6925
 
 X@
 xXx
@@ -7668,7 +4459,7 @@ xXx
 :0022
 
 
-Pattern 69300
+Pattern 6931
 
 .x
 x*!
@@ -7677,7 +4468,7 @@ x*!
 :0122
 
 
-Pattern 69301
+Pattern 6932
 
 Xx
 x*!
@@ -7686,7 +4477,7 @@ x*!
 :0122
 
 
-Pattern 69302
+Pattern 6933
 
 XX
 X*!
@@ -7695,16 +4486,16 @@ X*!
 :1122
 
 
-Pattern 69303
+Pattern 6934
 
 Xx
-x.(
+x.!
  X
 
 :0222
 
 
-Pattern 69304
+Pattern 6935
 
 .x
 xX@
@@ -7713,7 +4504,7 @@ xX@
 :0011
 
 
-Pattern 69305
+Pattern 6936
 
 XX
 XX@
@@ -7722,7 +4513,7 @@ XX@
 :0012
 
 
-Pattern 69306
+Pattern 6937
 
 Xx
 xX@
@@ -7731,283 +4522,13 @@ xX@
 :0022
 
 
-Pattern 69307
+Pattern 6938
 
 Xx
 xX@
  x
 
 :0011
-
-
-Pattern 69400
-
-!!
-.*x
- x
-
-:0122
-
-
-Pattern 69401
-
-!!
-X*x
- x
-
-:0022
-
-
-Pattern 69402
-
-))
-XXx
- x
-
-:0001
-
-
-Pattern 69410
-
-)X
-X<!
- X
-
-:0012
-
-
-Pattern 69411
-
-!X
-X*!
- .
-
-:0011
-
-
-Pattern 69412
-
-!x
-x*!
- x
-
-:0012
-
-
-Pattern 69413
-
-)x
-xX)
- x
-
-:0001
-
-
-Pattern 69420
-
-x!
-!*x
- x
-
-:0022
-
-
-Pattern 69421
-
-x)
-)Xx
- x
-
-:0002
-
-
-Pattern 69430
-
-.!
-.*!
- x
-
-:0122
-
-
-Pattern 69431
-
-X@
-..!
- X
-
-:0122
-
-
-Pattern 69432
-
-X!
-.*!
- .
-
-:0112
-
-
-Pattern 69433
-
-.!
-X*!
- x
-
-:0022
-
-
-Pattern 69434
-
-X)
-X<!
- X
-
-:0022
-
-
-Pattern 69435
-
-X!
-X*!
- .
-
-:0011
-
-
-Pattern 69436
-
-x@
-.X!
- x
-
-:0011
-
-
-Pattern 69437
-
-X)
-XX)
- X
-
-:0002
-
-
-Pattern 69438
-
-x)
-XX)
- x
-
-:0001
-
-
-Pattern 69440
-
-.X
-X*!
- !
-
-:0022
-
-
-Pattern 69441
-
-.x
-x*!
- !
-
-:0012
-
-
-Pattern 69442
-
-XX
-X*!
- !
-
-:0012
-
-
-Pattern 69443
-
-Xx
-x*!
- !
-
-:0011
-
-
-Pattern 69444
-
-xx
-xX)
- )
-
-:0001
-
-
-Pattern 69450
-
-)x
-x>!
- !
-
-:0002
-
-
-Pattern 69451
-
-!x
-xX!
- !
-
-:0000
-
-
-Pattern 69460
-
-x@
-..!
- !
-
-:0011
-
-
-Pattern 69461
-
-.!
-X*!
- !
-
-:0011
-
-
-Pattern 69462
-
-x!
-XX!
- !
-
-:0000
-
-
-Pattern 69463
-
-x)
-xx!
- !
-
-:0001
-
-
-Pattern 69500
-
-x)
-)x!
- !
-
-:0001
 
 
 ###############################
@@ -8019,40 +4540,22 @@ x)
 #
 
 Pattern 70000
-
-|x
-|.
-|X
-|.x.(
-+----
-
-:1222
-
-
-Pattern 70001
+# There is some ko potential here.
 
 |.
 |X
 |X
-|.X.(
-+----
-
-:0222
-
-
-Pattern 70002
-
-|.
-|X
-|X
-|x..@
+|...@
 +----
 
 :1122
 
 
-Pattern 70003
-
+Pattern 70001
+# tm added (3.1.15)
+# Though pattern 7003 matches with a defense point at
+# the proper place, the code doesn't seem to provide
+# more than one defense point.
 |(
 |.
 |.
@@ -8062,29 +4565,7 @@ Pattern 70003
 :1122
 
 
-Pattern 70004
-
-|!
-|.
-|x
-|.X>!
-+----
-
-:1112
-
-
-Pattern 70005
-
-|)
-|.
-|.
-|X..)
-+----
-
-:1112
-
-
-Pattern 70010
+Pattern 70002
 # Special corner shape.
 
 |X*.
@@ -8094,175 +4575,128 @@ Pattern 70010
 :1122
 
 
-Pattern 70011
+Pattern 70003
 # Special corner shape.
 
-|XX>
-|. .>$
+|XX.
+|. ..$
 +-----
 
 :1112
 
 
-Pattern 70100
-
-(<x.xXx
-
-:1222
-
-
-Pattern 70101
-
-(<Xx.xx
-
-:1222
-
-
-Pattern 70102
-
-(<XXX.x
-
-:1222
-
-
-Pattern 70103
-
-(<.XXx.
-
-:1222
-
-
-Pattern 70104
-
-(<.X.X.
-
-:1222
-
-
-Pattern 70105
-
-(<X.X..
-
-:1222
-
-
-Pattern 70106
-
-(<XXXXx
-
-:0222
-
-
-Pattern 70200
+Pattern 70010
 
 @..>X.(
 
 :1122
 
 
-Pattern 70201
+Pattern 70011
 
 @..>..@
 
 :1122
 
 
-Pattern 70202
+Pattern 70012
 
 (.x..X@
 
 :1122
 
 
-Pattern 70203
+Pattern 70013
 
 @..X..@
 
 :1122
 
 
-Pattern 70204
+Pattern 70014
 
 (.X*X.(
 
 :1122
 
 
-Pattern 70205
+Pattern 70015
 
 @X.X.X@
 
 :0122
 
 
-Pattern 70206
+Pattern 70016
 
 @X.X..!
 
 :0122
 
 
-Pattern 70207
+Pattern 70017
 
 @XXXX.!
 
 :0022
 
 
-Pattern 70208
+Pattern 70018
 
 @XxxX.(
 
 :0122
 
 
-Pattern 70209
+Pattern 70019
 
-@Xx..x!
-
-:0112
-
-
-Pattern 70210
-
-(.XX..)
+!Xx..x!
 
 :0112
 
 
-Pattern 70211
+Pattern 70020
 
-(.XXX.(
+!.XX..!
+
+:0112
+
+
+Pattern 70021
+
+!.XXX.!
 
 :0111
 
 
-Pattern 70212
+Pattern 70022
 
 @XXX.x!
 
 :0012
 
 
-Pattern 70213
+Pattern 70023
 
 @XX*XX@
 
 :0011
 
 
-Pattern 70214
+Pattern 70024
 
-)XXXXX)
+!XXXXX!
 
 :0002
 
 
-Pattern 70300
+Pattern 70030
+# FIXME: This pattern looks like 1112 to me. "$...<." seems to be
+#	 attackable at '<'. -pp
 
-$.....)
+$.....@
 
-:1112
+:1122
 
 
 #            .
@@ -8271,16 +4705,16 @@ $.....)
 
 Pattern 70500
 
- X
-X....!
+ x
+!<XXX)
 
-:2222
+:0022
 
 
 Pattern 70501
 
- x
-xX.X.(
+ X
+!..X.!
 
 :1222
 
@@ -8288,100 +4722,12 @@ xX.X.(
 Pattern 70502
 
  X
-XX...(
+!.XX.!
 
-:1222
+:0222
 
 
 Pattern 70503
-
- x
-x.x..(
-
-:1222
-
-
-Pattern 70504
-
- x
-xXXX.(
-
-:0222
-
-
-Pattern 70505
-
- x
-xXx..@
-
-:1122
-
-
-Pattern 70510
-
- x
-!..X.X
-
-:2222
-
-
-Pattern 70511
-
- x
-(..xxx
-
-:1222
-
-
-Pattern 70512
-
- x
-(.X.xx
-
-:1222
-
-
-Pattern 70513
-
- x
-(.XX.x
-
-:1222
-
-
-Pattern 70514
-
- x
-(.XXXx
-
-:0222
-
-
-Pattern 70600
-
- x
-!<XXX)
-
-:0022
-
-
-Pattern 70601
-
- X
-(..X.(
-
-:1222
-
-
-Pattern 70602
-
- X
-(.XX.!
-
-:0222
-
-
-Pattern 70603
 
  x
 !..XX@
@@ -8389,7 +4735,7 @@ Pattern 70603
 :0122
 
 
-Pattern 70604
+Pattern 70504
 
  .
 !*X.X)
@@ -8397,7 +4743,7 @@ Pattern 70604
 :0122
 
 
-Pattern 70605
+Pattern 70505
 
  .
 !*XX.!
@@ -8405,7 +4751,7 @@ Pattern 70605
 :0122
 
 
-Pattern 70606
+Pattern 70506
 
  x
 !*xxx!
@@ -8413,92 +4759,12 @@ Pattern 70606
 :1122
 
 
-Pattern 70610
+Pattern 70507
 
  )
 )*x..x
 
 :1122
-
-
-Pattern 70611
-
- !
-!..X*x
-
-:1122
-
-
-Pattern 70612
-
- )
-)...Xx
-
-:1112
-
-
-Pattern 70613
-
- )
-).>XXX
-
-:1112
-
-
-Pattern 70614
-
- !
-!*XXXX
-
-:0022
-
-
-Pattern 70615
-
- !
-!*XxxX
-
-:0122
-
-
-Pattern 70616
-
- !
-!*XXX.
-
-:0011
-
-
-Pattern 70617
-
- )
-)<xxX.
-
-:0112
-
-
-Pattern 70618
-
- )
-)*xXx.
-
-:0112
-
-
-Pattern 70700
-
- !
-!<.x.(
-
-:0111
-
-
-Pattern 70701
-
- !
-!*Xx.!
-
-:0011
 
 
 #             .
@@ -8507,126 +4773,22 @@ Pattern 70701
 
 Pattern 71000
 
-|@ .
-|x...!
-+-----
+  . @|
+!...x|
+-----+
 
 :1122
 
 
-Pattern 71100
-
-  x
-.....!
-
-:2222
-
-
-Pattern 71101
-
-  x
-.x.x.(
-
-:1222
-
-
-Pattern 71102
-
-  x
-..X..(
-
-:1222
-
-
-Pattern 71103
-
-  x
-X.XX.(
-
-:1222
-
-
-Pattern 71104
-
-  x
-XXXX.(
-
-:0222
-
-
-Pattern 71105
-
-  x
-.XXX.@
-
-:0122
-
-
-Pattern 71106
-
-  x
-.xXx.@
-
-:1122
-
-
-Pattern 71107
-
-  .
-xxX..(
-
-:1222
-
-
-Pattern 71110
-
-  x
-(.XXXx
-
-:0222
-
-
-Pattern 71111
-
-  x
-(.Xxxx
-
-:1222
-
-
-Pattern 71120
+Pattern 71010
 
   !
-x....x
-
-:2222
-
-
-Pattern 71121
-
-  (
-xX.XXx
-
-:0222
-
-
-Pattern 71122
-
-  (
-xx.xxx
-
-:1222
-
-
-Pattern 71200
-
-  (
 !..X.X
 
 :1222
 
 
-Pattern 71201
+Pattern 71011
 
   !
 @.>XXX
@@ -8634,7 +4796,7 @@ Pattern 71201
 :1122
 
 
-Pattern 71202
+Pattern 71012
 # Defending the other marginal vertex is sometimes incorrect,
 # see regression/games/owl27.sgf.
 
@@ -8644,7 +4806,7 @@ Pattern 71202
 :1122
 
 
-Pattern 71203
+Pattern 71013
 
   (
 @...Xx
@@ -8652,7 +4814,7 @@ Pattern 71203
 :1122
 
 
-Pattern 71204
+Pattern 71014
 
   !
 )X<XXx
@@ -8660,7 +4822,7 @@ Pattern 71204
 :0022
 
 
-Pattern 71205
+Pattern 71015
 
   !
 )x<xXx
@@ -8668,7 +4830,7 @@ Pattern 71205
 :0122
 
 
-Pattern 71206
+Pattern 71016
 
   !
 @X*..x
@@ -8676,7 +4838,7 @@ Pattern 71206
 :1122
 
 
-Pattern 71207
+Pattern 71017
 
   !
 !X*X.x
@@ -8684,55 +4846,7 @@ Pattern 71207
 :0122
 
 
-Pattern 71210
-
-  X
-!.>xX(
-
-:1122
-
-
-Pattern 71211
-
-  .
-!.*XX!
-
-:0122
-
-
-Pattern 71212
-
-  .
-!X*.x!
-
-:0122
-
-
-Pattern 71213
-
-  x
-!X*X.!
-
-:0122
-
-
-Pattern 71214
-
-  x
-(.X..)
-
-:0112
-
-
-Pattern 71215
-
-  x
-(.XX.(
-
-:0111
-
-
-Pattern 71216
+Pattern 71020
 
   x
 !X*XX!
@@ -8740,7 +4854,39 @@ Pattern 71216
 :0022
 
 
-Pattern 71217
+Pattern 71021
+
+  X
+!.>xX(
+
+:1122
+
+
+Pattern 71022
+
+  .
+!.*XX!
+
+:0122
+
+
+Pattern 71023
+
+  .
+!X*.x!
+
+:0122
+
+
+Pattern 71024
+
+  x
+!X*X.!
+
+:0122
+
+
+Pattern 71025
 
   x
 !x*xx!
@@ -8748,50 +4894,18 @@ Pattern 71217
 :1122
 
 
-Pattern 71220
-
-  (
-X..X.(
-
-:1222
-
-
-Pattern 71221
+Pattern 71030
 
   )
-x.>x.@
+..>..@
 
 :1122
 
 
-Pattern 71222
+Pattern 71040
 
   !
-xX>..@
-
-:1122
-
-
-Pattern 71223
-
-  (
-XX.X.!
-
-:0222
-
-
-Pattern 71224
-
-  !
-xX*X.)
-
-:0122
-
-
-Pattern 71300
-
-  !
-(.*x.(
+!..x.!
 
 :0112
 
@@ -8803,114 +4917,10 @@ Pattern 71300
 
 Pattern 71500
 
- x x
-(..Xx
-
-:1222
-
-
-Pattern 71501
-
- x x
-(.XXx
-
-:0222
-
-
-Pattern 71600
-
- x x
-(...(
-
-:1222
-
-
-Pattern 71601
-
- x x
-!<X<!
-
-:0222
-
-
-Pattern 71610
-
- ! x
-!..*x
-
-:1122
-
-
-Pattern 71611
-
- ! X
-!.X*X
-
-:1122
-
-
-Pattern 71612
-
- ) X
-)..XX
-
-:1112
-
-
-Pattern 71613
-
- ! x
-!.X*x
-
-:0122
-
-
-Pattern 71614
-
- ! x
-!<.Xx
-
-:0111
-
-
-Pattern 71615
-
- ! X
-!*XXX
-
-:0012
-
-
-Pattern 71616
-
- ! x
-!*XXx
-
-:0011
-
-
-Pattern 71700
-
- ! x
-!<.*!
+ . !
+!...!
 
 :0112
-
-
-Pattern 71701
-
- ! x
-!.X*!
-
-:0012
-
-
-Pattern 71800
-
- ! !
-!>x>!
-
-:0001
 
 
 #            .
@@ -8929,7 +4939,7 @@ x*X.!
 Pattern 72001
 
  x
-x..X(
+x..X!
  x 
 
 :1222
@@ -8938,7 +4948,7 @@ x..X(
 Pattern 72002
 
  X
-X...(
+X...!
  X 
 
 :1222
@@ -8953,479 +4963,24 @@ x*..)
 :1122
 
 
-Pattern 72004
-
- X
-XX*.(
- X 
-
-:1122
-
-
-Pattern 72005
-
- x
-xX..)
- x 
-
-:1112
-
-
-Pattern 72006
-
- X
-XXX>!
- X 
-
-:1112
-
-
-Pattern 72007
-
- x
-xXX.(
- x 
-
-:0111
-
-
-Pattern 72010
-
- x
-(.XXx
- x 
-
-:0222
-
-
-Pattern 72011
-
- x
-(.xxx
- x 
-
-:1222
-
-
-Pattern 72100
-
- X
-!*..!
- X 
-
-:1122
-
-
-Pattern 72101
-
- x
-!*x.!
- x 
-
-:0122
-
-
-Pattern 72110
-
- !
-!*XXx
- x 
-
-:0022
-
-
-Pattern 72111
-
- !
-!*..x
- x 
-
-:1122
-
-
-Pattern 72112
-
- !
-!*xxx
- x 
-
-:0122
-
-
-Pattern 72300
-
- !
-!*x.!
- x 
-
-:0022
-
-
-Pattern 72310
-
- !
-!>..x
- ! 
-
-:1112
-
-
-Pattern 72311
-
- !
-!*X.X
- ! 
-
-:0122
-
-
-Pattern 72312
-
- !
-!*X..
- ! 
-
-:0112
-
-
-Pattern 72313
-
- !
-!<.Xx
- ! 
-
-:0111
-
-
-Pattern 72314
-
- !
-!*XXX
- ! 
-
-:0012
-
-
-Pattern 72315
-
- !
-!*XX.
- ! 
-
-:0011
-
-
 #             .
 # Topology: .....
 #            .
 
-Pattern 72500
-
-  x
-(.X.x
- x
-
-:1222
-
-
-Pattern 72501
-
-  x
-(.XXx
- x
-
-:0222
-
-
-Pattern 72510
-
-  X
-xXX.(
- x
-
-:0222
-
-
-Pattern 72511
-
-  .
-xXX.@
- x
-
-:0122
-
-
-Pattern 72512
-
-  .
-xxX.(
- x
-
-:1222
-
-
-Pattern 72513
-
-  .
-xX..(
- x
-
-:1222
-
-
-Pattern 72520
-
-  (
-xX..x
- x
-
-:1222
-
-
-Pattern 72521
-
-  (
-xX.Xx
- x
-
-:0222
-
-
-Pattern 72600
-
-  !
-X...(
- X
-
-:1222
-
-
-Pattern 72601
-
-  !
-x*..!
- x
-
-:1122
-
-
-Pattern 72602
-
-  !
-XX*.!
- X
-
-:0122
-
-
-Pattern 72603
-
-  !
-xX*.(
- x
-
-:0112
-
-
-Pattern 72610
-
-  x
-(...!
- x
-
-:1222
-
-
-Pattern 72611
-
-  X
-(.X.!
- X
-
-:0222
-
-
-Pattern 72612
-
-  x
-!*X.!
- x
-
-:0122
-
+# Pattern 72500
 
 #             .
 # Topology: .....
 #             .
 
 
-Pattern 73000
-
-  x
-(....
-  x
-
-:1222
-
-
-Pattern 73001
-
-  x
-(.X.X
-  x
-
-:1222
-
-
-Pattern 73002
-
-  x
-(.XXX
-  x
-
-:0222
-
-
-Pattern 73003
-
-  x
-!.*X.
-  x
-
-:1122
-
-
-Pattern 73004
-
-  x
-!X*..
-  x
-
-:1122
-
-
-Pattern 73005
-
-  x
-!.X*.
-  x
-
-:1122
-
-
-Pattern 73006
-
-  x
-!X*X.
-  x
-
-:0122
-
-
-Pattern 73007
-
-  x
-(.XX.
-  x
-
-:0111
-
-
-Pattern 73010
-
-  (
-xX.Xx
-  x
-
-:0222
-
-
-Pattern 73011
-
-  (
-xx.xx
-  x
-
-:1222
-
-
-Pattern 73100
-
-  x
-!.*.!
-  x
-
-:1122
-
-
-Pattern 73101
-
-  x
-(.X.(
-  x
-
-:0111
-
-
-Pattern 73110
-
-  X
-(...X
-  (
-
-:1222
-
-
-Pattern 73111
-
-  x
-!.*.x
-  !
-
-:1122
-
-
-Pattern 73112
-
-  X
-(..XX
-  (
-
-:0222
-
-
-Pattern 73113
-
-  x
-!.*Xx
-  !
-
-:0122
-
+# Pattern 73000
 
 #             .
 # Topology:   .
 #           .....
 
 Pattern 73500
-
-  (
-  .
-xXXXx
-
-:0222
-
-
-Pattern 73501
-
-  (
-  .
-xxXxx
-
-:1222
-
-
-Pattern 73600
 
   @
   .
@@ -9434,49 +4989,13 @@ x...@
 :1122
 
 
-Pattern 73601
+Pattern 73501
 
-  (
+  !
   .
-xX>.(
+.*X.!
 
 :1122
-
-
-Pattern 73602
-
-  (
-  .
-x>X.(
-
-:1122
-
-
-Pattern 73603
-
-  (
-  .
-xXX.(
-
-:0111
-
-
-Pattern 73700
-
-  @
-  .
-@...@
-
-:0112
-
-
-Pattern 73701
-
-  (
-  .
-(.X.(
-
-:0111
 
 
 #           ..
@@ -9484,8 +5003,9 @@ Pattern 73701
 #
 
 Pattern 74000
+# Bent four in the corner
 
-|.X
+|..
 |.*..!
 +----
 
@@ -9494,216 +5014,24 @@ Pattern 74000
 
 Pattern 74001
 
-|.X
-|X.*.!
-+----
-
-:1122
-
-
-Pattern 74002
-
-|XX
-|<XX>!
-+----
-
-:1122
-
-
-Pattern 74003
-
-|.>
-|X>X.!
-+----
-
-:1112
-
-
-Pattern 74004
-
-|..
-|x*x.!
-+----
-
-:1122
-
-
-Pattern 74005
-
-|.x
-|xX..)
-+----
-
-:1112
-
-
-Pattern 74006
-
-|.X
-|x.X>!
-+----
-
-:1112
-
-
-Pattern 74007
-
-|.>
-|.XX.(
-+----
-
-:0112
-
-
-Pattern 74008
-
-|.x
-|xXX.(
-+----
-
-:0111
-
-
-Pattern 74100
-
-X.
-x.X.(
-
-:1222
-
-
-Pattern 74101
-
-..
-..x.(
-
-:1222
-
-
-Pattern 74102
-
-..
-X...(
-
-:1222
-
-
-Pattern 74103
-
-X.
-.XX.(
-
-:0222
-
-
-Pattern 74104
-
 XX
 X*x.!
 
 :1122
 
 
-Pattern 74105
+Pattern 74002
 
 X.
-x>..@
-
-:1122
-
-
-Pattern 74106
-
-xx
-x*x.!
-
-:1122
-
-
-Pattern 74107
-
-x.
-xX..@
-
-:1122
-
-
-Pattern 74108
-
-X*
-XXX.!
-
-:1122
-
-
-Pattern 74109
-
-xX
-XX..)
-
-:1112
-
-
-Pattern 74110
-
-XX
-XXX>!
-
-:1112
-
-
-Pattern 74111
-
-..
-.XX.@
-
-:0122
-
-
-Pattern 74112
-
-..
-XXX.@
-
-:0112
-
-
-Pattern 74113
-
-.X
-XXX.(
-
-:0111
-
-
-Pattern 74120
-
-.X
-X<.!.
+x.X.!
 
 :1222
 
 
-Pattern 74121
+Pattern 74003
 
 Xx
-XX.@.
-
-:0122
-
-
-Pattern 74122
-
-.x
-xX.@.
-
-:0122
-
-
-Pattern 74123
-
-xx
-xx.@.
+x>x.@
 
 :1122
 
@@ -9715,589 +5043,15 @@ xx.@.
 Pattern 74500
 
 |.
-|<
-|.X.
-|.X
-+--
-
-:1222
-
-
-Pattern 74501
-
-|.
-|X
-|.<.
-|.X
-+--
-
-:1222
-
-
-Pattern 74502
-
-|.
-|<
-|X..
-|.X
-+--
-
-:1222
-
-
-Pattern 74503
-
-|.
-|X
-|.X.
-|.<
-+--
-
-:1222
-
-
-Pattern 74504
-
-|.
-|<
-|XX.
-|..
-+--
-
-:1222
-
-
-Pattern 74505
-
-|.
-|X
-|X<.
-|.<
-+--
-
-:1222
-
-
-Pattern 74506
-
-|.
-|X
-|*X.
-|.X
-+--
-
-:1122
-
-
-Pattern 74507
-
-|.
-|*
-|XX.
-|.X
-+--
-
-:1122
-
-
-Pattern 74508
-
-|.
 |X
 |XX.
-|.*
-+--
-
-:1122
-
-
-Pattern 74509
-
-|.
-|X
-|X*.
 |.X
 +--
 
-:1122
+:1111
 
 
 Pattern 74510
-
-|>
-|X
-|XX>
-|.X
-+--
-
-:1112
-
-
-Pattern 74520
-
-|x
-|X
-|..(
-|.X
-+--
-
-:0222
-
-
-Pattern 74521
-
-|X
-|X
-|..(
-|Xx
-+--
-
-:0222
-
-
-Pattern 74522
-
-|.
-|*
-|X.!
-|x.
-+--
-
-:1122
-
-
-Pattern 74523
-
-|.
-|.
-|.*!
-|X.
-+--
-
-:1122
-
-
-Pattern 74524
-
-|.
-|X
-|><!
-|..
-+--
-
-:0122
-
-
-Pattern 74525
-
-|.
-|X
-|.*!
-|X.
-+--
-
-:0112
-
-
-Pattern 74526
-
-|.
-|X
-|X*!
-|..
-+--
-
-:0112
-
-
-Pattern 74527
-
-|.
-|X
-|X<(
-|X.
-+--
-
-:0111
-
-
-Pattern 74530
-
-|(
-|.
-|..X
-|X.
-+--
-
-:1222
-
-
-Pattern 74531
-
-|(
-|.
-|.XX
-|X.
-+--
-
-:0222
-
-
-Pattern 74532
-
-|!
-|.
-|.*.
-|X.
-+--
-
-:1122
-
-
-Pattern 74533
-
-|@
-|.
-|.X.
-|xX
-+--
-
-:0112
-
-
-Pattern 74534
-
-|@
-|.
-|.X.
-|X.
-+--
-
-:0112
-
-
-Pattern 74540
-
-|@
-|.
-|..)
-|x.
-+--
-
-:0112
-
-
-Pattern 74550
-
- X.
-@..XX
------
-
-:1122
-
-
-Pattern 74551
-
- xx
-(..XX
------
-
-:0222
-
-
-Pattern 74552
-
- Xx
-@...x
------
-
-:1122
-
-
-Pattern 74553
-
- xX
-@.X.x
------
-
-:1122
-
-
-Pattern 74554
-
- ..
-!*>X.
------
-
-:1122
-
-
-Pattern 74555
-
- .X
-)..<.
------
-
-:1122
-
-
-Pattern 74556
-
- x.
-@.X.x
------
-
-:0122
-
-
-Pattern 74557
-
- X.
-@..X.
------
-
-:0122
-
-
-Pattern 74558
-
- .X
-@..X.
------
-
-:0112
-
-
-Pattern 74559
-
- x.
-@.XXx
------
-
-:0022
-
-
-Pattern 74560
-
- XX
-@..X.
------
-
-:0022
-
-
-Pattern 74561
-
- xX
-@.XX.
------
-
-:0012
-
-
-Pattern 74570
-
- .X
-X...(
------
-
-:1222
-
-
-Pattern 74571
-
- .X
-XX..(
------
-
-:0222
-
-
-Pattern 74572
-
- .X
-X.X.(
------
-
-:0222
-
-
-Pattern 74573
-
- .X
-.*..!
------
-
-:1122
-
-
-Pattern 74574
-
- Xx
-.X..@
------
-
-:0112
-
-
-Pattern 74575
-
- .X
-.X..@
------
-
-:0112
-
-
-Pattern 74580
-
- .x
-)...(
------
-
-:0112
-
-
-Pattern 74581
-
- Xx
-(.>.!
------
-
-:0012
-
-
-Pattern 74582
-
- ..
-(>X.(
------
-
-:0012
-
-
-Pattern 74583
-
- xx
-@.x.!
------
-
-:0011
-
-
-Pattern 74600
-
- XX
-(....
-
-:1222
-
-
-Pattern 74601
-
- xx
-(.XXX
-
-:0222
-
-
-Pattern 74602
-
- xX
-!*XX.
-
-:0122
-
-
-Pattern 74603
-
- XX
-)*xx.
-
-:1122
-
-
-Pattern 74604
-
- Xx
-(.X.x
-
-:1222
-
-
-Pattern 74605
-
- xx
-(..xx
-
-:1222
-
-
-Pattern 74606
-
- x.
-!*XX.
-
-:1122
-
-
-Pattern 74607
-
- .X
-!*X..
-
-:1122
-
-
-Pattern 74608
-
- .x
-(.X.x
-
-:1222
-
-
-Pattern 74610
-
- .x
-....(
-
-:1222
-
-
-Pattern 74611
-
- ..
-X...(
-
-:1222
-
-
-Pattern 74612
-
- .X
-X.X.(
-
-:1222
-
-
-Pattern 74613
-
- <X
-XX<.!
-
-:1222
-
-
-Pattern 74614
-
- XX
-X<<.!
-
-:1222
-
-
-Pattern 74615
 
  ..
 .X*.!
@@ -10305,7 +5059,15 @@ Pattern 74615
 :1122
 
 
-Pattern 74616
+Pattern 74511
+
+ .x
+....!
+
+:1222
+
+
+Pattern 74512
 
  xx
 .*x.!
@@ -10313,138 +5075,42 @@ Pattern 74616
 :1122
 
 
-Pattern 74617
-
- XX
-XX*.!
-
-:1122
-
-
-Pattern 74618
-
- ..
-XX*.!
-
-:1122
-
-
-Pattern 74619
-
- .X
-.X*.!
-
-:1122
-
-
-Pattern 74620
-
- x.
-X*X.!
-
-:1122
-
-
-Pattern 74621
-
- X.
-X*..!
-
-:1122
-
-
-Pattern 74622
-
- XX
-X*X.!
-
-:1122
-
-
-Pattern 74623
-
- *X
-XXX.!
-
-:1122
-
-
-Pattern 74624
+Pattern 74513
 
  Xx
-xX..)
+.X..!
 
 :1112
 
 
-Pattern 74625
+Pattern 74514
 
- XX
-XXX>!
-
-:1112
-
-
-Pattern 74626
-
- ..
-XXX.@
-
-:0112
-
-
-Pattern 74627
-
- xx
-.XX.(
+ Xx
+.XX.!
 
 :0111
 
 
-Pattern 74628
-
- X.
-XXX.(
-
-:0111
-
-
-Pattern 74700
+Pattern 74515
 
  .x
-!...)
+!...!
 
 :1112
 
 
-Pattern 74701
+Pattern 74516
 
  xX
-(.X.(
+!.X.!
 
 :0111
 
 
-Pattern 74702
-
- XX
-(...)
-
-:0112
-
-
-Pattern 74703
-
- X.
-!*..)
-
-:0112
-
-
-Pattern 74704
+Pattern 74517
 
  xx
-!*x.(
+!.x.!
 
 :0112
 
@@ -10456,72 +5122,6 @@ Pattern 74704
 Pattern 75000
 
 |.
-|<
-|<X
-|.X.
-+---
-
-:1222
-
-
-Pattern 75001
-
-|.
-|<
-|X.
-|.X.
-+---
-
-:1222
-
-
-Pattern 75002
-
-|.
-|<
-|XX
-|...
-+---
-
-:1222
-
-
-Pattern 75003
-
-|.
-|X
-|.<
-|.X.
-+---
-
-:1222
-
-
-Pattern 75004
-
-|.
-|X
-|.X
-|.<.
-+---
-
-:1222
-
-
-Pattern 75005
-
-|.
-|X
-|X.
-|.<.
-+---
-
-:1222
-
-
-Pattern 75006
-
-|.
 |X
 |XX
 |.*.
@@ -10530,7 +5130,7 @@ Pattern 75006
 :1122
 
 
-Pattern 75007
+Pattern 75001
 
 |.
 |*
@@ -10541,194 +5141,7 @@ Pattern 75007
 :1122
 
 
-Pattern 75008
-
-|.
-|X
-|X*
-|.X.
-+---
-
-:1122
-
-
-Pattern 75009
-
-|.
-|X
-|*X
-|.X.
-+---
-
-:1122
-
-
-Pattern 75010
-
-|>
-|X
-|XX
-|.X>
-+---
-
-:1112
-
-
-Pattern 75020
-
-|(
-|.
-|.X
-|x.X
-+---
-
-:0222
-
-
-Pattern 75021
-
-|(
-|.
-|X.
-|..X
-+---
-
-:0222
-
-
-Pattern 75022
-
-|)
-|.
-|.x
-|x<.
-+---
-
-:1122
-
-
-Pattern 75023
-
-|!
-|>
-|XX
-|<XX
-+---
-
-:1122
-
-
-Pattern 75024
-
-|)
-|.
-|..
-|.X.
-+---
-
-:1112
-
-
-Pattern 75025
-
-|@
-|.
-|.x
-|xX.
-+---
-
-:0112
-
-
-Pattern 75026
-
-|(
-|.
-|Xx
-|xX.
-+---
-
-:0111
-
-
-Pattern 75030
-
-|.
-|*
-|X.
-|..(
-+---
-
-:1122
-
-
-Pattern 75031
-
-|X
-|>
-|X.
-|..@
-+---
-
-:1122
-
-
-Pattern 75032
-
-|.
-|.
-|>.
-|X.(
-+---
-
-:1122
-
-
-Pattern 75033
-
-|x
-|X
-|>.
-|..(
-+---
-
-:1122
-
-
-Pattern 75034
-
-|X
-|X
-|xx
-|..@
-+---
-
-:0122
-
-
-Pattern 75035
-
-|.
-|.
-|>X
-|..(
-+---
-
-:0122
-
-
-Pattern 75036
-
-|X
-|.
-|.X
-|X.@
-+---
-
-:0122
-
-
-Pattern 75037
+Pattern 75002
 
 |.
 |*
@@ -10736,389 +5149,40 @@ Pattern 75037
 |x.!
 +---
 
-:0122
+:1122
 
 
-Pattern 75038
-
-|.
-|.
-|.X
-|X.@
-+---
-
-:0112
-
-
-Pattern 75039
+Pattern 75003
 
 |.
 |X
-|.*
-|X.(
+|XX
+|.X.
 +---
 
-:0112
+:1111
 
 
-Pattern 75040
+Pattern 75004
 
 |.
-|X
+|*
 |X.
-|..(
+|..!
 +---
 
-:0111
+:1122
 
 
-Pattern 75041
-
-|X
-|X
-|.X
-|X.@
-+---
-
-:0022
-
-
-Pattern 75042
-
-|.
-|X
-|.X
-|.>(
-+---
-
-:0012
-
-
-Pattern 75043
-
-|.
-|X
-|xx
-|x.@
-+---
-
-:0011
-
-
-Pattern 75050
-
-|!
-|.
-|.X
-|..@
-+---
-
-:0012
-
-
-Pattern 75051
-
-|!
-|.
-|..
-|X.@
-+---
-
-:0012
-
-
-Pattern 75052
-
-|(
-|.
-|.X
-|X.@
-+---
-
-:0011
-
-
-Pattern 75060
-
-  .X.
-@..X
-----
-
-:0122
-
-
-Pattern 75061
+Pattern 75010
 
   XX.
-@...
-----
-
-:0122
-
-
-Pattern 75062
-
-  XX.
-@..X
-----
-
-:0112
-
-
-Pattern 75065
-
- .X.(
-X.X
----
-
-:0222
-
-
-Pattern 75066
-
- XX.(
-X..
----
-
-:0222
-
-
-Pattern 75070
-
-  X.(
-XX.X
-----
-
-:0222
-
-
-Pattern 75071
-
-  x.!
-.*.X
-----
-
-:1122
-
-
-Pattern 75072
-
-  X.!
-.*..
-----
-
-:1122
-
-
-Pattern 75073
-
-  X>!
-.X.x
-----
+!..X
 
 :1112
 
 
-Pattern 75074
-
-  .>!
-.X.X
-----
-
-:1112
-
-
-Pattern 75080
-
- X>.x
-@.x
----
-
-:1122
-
-
-Pattern 75081
-
- XX.X
-@.x
----
-
-:1122
-
-
-Pattern 75082
-
- X.XX
-@.x
----
-
-:1122
-
-
-Pattern 75083
-
- ..xx
-@.X
----
-
-:1122
-
-
-Pattern 75084
-
- .X.X
-@.X
----
-
-:1122
-
-
-Pattern 75085
-
- X*X.
-!.X
----
-
-:0122
-
-
-Pattern 75086
-
- XX*.
-!.X
----
-
-:0122
-
-
-Pattern 75087
-
- .XX.
-@.X
----
-
-:0012
-
-
-Pattern 75088
-
- XXX.
-@..
----
-
-:0012
-
-
-Pattern 75089
-
- XXX.
-@.X
----
-
-:0011
-
-
-Pattern 75090
-
-  X>!
-)..X
-----
-
-:1112
-
-
-Pattern 75095
-
- X*.!
-(.X
----
-
-:0122
-
-
-Pattern 75096
-
- XX.!
-@.x
----
-
-:0011
-
-
-Pattern 75097
-
- .X.!
-@.X
----
-
-:0011
-
-
-Pattern 75100
-
-  ..x
-(..x
-
-:1222
-
-
-Pattern 75101
-
-  x.X
-(.X.
-
-:1222
-
-
-Pattern 75102
-
-  X.X
-(..X
-
-:1222
-
-
-Pattern 75103
-
-  .XX
-(.X.
-
-:0222
-
-
-Pattern 75104
-
-  .>.
-(.X.
-
-:1122
-
-
-Pattern 75105
-
-  x*.
-!.xx
-
-:1122
-
-
-Pattern 75106
-
-  X*X
-!.XX
-
-:1122
-
-
-Pattern 75107
-
-  *XX
-!>XX
-
-:1122
-
-
-Pattern 75108
+Pattern 75011
 
   XXX
 (.*X
@@ -11126,15 +5190,7 @@ Pattern 75108
 :1122
 
 
-Pattern 75109
-
-  XX.
-)..X
-
-:1112
-
-
-Pattern 75110
+Pattern 75012
 
   xXx
 @..x
@@ -11142,111 +5198,7 @@ Pattern 75110
 :1122
 
 
-Pattern 75111
-
-  XXX
-!>XX
-
-:1112
-
-
-Pattern 75112
-
-  .X.
-@.X.
-
-:0122
-
-
-Pattern 75113
-
-  XX.
-(.XX
-
-:0111
-
-
-Pattern 75114
-
-  xX.
-@.Xx
-
-:0112
-
-
-Pattern 75120
-
-  x.(
-x..x
-
-:1222
-
-
-Pattern 75121
-
-  x.(
-XX.x
-
-:1222
-
-
-Pattern 75122
-
-  x.(
-X.Xx
-
-:1222
-
-
-Pattern 75123
-
-  x.(
-XXXx
-
-:0222
-
-
-Pattern 75124
-
-  x.(
-.>Xx
-
-:1122
-
-
-Pattern 75125
-
-  x.(
-.X>x
-
-:1122
-
-
-Pattern 75126
-
-  ..@
-.XX.
-
-:0122
-
-
-Pattern 75127
-
-  X.(
-.XXX
-
-:0111
-
-
-Pattern 75128
-
-  x.@
-.XXx
-
-:0112
-
-
-Pattern 75200
+Pattern 75020
 
   X.(
 (.*X
@@ -11254,18 +5206,18 @@ Pattern 75200
 :1122
 
 
-Pattern 75201
+Pattern 75021
 
-  x*!
+  x.!
 !..x
 
 :0112
 
 
-Pattern 75202
+Pattern 75022
 
-  x.(
-(.Xx
+  x.!
+!.Xx
 
 :0111
 
@@ -11276,33 +5228,6 @@ Pattern 75202
 
 Pattern 75500
 
-x.
-.X..
- x
-
-:2222
-
-
-Pattern 75501
-
-X.
-X<X.
- x
-
-:1222
-
-
-Pattern 75502
-
-XX
-X<..
- x
-
-:1222
-
-
-Pattern 75503
-
 xX
 XX*.
  x
@@ -11310,7 +5235,7 @@ XX*.
 :1122
 
 
-Pattern 75504
+Pattern 75501
 # O here may give ko.
 
 xX
@@ -11320,15 +5245,8 @@ X*X.
 :1122
 
 
-Pattern 75505
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# # X here gives ko.
-# 
-# .<
-# X.X.
-#  x
-# 
-# :1222
+Pattern 75502
+# X here gives ko.
 
 .*
 X.X.
@@ -11337,15 +5255,8 @@ X.X.
 :1122
 
 
-Pattern 75506
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# # X here gives ko.
-# 
-# .X
-# X.<.
-#  x
-# 
-# :1222
+Pattern 75504
+# X here gives ko.
 
 .X
 X.*.
@@ -11354,24 +5265,7 @@ X.*.
 :1122
 
 
-Pattern 75507
-# FIXME: Temporary workaround. With sufficient outer liberties it is
-# # X here gives ko.
-# 
-# .X
-# <.X.
-#  x
-# 
-# :1222
-
-.X
-*.X.
- x
-
-:1122
-
-
-Pattern 75508
+Pattern 75505
 
 xX
 *XX.
@@ -11380,130 +5274,22 @@ xX
 :1122
 
 
-Pattern 75509
+Pattern 75506
 
 XX
-XXX>
+XXX.
  X
 
 :1112
 
 
-Pattern 75510
+Pattern 75507
 
 xX
 XXX.
  x
 
 :1111
-
-
-Pattern 75511
-
-x<
-xXx.
- x
-
-:1222
-
-
-Pattern 75600
-
-X.
-...!
- X
-
-:2222
-
-
-Pattern 75601
-
-X.
-...(
- .
-
-:1222
-
-
-Pattern 75602
-
-XX
-.<.!
- X
-
-:1222
-
-
-Pattern 75603
-
-X.
-.X.(
- X
-
-:0222
-
-
-Pattern 75604
-
-xx
-x*.!
- x
-
-:1122
-
-
-Pattern 75605
-
-XX
-*X>!
- X
-
-:1122
-
-
-Pattern 75606
-
-XX
-XX>!
- X
-
-:1112
-
-
-Pattern 75607
-
-X.
-.X.@
- .
-
-:0122
-
-
-Pattern 75608
-
-.>
->X.(
- x
-
-:0112
-
-
-Pattern 75609
-
-XX
-.X.@
- .
-
-:0112
-
-
-Pattern 75610
-
-xx
-xx.(
- x
-
-:0111
 
 
 #            ..
@@ -11521,24 +5307,6 @@ x*X.
 
 Pattern 76001
 
- xx
-x<X.
- x
-
-:1222
-
-
-Pattern 76002
-
- Xx
-x<..
- x
-
-:1222
-
-
-Pattern 76003
-
  Xx
 xX*.
  x
@@ -11546,7 +5314,7 @@ xX*.
 :1122
 
 
-Pattern 76004
+Pattern 76002
 
  *x
 xXX.
@@ -11555,211 +5323,22 @@ xXX.
 :1122
 
 
-Pattern 76005
+Pattern 76003
 
  XX
-XXX>
+XXX.
  X
 
 :1112
 
 
-Pattern 76006
+Pattern 76004
 
  Xx
 xXX.
  x
 
 :1111
-
-
-Pattern 76007
-
- .x
-xX<.
- x
-
-:1222
-
-
-Pattern 76100
-
- .X
-X..!
- X
-
-:2222
-
-
-Pattern 76101
-
- xX
-x<.!
- x
-
-:1222
-
-
-Pattern 76102
-
- .X
-XX.(
- X
-
-:0222
-
-
-Pattern 76103
-
- x.
-x*.!
- x
-
-:1122
-
-
-Pattern 76104
-
- XX
-XX*!
- X
-
-:1122
-
-
-Pattern 76105
-
- .X
-.X*)
- x
-
-:1122
-
-
-Pattern 76106
-
- XX
-.X*!
- x
-
-:0122
-
-
-Pattern 76107
-
- ..
-xX*!
- x
-
-:0112
-
-
-Pattern 76108
-
- X.
-xX.(
- x
-
-:0111
-
-
-Pattern 76110
-
- XX
-)*.X
- .
-
-:1122
-
-
-Pattern 76111
-
- Xx
-(..X
- x
-
-:1222
-
-
-Pattern 76112
-
- xx
-(<XX
- X
-
-:0222
-
-
-Pattern 76113
-
- Xx
-)*.x
- x
-
-:1122
-
-
-Pattern 76114
-
- x.
-)*XX
- .
-
-:1122
-
-
-Pattern 76115
-
- .x
-)*X.
- X
-
-:1122
-
-
-Pattern 76116
-
- xx
-!*Xx
- x
-
-:0122
-
-
-Pattern 76117
-
- .x
-(..x
- x
-
-:1222
-
-
-Pattern 76200
-
- .X
-(<<!
- X
-
-:0222
-
-
-Pattern 76201
-
- XX
-)**)
- X
-
-:1122
-
-
-Pattern 76202
-
- xx
-!*.!
- x
-
-:0122
 
 
 #            .
@@ -11769,49 +5348,13 @@ Pattern 76202
 Pattern 76500
 
  x
-x<X
- .X.
-
-:1222
-
-
-Pattern 76501
-
- x
-x<X
- X..
-
-:1222
-
-
-Pattern 76502
-
- x
-xX<
- X..
-
-:1222
-
-
-Pattern 76503
-
- x
-xX<
- .X.
-
-:1222
-
-
-Pattern 76504
-
- x
 x*X
  XX.
 
 :1122
 
 
-Pattern 76505
+Pattern 76501
 
  x
 xXX
@@ -11820,7 +5363,7 @@ xXX
 :1122
 
 
-Pattern 76506
+Pattern 76502
 
  X
 XX*
@@ -11829,7 +5372,7 @@ XX*
 :1122
 
 
-Pattern 76507
+Pattern 76503
 
  x
 xX*
@@ -11838,139 +5381,22 @@ xX*
 :1122
 
 
-Pattern 76508
+Pattern 76504
 
  X
 XXX
- XX>
+ XX.
 
 :1112
 
 
-Pattern 76509
+Pattern 76505
 
  x
 xXX
  XX.
 
 :1111
-
-
-Pattern 76600
-
- .
-)*X
- X.x
-
-:1122
-
-
-Pattern 76601
-
- X
-)*X
- X..
-
-:1122
-
-
-Pattern 76602
-
- x
-(<x
- x.x
-
-:1222
-
-
-Pattern 76603
-
- X
-(<.
- XXX
-
-:0222
-
-
-Pattern 76604
-
- x
-)*.
- XXx
-
-:1122
-
-
-Pattern 76605
-
- x
-(<.
- xXx
-
-:0222
-
-
-Pattern 76606
-
- X
-(.X
- XXX
-
-:0222
-
-
-Pattern 76607
-
- x
-!*X
- XXx
-
-:0122
-
-
-Pattern 76610
-
- x
-x*x
- x.!
-
-:1122
-
-
-Pattern 76611
-
- X
-XXX
- X>!
-
-:1112
-
-
-Pattern 76612
-
- X
-XX>
- >.(
-
-:0112
-
-
-Pattern 76613
-
- x
-xXx
- x.(
-
-:0111
-
-
-Pattern 76700
-
- x
-!*x
- x.!
-
-:0122
 
 
 #            .
@@ -11979,176 +5405,23 @@ Pattern 76700
 
 Pattern 77000
 
- X
- Xx
-XX.(
-
-:0222
-
-
-Pattern 77001
-
- X
- ..
-X..!
-
-:2222
-
-
-Pattern 77002
-
  x
- Xx
+ XX
 .*.!
 
 :1122
 
 
-Pattern 77003
+Pattern 77001
 
  x
- *x
-.X.!
-
-:1122
-
-
-Pattern 77004
-
- .
- .x
-XX*!
-
-:1122
-
-
-Pattern 77005
-
- .
  XX
-X.*!
-
-:1122
-
-
-Pattern 77006
-
- .
- Xx
-XX*!
-
-:0122
-
-
-Pattern 77007
-
- X
- X.
-.X.@
-
-:0112
-
-
-Pattern 77008
-
- x
- Xx
-.X.(
+.X.!
 
 :0111
 
 
-Pattern 77009
-
- X
- .x
-xx.(
-
-:1222
-
-
 Pattern 77010
-
- .
- .x
-xx<!
-
-:1222
-
-
-Pattern 77011
-
- x
- Xx
-x..(
-
-:1222
-
-
-Pattern 77020
-
- X
- Xx
-(.XX
-
-:0222
-
-
-Pattern 77021
-
- x
- ..
-(.Xx
-
-:1222
-
-
-Pattern 77022
-
- X
- .X
-(.XX
-
-:1222
-
-
-Pattern 77023
-
- x
- .x
-(..x
-
-:1222
-
-
-Pattern 77024
-
- .
- XX
-!*Xx
-
-:0122
-
-
-Pattern 77025
-
- .
- xx
-!*Xx
-
-:1122
-
-
-Pattern 77026
-
- X
- .X
-!*X.
-
-:1122
-
-
-Pattern 77100
 
  !
  .x
@@ -12157,170 +5430,11 @@ Pattern 77100
 :1122
 
 
-Pattern 77101
-
- (
- .x
-(.Xx
-
-:0111
-
-
-Pattern 77110
-
- (
- .X
-X..(
-
-:1222
-
-
-Pattern 77111
-
- !
- .x
-x*.!
-
-:1122
-
-
-Pattern 77112
-
- !
- *X
-XX*!
-
-:1122
-
-
-Pattern 77113
-
- (
- <x
-xX<(
-
-:0111
-
-
-Pattern 77200
-
- (
- .x
-(..(
-
-:0111
-
-
 #             .
 # Topology: ....
 #           ..
 
-Pattern 77500
-
-  X
-X..!
-.X
-
-:2222
-
-
-Pattern 77501
-
-  .
-X<<!
-.X
-
-:1222
-
-
-Pattern 77502
-
-  x
-x..(
-xx
-
-:1222
-
-
-Pattern 77503
-
-  .
-.X*!
-xX
-
-:1122
-
-
-Pattern 77504
-
-  .
-XX*!
-xX
-
-:0122
-
-
-Pattern 77505
-
-  x
-xx.(
-xx
-
-:0222
-
-
-Pattern 77600
-
-  !
-X*.!
-.X
-
-:0122
-
-
-Pattern 77601
-
-  )
-x*.)
-.x
-
-:0112
-
-
-Pattern 77602
-
-  )
-X*.)
-XX
-
-:0112
-
-
-Pattern 77603
-
-  !
-x.<!
-Xx
-
-:0111
-
-
-Pattern 77604
-
-  !
-.X*!
-X.
-
-:0012
-
-
-Pattern 77605
-
-  !
-xX*!
-xx
-
-:0011
+# Pattern 77500
 
 
 #           ..
@@ -12329,15 +5443,6 @@ xx
 
 Pattern 78000
 
-  x>
-|X.X
-|.X
-+--
-:1112
-
-
-Pattern 78010
-
 ..
 XXX
  X.
@@ -12345,7 +5450,7 @@ XXX
 :1111
 
 
-Pattern 78011
+Pattern 78001
 
 .*
 *X*
@@ -12354,25 +5459,25 @@ Pattern 78011
 :1122
 
 
-Pattern 78012
+Pattern 78002
 
-.>
+..
 xXx
  X.
 
 :1112
 
 
-Pattern 78013
+Pattern 78003
 
->X
+.X
 x.X
- X>
+ X.
 
 :1112
 
 
-Pattern 78014
+Pattern 78004
 
 .X
 x*x
@@ -12381,7 +5486,7 @@ x*x
 :1122
 
 
-Pattern 78015
+Pattern 78005
 
 .x
 x*X
@@ -12390,7 +5495,7 @@ x*X
 :1122
 
 
-Pattern 78016
+Pattern 78006
 
 .x
 xX*
@@ -12399,7 +5504,7 @@ xX*
 :1122
 
 
-Pattern 78017
+Pattern 78010
 
 .X
 xXx
@@ -12408,7 +5513,7 @@ xXx
 :1111
 
 
-Pattern 78018
+Pattern 78011
 
 .X
 .XX
@@ -12417,85 +5522,13 @@ Pattern 78018
 :1111
 
 
-Pattern 78019
+Pattern 78012
 
-.>
->XX
- XX
-
-:1112
-
-
-Pattern 78020
-
->x
+.x
 xXX
  Xx
 
 :1112
-
-
-Pattern 78021
-
-.x
-x<.
- Xx
-
-:1222
-
-
-Pattern 78022
-
-.x
-xX<
- <x
-
-:1222
-
-
-Pattern 78100
-
-@.
-...
- xX
-
-:0122
-
-
-Pattern 78101
-
-!.
-.*x
- xx
-
-:0122
-
-
-Pattern 78102
-
-@.
-.X.
- .X
-
-:0022
-
-
-Pattern 78103
-
-@.
-.X.
- XX
-
-:0012
-
-
-Pattern 78104
-
-@.
-.Xx
- xx
-
-:0011
 
 
 #           ...
@@ -12504,220 +5537,108 @@ Pattern 78104
 
 Pattern 78500
 
-|.
-|<.
-|..
-|..
-+--
+---
+X.X
+.XX.
 
-:1222
+:1111
 
 
 Pattern 78501
 
-|.
-|<x
-|.X
-|.X
-+--
+---
+X.X
+.X*.
 
-:1222
+:1122
 
 
 Pattern 78502
 
-|.
-|<.
-|X.
-|xx
-+--
+----
+X.X.
+.Xx
 
-:1222
+:1111
 
 
 Pattern 78503
 
-|.
-|.X
-|X<
-|X.
-+--
+----
+X.X.
+xX.
 
-:1222
+:1111
 
 
 Pattern 78504
 
-|.
-|XX
-|.<
-|.X
-+--
+----
+X.*.
+.Xx
 
-:1222
+:1122
 
 
 Pattern 78505
 
-|X
-|.<
-|XX
-|..
-+--
+----
+..*.
+.XX
 
-:1222
+:1122
 
 
 Pattern 78506
 
-|X
-|.X
-|<X
-|..
-+--
+----
+X.*.
+xX.
 
-:1222
+:1122
 
 
 Pattern 78507
 
-|X
-|.X
-|X<
-|..
-+--
+----
+*.X.
+.Xx
 
-:1222
+:1122
 
 
 Pattern 78508
 
-|X
-|X<
-|.X
-|..
-+--
+----
+*.X.
+xX.
 
-:1222
+:1122
 
 
 Pattern 78509
 
-|X
-|X.
-|X<
-|..
-+--
+----
+X.X.
+.*x
 
-:1222
+:1122
 
 
 Pattern 78510
 
-|X
-|XX
-|.<
-|..
-+--
+----
+X.X.
+x*.
 
-:1222
+:1122
 
 
 Pattern 78511
 
-|.
-|.X
-|X<
-|.x
-+--
-
-:1222
-
-
-Pattern 78512
-
-|.
-|Xx
-|X*
-|.x
-+--
-
-:1122
-
-
-Pattern 78513
-
-|.
-|X.
-|.*
-|..
-+--
-
-:1122
-
-
-Pattern 78514
-
-|.
-|X>
-|<X
-|.X
-+--
-
-:1122
-
-
-Pattern 78515
-
-|X
-|*X
-|XX
-|..
-+--
-
-:1122
-
-
-Pattern 78516
-
-|X
-|X*
-|XX
-|..
-+--
-
-:1122
-
-
-Pattern 78517
-
-|X
-|XX
-|*X
-|..
-+--
-
-:1122
-
-
-Pattern 78518
-
-|X
-|XX
-|X*
-|..
-+--
-
-:1122
-
-
-Pattern 78519
-
-|.
-|*.
-|xX
-|xx
-+--
+----
+..*.
+.XX
 
 :1122
 
@@ -12725,42 +5646,40 @@ Pattern 78519
 Pattern 78520
 
 |.
-|*X
+|Xx
+|XX
 |.X
-|x.
 +--
 
-:1122
+:1111
 
 
 Pattern 78521
 
-|.
-|*X
+|xx
 |XX
-|x.
-+--
+|.X.
++---
 
-:1122
+:1111
 
 
 Pattern 78522
 
-|.
-|*X
-|XX
-|.X
-+--
+|X
+|XX.
+|.X.
++---
 
-:1122
+:1111
 
 
 Pattern 78523
 
 |.
-|X.
-|X*
-|Xx
+|XX
+|*X
+|.X
 +--
 
 :1122
@@ -12768,10 +5687,10 @@ Pattern 78523
 
 Pattern 78524
 
-|.
+  .
 |XX
-|X*
-|X.
+|*X
+|.X
 +--
 
 :1122
@@ -12779,1759 +5698,53 @@ Pattern 78524
 
 Pattern 78525
 
-|.
-|X>
-|XX
-|.X
-+--
-
-:1112
-
-
-Pattern 78526
-
-|.
-|X.
-|.X
-|x>
-+--
-
-:1112
-
-
-Pattern 78527
-
-|.
-|X>
-|.X
-|XX
-+--
-
-:1112
-
-
-Pattern 78528
-
-|.
-|XX
-|.X
-|.>
-+--
-
-:1112
-
-
-Pattern 78529
-
-|.
-|Xx
-|XX
-|.x
-+--
-
-:1111
-
-
-Pattern 78530
-
-|.
-|Xx
-|XX
-|X.
-+--
-
-:1111
-
-
-Pattern 78531
-
-|X
-|XX
-|XX
-|..
-+--
-
-:1111
-
-
-Pattern 78532
-
-|.
-|X.
-|xX
-|xx
-+--
-
-:1111
-
-
-Pattern 78533
-
-|.
+  
 |XX
 |*X
-|.X
-+--
+|.X.
++---
 
 :1122
 
 
-Pattern 78540
+Pattern 78526
 
-|XX.
-|Xx
-|XX
-+--
-
-:2222
-
-
-Pattern 78541
-
-|...
-|X<
 |xx
-+--
+|XX
+|.*.
++---
 
-:1222
-
-
-Pattern 78542
-
-|X<X
-|<X
-|..
-+--
-
-:1222
+:1122
 
 
-Pattern 78543
+Pattern 78527
 
-|X.x
-|X<
-|..
-+--
-
-:1222
-
-
-Pattern 78544
-
-|.X.
-|.<
-|xX
-+--
-
-:1222
-
-
-Pattern 78545
-
-|.XX
-|X<
-|..
-+--
-
-:1222
-
-
-Pattern 78546
-
-|XXX
-|.<
-|..
-+--
-
-:1222
-
-
-Pattern 78547
-
-|XX.
-|.<
+  .
+|XX
+|XX
 |.X
 +--
 
-:1222
-
-
-Pattern 78548
-
-|X..
-|X<
-|X.
-+--
-
-:1222
-
-
-Pattern 78549
-
-|X..
-|X<
-|.X
-+--
-
-:1222
+:1111
 
 
 Pattern 78550
 
-|<XX
-|.X
-|..
-+--
+..X
+X..!
 
 :1222
 
 
 Pattern 78551
 
-|<.X
-|XX
-|..
-+--
-
-:1222
-
-
-Pattern 78552
-
-|.<.
-|.X
-|XX
-+--
-
-:1222
-
-
-Pattern 78553
-
-|X*x
-|xX
-|..
-+--
-
-:1122
-
-
-Pattern 78554
-
-|x<.
-|.X
-|.x
-+--
-
-:1222
-
-
-Pattern 78555
-
-|XX.
-|*X
-|.X
-+--
-
-:1122
-
-
-Pattern 78556
-
-|.*.
-|XX
-|xx
-+--
-
-:1122
-
-
-Pattern 78557
-
-|.X.
-|*X
-|xX
-+--
-
-:1122
-
-
-Pattern 78558
-
-|XXX
-|*X
-|..
-+--
-
-:1122
-
-
-Pattern 78559
-
-|xX.
-|X*
-|xx
-+--
-
-:1122
-
-
-Pattern 78560
-
-|XXX
-|X*
-|..
-+--
-
-:1122
-
-
-Pattern 78561
-
-|*XX
-|XX
-|..
-+--
-
-:1122
-
-
-Pattern 78562
-
-|X*.
-|XX
-|X.
-+--
-
-:1122
-
-
-Pattern 78563
-
-|X*.
-|XX
-|.X
-+--
-
-:1122
-
-
-Pattern 78564
-
-|.X.
-|XX
-|x>
-+--
-
-:1112
-
-
-Pattern 78565
-
-|.X.
-|XX
-|xX
-+--
-
-:1111
-
-
-Pattern 78566
-
-|XX.
-|XX
-|xx
-+--
-
-:1111
-
-
-Pattern 78567
-
-|XXX
-|XX
-|..
-+--
-
-:1111
-
-
-Pattern 78570
-
-|XX
-|*X
-|.X.
-+---
-
-:1122
-
-
-Pattern 78571
-
-|xx
-|XX
-|.*.
-+---
-
-:1122
-
-
-Pattern 78572
-
-|..
-|*X
-|.Xx
-+---
-
-:1122
-
-
-Pattern 78573
-
-|.X
-|*X
-|.X.
-+---
-
-:1122
-
-
-Pattern 78574
-
-|.x
-|X*
-|xX.
-+---
-
-:1122
-
-
-Pattern 78575
-
-|..
-|.*
-|XX.
-+---
-
-:1122
-
-
-Pattern 78576
-
-|X.
-|X*
-|xX.
-+---
-
-:1122
-
-
-Pattern 78577
-
-|XX
-|X*
-|.X.
-+---
-
-:1122
-
-
-Pattern 78578
-
-|..
-|X*
-|.XX
-+---
-
-:1122
-
-
-Pattern 78579
-
-|X.
-|<X
-|.X>
-+---
-
-:1122
-
-
-Pattern 78580
-
-|.x
-|XX
-|X*.
-+---
-
-:1122
-
-
-Pattern 78581
-
-|X.
-|XX
-|X*.
-+---
-
-:1122
-
-
-Pattern 78582
-
-|..
-|XX
-|.*X
-+---
-
-:1122
-
-
-Pattern 78583
-
-|.X
-|*X
-|XX.
-+---
-
-:1122
-
-
-Pattern 78584
-
-|xx
-|X<
-|.x.
-+---
-
-:1222
-
-
-Pattern 78585
-
-|x.
-|X<
-|X..
-+---
-
-:1222
-
-
-Pattern 78586
-
-|.X
-|X<
-|X..
-+---
-
-:1222
-
-
-Pattern 78587
-
-|.X
-|.<
-|xX.
-+---
-
-:1222
-
-
-Pattern 78588
-
-|..
-|.<
-|.XX
-+---
-
-:1222
-
-
-Pattern 78589
-
-|XX
-|.X
-|.<.
-+---
-
-:1222
-
-
-Pattern 78590
-
-|XX
-|.<
-|.X.
-+---
-
-:1222
-
-
-Pattern 78591
-
-|.X
-|<X
-|x..
-+---
-
-:1222
-
-
-Pattern 78592
-
-|..
-|<X
-|..X
-+---
-
-:1222
-
-
-Pattern 78593
-
-|..
-|X<
-|..X
-+---
-
-:1222
-
-
-Pattern 78594
-
-|X>
-|XX
-|.X>
-+---
-
-:1112
-
-
-Pattern 78595
-
-|>>
-|XX
-|.XX
-+---
-
-:1112
-
-
-Pattern 78596
-
-|xx
-|XX
-|.X.
-+---
-
-:1111
-
-
-Pattern 78597
-
-|x.
-|XX
-|XX.
-+---
-
-:1111
-
-
-Pattern 78598
-
-|.X
-|XX
-|XX.
-+---
-
-:1111
-
-
-Pattern 78600
-
-|(
-|..
-|.*
-|.X
-+--
-
-:1122
-
-
-Pattern 78601
-
-|!
-|<.
-|>.
-|X.
-+--
-
-:0122
-
-
-Pattern 78602
-
-|(
-|.X
-|.*
-|.x
-+--
-
-:0122
-
-
-Pattern 78603
-
-|(
-|>.
-|X.
-|x.
-+--
-
-:0012
-
-
-Pattern 78604
-
-|(
-|.x
-|X>
-|.x
-+--
-
-:0022
-
-
-Pattern 78605
-
-|(
-|..
-|.X
-|.X
-+--
-
-:0111
-
-
-Pattern 78606
-
-|@
-|..
-|.X
-|..
-+--
-
-:0012
-
-
-Pattern 78607
-
-|@
-|.X
-|.X
-|.x
-+--
-
-:0011
-
-
-Pattern 78610
-
-|X
-|..
-|..
-|.@
-+--
-
-:0122
-
-
-Pattern 78611
-
-|x
-|.x
-|.<
-|.)
-+--
-
-:0022
-
-
-Pattern 78612
-
-|X
-|..
-|X.
-|.@
-+--
-
-:0112
-
-
-Pattern 78613
-
-|.
-|*x
-|X.
-|.!
-+--
-
-:0012
-
-
-Pattern 78614
-
-|X
-|Xx
-|X.
-|.@
-+--
-
-:0011
-
-
-Pattern 78615
-
-|X
-|xX
-|x<
-|.)
-+--
-
-:0012
-
-
-Pattern 78616
-
-|x
-|Xx
-|.*
-|.(
-+--
-
-:0011
-
-
-Pattern 78617
-
-|.
-|Xx
-|X.
-|.)
-+--
-
-:0001
-
-
-Pattern 78620
-
-|..X
-|.<
-|.)
-+--
-
-:0122
-
-
-Pattern 78621
-
-|X.X
-|.*
-|.!
-+--
-
-:0122
-
-
-Pattern 78622
-
-|X.X
-|X.
-|.@
-+--
-
-:0122
-
-
-Pattern 78623
-
-|X<.
-|X.
-|.)
-+--
-
-:0022
-
-
-Pattern 78624
-
-|XXX
-|X.
-|.@
-+--
-
-:0012
-
-
-Pattern 78625
-
-|xXX
-|x<
-|.)
-+--
-
-:0022
-
-
-Pattern 78626
-
-|..x
-|x*
-|.)
-+--
-
-:0112
-
-
-Pattern 78627
-
-|X>.
-|..
-|.(
-+--
-
-:0112
-
-
-Pattern 78628
-
-|.X.
-|.*
-|.!
-+--
-
-:0012
-
-
-Pattern 78629
-
-|XX.
-|X>
-|.!
-+--
-
-:0002
-
-
-Pattern 78630
-
-|xX.
-|x*
-|.(
-+--
-
-:0011
-
-
-Pattern 78640
-
-|.X
-|.>
-|x.(
-+---
-
-:1122
-
-
-Pattern 78641
-
-|XX
-|..
-|x.@
-+---
-
-:0122
-
-
-Pattern 78642
-
-|..
-|.*
-|X.!
-+---
-
-:0122
-
-
-Pattern 78643
-
-|.X
-|X.
-|X.@
-+---
-
-:0122
-
-
-Pattern 78644
-
-|X.
-|>.
-|..(
-+---
-
-:0122
-
-
-Pattern 78645
-
-|.X
-|.X
-|X.@
-+---
-
-:0022
-
-
-Pattern 78646
-
-|.x
-|X*
-|x.(
-+---
-
-:0112
-
-
-Pattern 78647
-
-|X.
-|.*
-|X.(
-+---
-
-:0112
-
-
-Pattern 78648
-
-|X.
-|X.
-|..(
-+---
-
-:0111
-
-
-Pattern 78649
-
-|XX
-|.X
-|x.@
-+---
-
-:0012
-
-
-Pattern 78650
-
-|..
-|.X
-|..@
-+---
-
-:0012
-
-
-Pattern 78651
-
-|.X
-|.X
-|.>(
-+---
-
-:0012
-
-
-Pattern 78652
-
-|.X
-|XX
-|X.@
-+---
-
-:0012
-
-
-Pattern 78653
-
-|x.
-|xX
-|x.@
-+---
-
-:0011
-
-
-Pattern 78654
-
-|xX
-|XX
-|..@
-+---
-
-:0011
-
-
-Pattern 78655
-
-|X.
-|X.
-|X.@
-+---
-
-:0011
-
-
-Pattern 78660
-
-|).
-|.<
-|..x
-+---
-
-:0022
-
-
-Pattern 78661
-
-|@.
-|.X
-|X.x
-+---
-
-:0012
-
-
-Pattern 78662
-
-|).
-|<.
-|.XX
-+---
-
-:0012
-
-
-Pattern 78663
-
-|@.
-|..
-|.X.
-+---
-
-:0011
-
-
-Pattern 78664
-
-|@.
-|.X
-|.XX
-+---
-
-:0011
-
-
-Pattern 78665
-
-|).
-|.X
-|..x
-+---
-
-:0002
-
-
-Pattern 78700
-
-  .
-.<X
-x..
----
-
-:1222
-
-
-Pattern 78701
-
-  .
-.X<
-x..
----
-
-:1222
-
-
-Pattern 78702
-
-  .
-..<
-x.X
----
-
-:1222
-
-
-Pattern 78703
-
-  .
->XX
-x.*
----
-
-:1122
-
-
-Pattern 78704
-
-  >
->*X
-x.X
----
-
-:1122
-
-
-Pattern 78705
-
-  >
->XX
-x.X
----
-
-:1112
-
-
-Pattern 78706
-
-  .
-.X*
-x.X
----
-
-:1122
-
-
-Pattern 78710
-
->Xx
-X.X.
-----
-
-:1112
-
-
-Pattern 78711
-
-x<.
-..X.
-----
-
-:1222
-
-
-Pattern 78712
-
-..x
-X.<.
-----
-
-:1222
-
-
-Pattern 78713
-
-xX.
-..<.
-----
-
-:1222
-
-
-Pattern 78714
-
-..X
-..<.
-----
-
-:1222
-
-
-Pattern 78715
-
-X..
-X.<.
-----
-
-:1222
-
-
-Pattern 78716
-
-xX>
-X.X.
-----
-
-:1112
-
-
-Pattern 78717
-
-.Xx
-X.*.
-----
-
-:1122
-
-
-Pattern 78718
-
-.XX
-..*.
-----
-
-:1122
-
-
-Pattern 78719
-
-xX.
-X.*.
-----
-
-:1122
-
-
-Pattern 78720
-
-.XX
->.X.
-----
-
-:1112
-
-
-Pattern 78721
-
-xX.
-*.X.
-----
-
-:1122
-
-
-Pattern 78722
-
-.*x
-X.X.
-----
-
-:1122
-
-
-Pattern 78723
-
-x*.
-X.X.
-----
-
-:1122
-
-
-Pattern 78724
-
-.*X
-..X.
-----
-
-:1122
-
-
-Pattern 78750
-
-.*.
-X..(
-----
-
-:1122
-
-
-Pattern 78751
-
-x*x
-.X.(
-----
-
-:0122
-
-
-Pattern 78752
-
-x.X
-X..@
-----
-
-:0122
-
-
-Pattern 78753
-
-x>x
-XX.(
-----
-
-:0022
-
-
-Pattern 78754
-
-.X.
-.>.(
-----
-
-:0022
-
-
-Pattern 78755
-
-.XX
-X..@
-----
-
-:0022
-
-
-Pattern 78756
-
->X.
-X..(
-----
-
-:0112
-
-
-Pattern 78757
-
-xXX
-...@
-----
-
-:0012
-
-
-Pattern 78758
-
-.XX
-XX.@
-----
-
-:0012
-
-
-Pattern 78759
-
-xXX
-.X.@
-----
-
-:0011
-
-
-Pattern 78760
-
-.X.
-xX.@
-----
-
-:0011
-
-
-Pattern 78761
-
-XX.
-.X.@
-----
-
-:0011
-
-
-Pattern 78770
-
-...
-@..x
-----
-
-:0122
-
-
-Pattern 78771
-
-..X
-@...
-----
-
-:0122
-
-
-Pattern 78772
-
-.XX
-@..X
-----
-
-:0022
-
-
-Pattern 78773
-
-.XX
-@.XX
-----
-
-:0012
-
-
-Pattern 78774
-
-.xx
-@.XX
-----
-
-:0022
-
-
-Pattern 78775
-
-.X.
-@...
-----
-
-:0011
-
-
-Pattern 78776
-
-.Xx
-@..x
-----
-
-:0012
-
-
-Pattern 78777
-
-..X
-@.X.
-----
-
-:0012
-
-
-Pattern 78778
-
-.X.
-).X.
-----
-
-:0001
-
-
-Pattern 78779
-
-.xx
-@.X.
-----
-
-:0011
-
-
-Pattern 78780
-
-  x
-...
-@..
----
-
-:1122
-
-
-Pattern 78781
-
-  x
-...
-)<X
----
-
-:0122
-
-
-Pattern 78782
-
-  .
-.X*
-!..
----
-
-:0012
-
-
-Pattern 78783
-
-  x
-.X.
-@.x
----
-
-:0112
-
-
-Pattern 78784
-
-  x
-..X
-@.X
----
-
-:0012
-
-
-Pattern 78785
-
-  X
-.XX
-@..
----
-
-:0012
-
-
-Pattern 78786
-
-  .
-.*X
-!..
----
-
-:0012
-
-
-Pattern 78787
-
-  x
-.XX
-@.X
----
-
-:0011
-
-
-Pattern 78788
-
-  .
-.XX
-)..
----
-
-:0001
-
-
-Pattern 78789
-
-X  
-..x
-@..
----
-
-:1122
-
-
-Pattern 78790
-
-X  
-.XX
-@.X
----
-
-:1122
-
-
-Pattern 78791
-
-.  
-*.x
-!..
----
-
-:0122
-
-
-Pattern 78792
-
-x  
-*.X
-!.X
----
-
-:0122
-
-
-Pattern 78793
-
-x  
-*XX
-!.x
----
-
-:0022
-
-
-Pattern 78794
-
-X  
-<x.
-).X
----
-
-:0022
-
-
-Pattern 78795
-
-x  
-*x.
-!.x
----
-
-:0012
-
-
-Pattern 78800
-
-..X
-X..(
-
-:1222
-
-
-Pattern 78801
-
 X.X
-X..(
+X..!
 
 :0222
 
 
-Pattern 78802
+Pattern 78552
 
 x.x
 x..@
@@ -14539,15 +5752,15 @@ x..@
 :1122
 
 
-Pattern 78803
+Pattern 78553
 
->XX
-.>.(
+.XX
+...!
 
 :0112
 
 
-Pattern 78804
+Pattern 78554
 
 .XX
 X>*)
@@ -14555,108 +5768,12 @@ X>*)
 :1122
 
 
-Pattern 78805
+Pattern 78555
 
 .xx
 x*.!
 
 :1122
-
-
-Pattern 78806
-
-..X
-XX*!
-
-:1122
-
-
-Pattern 78807
-
-x*x
-xX.!
-
-:1122
-
-
-Pattern 78808
-
-XXX
-X*.!
-
-:1122
-
-
-Pattern 78809
-
-XXX
-XX>!
-
-:1112
-
-
-Pattern 78810
-
-.XX
-XX*!
-
-:0122
-
-
-Pattern 78811
-
-XXx
-x..@
-
-:0112
-
-
-Pattern 78812
-
-xXx
-xX.(
-
-:0111
-
-
-Pattern 78820
-
-..x
-@..x
-
-:1122
-
-
-Pattern 78821
-
-..x
-@.Xx
-
-:0122
-
-
-Pattern 78830
-
-(.x
-..>x
-
-:1122
-
-
-Pattern 78831
-
-@..
-..XX
-
-:0122
-
-
-Pattern 78832
-
-@.x
-..Xx
-
-:0112
 
 
 #            .
@@ -14666,394 +5783,15 @@ Pattern 78832
 Pattern 79000
 
 |X.
-|..X
-|x.
-+--
-
-:2222
-
-
-Pattern 79001
-
-|..
-|..X
-|X.
-+--
-
-:2222
-
-
-Pattern 79002
-
-|..
-|.<x
-|x.
-+--
-
-:1222
-
-
-Pattern 79003
-
-|..
-|<.X
-|XX
-+--
-
-:1222
-
-
-Pattern 79004
-
-|XX
-|<.X
-|..
-+--
-
-:1222
-
-
-Pattern 79005
-
-|..
-|X.X
-|X<
-+--
-
-:1222
-
-
-Pattern 79006
-
-|X<
-|X.X
-|..
-+--
-
-:1222
-
-
-Pattern 79007
-
-|X.
-|.<.
+|XX.
 |.X
 +--
 
-:1222
-
-
-Pattern 79008
-
-|XX
-|<..
-|.X
-+--
-
-:1222
-
-
-Pattern 79009
-
-|..
-|x*x
-|xx
-+--
-
-:1122
+:1111
 
 
 Pattern 79010
-
-|xx
-|x*x
-|..
-+--
-
-:1122
-
-
-Pattern 79011
-
-|.x
-|.*x
-|.x
-+--
-
-:1122
-
-
-Pattern 79012
-
-|..
-|*XX
-|XX
-+--
-
-:1122
-
-
-Pattern 79013
-
-|*x
-|.X.
-|X.
-+--
-
-:1122
-
-
-Pattern 79014
-
-|X.
-|X*.
-|Xx
-+--
-
-:1122
-
-
-Pattern 79015
-
-|XX
-|X*.
-|X.
-+--
-
-:1122
-
-
-Pattern 79016
-
-|..
-|>Xx
-|xX
-+--
-
-:1112
-
-
-Pattern 79017
-
-|X>
-|<X>
-|<X
-+--
-
-:1122
-
-
-Pattern 79018
-
-|X>
-|>X.
-|.>
-+--
-
-:1112
-
-
-Pattern 79019
-
-|.X
-|>Xx
-|.>
-+--
-
-:1112
-
-
-Pattern 79020
-
-|.X
-|.Xx
-|.X
-+--
-
-:1111
-
-
-Pattern 79021
-
-|X>
-|XX>
-|.X
-+--
-
-:1112
-
-
-Pattern 79022
-
-|X.
-|XX.
-|xx
-+--
-
-:1111
-
-
-Pattern 79023
-
-|XX
-|XX.
-|X.
-+--
-
-:1111
-
-
-Pattern 79050
-
- .
-.<.
-..X
----
-
-:1222
-
-
-Pattern 79051
-
- .
-.*x
-x.X
----
-:1122
-
-
-Pattern 79052
-
- .
-xX.
-*.X
----
-
-:1122
-
-
-Pattern 79053
-
- .
->XX
-x.X
----
-
-:1112
-
-
-Pattern 79054
-
- .
->X>
-X.X
----
-
-:1112
-
-
-Pattern 79060
-
- X
-...
-@.X
----
-
-:1122
-
-
-Pattern 79061
-
- X
-..X
-@.X
----
-
-:0122
-
-
-Pattern 79062
-
- X
-.*X
-!..
----
-
-:0122
-
-
-Pattern 79063
-
- .
-.*X
-!.X
----
-
-:0122
-
-
-Pattern 79064
-
- x
-.*x
-!.x
----
-
-:0022
-
-
-Pattern 79065
-
- X
-.X.
-@.X
----
-
-:0022
-
-
-Pattern 79066
-
- X
-.XX
-@.X
----
-
-:0012
-
-
-Pattern 79067
-
- .
-.XX
-@.X
----
-
-:0011
-
-
-Pattern 79068
-
- X
-.X.
-!>.
----
-
-:0002
-
-
-Pattern 79069
-
- .
-.Xx
-).x
----
-
-:0001
-
-
-Pattern 79100
-
+# Big nakade.
  x
 .X.
 .*.
@@ -15061,53 +5799,8 @@ Pattern 79100
 :1122
 
 
-Pattern 79101
-
- X
-.X<
-.<X
-
-:1222
-
-
-Pattern 79102
-
- X
-.<.
-...
-
-:1222
-
-
-Pattern 79103
-
- X
-x<X
-..x
-
-:1222
-
-
-Pattern 79104
-
- .
-x<.
-x..
-
-:1222
-
-
-Pattern 79105
-
- .
-X<.
-..X
-
-:1222
-
-
-Pattern 79106
-
+Pattern 79011
+# Big nakade.
  .
 .X.
 .*X
@@ -15115,16 +5808,18 @@ Pattern 79106
 :1122
 
 
-Pattern 79107
+Pattern 79012
+# Big nakade.
 
  X
-<<x
+..x
 XX.
 
 :1222
 
 
-Pattern 79108
+Pattern 79013
+# Big nakade.
 
  x
 x*x
@@ -15133,25 +5828,28 @@ xX.
 :1122
 
 
-Pattern 79109
+Pattern 79014
+# X here may give ko.
 
  .
 X.X
-X<.
+X..
 
 :1222
 
 
-Pattern 79110
+Pattern 79015
+# X here may give ko.
 
  .
-X<X
-.<.
+X>X
+.*.
 
-:1222
+:1122
 
 
-Pattern 79111
+Pattern 79016
+# Big nakade.
 
  x
 XXx
@@ -15160,16 +5858,18 @@ x*.
 :1122
 
 
-Pattern 79112
+Pattern 79017
+# Big nakade.
 
  X
-XX<
-.<X
+XX.
+..X
 
 :1222
 
 
-Pattern 79113
+Pattern 79018
+# Big nakade.
 
  x
 XXx
@@ -15178,7 +5878,8 @@ XXx
 :1122
 
 
-Pattern 79114
+Pattern 79019
+# Big nakade.
 
  X
 XX*
@@ -15187,16 +5888,18 @@ XX*
 :1122
 
 
-Pattern 79115
+Pattern 79020
+# Big nakade.
 
  .
-XX>
->XX
+XX.
+.XX
 
 :1112
 
 
-Pattern 79116
+Pattern 79021
+# Big nakade.
 
  X
 xX*
@@ -15205,25 +5908,28 @@ xX*
 :1122
 
 
-Pattern 79117
+Pattern 79022
+# Big nakade.
 
  X
->X>
+.X.
 .X.
 
 :1112
 
 
-Pattern 79118
+Pattern 79023
+# Big nakade.
 
  .
->X.
-XX>
+.X.
+XX.
 
 :1112
 
 
-Pattern 79119
+Pattern 79024
+# Big nakade.
 
  .
 xX.
@@ -15232,7 +5938,8 @@ xX.
 :1111
 
 
-Pattern 79120
+Pattern 79025
+# Big nakade.
 
  x
 xXx
@@ -15241,16 +5948,18 @@ xXx
 :1111
 
 
-Pattern 79121
+Pattern 79026
+# Big nakade.
 
  X
 XXX
-XX>
+XX.
 
 :1112
 
 
-Pattern 79122
+Pattern 79027
+# Big nakade.
 
  x
 XXX
@@ -15259,103 +5968,14 @@ xX.
 :1111
 
 
-Pattern 79123
+Pattern 79028
+# Big nakade.
 
  x
 XXx
 XX.
 
 :1111
-
-
-Pattern 79200
-
- X
-...
-(.X
-
-:1222
-
-
-Pattern 79201
-
- x
-.*.
-!..
-
-:1122
-
-
-Pattern 79202
-
- .
-.>.
-(.X
-
-:1122
-
-
-Pattern 79203
-
- X
-..X
-)<X
-
-:1122
-
-
-Pattern 79204
-
- x
-.*X
-!..
-
-:0122
-
-
-Pattern 79205
-
- X
-.XX
-(>X
-
-:0022
-
-
-Pattern 79206
-
- .
-.XX
-@.X
-
-:0012
-
-
-Pattern 79207
-
- x
-.xx
-@.X
-
-:0122
-
-
-Pattern 79208
-
- x
-.X.
-(>.
-
-:0112
-
-
-Pattern 79209
-
- x
-.XX
-@..
-
-:0011
 
 
 ###############################
@@ -15373,10 +5993,10 @@ Pattern 80000
  .
 |X
 |X
-|...@
+|...!
 +---
 
-:1122
+:1111
 
 
 Pattern 80010
@@ -15390,239 +6010,16 @@ Pattern 80010
 :1122
 
 
-Pattern 80020
-
-(..>XX.(
-
-:1122
-
-
-Pattern 80021
-
-@..XXx.@
-
-:1122
-
-
-Pattern 80022
-
-(.XXXX.(
-
-:0222
-
-
-Pattern 80023
-
-(.xxxx.(
-
-:1222
-
-
 #           ....
 # Topology:  ....
 #
 
 Pattern 80100
-# Surprising nakade.
 
-|>
-|XXX
-|X<X$
-+----
-
-:1122
-
-
-Pattern 80110
-
-(...
- ..XX
-
-:1222
-
-
-Pattern 80111
-
-(...
- .x.x
-
-:1222
-
-
-Pattern 80112
-
-(..x
- Xx.x
-
-:1222
-
-
-Pattern 80113
-
-(.X.
- x..x
-
-:1222
-
-
-Pattern 80114
-
-(.XX
- X..x
-
-:1222
-
-
-Pattern 80115
-
-(.X.
- ..XX
-
-:0222
-
-
-Pattern 80116
-
-(...
- X.Xx
-
-:1222
-
-
-Pattern 80117
-
-(..X
- X.Xx
-
-:0222
-
-
-Pattern 80118
-
-(.Xx
- X.XX
-
-:0222
-
-
-Pattern 80119
-
-(.xx
- x>Xx
-
-:1122
-
-
-Pattern 80120
-
-(.X.
- xX.X
-
-:1222
-
-
-Pattern 80121
-
-(.XX
- XX.X
-
-:1222
-
-
-Pattern 80122
-
-(.Xx
- xX>x
-
-:1122
-
-
-Pattern 80123
-
-@.x.
- .XXX
-
-:1122
-
-
-Pattern 80124
-
-@..x
- XXX.
-
-:1122
-
-
-Pattern 80125
-
-(.xX
- .x.x
-
-:1222
-
-
-Pattern 80126
-
-(.xx
- XXXX
-
-:0222
-
-
-Pattern 80127
-
-@.xx
- xXXx
-
-:0122
-
-
-Pattern 80130
-
-(..X
- X..(
-
-:0222
-
-
-Pattern 80131
-
-!.*X
- XX.!
-
-:1122
-
-
-Pattern 80132
-
-)...
- x..)
+!...
+ ...!
 
 :1112
-
-
-Pattern 80133
-
-@..x
- xX.!
-
-:0112
-
-
-Pattern 80134
-
-!*XX
- XX*!
-
-:0112
-
-
-Pattern 80135
-
-(.X.
- xX.(
-
-:0111
 
 
 #             .
@@ -15631,60 +6028,6 @@ Pattern 80135
 
 Pattern 80200
 
-  x
-  X
-(.XXXx
-
-:0222
-
-
-Pattern 80201
-
-  x
-  .
-(.XXxx
-
-:1222
-
-
-Pattern 80202
-
-  x
-  .
-(.X.Xx
-
-:1222
-
-
-Pattern 80203
-
-  x
-  X
-(.Xxxx
-
-:1222
-
-
-Pattern 80210
-
-  x
-  X
-xXXX.(
-
-:0222
-
-
-Pattern 80211
-
-  x
-  x
-xxXX.(
-
-:1222
-
-
-Pattern 80220
-
   !
   .
 !..X.X
@@ -15692,25 +6035,25 @@ Pattern 80220
 :2222
 
 
-Pattern 80221
+Pattern 80201
 
-  (
+  !
   .
-(..xxx
+!..Xxx
 
 :1222
 
 
-Pattern 80222
+Pattern 80202
 
-  (
+  !
   .
-(.X.XX
+!.X.XX
 
 :1222
 
 
-Pattern 80223
+Pattern 80203
 
   @
   .
@@ -15719,121 +6062,22 @@ Pattern 80223
 :1122
 
 
-Pattern 80224
+Pattern 80204
 
-  (
+  !
   .
-(.XX>.
-
-:1122
-
-
-Pattern 80225
-
-  (
-  .
-(.xx.x
+!.x..x
 
 :1222
 
 
-Pattern 80226
-
-  (
-  .
-(.XXXX
-
-:0222
-
-
-Pattern 80227
-
-  @
-  .
-@.XXX.
-
-:0122
-
-
-Pattern 80230
-
-  x
-  X
-!.X..@
-
-:1122
-
-
-Pattern 80231
-
-  X
-  X
-(.XX.(
-
-:0222
-
-
-Pattern 80232
-
-  .
-  >
-(.XX.(
-
-:1122
-
-
-Pattern 80233
-
-  .
-  X
-(.XX.@
-
-:0122
-
-
-Pattern 80234
-
-  X
-  x
-!..X.(
-
-:1222
-
-
-Pattern 80235
-
-  x
-  x
-(.xx.(
-
-:1222
-
-
-Pattern 80240
+Pattern 80205
 
   ( 
   . 
-(.*x.(
+(.*..(
 
 :1122
-
-
-Pattern 80241
-
-  ( 
-  . 
-(.X..)
-
-:0112
-
-
-Pattern 80242
-
-  ( 
-  . 
-(.XX.(
-
-:0111
 
 
 #             ..
@@ -15850,42 +6094,11 @@ Pattern 80300
 
 Pattern 80301
 
-  .x
-!.x*.!
+  ..
+!.X*.!
 
 :1122
 
-
-Pattern 80302
-
-  XX
-).>>.)
-
-:1112
-
-
-Pattern 80303
-
-  XX
-!>X>.)
-
-:1112
-
-
-Pattern 80304
-
-  X.
-(<X>.)
-
-:0112
-
-
-Pattern 80305
-
-  xx
-(.XX.(
-
-:0111
 
 
 #            ..
@@ -15894,7 +6107,6 @@ Pattern 80305
 
 Pattern 80400
 # nn New pattern (3.3.12)
-# There's a ko when the attacker tries to steal the second eye.
 
 |@ ..
 |....!
@@ -15906,7 +6118,7 @@ Pattern 80400
 Pattern 80401
 
  X.
-(..X.(
+!..X.!
 
 :1222
 
@@ -15943,46 +6155,6 @@ Pattern 80405
 :1122
 
 
-Pattern 80406
-
- x.
-!*X..@
-
-:1122
-
-
-Pattern 80407
-
- X.
-)*XX.!
-
-:1122
-
-
-Pattern 80408
-
- XX
-!*XX.!
-
-:0122
-
-
-Pattern 80409
-
- .X
-(.XX.(
-
-:0111
-
-
-Pattern 80410
-
- xx
-!*Xx.)
-
-:0112
-
-
 #           ...
 # Topology:  .....
 #
@@ -16010,24 +6182,17 @@ Pattern 80501
 Pattern 80502
 # in some cases this could become seki
 
-!*X
- XX..)
+!.x
+ xX..!
 
 :0112
 
 
 Pattern 80503
+# in some cases this could become seki
 
-@.x
- xX..)
-
-:0112
-
-
-Pattern 80504
-
-(.x
- xXX.(
+!.x
+ xXX.!
 
 :0111
 
@@ -16064,22 +6229,10 @@ Pattern 80701
 |.
 |X
 |XX
-|...@
+|...!
 +----
 
-:0112
-
-
-Pattern 80702
-
-
-|.
-|X
-|.X
-|XX.@
-+----
-
-:1122
+:1111
 
 
 #            . .
@@ -16171,18 +6324,18 @@ Pattern 90100
 
 Pattern 90200
 
-  ( .
-(.....(
+  ! .
+!.....!
 
 :1222
 
 
 Pattern 90300
 
-  )
+  !
   .
  ..
-)...)
+!...!
 
 :1112
 
@@ -16198,12 +6351,12 @@ Pattern 90400
 
 Pattern 90500
 
- .....(
-(..
+ .....!
+!..
 
 :1222
 
-
+ 
 Pattern 90600
 
  !
@@ -16214,18 +6367,6 @@ Pattern 90600
 +----
 
 :1122
-
-
-Pattern 90610
-
- !
-|>
-|X
-|.X
-|XX>!
-+----
-
-:1112
 
 
 Pattern 90700
@@ -16268,7 +6409,7 @@ Pattern 100002
 # `analyze_eyegraph' believes it is 0012, but I doubt.  Must be some
 # liberty shortage artifact or something.  /pp
 
-|@
+|!
 |.
 |.X.
 |....$

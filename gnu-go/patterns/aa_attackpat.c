@@ -143,7 +143,7 @@ static struct patval aa_attackpat27[] = {
   {720,1},	{757,1},	{722,1}
 };
 
-//static struct pattern aa_attackpat[29];
+static struct pattern aa_attackpat[29];
 
 static int
 autohelperaa_attackpat0(int trans, int move, int color, int action)

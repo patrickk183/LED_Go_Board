@@ -3,7 +3,7 @@
  * http://www.gnu.org/software/gnugo/ for more information.          *
  *                                                                   *
  * Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   *
- * 2008, 2009 and 2010 by the Free Software Foundation.              *
+ * 2008 and 2009 by the Free Software Foundation.                    *
  *                                                                   *
  * This program is free software; you can redistribute it and/or     *
  * modify it under the terms of the GNU General Public License as    *
@@ -519,7 +519,7 @@ parse_transformations_file(FILE *file)
 
   while (!feof(file)) {
     int n;
-    struct hint_data *hint = malloc(sizeof(*hint));
+    struct hint_data *hint = (hint_data*) malloc(sizeof(*hint));
 
     n = fscanf(file, "%s %d", hint->name, &hint->transformation_hint);
     if (n == 2) {
@@ -1165,14 +1165,14 @@ finish_pattern(char *line)
 
   {
     int s;
-    char class[80];
+    char p_class[80];
     char entry[80];
     char *p = line;
     char *p2;
     int n;
     
-    class[0] = 0;  /* in case sscanf doesn't get that far */
-    s = sscanf(p, ":%c,%[^,]%n", &symmetry, class, &n);
+    p_class[0] = 0;  /* in case sscanf doesn't get that far */
+    s = sscanf(p, ":%c,%[^,]%n", &symmetry, p_class, &n);
     p += n;
     
     if (s < 2) {
@@ -1251,34 +1251,34 @@ finish_pattern(char *line)
       num_attributes++;
     }
 
-    for (p2 = class; *p2; p2++) {
+    for (p2 = p_class; *p2; p2++) {
       switch (*p2) {
-	case 's': pattern[patno].class |= CLASS_s; break;
-	case 'O': pattern[patno].class |= CLASS_O; break;
-	case 'o': pattern[patno].class |= CLASS_o; break;
-	case 'X': pattern[patno].class |= CLASS_X; break;
-	case 'x': pattern[patno].class |= CLASS_x; break;
-	case 'D': pattern[patno].class |= CLASS_D; break;
-	case 'C': pattern[patno].class |= CLASS_C; break;
-	case 'c': pattern[patno].class |= CLASS_c; break;
-	case 'n': pattern[patno].class |= CLASS_n; break;
-	case 'B': pattern[patno].class |= CLASS_B; break;
-	case 'A': pattern[patno].class |= CLASS_A; break;
-	case 'b': pattern[patno].class |= CLASS_b; break;
-	case 'e': pattern[patno].class |= CLASS_e; break;
-	case 'E': pattern[patno].class |= CLASS_E; break;
-	case 'a': pattern[patno].class |= CLASS_a; break;
-	case 'd': pattern[patno].class |= CLASS_d; break;
-	case 'I': pattern[patno].class |= CLASS_I; break;
-	case 'J': pattern[patno].class |= CLASS_J; break;
-	case 'j': pattern[patno].class |= CLASS_j; break;
-	case 't': pattern[patno].class |= CLASS_t; break;
-	case 'T': pattern[patno].class |= CLASS_T; break;
-	case 'U': pattern[patno].class |= CLASS_U; break;
-	case 'W': pattern[patno].class |= CLASS_W; break;
-	case 'F': pattern[patno].class |= CLASS_F; break;
-	case 'N': pattern[patno].class |= CLASS_N; break;
-	case 'Y': pattern[patno].class |= CLASS_Y; break;
+	case 's': pattern[patno].pat_class |= CLASS_s; break;
+	case 'O': pattern[patno].pat_class |= CLASS_O; break;
+	case 'o': pattern[patno].pat_class |= CLASS_o; break;
+	case 'X': pattern[patno].pat_class |= CLASS_X; break;
+	case 'x': pattern[patno].pat_class |= CLASS_x; break;
+	case 'D': pattern[patno].pat_class |= CLASS_D; break;
+	case 'C': pattern[patno].pat_class |= CLASS_C; break;
+	case 'c': pattern[patno].pat_class |= CLASS_c; break;
+	case 'n': pattern[patno].pat_class |= CLASS_n; break;
+	case 'B': pattern[patno].pat_class |= CLASS_B; break;
+	case 'A': pattern[patno].pat_class |= CLASS_A; break;
+	case 'b': pattern[patno].pat_class |= CLASS_b; break;
+	case 'e': pattern[patno].pat_class |= CLASS_e; break;
+	case 'E': pattern[patno].pat_class |= CLASS_E; break;
+	case 'a': pattern[patno].pat_class |= CLASS_a; break;
+	case 'd': pattern[patno].pat_class |= CLASS_d; break;
+	case 'I': pattern[patno].pat_class |= CLASS_I; break;
+	case 'J': pattern[patno].pat_class |= CLASS_J; break;
+	case 'j': pattern[patno].pat_class |= CLASS_j; break;
+	case 't': pattern[patno].pat_class |= CLASS_t; break;
+	case 'T': pattern[patno].pat_class |= CLASS_T; break;
+	case 'U': pattern[patno].pat_class |= CLASS_U; break;
+	case 'W': pattern[patno].pat_class |= CLASS_W; break;
+	case 'F': pattern[patno].pat_class |= CLASS_F; break;
+	case 'N': pattern[patno].pat_class |= CLASS_N; break;
+	case 'Y': pattern[patno].pat_class |= CLASS_Y; break;
 	case '-': break;
 	default:
 	  if (!isgraph((int) *p2))
@@ -1804,9 +1804,9 @@ write_elements(FILE *outfile)
      * require dragon status checking on it.
      */
     if ((fixed_anchor || nongoal[att]) && callback_unneeded[att]
-	&& (((pattern[patno].class & (CLASS_X | CLASS_x)) == 0)
+	&& (((pattern[patno].pat_class & (CLASS_X | CLASS_x)) == 0)
 	    || (att != ATT_X && att != ATT_x))
-	&& (((pattern[patno].class & (CLASS_O | CLASS_o)) == 0)
+	&& (((pattern[patno].pat_class & (CLASS_O | CLASS_o)) == 0)
 	    || (att != ATT_O && att != ATT_o))) {
       /* Now check that pattern matcher won't need the element for
        * matching itself.
@@ -1978,7 +1978,7 @@ corner_variation_new(int move_offset, signed char xor_att,
 {
   struct corner_variation_b *variation;
    
-  variation = malloc(sizeof(*variation));
+  variation = (corner_variation_b*)  malloc(sizeof(*variation));
 
   variation->move_offset = move_offset;
   variation->xor_att = xor_att;
@@ -2268,7 +2268,7 @@ write_patterns(FILE *outfile)
     if (database_type == DB_CORNER) {
       fprintf(outfile, "  {%d,%d,0x%x,\"%s\",",
 	      second_corner_offset[j], (p->trfno == 4),
-	      p->class, pattern_names[j]);
+	      p->pat_class, pattern_names[j]);
 
       if (attributes_needed) {
 	fprintf(outfile, "attributes+%d,",
@@ -2325,7 +2325,7 @@ write_patterns(FILE *outfile)
     fprintf(outfile, "}\n   ");
 #endif
 
-    fprintf(outfile, ", 0x%x,%f,", p->class, p->value);
+    fprintf(outfile, ", 0x%x,%f,", p->pat_class, p->value);
 
     if (attributes_needed) {
       fprintf(outfile, "attributes+%d,",

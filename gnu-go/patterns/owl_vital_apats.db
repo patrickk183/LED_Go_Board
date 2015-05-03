@@ -3,7 +3,7 @@
 # http://www.gnu.org/software/gnugo/ for more information.          #
 #                                                                   #
 # Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   #
-# 2008, 2009 and 2010 by the Free Software Foundation.              #
+# 2008 and 2009 by the Free Software Foundation.                    #
 #                                                                   #
 # This program is free software; you can redistribute it and/or     #
 # modify it under the terms of the GNU General Public License       #
@@ -191,23 +191,6 @@ X*           atari inside eyespace
 A*
 
 ;lib(A)==2 && olib(*)>1 && owl_big_eyespace(*)
-;&& (owl_eye_size(*) <= 8 || !oplay_attack(*,*))
-
-
-Pattern VA9b
-# gf New pattern. (3.9.1)
-# See strategy5:290, upper right corner. Needed when the stone to be
-# ataried is not amalgamated with the goal dragon, otherwise VA9 applies.
-
-OX
-X*           atari inside eyespace
-
-:-,s,value(45)
-
-OX
-A*
-
-;!owl_goal_dragon(A) && lib(A)==2 && olib(*)>1 && owl_big_eyespace(*)
 ;&& (owl_eye_size(*) <= 8 || !oplay_attack(*,*))
 
 
@@ -796,19 +779,19 @@ Pattern VA44
 # gf Fixed symmetry. (3.3.6)
 # nn Modified constraint (3.3.14)
 # gf Revised constraint. (3.5.3)
-# gf Revised constraint. (3.7.13)
 
 XoX
 o*o
 
 :|,s,value(57)
 
-DbE
+XbX
 a*c
 
 ; owl_proper_eye(*)
 ; && (owl_proper_eye(a) + owl_proper_eye(b) + owl_proper_eye(c) > 2)
-; && (oplay_attack(*,a,E) || oplay_attack(*,c,D))
+; && safe_xmove(*)
+; && ((owl_eye_size(*) <= 8 && owl_maxeye(*)>1) || !oplay_attack(*,*))
 
 
 Pattern VA45
@@ -1032,44 +1015,6 @@ OX.*
 ----
 
 ;owl_mineye(a)==1
-
-
-Pattern VA57
-# gf New pattern. (3.7.13)
-
-OXXXX   only one eye without outer liberties
-X.*.X
-X...X
------
-
-:8,s,value(75)
-
-OAAAA
-X...A
-X...A
------
-
-;lib(A)==4
-
-
-Pattern VA58
-# gf New pattern. (3.7.13)
-# See ld_owl:321.
-
-X..x   squeeze eyespace
-OX*.
-?X..
-----
-
-:8,s,value(35)
-
-X..x
-bA*.
-?A..
-----
-
-;lib(A)==3 && proper_eye(*) && owl_mineye(*) > 0 && owl_maxeye(*) > 1
-;&& !attack(b)
 
 
 # END OF FILE

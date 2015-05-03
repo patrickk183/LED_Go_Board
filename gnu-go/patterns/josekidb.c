@@ -25,7 +25,7 @@
 #include "liberty.h"
 #include "patterns.h"
 
-//static struct corner_pattern joseki[1623];
+static struct corner_pattern joseki[1623];
 
 static int
 autohelperjoseki264(int trans, int move, int color, int action)
@@ -165,6 +165,68 @@ autohelperjoseki1620(int trans, int move, int color, int action)
 }
 
 static struct pattern_attribute attributes[] = {
+#ifdef HAVE_TRANSPARENT_UNIONS
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=1.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {REVERSE_FOLLOWUP,{.value=10.000000}},
+  {FOLLOWUP,{.value=15.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=0.015000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=-0.020000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=-0.020000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=6.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=3.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=5.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=5.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=5.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=5.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=5.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=8.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=10.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}},
+  {SHAPE,{.value=5.000000}},
+  {LAST_ATTRIBUTE,{.offset=0}}
+#else
   {LAST_ATTRIBUTE,0.0,0},
   {SHAPE,1.000000,0},
   {LAST_ATTRIBUTE,0.0,0},
@@ -225,6 +287,7 @@ static struct pattern_attribute attributes[] = {
   {LAST_ATTRIBUTE,0.0,0},
   {SHAPE,5.000000,0},
   {LAST_ATTRIBUTE,0.0,0}
+#endif
 };
 
 static struct corner_pattern joseki[] = {

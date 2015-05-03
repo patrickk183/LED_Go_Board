@@ -1,10 +1,12 @@
 noinst_PROGRAMS = mkpat joseki mkeyes uncompress_fuseki mkmcpat
 EXTRA_PROGRAMS = extract_fuseki compress_fuseki
 
+DSP = dfa.dsp patterns.dsp joseki.dsp mkeyes.dsp mkpat.dsp fuseki.dsp uncompress_fuseki.dsp mkmcpat.dsp
 DTR = aa_attackpats.dtr owl_attackpats.dtr owl_defendpats.dtr \
        owl_vital_apats.dtr
 
-EXTRA_DIST = $(DTR)\
+EXTRA_DIST = $(DSP)\
+        $(DTR)\
 	dfa.c\
 	gnugo-db.el\
         hoshi_keima.sgf\

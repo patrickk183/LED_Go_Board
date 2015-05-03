@@ -302,7 +302,7 @@ static struct patval owl_vital_apat58[] = {
   {609,3}
 };
 
-//static struct pattern owl_vital_apat[60];
+static struct pattern owl_vital_apat[60];
 
 static int
 autohelperowl_vital_apat0(int trans, int move, int color, int action)
