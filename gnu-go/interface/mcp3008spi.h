@@ -23,6 +23,7 @@
  * ****************************************************************************/
 #ifndef MCP3008SPI_H
 #define MCP3008SPI_H
+ 
 #include <unistd.h>
 #include <stdint.h>
 #include <fcntl.h>
@@ -50,10 +51,12 @@ private:
  
     int spiOpen(std::string devspi);
     int spiClose();
- 
 };
  
 #endif
+
+int getControllerInput(int channel);
+int mcpTest();
 
 //Example code
 /***********************************************************************
@@ -85,9 +88,9 @@ private:
 // {
 //     mcp3008Spi a2d("/dev/spidev0.0", SPI_MODE_0, 1000000, 8);
 //     int i = 20;
-//         int a2dVal = 0; 
+//     int a2dVal = 0;
 //     int a2dChannel = 0;
-//         unsigned char data[3];
+//     unsigned char data[3];
  
 //     while(i > 0)
 //     {
@@ -96,10 +99,10 @@ private:
 //         data[2] = 0; // third byte transmitted....don't care
  
 //         a2d.spiWriteRead(data, sizeof(data) );
- 
+  
 //         a2dVal = 0;
-//                 a2dVal = (data[1]<< 8) & 0b1100000000; //merge data[1] & data[2] to get result
-//                 a2dVal |=  (data[2] & 0xff);
+//         a2dVal = (data[1]<< 8) & 0b1100000000; //merge data[1] & data[2] to get result
+//         a2dVal |=  (data[2] & 0xff);
 //         sleep(1);
 //         cout << "The Result is: " << a2dVal << endl;
 //         i--;
