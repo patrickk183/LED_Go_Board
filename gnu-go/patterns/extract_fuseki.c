@@ -428,7 +428,7 @@ init_zobrist_numbers(void)
 static void
 init_situations(void)
 {
-  situation_table = (situation*) calloc(moves_per_game * number_of_games,
+  situation_table = (struct situation*) calloc(moves_per_game * number_of_games,
 			   sizeof(*situation_table));
   if (!situation_table) {
     fprintf(stderr, "Fatal error, failed to allocate situations table.\n");
@@ -1152,7 +1152,7 @@ analyze_statistics(void)
   }
   
   /* Set up frequency table. */
-  frequency_table = (frequency*) calloc(number_of_situations, sizeof(*frequency_table));
+  frequency_table = (struct frequency*) calloc(number_of_situations, sizeof(*frequency_table));
   if (!frequency_table) {
     fprintf(stderr, "Fatal error, failed to allocate frequency table.\n");
     exit(EXIT_FAILURE);
@@ -1190,7 +1190,7 @@ analyze_statistics(void)
   }
   
   /* Set up winners array. */
-  winning_moves = (winner*) calloc(MAX_PATTERNS_TO_EXTRACT, sizeof(*winning_moves));
+  winning_moves = (struct winner*) calloc(MAX_PATTERNS_TO_EXTRACT, sizeof(*winning_moves));
   if (!winning_moves) {
     fprintf(stderr, "Fatal error, failed to allocate winning moves table.\n");
     exit(EXIT_FAILURE);
