@@ -65,7 +65,7 @@
 void *
 xalloc(unsigned int size)
 {
-  void *pt = malloc(size);
+  void *pt = malloc(size); //******
 
   if (!pt) {
     fprintf(stderr, "xalloc: Out of memory!\n");
@@ -79,7 +79,7 @@ xalloc(unsigned int size)
 void *
 xrealloc(void *pt, unsigned int size)
 {
-  void *ptnew = realloc(pt, size);
+  void *ptnew = realloc(pt, size); //******
 
   if (!ptnew) {
     fprintf(stderr, "xrealloc: Out of memory!\n");
@@ -102,7 +102,7 @@ SGFNode *
 sgfNewNode()
 {
   SGFNode *newnode;
-  newnode = xalloc(sizeof(SGFNode));
+  newnode = xalloc(sizeof(SGFNode)); //******
   newnode->next = NULL;
   newnode->props = NULL;
   newnode->parent = NULL;

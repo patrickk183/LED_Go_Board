@@ -41,7 +41,7 @@ static char *
 copy_and_trim_name(const char *filename)
 {
   int name_length = strlen(filename);
-  char *name = malloc(name_length + 1);
+  char *name = (char*) malloc(name_length + 1);
   char *start = name;
   char *p;
   char *name2;
@@ -63,7 +63,7 @@ copy_and_trim_name(const char *filename)
   if (strncmp(start + name_length - 3, ".db", 3) == 0)
     start[name_length - 3] = '\0';
 
-  name2 = malloc(name_length + 1);
+  name2 = (char*) malloc(name_length + 1);
   strcpy(name2, start);
   free(name);
   
@@ -116,7 +116,7 @@ main(int argc, char *argv[])
   printf("#include \"liberty.h\"\n\n");
   printf("#include \"patterns.h\"\n\n");
 
-  values = malloc(N * sizeof(*values));
+  values = (unsigned int*) malloc(N * sizeof(*values));
 
   for (i = 1; i < argc; i++) {
     if (!mc_load_patterns_from_db(argv[i], values))

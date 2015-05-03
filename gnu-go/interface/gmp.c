@@ -164,7 +164,7 @@ static void  processQ(Gmp *ge);
 Gmp  *gmp_create(int inFile, int outFile)  {
   Gmp  *ge;
 
-  ge = malloc(sizeof(Gmp));
+  ge = (Gmp*) malloc(sizeof(Gmp));
   ge->inFile = inFile;
   ge->outFile = outFile;
 
