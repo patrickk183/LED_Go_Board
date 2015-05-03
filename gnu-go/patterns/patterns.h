@@ -1,9 +1,9 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\\
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
  * This is GNU Go, a Go program. Contact gnugo@gnu.org, or see       *
  * http://www.gnu.org/software/gnugo/ for more information.          *
  *                                                                   *
  * Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   *
- * 2008 and 2009 by the Free Software Foundation.                    *
+ * 2008, 2009 and 2010 by the Free Software Foundation.              *
  *                                                                   *
  * This program is free software; you can redistribute it and/or     *
  * modify it under the terms of the GNU General Public License as    *
@@ -203,11 +203,29 @@ enum attribute_type {
   LAST_ATTRIBUTE = NUM_ATTRIBUTES
 };
 
+
+#ifdef HAVE_TRANSPARENT_UNIONS
+
+struct pattern_attribute {
+  enum attribute_type type;
+
+  /* GCC allows unnamed (and transparent) unions. */
+  union {
+    float value;
+    int offset;
+  };
+};
+
+#else
+
 struct pattern_attribute {
   enum attribute_type type;
   float value;
   int offset;
 };
+
+#endif
+
 
 /*
  * Each pattern as a whole is compiled to an instance of this structure.
@@ -231,7 +249,7 @@ struct pattern {
   unsigned int val_mask[8]; /* 4x4 grid around anchor */
 #endif
 
-  unsigned int pat_class;   /* classification of pattern */
+  unsigned int class;   /* classification of pattern */
 
   /* Value (owl-style, used for pattern sorting) is not stored as an
    * attribute, because it is very common.
@@ -314,6 +332,7 @@ int adjacent_to_defendable_stone_in_atari(int str);
 void backfill_replace(int move, int str);
 int break_mirror_helper(int str, int color);
 int distrust_tactics_helper(int str);
+int bent_four_helper(int str);
 int disconnect_helper(int apos, int bpos);
 
 
@@ -370,7 +389,7 @@ struct corner_pattern {
   int second_corner_offset; /* Offset of pattern's second corner. */
   int symmetric;	/* If the pattern is symmetric ('/' symmetry). */
 
-  unsigned int pat_class;	/* Pattern class. */
+  unsigned int class;	/* Pattern class. */
   const char *name;	/* Pattern name (optional). */
 
   /* Pattern attributes like shape (the only one used currently). */

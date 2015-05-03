@@ -3,7 +3,7 @@
  * http://www.gnu.org/software/gnugo/ for more information.          *
  *                                                                   *
  * Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   *
- * 2008 and 2009 by the Free Software Foundation.                    *
+ * 2008, 2009 and 2010 by the Free Software Foundation.              *
  *                                                                   *
  * This program is free software; you can redistribute it and/or     *
  * modify it under the terms of the GNU General Public License as    *
@@ -41,7 +41,7 @@ static char *
 copy_and_trim_name(const char *filename)
 {
   int name_length = strlen(filename);
-  char *name = (char*) malloc(name_length + 1);
+  char *name = malloc(name_length + 1);
   char *start = name;
   char *p;
   char *name2;
@@ -63,7 +63,7 @@ copy_and_trim_name(const char *filename)
   if (strncmp(start + name_length - 3, ".db", 3) == 0)
     start[name_length - 3] = '\0';
 
-  name2 = (char*) malloc(name_length + 1);
+  name2 = malloc(name_length + 1);
   strcpy(name2, start);
   free(name);
   
@@ -116,7 +116,7 @@ main(int argc, char *argv[])
   printf("#include \"liberty.h\"\n\n");
   printf("#include \"patterns.h\"\n\n");
 
-  values = (unsigned int*) malloc(N * sizeof(*values));
+  values = malloc(N * sizeof(*values));
 
   for (i = 1; i < argc; i++) {
     if (!mc_load_patterns_from_db(argv[i], values))

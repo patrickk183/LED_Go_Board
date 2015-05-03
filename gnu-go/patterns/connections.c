@@ -3,7 +3,7 @@
  * http://www.gnu.org/software/gnugo/ for more information.          *
  *                                                                   *
  * Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   *
- * 2008 and 2009 by the Free Software Foundation.                    *
+ * 2008, 2009 and 2010 by the Free Software Foundation.              *
  *                                                                   *
  * This program is free software; you can redistribute it and/or     *
  * modify it under the terms of the GNU General Public License as    *
@@ -63,10 +63,10 @@ cut_connect_callback(int anchor, int color, struct pattern *pattern,
 
   move = AFFINE_TRANSFORM(pattern->move_offset, ll, anchor);
   
-  if ((pattern->pat_class & CLASS_B) && !safe_move(move, other))
+  if ((pattern->class & CLASS_B) && !safe_move(move, other))
     return;
 
-  if (pattern->pat_class & CLASS_C) {
+  if (pattern->class & CLASS_C) {
     /* If C pattern, test if there are more than one dragon in this
      * pattern so that there is something to connect, before doing any
      * expensive reading.
@@ -108,8 +108,8 @@ cut_connect_callback(int anchor, int color, struct pattern *pattern,
       return;
   }
 
-  if ((pattern->pat_class & CLASS_B)
-      && !(pattern->pat_class & CLASS_s)) {
+  if ((pattern->class & CLASS_B)
+      && !(pattern->class & CLASS_s)) {
     /* Require that the X stones in the pattern are tactically safe. */
     for (k = 0; k < pattern->patlen; ++k) { /* match each point */
       if (pattern->patn[k].att == ATT_X) {
@@ -125,12 +125,12 @@ cut_connect_callback(int anchor, int color, struct pattern *pattern,
   }
 
   /* Get here => Pattern matches. */
-  if (pattern->pat_class & CLASS_B) {
+  if (pattern->class & CLASS_B) {
     DEBUG(DEBUG_DRAGONS, "Cutting pattern %s+%d found at %1m\n",
 	  pattern->name, ll, anchor);
     DEBUG(DEBUG_DRAGONS, "cutting point %1m\n", move);
   }
-  else if (pattern->pat_class & CLASS_C)
+  else if (pattern->class & CLASS_C)
     DEBUG(DEBUG_DRAGONS, "Connecting pattern %s+%d found at %1m\n",
 	  pattern->name, ll, anchor);
 
@@ -141,10 +141,10 @@ cut_connect_callback(int anchor, int color, struct pattern *pattern,
 
   /* If it is a B pattern, set cutting point. */
   
-  if (pattern->pat_class & CLASS_B) {
+  if (pattern->class & CLASS_B) {
     cutting_points[move] |= color;
   }
-  else if (!(pattern->pat_class & CLASS_C))
+  else if (!(pattern->class & CLASS_C))
     return; /* Nothing more to do, up to the helper or autohelper
 	       to amalgamate dragons or modify eye space. */
 
@@ -161,10 +161,10 @@ cut_connect_callback(int anchor, int color, struct pattern *pattern,
     /* Look for dragons to amalgamate. Never amalgamate stones which
      * can be attacked.
      */
-    if ((pattern->pat_class & CLASS_C)
+    if ((pattern->class & CLASS_C)
 	&& board[pos] == color
 	&& pattern->patn[k].att == ATT_O
-	&& ((pattern->pat_class & CLASS_s) || attack(pos, NULL) == 0)) {
+	&& ((pattern->class & CLASS_s) || attack(pos, NULL) == 0)) {
       if (first_dragon == NO_MOVE)
 	first_dragon = dragon[pos].origin;
       else if (second_dragon == NO_MOVE
@@ -183,7 +183,7 @@ cut_connect_callback(int anchor, int color, struct pattern *pattern,
     }
     
     /* Inhibit connections */
-    if (pattern->pat_class & CLASS_B) {
+    if (pattern->class & CLASS_B) {
       if (pattern->patn[k].att != ATT_not)
 	break; /* The inhibition points are guaranteed to come first. */
       cutting_points[pos] |= color;
@@ -198,7 +198,7 @@ static void
 cut_callback(int anchor, int color, struct pattern *pattern, int ll,
 	     void *data)
 {
-  if (pattern->pat_class & CLASS_B)
+  if (pattern->class & CLASS_B)
     cut_connect_callback(anchor, color, pattern, ll, data);
 }
   
@@ -208,7 +208,7 @@ static void
 conn_callback(int anchor, int color, struct pattern *pattern, int ll,
 	      void *data)
 {
-  if (!(pattern->pat_class & CLASS_B))
+  if (!(pattern->class & CLASS_B))
     cut_connect_callback(anchor, color, pattern, ll, data);
 }
   

@@ -3,7 +3,7 @@
  * http://www.gnu.org/software/gnugo/ for more information.          *
  *                                                                   *
  * Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   *
- * 2008 and 2009 by the Free Software Foundation.                    *
+ * 2008, 2009 and 2010 by the Free Software Foundation.              *
  *                                                                   *
  * This program is free software; you can redistribute it and/or     *
  * modify it under the terms of the GNU General Public License as    *
@@ -428,7 +428,7 @@ init_zobrist_numbers(void)
 static void
 init_situations(void)
 {
-  situation_table = (struct situation*) calloc(moves_per_game * number_of_games,
+  situation_table = calloc(moves_per_game * number_of_games,
 			   sizeof(*situation_table));
   if (!situation_table) {
     fprintf(stderr, "Fatal error, failed to allocate situations table.\n");
@@ -1152,7 +1152,7 @@ analyze_statistics(void)
   }
   
   /* Set up frequency table. */
-  frequency_table = (struct frequency*) calloc(number_of_situations, sizeof(*frequency_table));
+  frequency_table = calloc(number_of_situations, sizeof(*frequency_table));
   if (!frequency_table) {
     fprintf(stderr, "Fatal error, failed to allocate frequency table.\n");
     exit(EXIT_FAILURE);
@@ -1190,7 +1190,7 @@ analyze_statistics(void)
   }
   
   /* Set up winners array. */
-  winning_moves = (struct winner*) calloc(MAX_PATTERNS_TO_EXTRACT, sizeof(*winning_moves));
+  winning_moves = calloc(MAX_PATTERNS_TO_EXTRACT, sizeof(*winning_moves));
   if (!winning_moves) {
     fprintf(stderr, "Fatal error, failed to allocate winning moves table.\n");
     exit(EXIT_FAILURE);
@@ -1635,14 +1635,14 @@ main(int argc, char *argv[])
   number_of_games = read_sgf_filenames(argv[1], NULL);
   
   /* Allocate space for the list of unused files. */
-  unused_games = (int*) calloc(number_of_games, sizeof(*unused_games));
+  unused_games = calloc(number_of_games, sizeof(*unused_games));
   if (unused_games == NULL) {
     fprintf(stderr, "Fatal error, failed to allocate memory.\n");
     exit(EXIT_FAILURE);
   }
   
   /* Allocate space for the list of sgf file names. */
-  sgf_names = (char**) calloc(number_of_games, sizeof(*sgf_names));
+  sgf_names = calloc(number_of_games, sizeof(*sgf_names));
   if (sgf_names == NULL) {
     fprintf(stderr, "Fatal error, failed to allocate memory.\n");
     exit(EXIT_FAILURE);

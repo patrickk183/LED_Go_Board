@@ -3,7 +3,7 @@
  * http://www.gnu.org/software/gnugo/ for more information.          *
  *                                                                   *
  * Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007,   *
- * 2008 and 2009 by the Free Software Foundation.                    *
+ * 2008, 2009 and 2010 by the Free Software Foundation.              *
  *                                                                   *
  * This program is free software; you can redistribute it and/or     *
  * modify it under the terms of the GNU General Public License as    *
@@ -29,7 +29,7 @@
 #define MAXLINE 80
 #define MAXDIMEN 20
 #define MAXSIZE 20
-#define MAXPATNO 800
+#define MAXPATNO 1900
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -269,19 +269,37 @@ main(void)
 	fprintf(stderr, "value=%d%d%d%d\n", value_a[patno], value_b[patno],
 		value_c[patno], value_d[patno]);
 
-      if (value_b[patno] != value_c[patno]) {
-	if (num_attacks == 0 || num_defenses == 0) {
+      if (value_a[patno] != value_c[patno]) {
+	if (num_attacks == 0) {
 	  fprintf(stderr,
-		  "mkeyes: missing attack or defense point in pattern %d\n",
+		  "mkeyes: missing attack point in pattern %d\n",
 		  eye_number[patno]);
 	  fatal_errors++;
 	}
       }
       
-      if (value_b[patno] == value_c[patno]) {
-	if (num_attacks > 0 || num_defenses > 0) {
+      if (value_b[patno] != value_d[patno]) {
+	if (num_defenses == 0) {
 	  fprintf(stderr,
-		  "mkeyes: attack or defense point in settled pattern %d\n",
+		  "mkeyes: missing defense point in pattern %d\n",
+		  eye_number[patno]);
+	  fatal_errors++;
+	}
+      }
+      
+      if (value_a[patno] == value_c[patno]) {
+	if (num_attacks > 0) {
+	  fprintf(stderr,
+		  "mkeyes: attack point in attack settled pattern %d\n",
+		  eye_number[patno]);
+	  fatal_errors++;
+	}
+      }
+      
+      if (value_b[patno] == value_d[patno]) {
+	if (num_defenses > 0) {
+	  fprintf(stderr,
+		  "mkeyes: defense point in defense settled pattern %d\n",
 		  eye_number[patno]);
 	  fatal_errors++;
 	}
