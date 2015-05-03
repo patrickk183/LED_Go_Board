@@ -419,6 +419,8 @@ main(int argc, char *argv[])
 	canvas->Clear();
 	delete image_gen;
 
+	image_gen = new ShowGoBoard(canvas, size, 0, 0);
+	getchar();
 
 	// Stop image generating thread.
 	delete image_gen;
