@@ -224,7 +224,7 @@ static struct patval conn34[] = {
   {648,2},	{684,2},	{647,0},	{685,0}
 };
 
-//static struct pattern conn[36];
+static struct pattern conn[36];
 
 static int
 autohelperconn0(int trans, int move, int color, int action)

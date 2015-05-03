@@ -519,7 +519,7 @@ parse_transformations_file(FILE *file)
 
   while (!feof(file)) {
     int n;
-    struct hint_data *hint = (hint_data*) malloc(sizeof(*hint));
+    struct hint_data *hint = (struct hint_data*) malloc(sizeof(*hint));
 
     n = fscanf(file, "%s %d", hint->name, &hint->transformation_hint);
     if (n == 2) {
@@ -1978,7 +1978,7 @@ corner_variation_new(int move_offset, signed char xor_att,
 {
   struct corner_variation_b *variation;
    
-  variation = (corner_variation_b*)  malloc(sizeof(*variation));
+  variation = (struct corner_variation_b*)  malloc(sizeof(*variation));
 
   variation->move_offset = move_offset;
   variation->xor_att = xor_att;
