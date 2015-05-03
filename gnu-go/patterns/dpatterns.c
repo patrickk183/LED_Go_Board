@@ -197,7 +197,7 @@ static struct patval defpat32[] = {
   {797,0},	{834,0}
 };
 
-static struct pattern defpat[34];
+//static struct pattern defpat[34];
 
 static int
 autohelperdefpat0(int trans, int move, int color, int action)

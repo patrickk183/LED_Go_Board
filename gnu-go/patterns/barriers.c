@@ -1154,7 +1154,7 @@ static struct patval barrierspat217[] = {
   {686,2}
 };
 
-static struct pattern barrierspat[219];
+//static struct pattern barrierspat[219];
 
 static int
 autohelperbarrierspat3(int trans, int move, int color, int action)

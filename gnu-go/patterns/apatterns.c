@@ -91,7 +91,7 @@ static struct patval attpat13[] = {
   {684,1},	{610,2},	{609,0},	{611,0}
 };
 
-static struct pattern attpat[15];
+//static struct pattern attpat[15];
 
 static int
 autohelperattpat9(int trans, int move, int color, int action)

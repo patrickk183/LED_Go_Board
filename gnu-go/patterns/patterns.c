@@ -8045,7 +8045,7 @@ static struct patval pat1219[] = {
   {872,0},	{909,0},	{946,0},	{983,0}
 };
 
-static struct pattern pat[1221];
+//static struct pattern pat[1221];
 
 static int
 autohelperpat1(int trans, int move, int color, int action)

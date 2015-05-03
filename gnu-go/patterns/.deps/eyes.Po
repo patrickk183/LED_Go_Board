@@ -18,7 +18,8 @@ eyes.o: eyes.c /usr/include/stdio.h /usr/include/features.h \
  /usr/include/limits.h /usr/include/arm-linux-gnueabihf/bits/posix1_lim.h \
  /usr/include/arm-linux-gnueabihf/bits/local_lim.h \
  /usr/include/linux/limits.h \
- /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h ../engine/gnugo.h \
+ /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h \
+ /usr/include/arm-linux-gnueabihf/bits/xopen_lim.h ../engine/gnugo.h \
  ../engine/clock.h
 
 /usr/include/stdio.h:
@@ -82,6 +83,8 @@ eyes.h:
 /usr/include/linux/limits.h:
 
 /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h:
+
+/usr/include/arm-linux-gnueabihf/bits/xopen_lim.h:
 
 ../engine/gnugo.h:
 

@@ -576,7 +576,7 @@ static struct patval influencepat49[] = {
   {765,0}
 };
 
-static struct pattern influencepat[51];
+//static struct pattern influencepat[51];
 
 static int
 autohelperinfluencepat14(int trans, int move, int color, int action)

@@ -2123,7 +2123,7 @@ static struct patval owl_defendpat487[] = {
   {684,2},	{683,2}
 };
 
-static struct pattern owl_defendpat[489];
+//static struct pattern owl_defendpat[489];
 
 static int
 autohelperowl_defendpat0(int trans, int move, int color, int action)
@@ -6459,7 +6459,7 @@ autohelperowl_defendpat487(int trans, int move, int color, int action)
 }
 
 static struct pattern_attribute attributes[] = {
-#ifdef HAVE_TRANSPARENT_UNIONS
+/*#ifdef HAVE_TRANSPARENT_UNIONS
   {LAST_ATTRIBUTE,{.offset=0}},
   {THREATENS_TO_CAPTURE,{.offset=646}},
   {LAST_ATTRIBUTE,{.offset=0}},
@@ -6479,7 +6479,7 @@ static struct pattern_attribute attributes[] = {
   {LAST_ATTRIBUTE,{.offset=0}},
   {REVERSE_SENTE,{.offset=609}},
   {LAST_ATTRIBUTE,{.offset=0}}
-#else
+#else*/
   {LAST_ATTRIBUTE,0.0,0},
   {THREATENS_TO_CAPTURE,0.0,646},
   {LAST_ATTRIBUTE,0.0,0},
@@ -6499,7 +6499,7 @@ static struct pattern_attribute attributes[] = {
   {LAST_ATTRIBUTE,0.0,0},
   {REVERSE_SENTE,0.0,609},
   {LAST_ATTRIBUTE,0.0,0}
-#endif
+//#endif
 };
 
 static struct pattern owl_defendpat[] = {
