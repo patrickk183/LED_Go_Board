@@ -870,7 +870,7 @@ dfa_shuffle(dfa_t *pdfa)
     q2p = 0;
   }
 
-  old_states = (state*) malloc((pdfa->last_state+1) * sizeof(*old_states));
+  old_states = (struct state*) malloc((pdfa->last_state+1) * sizeof(*old_states));
   for (i = 1; i <= pdfa->last_state; i++) {
     for (j = 0; j < 4; j++) {
       old_states[i].next[j] = pdfa->states[i].next[j];

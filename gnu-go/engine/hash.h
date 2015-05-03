@@ -84,12 +84,12 @@ extern Hash_data board_hash;
 Hash_data goal_to_hashvalue(const signed char *goal);
 
 void hash_init_zobrist_array(Hash_data *array, int size);
-void hash_init(void);
+extern void hash_init(void);
 #define INIT_ZOBRIST_ARRAY(a) \
   hash_init_zobrist_array(a, (int) (sizeof(a) / sizeof(a[0])))
 
 void hashdata_clear(Hash_data *hd);
-void hashdata_recalc(Hash_data *hd, Intersection *board, int ko_pos);
+extern void hashdata_recalc(Hash_data *hd, Intersection *board, int ko_pos);
 void hashdata_invert_ko(Hash_data *hd, int pos);
 void hashdata_invert_stone(Hash_data *hd, int pos, int color);
 void hashdata_invert_komaster(Hash_data *hd, int komaster);

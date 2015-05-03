@@ -50,8 +50,8 @@
 /* DFA spiral order. */
 extern int spiral[DFA_MAX_ORDER][8];
 
-void build_spiral_order(void);
-
+extern void build_spiral_order(void);
+extern void transformation_init(void);
 
 /* The run-time data structures declared here are different from those
  * used internally to build the DFA. */
