@@ -45,7 +45,7 @@
  */
 
 /* Internal state of the random number generator. */
-static struct gg_rand_state {
+struct gg_rand_state {
   unsigned int x[25];   /* Internal state. */
   int k;                /* Word counter. */
 };
