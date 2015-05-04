@@ -73,7 +73,7 @@ private:
   std::string filename;
   int size;
 };
-/*
+
 class Menu : public ThreadedCanvasManipulator { 
 public: 
   Menu(Canvas *m, int a_mode, int a_players, int a_difficulty, int a_size)  : ThreadedCanvasManipulator(m) {
@@ -166,7 +166,7 @@ public:
         canvas()->SetPixel(24, i, 100, 100, 200); 
         canvas()->SetPixel(25, i, 100, 100, 200);      
       } 
-	  /*
+      
       //Draw board state
       for (int i = 0; i < 19; i++) {
         for (int j = 0; j < 19; j++) {
@@ -181,8 +181,7 @@ public:
           }
         }
       }
-	*/
-      /*
+
 	  }
 	  
 	  if (boardSize == 16) { //change pixels to 16
@@ -201,7 +200,7 @@ public:
         canvas()->SetPixel(24, i, 100, 100, 200); 
         canvas()->SetPixel(25, i, 100, 100, 200);      
       } 
-	/*
+
       //Draw board state
       for (int i = 0; i < 19; i++) {
         for (int j = 0; j < 19; j++) {
@@ -216,9 +215,9 @@ public:
           }
         }
       }
-	*/
+
 	}
-  /*
+
     else if (boardSize == 8) { //change pixels to 8
       //Draw borders
       for (int i = 0; i < 32; i++) {
