@@ -159,7 +159,7 @@ public:
 		size = a_size;
 	}
   	void Run() {
-  		std::string filename = "../assets/";
+  		std::string filename = "../../assets/";
 
   		switch (mode) {
   			case 1:
