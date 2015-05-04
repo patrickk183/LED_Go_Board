@@ -36,10 +36,11 @@
 #include "liberty.h"
 #include "patterns.h"
   
+
 static const char *const db_output_strings[3] =
-  {DB_PREAMBLE, DB_HEADER, DB_FOOTER};
+  {"Preamble", "Header", "Footer"};
 static const char *const c_output_strings[3] =
-  {C_PREAMBLE, C_HEADER, C_FOOTER};
+  {"Preamble", "Header", "Footer"};
 
 #define PREAMBLE 	0
 #define HEADER 		1
