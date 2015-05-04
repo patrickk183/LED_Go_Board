@@ -30,7 +30,7 @@ class Menu : public ThreadedCanvasManipulator {
 public: 
 	Menu(Canvas *m)  : ThreadedCanvasManipulator(m) {}
   	void Run() {
-	std::string filename = "../assets/players_1.txt";
+	std::string filename = "../assets/reversi.txt";
         std::fstream fs(filename.c_str(), std::ios_base::in);
         const int board_size = 32;
 	    int value = 0;
