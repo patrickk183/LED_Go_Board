@@ -16,13 +16,42 @@ public:
   ShowReversiBoard(Canvas *m)  : ThreadedCanvasManipulator(m) {}
   void Run() {
     
-   const int board_size = 11;
+   const int board_size = 32;
     for (int i = 0; i < board_size; ++i) {
-      canvas()->SetPixel(i, 0, 100, 100, 200);
-      canvas()->SetPixel(0, i, 100, 100, 200);
-      canvas()->SetPixel(board_size - 1, i, 100, 100, 200);
-      canvas()->SetPixel(i, board_size - 1, 100, 100, 200);
-    }
+   //   canvas()->SetPixel(i, 0, 100, 100, 200);
+   //   canvas()->SetPixel(0, i, 100, 100, 200);
+   //   canvas()->SetPixel(board_size - 1, i, 100, 100, 200);
+   //   canvas()->SetPixel(i, board_size - 1, 100, 100, 200);
+    canvas()->SetPixel(i, 1, 100, 100, 200);
+
+        canvas()->SetPixel(i, 2, 100, 100, 200);
+        canvas()->SetPixel(i, 5, 100, 100, 200);
+        canvas()->SetPixel(i, 8, 100, 100, 200);
+        canvas()->SetPixel(i, 11, 100, 100, 200);
+        canvas()->SetPixel(i, 14, 100, 100, 200);
+        canvas()->SetPixel(i, 17, 100, 100, 200);
+        canvas()->SetPixel(i, 20, 100, 100, 200);
+        canvas()->SetPixel(i, 23, 100, 100, 200);
+        canvas()->SetPixel(i, 26, 100, 100, 200);
+        canvas()->SetPixel(i, 29, 100, 100, 200);
+
+        canvas()->SetPixel(i, 30, 100, 100, 200);
+
+        canvas()->SetPixel(1, i, 100, 100, 200);
+
+        canvas()->SetPixel(2, i, 100, 100, 200);
+        canvas()->SetPixel(5, i, 100, 100, 200);
+        canvas()->SetPixel(8, i, 100, 100, 200);
+        canvas()->SetPixel(11, i, 100, 100, 200);
+        canvas()->SetPixel(14, i, 100, 100, 200);
+        canvas()->SetPixel(17, i, 100, 100, 200);
+        canvas()->SetPixel(20, i, 100, 100, 200);
+        canvas()->SetPixel(23, i, 100, 100, 200);
+        canvas()->SetPixel(26, i, 100, 100, 200);
+        canvas()->SetPixel(29, i, 100, 100, 200);
+
+        canvas()->SetPixel(30, i, 100, 100, 200); 
+ }
   }
 };
 
@@ -30,7 +59,7 @@ class Menu : public ThreadedCanvasManipulator {
 public: 
   Menu(Canvas *m)  : ThreadedCanvasManipulator(m) {}
     void Run() {
-  std::string filename = "../assets/reversi.txt";
+  std::string filename = "../../assets/reversi.txt";
         std::fstream fs(filename.c_str(), std::ios_base::in);
         const int board_size = 32;
       int value = 0;
@@ -83,8 +112,8 @@ public:
    // The ThreadedCanvasManipulator objects are filling
    // the matrix continuously.
    ThreadedCanvasManipulator *image_gen = NULL;
-   image_gen = new ShowReversiBoard(canvas);
-
+   //image_gen = new Menu(canvas);
+  image_gen = new ShowReversiBoard(canvas);
    if (image_gen == NULL)
      return -1;
 
