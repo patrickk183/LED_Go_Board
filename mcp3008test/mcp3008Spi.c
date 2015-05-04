@@ -94,10 +94,11 @@ int mcp3008Spi::spiWriteRead( unsigned char *data, int length){
     spi[i].cs_change = 0;
 }
  
- retVal = ioctl (this->spifd, SPI_IOC_MESSAGE(length), &spi) ;
+ retVal = ioctl (this->spifd, SPI_IOC_MESSAGE(length), spi) ;
  
  if(retVal < 0){
     perror("Problem transmitting spi data..ioctl");
+    printf("Errno: %d",errno);
     exit(1);
  }
  
