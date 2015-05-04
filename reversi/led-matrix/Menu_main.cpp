@@ -49,15 +49,30 @@ int main(int argc, char **argv) {
 	// The ThreadedCanvasManipulator objects are filling
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
-	image_gen = new Menu(canvas, mode, players, difficulty, size);
+	//image_gen = new Menu(canvas, mode, players, difficulty, size);
+    image_gen = new BoardTextfile(canvas, "reversi.txt", 32);
+	if (image_gen == NULL) return -1;
+    image_gen->Start();
+	char input = getchar();
 
+	canvas->Clear();
+	//delete image_gen;
+
+	image_gen = new BoardTextfile(canvas, "players_1.txt", 32);
 	if (image_gen == NULL)
 	return -1;
+	getchar();
+
+
+
+
+
 
 	// Image generating demo is created. Now start the thread.
 	image_gen->Start();
 	char input = getchar();
 	//change settings
+	/*
 	switch (pid = fork()) {
 		case -1: 
 			perror("fork");
@@ -129,6 +144,7 @@ int main(int argc, char **argv) {
 
 	image_gen = new ShowReversiBoard(canvas, size, 0, 0);
 	getchar();
+	*/
 
 	// Stop image generating thread.
 	delete image_gen;

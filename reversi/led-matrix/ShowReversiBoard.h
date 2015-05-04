@@ -9,6 +9,138 @@
 
 using namespace rgb_matrix;
 
+class BoardArray : public ThreadedCanvasManipulator { 
+public: 
+  BoardArray(Canvas *m, char[][] b, int s)  : ThreadedCanvasManipulator(m)
+  {
+    board = b;
+    size = s;
+  }
+  void Run() {
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; j++) {
+        switch (board[j][i]) {
+          case '@':
+            canvas()->SetPixel(j, i, 200, 0, 0);
+            break;
+          case 'O':
+            canvas()->SetPixel(j, i, 200, 200, 200);
+            break;
+          default:
+            canvas()->SetPixel(j, i, 0, 0, 0);
+            break;
+        }
+      }
+    }
+  }
+
+  private:
+    char[][] board;
+    int size;
+};
+
+class BoardTextfile : public ThreadedCanvasManipulator { 
+public: 
+  BoardTextfile(Canvas *m, std::string f, int s)  : ThreadedCanvasManipulator(m)
+  {
+    filename = "../../assets/" + f;
+    size = s;
+  }
+  void Run() {
+    std::fstream fs(filename.c_str(), std::ios_base::in);
+    int value = 0;
+    for (int i = 0; i < size; ++i) {
+      for (int j = 0; j < size; j++) {
+        fs >> value;
+        if (!fs.good()) break;
+        switch (value) {
+          case 1:
+            canvas()->SetPixel(j, i, 200, 0, 0);
+            break;
+          case 2:
+            canvas()->SetPixel(j, i, 200, 200, 200);
+            break;
+          default:
+            canvas()->SetPixel(j, i, 0, 0, 0);
+            break;
+        }
+      }
+    }
+    fs.close();
+  }
+
+private:
+  std::string filename;
+  int size;
+};
+/*
+class Menu : public ThreadedCanvasManipulator { 
+public: 
+  Menu(Canvas *m, int a_mode, int a_players, int a_difficulty, int a_size)  : ThreadedCanvasManipulator(m) {
+    players = a_players;
+    difficulty = a_difficulty;
+    mode = a_mode;
+    size = a_size;
+  }
+    void Run() {
+      std::string filename = "../../assets/";
+
+      switch (mode) {
+        case 1:
+          if (players == 1) {
+            filename += "players_1.txt";
+          }
+          else {
+            filename += "players_2.txt";
+          }
+          break;
+        case 2:
+          if (difficulty == 1) {
+            filename += "easy.txt";
+          }
+          else if (difficulty == 2) {
+            filename += "medium.txt";
+          }
+          else {
+            filename += "hard.txt";
+          }
+          break;
+        case 3:
+          if (size == 1) {
+            filename += "9x9.txt";
+          }
+          else {
+            filename += "19x19.txt";
+          }
+          break;
+        default:
+            filename += "hard.txt";
+          break;
+      }
+
+      std::fstream fs(filename.c_str(), std::ios_base::in);
+
+      const int size = 32;
+      int value = 0;
+      for (int i = 0; i < size; ++i) {
+        for (int j = 0; j < size; j++) {
+          fs >> value;
+          if (!fs.good()) break;
+          if (value == 1) canvas()->SetPixel(j, i, 200, 0, 0);
+          if (value == 2) canvas()->SetPixel(j, i, 200, 200, 200);
+        }
+      }
+      fs.close();
+    }
+
+private:
+  //players and difficulty signal what image to display within a set of images
+  int players, difficulty, size;
+  //mode indicates which set of images to check
+  int mode;
+};
+
+
 class ShowReversiBoard : public ThreadedCanvasManipulator {
 public:
   ShowReversiBoard(Canvas *m, int a_boardSize, int a_cursx, int a_cursy)  : ThreadedCanvasManipulator(m) {
@@ -50,6 +182,7 @@ public:
         }
       }
 	*/
+      /*
 	  }
 	  
 	  if (boardSize == 16) { //change pixels to 16
@@ -85,6 +218,7 @@ public:
       }
 	*/
 	}
+  /*
     else if (boardSize == 8) { //change pixels to 8
       //Draw borders
       for (int i = 0; i < 32; i++) {
@@ -150,68 +284,3 @@ public:
 	int cursx, cursy, boardSize;
 };
 
-class Menu : public ThreadedCanvasManipulator { 
-public: 
-	Menu(Canvas *m, int a_mode, int a_players, int a_difficulty, int a_size)  : ThreadedCanvasManipulator(m) {
-		players = a_players;
-		difficulty = a_difficulty;
-		mode = a_mode;
-		size = a_size;
-	}
-  	void Run() {
-  		std::string filename = "../../assets/";
-
-  		switch (mode) {
-  			case 1:
-  				if (players == 1) {
-  					filename += "players_1.txt";
-  				}
-  				else {
-  					filename += "players_2.txt";
-  				}
-  				break;
-  			case 2:
-  				if (difficulty == 1) {
-  					filename += "easy.txt";
-  				}
-  				else if (difficulty == 2) {
-  					filename += "medium.txt";
-  				}
-  				else {
-  					filename += "hard.txt";
-  				}
-  				break;
-  			case 3:
-  				if (size == 1) {
-  					filename += "9x9.txt";
-  				}
-  				else {
-  					filename += "19x19.txt";
-  				}
-  				break;
-  			default:
-  					filename += "hard.txt";
-  				break;
-  		}
-
-  		std::fstream fs(filename.c_str(), std::ios_base::in);
-
-	    const int size = 32;
-	    int value = 0;
-	    for (int i = 0; i < size; ++i) {
-	     	for (int j = 0; j < size; j++) {
-	     		fs >> value;
-	     		if (!fs.good()) break;
-	     		if (value == 1) canvas()->SetPixel(j, i, 200, 0, 0);
-	     		if (value == 2) canvas()->SetPixel(j, i, 200, 200, 200);
-	     	}
-	    }
-	    fs.close();
-  	}
-
-private:
-	//players and difficulty signal what image to display within a set of images
-	int players, difficulty, size;
-	//mode indicates which set of images to check
-	int mode;
-};
