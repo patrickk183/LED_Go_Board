@@ -12,7 +12,7 @@ Beginning C, Third Edition
 #include <stdlib.h>
 #include <vector>
 
-#define SIZE 32  /* Board size - must be even */
+#define SIZE 8  /* Board size - must be even */
 
 /* Function prototypes */
 void display(char board[][SIZE]);
