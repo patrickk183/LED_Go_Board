@@ -892,3 +892,4 @@ struct fullboard_pattern fuseki13[] = {
   {{{0x5c971c47,0x85c1d75f}},3,"F-H0-864",577,1},
   {{{0x5c971c47,0x85c1d75f}},-1,NULL,0,0},
 };
+

@@ -24983,3 +24983,4 @@ struct fullboard_pattern fuseki19[] = {
   {{{0xf504e0a3,0xc6ec1aa}},12,"F-H9-166",691,2},
   {{{0xf504e0a3,0xc6ec1aa}},-1,NULL,0,0},
 };
+

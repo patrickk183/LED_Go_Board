@@ -1,5 +1,4 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- * This is GNU Go, a Go program. Contact gnugo@gnu.org, or see       *
+/*This is GNU Go, a Go program. Contact gnugo@gnu.org, or see       *
  * http://www.gnu.org/software/gnugo/ for more information.          *
  *                                                                   *
  * Copyright 1999, 2000, 2001, 2002, 2003, 2004, 2005 and 2006       *
@@ -1384,3 +1383,4 @@ struct fullboard_pattern fuseki9[] = {
   {{{0x19239148,0xe69e9518}},8,"F-H2-443",571,2},
   {{{0x19239148,0xe69e9518}},-1,NULL,0,0},
 };
+

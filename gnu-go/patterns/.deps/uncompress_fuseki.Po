@@ -34,7 +34,8 @@ uncompress_fuseki.o: uncompress_fuseki.c /usr/include/stdio.h \
  /usr/include/linux/limits.h \
  /usr/include/arm-linux-gnueabihf/bits/posix2_lim.h ../engine/liberty.h \
  ../engine/board.h ../engine/gnugo.h ../engine/clock.h ../engine/hash.h \
- ../utils/gg_utils.h /usr/include/arm-linux-gnueabihf/sys/time.h
+ ../utils/gg_utils.h /usr/include/arm-linux-gnueabihf/sys/time.h \
+ patterns.h
 
 /usr/include/stdio.h:
 
@@ -147,3 +148,5 @@ uncompress_fuseki.o: uncompress_fuseki.c /usr/include/stdio.h \
 ../utils/gg_utils.h:
 
 /usr/include/arm-linux-gnueabihf/sys/time.h:
+
+patterns.h:
