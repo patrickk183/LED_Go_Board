@@ -215,7 +215,7 @@ write_color_char(int c, int x)
 /*
  * A wrapper around vsnprintf.
  */
-
+/*
 void
 gg_vsnprintf(char *dest, unsigned long len, const char *fmt, va_list args)
 {
@@ -241,7 +241,7 @@ gg_snprintf(char *dest, unsigned long len, const char *fmt, ...)
   gg_vsnprintf(dest, len, fmt, args);
   va_end(args);
 }
-
+*/
 /* Get the time of day, calling gettimeofday from sys/time.h
  * if available, otherwise substituting a workaround for portability.
  */

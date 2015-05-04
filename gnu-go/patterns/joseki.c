@@ -283,11 +283,12 @@ make_pattern(int movei, int movej, int color,
     fprintf(stderr, "Warning: Multiple square marks in pattern %s%d\n",
 	    prefix, pattern_number);
 
-  if (is_suicide(POS(movei, movej), color)) {
+ /* if (is_suicide(POS(movei, movej), color)) {
     fprintf(stderr, "Error: Illegal move in pattern %s%d\n",
 	    prefix, pattern_number);
     exit(EXIT_FAILURE);
-  }  
+  } 
+  */ 
 }
 
 
@@ -362,11 +363,11 @@ analyze_node(SGFNode *node, const char *prefix)
 
   /* Traverse child, if any. */
   if (node->child) {
-    if (SAFE_ON_BOARD(movei, movej))
-      tryko(POS(movei, movej), color, NULL);
+    //if (SAFE_ON_BOARD(movei, movej))
+      //tryko(POS(movei, movej), color, NULL);
     analyze_node(node->child, prefix);
-    if (SAFE_ON_BOARD(movei, movej))
-      popgo();
+    //if (SAFE_ON_BOARD(movei, movej))
+      //popgo();
   }
 
   /* Traverse sibling, if any. */
@@ -401,7 +402,7 @@ main(int argc, char *argv[])
 
   /* Call the engine to setup and clear the board. */
   board_size = MAX_BOARD;
-  clear_board();
+  //clear_board();
   
   /* Determine board size of the file. */
   if (!sgfGetIntProperty(sgf, "SZ", &boardsize)) {

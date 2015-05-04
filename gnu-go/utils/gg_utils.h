@@ -56,9 +56,36 @@ void gg_init_color(void);
 void write_color_char(int c, int x);
 void write_color_string(int c, const char *str);
 
-void gg_vsnprintf(char *dest, unsigned long len, const char *fmt,
-		  va_list args);
-void gg_snprintf(char *dest, unsigned long len, const char *fmt, ...);
+
+/*
+ * A wrapper around vsnprintf.
+ */
+
+static void
+gg_vsnprintf(char *dest, unsigned long len, const char *fmt, va_list args)
+{
+    
+#ifdef HAVE_VSNPRINTF
+  vsnprintf(dest, len, fmt, args);
+#elif HAVE_G_VSNPRINTF
+  g_vsnprintf(dest, len, fmt, args);
+#elif HAVE__VSNPRINTF
+  _vsnprintf(dest, len, fmt, args);
+#else
+  UNUSED(len);
+  vsprintf(dest, fmt, args);
+#endif
+
+}
+
+static void
+gg_snprintf(char *dest, unsigned long len, const char *fmt, ...)
+{
+  va_list args;
+  va_start(args, fmt);
+  gg_vsnprintf(dest, len, fmt, args);
+  va_end(args);
+}
 
 double gg_gettimeofday(void);
 double gg_cputime(void);
