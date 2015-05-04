@@ -139,7 +139,7 @@ private:
   //mode indicates which set of images to check
   int mode;
 };
-
+*/
 
 class ShowReversiBoard : public ThreadedCanvasManipulator {
 public:
