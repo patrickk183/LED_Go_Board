@@ -94,7 +94,7 @@ write_pattern_c_code(char *name, Intersection board1d[BOARDSIZE],
   Hash_data pattern_hash;
 
   /* Compute hash. */
-  hashdata_recalc(&pattern_hash, board1d, NO_MOVE);
+  //hashdata_recalc(&pattern_hash, board1d, NO_MOVE);
   printf("  {{{");
   for (k = 0; k < NUM_HASHVALUES; k++) {
     printf("0x%lx", pattern_hash.hashval[k]);
@@ -145,8 +145,8 @@ main(int argc, char *argv[])
   if (strncmp(argv[3], "c", 2) == 0) {
     mode = C_OUTPUT;
     output_strings = c_output_strings;
-    set_random_seed(HASH_RANDOM_SEED);
-    hash_init();
+    //set_random_seed(HASH_RANDOM_SEED);
+    //hash_init();
   }
   else if (strncmp(argv[3], "db", 3) == 0) {
     mode = DB_OUTPUT;
