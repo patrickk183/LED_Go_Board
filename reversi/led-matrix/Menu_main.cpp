@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 	if (image_gen == NULL) return -1;
   image_gen->Start();
   //while (isNotSelected(1) /*&& isNotSelected(2)*/) {usleep(1000); }
-  getChar();
+  getchar();
   usleep(100000);
   canvas->Clear();
   //delete image_gen;
