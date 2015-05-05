@@ -883,7 +883,7 @@ void display2(char board[SIZE2][SIZE2])
    Canvas *canvas = matrix;
    matrix->set_luminance_correct(true);
 
-   image_gen = new BoardArray(canvas, board);
+   image_gen = new BoardArray2(canvas, board);
         if (image_gen == NULL) {
                 printf("Image gen error.\n");
         }
