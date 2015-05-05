@@ -10,7 +10,6 @@
 #include "ControllerInput.h"
 
 #define SIZE 8
-#define SIZE2 16
 #define MATRIX_SIZE 32
 
 using namespace rgb_matrix;
@@ -45,38 +44,6 @@ public:
 
   private:
     char board[SIZE][SIZE];
-};
-
-class BoardArray2 : public ThreadedCanvasManipulator { 
-public: 
-  BoardArray2(Canvas *m, char b[SIZE2][SIZE2])  : ThreadedCanvasManipulator(m)
-  {
-    for (int i = 0; i < SIZE2; i++) {
-        for (int j = 0; j < SIZE; j++) {
-            board[i][j] = b[i][j];
-        }
-    } 
-  }
-  void Run() {
-    for (int i = 0; i < SIZE2; ++i) {
-      for (int j = 0; j < SIZE2; j++) {
-        switch (board[i][j]) {
-          case '@':
-            canvas()->SetPixel(j, i, 200, 0, 0);
-            break;
-          case 'O':
-            canvas()->SetPixel(j, i, 0, 0, 200);
-            break;
-          default:
-            canvas()->SetPixel(j, i, 100, 100, 100);
-            break;
-        }
-      }
-    }
-  }
-
-  private:
-    char board[SIZE2][SIZE2];
 };
 
 class BoardTextfile : public ThreadedCanvasManipulator { 
