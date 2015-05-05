@@ -4,7 +4,6 @@
 
 
 #include "ShowReversiBoard.h"
-#include "ControllerInput.h"
 #include "include/led-matrix.h"
 #include "include/threaded-canvas-manipulator.h"
 #include <stdlib.h>
@@ -56,14 +55,8 @@ int main(int argc, char **argv) {
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
 	//image_gen = new Menu(canvas, mode, players, difficulty, size);
-  Color c1, c2;
-  c1.R = 150;
-  c1.G = 50;
-  c1.B = 50;
-  c2.R = 50;
-  c2.G = 50;
-  c2.B = 150;
-  image_gen = new ColorChangeDisplay(canvas, c1, c2);
+ 
+  image_gen = new ChooseColorMenu(canvas, c1, c2);
   if (image_gen == NULL) return -1;
   image_gen->Start();
   getchar();
