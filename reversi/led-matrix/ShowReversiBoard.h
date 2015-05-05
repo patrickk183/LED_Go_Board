@@ -29,13 +29,22 @@ public:
       for (int j = 0; j < SIZE; j++) {
         switch (board[i][j]) {
           case '@':
-            canvas()->SetPixel(j, i, 200, 0, 0);
+            canvas()->SetPixel(2*j+ 8, 2*i+ 8, 200, 0, 0);
+            canvas()->SetPixel(2*j+ 8, 2*i+1+ 8, 200, 0, 0);
+            canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 200, 0, 0);
+            canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 200, 0, 0);
             break;
           case 'O':
-            canvas()->SetPixel(j, i, 0, 0, 200);
+            canvas()->SetPixel(2*j + 8, 2*i + 8, 0, 0, 200);
+            canvas()->SetPixel(2*j+ 8, 2*i+1+ 8, 0, 0, 200);
+            canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 0, 0, 200);
+            canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 0, 0, 200);
             break;
           default:
-            canvas()->SetPixel(j, i, 100, 100, 100);
+            canvas()->SetPixel(2*j+ 8, 2*i+ 8, 100, 100, 100);
+            canvas()->SetPixel(2*j+ 8, 2*i+1+ 8, 100, 100, 100);
+            canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 100, 100, 100);
+            canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 100, 100, 100);
             break;
         }
       }

@@ -22,7 +22,6 @@ int get_score(char board[][SIZE], char player);
 int reversi_main8(int player_count, int depth);
 
 int main(int argc, char **argv) {
-	controllerInit();
 
 	//Go interface section of startup
 	int rows = 32;
@@ -41,6 +40,8 @@ int main(int argc, char **argv) {
 	GPIO io;
 	if (!io.Init())
 		return 1;
+
+  controllerInit();
 
 	// The matrix, our 'frame buffer' and display updater.
 	RGBMatrix *matrix = new RGBMatrix(&io, rows, chain, parallel);
@@ -68,7 +69,8 @@ int main(int argc, char **argv) {
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
-  while (isNotSelected(1) /*&& isNotSelected(2)*/) {usleep(1000); }
+  //while (isNotSelected(1) /*&& isNotSelected(2)*/) {usleep(1000); }
+  getChar();
   usleep(100000);
   canvas->Clear();
   //delete image_gen;
