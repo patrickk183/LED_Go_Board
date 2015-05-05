@@ -105,7 +105,7 @@ public:
       while(percentage != 1000) {
         for (int i = 0; i < MATRIX_SIZE; ++i) {
             for (int j = 0; j < MATRIX_SIZE; j++) {
-              if ((i < 12 || i > 20) && (j < 12 || j > 20)) {
+              if ((i < 12 || i > 20) || (j < 12 || j > 20)) {
                 fs >> value;
                 if (!fs.good()) break;
                 switch (value) {
@@ -122,7 +122,7 @@ public:
             }
             else {
               display = interpolate(former, latter, percentage);
-              canvas()->SetPixel(j, i, display.R, display.G, display.B);
+              canvas()->SetPixel(i, j, display.R, display.G, display.B);
             }
             }
         }
