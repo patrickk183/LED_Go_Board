@@ -60,24 +60,6 @@ int main(int argc, char **argv) {
     canvas->Clear();
     //delete image_gen;
 
-<<<<<<< HEAD
-	if ((pid = fork())< 0) { 
-	    perror("fork");
-	}
-	else if (pid == 0) {
-		while (mode == 1) {
-				ThreadedCanvasManipulator *image_gen1 = NULL;
-                if(players%2 == 1) {             
-                    image_gen1 = new BoardTextfile(canvas, "players_1.txt");
-                    if (image_gen1 == NULL) return -1;
-                    image_gen1->Start();
-                }
-                else if (players%2 == 0) {
-                    image_gen1 = new BoardTextfile(canvas, "players_2.txt");
-                    if (image_gen1 == NULL) return -1;
-                    image_gen1->Start();
-                }
-=======
 	if ((pid = fork()) < 0) {
 		perror("fork");
 	}
@@ -94,7 +76,6 @@ int main(int argc, char **argv) {
                 if (image_gen1 == NULL) return -1;
                 image_gen1->Start();
             }
->>>>>>> 62bad4feb6b423c397c3a10eee821070b4ff8941
 
 			input = getchar();
 			canvas->Clear();
@@ -201,17 +182,15 @@ int main(int argc, char **argv) {
 						exit(EXIT_FAILURE);
 					}
 				}
-<<<<<<< HEAD
-		} else {
-=======
+				else {
 				//delete image_gen3;
-			}		
-			if (mode > 3 || mode < 1) {
-				std::cout << "menu failed in Menu_main.c" << std::endl;
+				}		
+				if (mode > 3 || mode < 1) {
+					std::cout << "menu failed in Menu_main.c" << std::endl;
+				}
 			}
 		}
 		else {
->>>>>>> 62bad4feb6b423c397c3a10eee821070b4ff8941
 			puts("End of fork\n");
 		}
 
