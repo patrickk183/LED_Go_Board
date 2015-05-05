@@ -49,7 +49,7 @@ public:
   void Run() {
     for (int i = 0; i < SIZE; ++i) {
       for (int j = 0; j < SIZE; j++) {
-        if (j == curs.x() && i == curs.y()) {
+        if (j == curs.getx() && i == curs.gety()) {
           canvas()->SetPixel(2*j+ 8, 2*i+ 8, 200, 50, 200);
           canvas()->SetPixel(2*j+ 8, 2*i+1+ 8, 200, 50, 200);
           canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 200, 50, 200);

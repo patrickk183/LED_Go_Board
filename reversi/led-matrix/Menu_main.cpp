@@ -251,7 +251,7 @@ int reversi_main8(int player_count, int depth)
              // scanf("%d%c", &x, &y);              /* Read input        */
              // y = tolower(y) - 'a';         /* Convert to column index */
              // x--;                           Convert to row index    
-            while (isNotSelected()) {
+            while (isNotSelected(1)) {
                 if (isUp(1)) {
                   if (curs.gety()-1 >= 0) {
                     curs.setY(curs.gety()-1);
@@ -332,26 +332,26 @@ int reversi_main8(int player_count, int depth)
              // y = tolower(y) - 'a';         /* Convert to column index */
              // x--;                          /* Convert to row index    */
              // if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
-            while (isNotSelected()) {
-                if (isUp(1)) {
+            while (isNotSelected(2)) {
+                if (isUp(2)) {
                   if (curs.gety()-1 >= 0) {
                     curs.setY(curs.gety()-1);
                     display(board);
                   }
                 }
-                if (isDown(1)) {
+                if (isDown(2)) {
                   if (curs.gety()+1 < SIZE) {
                     curs.setY(curs.gety()+1);
                     display(board);;
                   }
                 }
-                if (isLeft(1)) {
+                if (isLeft(2)) {
                   if (curs.getx()-1 >= 0) {
                     curs.setX(curs.getx()-1);
                     display(board);
                   }
                 }
-                if (isRight(1)) {
+                if (isRight(2)) {
                   if (curs.getx()+1 < SIZE) {
                     curs.setX(curs.getx()+1);
                     display(board);
