@@ -44,7 +44,7 @@ int main(int argc, char **argv)
       //printf("Do you have the loopback from MOSI to MISO connected?\n");
 
     int a2dVal = 0; 
-    int a2dChannel = 0;        
+    int a2dChannel = 2;        
         
     char data_buffer[3];   
     data_buffer[0] = 0b00000001;  //  first byte transmitted -> start bit
