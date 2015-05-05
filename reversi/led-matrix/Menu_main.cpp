@@ -190,7 +190,6 @@ int reversi_main8(int player_count, int depth)
   printf("Select a square for your move by typing a digit for the row\n "
     "and a letter for the column with no spaces between.\n");
   printf("\nGood luck!  Press Enter to start.\n");
-  fpurge();
   scanf("%c", &again);
 
    /* Prompt for how to play - as before */
