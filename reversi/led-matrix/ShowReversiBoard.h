@@ -21,10 +21,10 @@ public:
     x = 0;
     y = 0;
   }
-  int x() {
+  int getx() {
     return x;
   }
-  int y() {
+  int gety() {
     return y;
   }
   void setX(int a) {
