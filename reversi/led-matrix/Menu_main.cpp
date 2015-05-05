@@ -1033,7 +1033,7 @@ void computer_move2(char board[][SIZE2], int moves[][SIZE2], char player, int de
 		make_move2(temp_board, row, col, player); 
 		
 		if(depth > 0) 
-			computer_move(temp_board,moves, player, depth-1); //goes through again to make sure it is the best possible move.
+			computer_move2(temp_board,moves, player, depth-1); //goes through again to make sure it is the best possible move.
 			//higher the depth the longer it takes
 			
        /* find valid moves for the opponent after this move */
