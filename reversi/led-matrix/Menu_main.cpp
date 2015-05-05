@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
 	// Initialize GPIO pins. This might fail when we don't have permissions.
 	GPIO io;
 	if (!io.Init())
-	return 1;
+		return 1;
 
 	// The matrix, our 'frame buffer' and display updater.
 	RGBMatrix *matrix = new RGBMatrix(&io, rows, chain, parallel);
@@ -246,7 +246,25 @@ int reversi_main8(int player_count, int depth)
      /* Place the initial four counters in the center */
      board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
      board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
+	
+	GPIO io;
+	if (!io.Init()) {
+        printf("IO init error.\n");
+    }
 
+
+	ThreadedCanvasManipulator *image_gen = NULL;
+  
+	RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+	Canvas *canvas = matrix;
+	matrix->set_luminance_correct(true);
+
+	image_gen = new BoardArray(canvas, board);
+        if (image_gen == NULL) {
+                printf("Image gen error.\n");
+        }
+
+    image_gen->Start();
      /* The game play loop */
      do
      {
