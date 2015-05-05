@@ -14,7 +14,7 @@ using namespace rgb_matrix;
 
 class BoardArray : public ThreadedCanvasManipulator { 
 public: 
-  BoardArray(Canvas *m, char b[][SIZE])  : ThreadedCanvasManipulator(m)
+  BoardArray(Canvas *m, char b[SIZE][SIZE])  : ThreadedCanvasManipulator(m)
   {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
@@ -41,7 +41,7 @@ public:
   }
 
   private:
-    char board[][SIZE];
+    char board[SIZE][SIZE];
 };
 
 class BoardTextfile : public ThreadedCanvasManipulator { 

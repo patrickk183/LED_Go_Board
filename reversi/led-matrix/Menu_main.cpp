@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
+#include <exception>
 
 
 int main(int argc, char **argv) {
@@ -50,27 +50,44 @@ int main(int argc, char **argv) {
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
 	//image_gen = new Menu(canvas, mode, players, difficulty, size);
-    image_gen = new BoardTextfile(canvas, "reversi.txt");
+        
+        image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
-    image_gen->Start();
-	char input = getchar();
+        image_gen->Start();
+	getchar();
+        canvas->Clear();
+        delete image_gen;
 
-	canvas->Clear();
-	//delete image_gen;
+        char board [SIZE][SIZE] = { 0 };
+        /* Blank all the board squares */
+        for(int row = 0; row < SIZE; row++)
+           for(int col = 0; col < SIZE; col++)
+              board[row][col] = ' ';
+
+        /* Place the initial four counters in the center */
+        board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
+        board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
+
+        image_gen = new BoardArray(canvas, board);
+        if (image_gen == NULL){
+           printf("image_gen is Null");
+           return -1;
+        }
+        image_gen->Start();
+        getchar();
+        canvas->Clear();
+        delete image_gen;
 
 	image_gen = new BoardTextfile(canvas, "players_1.txt");
-	if (image_gen == NULL)
-	return -1;
+	if (image_gen == NULL) return -1;
+	image_gen->Start();
 	getchar();
-
-
-
-
-
+        canvas->Clear();
+        delete image_gen;
 
 	// Image generating demo is created. Now start the thread.
-	image_gen->Start();
-	input = getchar();
+	//image_gen->Start();
+	//input = getchar();
 	//change settings
 	/*
 	switch (pid = fork()) {
@@ -147,7 +164,7 @@ int main(int argc, char **argv) {
 	*/
 
 	// Stop image generating thread.
-	delete image_gen;
-	delete canvas;
-	return 0;
+	//delete image_gen;
+        delete canvas;
+	return 0; 
 }
