@@ -59,7 +59,6 @@ int main(int argc, char **argv) {
 	// The ThreadedCanvasManipulator objects are filling
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
-	//image_gen = new Menu(canvas, mode, players, difficulty, size);
  
 //  image_gen = new ChooseColorMenu(canvas, "color_1.txt");
 //  if (image_gen == NULL) return -1;
@@ -75,7 +74,7 @@ int main(int argc, char **argv) {
   getchar();
   usleep(100000);
   canvas->Clear();
-  delete image_gen;
+  //delete image_gen;
 	
 	while (mode == 1) {
      ThreadedCanvasManipulator *image_gen1 = NULL;
@@ -112,7 +111,8 @@ int main(int argc, char **argv) {
 			}
       usleep(1000);
       canvas->Clear();
-			delete image_gen1;
+			//delete image_gen1;
+      sleep(1000);
 		}
 				
 		while (mode == 2) {
@@ -161,8 +161,8 @@ int main(int argc, char **argv) {
 			reversi_main8(players, difficulty);
 			
 	canvas->Clear();
-	delete image_gen;
-    delete canvas;
+	//delete image_gen;
+    //delete canvas;
 	return 0; 
 }
 
@@ -458,9 +458,9 @@ void display(char board[SIZE][SIZE])
        printf(" %c |", board[row][col]);  /* Display counters in row */
      printf("\n");    
    }
-	delete image_gen;
+	//delete image_gen;
 	canvas->Clear();
-	delete canvas;
+	//delete canvas;
    printf("  +");                  /* Start the bottom line   */
    for(col = 0 ; col<SIZE ;col++)
      printf("---+");               /* Display the bottom line */
