@@ -95,8 +95,8 @@ public:
     Color c2 = {0, 200, 0};
     Color c3 = {0, 0, 200};
     Color display = {0, 0, 0};
-    Color former = {0, 0, 0};
-    Color latter = {0, 0, 0};
+    Color former = c1;
+    Color latter = c2;
 
     while (true) {
       if (former.R == c1.R && former.G == c1.G && former.B == c1.B) {former = c2; latter = c3;}
