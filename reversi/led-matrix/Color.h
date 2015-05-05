@@ -14,8 +14,8 @@ Color interpolate(Color c1, Color c2, int percentage) {
 
 
 	c3.R = c1.R + (c2.R - c1.R)*fraction;
-	c3.R = c1.R + (c2.R - c1.R)*fraction;
-	c3.R = c1.R + (c2.R - c1.R)*fraction;
+	c3.G = c1.G + (c2.G - c1.G)*fraction;
+	c3.B = c1.B + (c2.B - c1.B)*fraction;
 
 	return c3;
 }
