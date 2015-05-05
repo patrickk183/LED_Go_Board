@@ -406,7 +406,7 @@ int reversi_main8(int player_count, int depth)
      // scanf("%c", &again);         /* Get y or n             */
 
        image_gen = new BoardTextfile(canvas, "gameover.txt");
-       image_gen->start();
+       image_gen->Start();
        sleep(1);
        display(board);
    }while(tolower(again) == 'y'); /* Go again on y          */
