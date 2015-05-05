@@ -1,19 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-@sweaver2494 sweaver2494
- 
- Unwatch 4
-  Star 0
-  Fork 0
-patrickk183/LED_Go_Board
- branch: master  LED_Go_Board/bcm2835/examples/spi/spi.c
-@sweaver2494sweaver2494 3 hours ago wiringPi
-1 contributor
-RawBlameHistory     63 lines (53 sloc)  2.168 kb
 // spi.c
 //
 // Example program for bcm2835 library
@@ -68,13 +52,14 @@ int main(int argc, char **argv)
     data_buffer[2] = 0b00000000; // third byte transmitted....don't care
 
     printf("\nBefore Transfer: ");
-    for (int i = 0; i < 3; i++)
+    int i;
+    for (i = 0; i < 3; i++)
 		  printf("%02X ", data_buffer[i]);
       
     bcm2835_spi_transfern(data_buffer, sizeof(data_buffer));
     
     printf("\nAfter Transfer: ");
-    for (int i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++)
 		  printf("%02X ", data_buffer[i]);
       
     a2dVal = 0;
@@ -88,6 +73,3 @@ int main(int argc, char **argv)
     bcm2835_close();
     return 0;
 }
-
-Status API Training Shop Blog About
-© 2015 GitHub, Inc. Terms Privacy Security Contact
