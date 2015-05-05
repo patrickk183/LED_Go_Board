@@ -1,11 +1,4 @@
-/*
-Beginning C, Third Edition
- By Ivor Horton
- ISBN: 1-59059-253-0
- Published: Apr 2004
- Publisher: apress
 
-*/
 
 #include <stdio.h>
 #include <ctype.h>
@@ -102,8 +95,7 @@ int main(int argc, char **argv)
          if(valid_moves(board, moves, 'O'))
          {
            /* Read player moves until a valid move is entered */
-           for(;;)
-           cl
+           for(;;)  {
              fflush(stdin);              /* Flush the keyboard buffer */
              printf("Please enter your move (row column): "); 
              scanf("%d%c", &x, &y);              /* Read input        */
