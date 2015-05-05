@@ -405,7 +405,7 @@ int reversi_main8(int player_count, int depth)
      // printf("Do you want to play again (y/n): ");
      // scanf("%c", &again);         /* Get y or n             */
 
-       mage_gen = new BoardTextFile(board, "gameover.txt");
+       image_gen = new BoardTextFile(board, "gameover.txt");
        image_gen->start();
        sleep(1);
        display(board);
