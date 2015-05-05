@@ -81,7 +81,7 @@ private:
 
 class ChooseColorMenu : public ThreadedCanvasManipulator { 
 public: 
-  ChooseColorMenu(Canvas *m, string arg)  : ThreadedCanvasManipulator(m) {
+  ChooseColorMenu(Canvas *m, std::string arg)  : ThreadedCanvasManipulator(m) {
     filename = "../../assets/" + arg;
   }
 
@@ -143,7 +143,7 @@ public:
   }
 
 private:
-  string filename;
+  std::string filename;
 };
 
 class Menu : public ThreadedCanvasManipulator { 
