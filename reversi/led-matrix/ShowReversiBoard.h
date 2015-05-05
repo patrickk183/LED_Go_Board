@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fstream>
+#include "Color.h"
+#include <time.h>
 
 #define SIZE 8
 #define MATRIX_SIZE 32
@@ -75,6 +77,37 @@ public:
 
 private:
   std::string filename;
+};
+
+class ColorChangeDisplay : public ThreadedCanvasManipulator { 
+public: 
+  ColorChangeDisplay(Canvas *m, Color a_c1, Color a_c2)  : ThreadedCanvasManipulator(m)
+  {
+    c1 = a_c1;
+    c2 = a_c2;
+  }
+
+  void Run() {
+    int percentage = 0;
+    Color display;
+    display.R = 0;
+    display.G = 0;
+    display.B = 0;
+    while(percentage != 100) {
+      for (int i = 0; i < MATRIX_SIZE; ++i) {
+        for (int j = 0; j < MATRIX_SIZE; j++) {
+          display = interpolate(c1, c2, percentage);
+          canvas()->SetPixel(j, i, display.R, display.G, display.B);
+        }
+      }
+      percentage++;
+      sleep(.001);
+    }
+  }
+
+private:
+  Color c1;
+  Color c2;
 };
 
 class Menu : public ThreadedCanvasManipulator { 

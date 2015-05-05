@@ -55,13 +55,25 @@ int main(int argc, char **argv) {
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
 	//image_gen = new Menu(canvas, mode, players, difficulty, size);
+  Color c1, C2;
+  c1.R = 100;
+  c1.G = 0;
+  c1.B = 0;
+  c2.R = 0;
+  c2.G = 0;
+  c2.B = 100;
+  image_gen = new ColorChangeDisplay(canvas, c1, c2);
+  if (image_gen == NULL) return -1;
+  image_gen->Start();
+  getchar();
+  canvas->Clear();
         
-    image_gen = new BoardTextfile(canvas, "reversi.txt");
+  image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
-    image_gen->Start();
-    getchar();
-    canvas->Clear();
-    //delete image_gen;
+  image_gen->Start();
+  getchar();
+  canvas->Clear();
+  //delete image_gen;
 	
 	while (mode == 1) {
 	ThreadedCanvasManipulator *image_gen1 = NULL;
