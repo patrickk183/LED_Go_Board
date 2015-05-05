@@ -112,7 +112,7 @@ int main(int argc, char **argv) {
 					
 					mode = mode+2;
 				}
-        usleep(500000);
+        usleep(1000);
 
 			}
 			//delete image_gen1;
