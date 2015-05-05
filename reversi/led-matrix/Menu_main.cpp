@@ -71,14 +71,13 @@ int main(int argc, char **argv) {
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
-  //while (isNotSelected(1) /*&& isNotSelected(2)*/) {usleep(1000); }
-  getchar();
+  while (isNotSelected(1) /*&& isNotSelected(2)*/) {usleep(1000); }
   usleep(100000);
   canvas->Clear();
   //delete image_gen;
 	
 	while (mode == 1) {
-	ThreadedCanvasManipulator *image_gen1 = NULL;
+	         ThreadedCanvasManipulator *image_gen1 = NULL;
             if(players == 1) {             
                 image_gen1 = new BoardTextfile(canvas, "players_1.txt");
                 if (image_gen1 == NULL) return -1;
@@ -92,29 +91,28 @@ int main(int argc, char **argv) {
 
 			//input = getchar();
 
-			canvas->Clear();
+			//canvas->Clear();
 		
 			if (isDown(1) /*|| isDown(2)*/ || input == 'w') {
 				players = 2;
 				//printf("players: %d\n", players);
-                                usleep(1000);
+        usleep(1000);
 			} 
 			else if (isUp(1) /*|| isUp(2)*/ || input == 's') {
 				players = 1;
 				//printf("players: %d\n", players);
-                                usleep(1000);
+        usleep(1000);
 
 			}
 			else if (isSelected(1) /*|| isSelected(2)*/ || input == 'n') {
 				if (players == 1) { 
 					mode++;
-					
 				}
 				else if(players == 2) { 
 					
 					mode = mode+2;
 				}
-                                usleep(500000);
+        usleep(500000);
 
 			}
 			//delete image_gen1;
