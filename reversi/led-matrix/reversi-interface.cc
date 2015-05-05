@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <fstream>
 #include <climits>
+#include <unistd.h>
+
+extern FILE *stderr, *stdin, *stdout;
 
 using std::min;
 using std::max;

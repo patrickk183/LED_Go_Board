@@ -7,7 +7,7 @@
 #include <string.h>
 #include <fstream>
 
-#define SIZE 16
+#define SIZE 8
 #define MATRIX_SIZE 32
 
 using namespace rgb_matrix;
