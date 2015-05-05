@@ -101,11 +101,11 @@ int main(int argc, char **argv) {
 			}
 			else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
 				if (players == 1) { 
-					mode++;
+					mode = 2;
           usleep(1000);
 				}
 				else if(players == 2) { 
-					mode = mode+2;
+          mode = 3;
           usleep(1000);
 				}
 			}
@@ -137,28 +137,19 @@ int main(int argc, char **argv) {
 				
 				if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
 					difficulty++;
-					printf("difficulty: %d\n", difficulty);
+					//printf("difficulty: %d\n", difficulty);
 				}
 				else if (/*isUp(1) || isUp(2)*/ input == 's') {
 					difficulty--;
-					printf("difficulty: %d\n", difficulty);
+					//printf("difficulty: %d\n", difficulty);
 				}
 				else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
-					mode++;
-					if(difficulty%3 == 1) {
-						
-					} 
-					else if (difficulty%3 == 2) {
-						
-					}
-					else if (difficulty%3 == 3) {
-						
-					}
+					mode = 3;
 				}
-				delete image_gen;
+				//delete image_gen;
 			}
-				
-			reversi_main8(players, difficulty);
+			if(mode == 3)	
+			 reversi_main8(players, difficulty);
 			
 	canvas->Clear();
 	//delete image_gen;
