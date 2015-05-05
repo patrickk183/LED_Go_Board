@@ -130,7 +130,7 @@ public:
         sleep(.001);
         if (isSelected(1)) {
           isLeaving = true;
-          canvas->clear();
+          canvas()->clear();
           break;
         }
       }
