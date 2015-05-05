@@ -246,19 +246,50 @@ int reversi_main8(int player_count, int depth)
          {
            /* Read player moves until a valid move is entered */
            for(;;)  {
-             fflush(stdin);              /* Flush the keyboard buffer */
-             printf("Please enter your move (row column): "); 
-             scanf("%d%c", &x, &y);              /* Read input        */
-             y = tolower(y) - 'a';         /* Convert to column index */
-             x--;                          /* Convert to row index    */
-             if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
+             // fflush(stdin);              /* Flush the keyboard buffer */
+             // printf("Please enter your move (row column): "); 
+             // scanf("%d%c", &x, &y);              /* Read input        */
+             // y = tolower(y) - 'a';         /* Convert to column index */
+             // x--;                           Convert to row index    
+            while (isNotSelected()) {
+                if (isUp()) {
+                  if (curs.y()-1 >= 0) {
+                    curs.setY(curs.y()-1);
+                    display(board);
+                  }
+                }
+                if (isDown()) {
+                  if (curs.y()+1 < SIZE) {
+                    curs.setY(curs.y()+1);
+                    display(board);;
+                  }
+                }
+                if (isLeft()) {
+                  if (curs.x()-1 >= 0) {
+                    curs.setX(curs.x()-1);
+                    display(board);
+                  }
+                }
+                if (isRight()) {
+                  if (curs.x()+1 < SIZE) {
+                    curs.setX(curs.x()+1);
+                    display(board);
+                  }
+                }
+                usleep(10000);
+              }
+
+             if( curs.x() >= 0 && curs.y() >= 0 && curs.x() < SIZE && curs.y() < SIZE && moves[curs.x()][curs.y()])
              {
-               make_move(board, x, y, 'O');
+               make_move(board, curs.x(), curs.y(), 'O');
                no_of_moves++;              /* Increment move count */
                break;
              }
              else
-               printf("Not a valid move, try again.\n");
+               image_gen = new BoardTextFile(board, "illegal.txt");
+               image_gen->start();
+               sleep(1);
+               display(board);
            }
          }
          else                              /* No valid moves */
