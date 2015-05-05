@@ -1,23 +1,16 @@
-/*
-Beginning C, Third Edition
- By Ivor Horton
- ISBN: 1-59059-253-0
- Published: Apr 2004
- Publisher: apress
 
-*/
 
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <vector>
 
-#include "ShowReversiBoard.h"
+#include "ShowReversiBoard2.h"
 #include "include/led-matrix.h"
 #include "include/threaded-canvas-manipulator.h"
 
 /* Function prototypes */
-void display(char board[][SIZE]);
+void display(char board[][SIZE], Canvas *canvas, ThreadedCanvasManipulator *image_gen);
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -33,7 +26,7 @@ int main(int argc, char **argv)
 	depth = atol(argv[2]);
   }
   depth = depth+2;
-  char board [SIZE][SIZE] = { 0 };  /* The board           */
+  char board [SIZE][SIZE] = {0};  /* The board           */
   int moves[SIZE][SIZE] = { 0 };    /* Valid moves         */
   int row = 0;                      /* Board row index     */
   int col = 0;                      /* Board column index  */
@@ -47,14 +40,9 @@ int main(int argc, char **argv)
   char again = 0;                   /* Replay choice input */
   int player = 0;                   /* Player indicator    */
   
-  GPIO io;
-  if (!io.Init())
-	return 1;
-  
-  RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-  matrix->set_luminance_correct(true);
-
-  Canvas *canvas = matrix;
+   Canvas *canvas;
+   
+   ThreadedCanvasManipulator *image_gen = NULL;
 
 
    printf("\nREVERSI\n\n");
@@ -87,15 +75,15 @@ int main(int argc, char **argv)
      /* The game play loop */
      do
      {
-       display(board);             /* Display the board  */
+       
+	   display(board, canvas, image_gen);             /* Display the board  */
 	   
        if(player++ % 2)
        { /*   It is the player's turn                    */
          if(valid_moves(board, moves, 'O'))
          {
            /* Read player moves until a valid move is entered */
-           for(;;)
-           {
+           for(;;)  {
              fflush(stdin);              /* Flush the keyboard buffer */
              printf("Please enter your move (row column): "); 
              scanf("%d%c", &x, &y);              /* Read input        */
@@ -138,7 +126,7 @@ int main(int argc, char **argv)
              printf("\nNeither of us can go, so the game is over.\n");
          }
        } else if(player_count == 2) {
-		display(board);             /* Display the board  */
+		display(board, canvas, image_gen);             /* Display the board  */
        //if(player++ % 2) { /*   It is the player's turn                    */
          if(valid_moves(board, moves, '@'))
          {
@@ -170,13 +158,14 @@ int main(int argc, char **argv)
            else
              printf("\nNeither of us can go, so the game is over.\n");
       // }
-	   
+	   delete image_gen;
+	   canvas->Clear();
 	   }
      }while(no_of_moves < SIZE*SIZE && invalid_moves<2);
 
      /* Game is over */
-     display(board);  /* Show final board */
-
+     display(board, canvas, image_gen);  /* Show final board */
+	 
      /* Get final scores and display them */
      comp_score = user_score = 0; 
      for(row = 0; row < SIZE; row++)
@@ -187,7 +176,11 @@ int main(int argc, char **argv)
        }
      printf("The final score is:\n");
      printf("Computer %d\n    User %d\n\n", comp_score, user_score);
-
+	 
+	 delete image_gen;
+	 canvas->Clear();
+	 delete canvas;
+	 
      fflush(stdin);               /* Flush the input buffer */
      printf("Do you want to play again (y/n): ");
      scanf("%c", &again);         /* Get y or n             */
@@ -203,12 +196,29 @@ int main(int argc, char **argv)
  * letters to identify squares.                *
  * Parameter is the board array.               *
  ***********************************************/
-void display(char board[][SIZE])
+void display(char board[][SIZE], Canvas *canvas, ThreadedCanvasManipulator *image_gen)
 {
    int row  = 0;          /* Row index      */
    int col = 0;           /* Column index   */
    char col_label = 'a';  /* Column label   */
-
+	
+   GPIO io;
+   if (!io.Init()) {
+	printf("IO init error.\n");
+  }
+   
+   
+   RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+   canvas = matrix; 
+   matrix->set_luminance_correct(true);
+	
+    image_gen = new BoardArray(canvas, board);
+	if (image_gen == NULL) {
+		printf("Image gen error.\n");
+	}
+	
+	image_gen->Start();
+		
    printf("\n ");         /* Start top line */
    for(col = 0 ; col<SIZE ;col++)
      printf("   %c", col_label+col); /* Display the top line */
@@ -339,7 +349,6 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
    char temp_board[SIZE][SIZE];          /* Local copy of board     */
    int temp_moves[SIZE][SIZE];           /* Local valid moves array */
    char opponent = (player == 'O')? '@' : 'O'; /* Identify opponent */
-	int x, y;
    /* Go through all valid moves */
    for(row = 0; row < SIZE; row++)
      for(col = 0; col < SIZE; col++)
@@ -416,7 +425,7 @@ int best_move(char board[][SIZE], int moves[][SIZE], char player)
    int i = 0;       /* Loop index   */
    int j = 0;       /* Loop index   */
 
-   char opponent1 = player=='O'?'@':'O'; /* Identify opponent */
+   char opponent1 = (player == 'O')? '@' : 'O';  /* Identify opponent */
 
    char new_board[SIZE][SIZE] = { 0 };  /* Local copy of board    */
    int score = 0;                       /* Best score             */
