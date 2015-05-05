@@ -1,5 +1,5 @@
 CXXFLAGS=-Wall -O3 -g
-OBJECTS= Menu_main.o reversi-interface.o Othello_16.o led-image-viewer.o
+OBJECTS= Menu_main.o reversi-interface.o led-image-viewer.o
 BINARIES= Menu_main 
 ALL_BINARIES=$(BINARIES) led-image-viewer
 
@@ -25,9 +25,6 @@ Menu_main : Menu_main.o $(RGB_LIBRARY)
 
 reversi-interface : reversi-interface.o $(RGB_LIBRARY)
 	$(CXX) $(CXXFLAGS) reversi-interface.o -o $@ $(LDFLAGS)
-	
-Othello_16 : Othello_16.o $(RGB_LIBRARY)
-	$(CXX) $(CXXFLAGS) Othello_16.o -o $@ $(LDFLAGS)
 
 led-image-viewer: led-image-viewer.o $(RGB_LIBRARY)
 	$(CXX) $(CXXFLAGS) led-image-viewer.o -o $@ $(LDFLAGS) $(MAGICK_LDFLAGS)
