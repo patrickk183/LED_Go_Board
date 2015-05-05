@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 	char input;
 	
 	pid_t pid;
-	char *child_args[5];
+	char *child_args[4];
 	child_args[1] = "1";
 	child_args[2] = "3";
 	if (getuid() != 0) {
@@ -64,8 +64,9 @@ int main(int argc, char **argv) {
 		perror("fork");
 	}
 	else if (pid == 0) {
-		while (mode == 1) {
-			ThreadedCanvasManipulator *image_gen1 = NULL;
+		
+	while (mode == 1) {
+	ThreadedCanvasManipulator *image_gen1 = NULL;
             if(players%2 == 1) {             
                 image_gen1 = new BoardTextfile(canvas, "players_1.txt");
                 if (image_gen1 == NULL) return -1;
@@ -170,14 +171,18 @@ int main(int argc, char **argv) {
 					printf("size: %d\n", size);
 				}
 				else if (input == 'n') {
-					if(size%2 == 1) {
+				printf("players: %c\n", child_args[1]);
+				printf("difficulty: %c\n", child_args[2]);	
+				if(size%2 == 1) {
 						child_args[0] = "./Othello_size8";
-						execv("./Othello_size8 ",  child_args);
+						child_args[3] = NULL;
+                                                execv("./Othello_size8 ",  child_args);
 						puts("Uh oh! If this prints, execv() must have failed");
 						exit(EXIT_FAILURE);
 					} else if (size%2 == 0) {
 						child_args[0] = "./Othello_size16";
-						execv("./Othello_size16 ",  child_args);
+						child_args[3] = NULL;
+                                                execv("./Othello_size16 ",  child_args);
 						puts("Uh oh! If this prints, execv() must have failed");
 						exit(EXIT_FAILURE);
 					}
