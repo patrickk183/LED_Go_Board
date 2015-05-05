@@ -30,7 +30,7 @@ int controllerInit() {
     }
 }
 
-int controllerCleanup() {
+void controllerCleanup() {
 	bcm2835_spi_end();
     bcm2835_close();
 }

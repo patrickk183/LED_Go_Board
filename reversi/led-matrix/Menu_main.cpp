@@ -286,7 +286,7 @@ int reversi_main8(int player_count, int depth)
                break;
              }
              else
-               image_gen = new BoardTextfile(board, "illegal.txt");
+               image_gen = new BoardTextfile(canvas, "illegal.txt");
                image_gen->start();
                sleep(1);
                display(board);
@@ -367,7 +367,7 @@ int reversi_main8(int player_count, int depth)
                break;
              }
              else
-               image_gen = new BoardTextfile(board, "illegal.txt");
+               image_gen = new BoardTextfile(canvas, "illegal.txt");
                image_gen->start();
                sleep(1);
                display(board);
