@@ -101,7 +101,7 @@ public:
         }
       }
       percentage++;
-      sleep(.001);
+      sleep(.01);
     }
   }
 
