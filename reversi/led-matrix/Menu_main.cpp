@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
 	//image_gen = new Menu(canvas, mode, players, difficulty, size);
-  Color c1, C2;
+  Color c1, c2;
   c1.R = 100;
   c1.G = 0;
   c1.B = 0;
