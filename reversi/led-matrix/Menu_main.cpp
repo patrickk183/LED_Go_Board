@@ -90,12 +90,12 @@ int main(int argc, char **argv) {
 			if (isDown(1) /*|| isDown(2)*/ || input == 'w') {
 				players = 2;
 				//printf("players: %d\n", players);
-                                usleep(1000);
+                                usleep(10000);
 			} 
 			else if (isUp(1) /*|| isUp(2)*/ || input == 's') {
 				players = 1;
 				//printf("players: %d\n", players);
-                                usleep(1000);
+                                usleep(10000);
 
 			}
 			else if (isSelected(1) /*|| isSelected(2)*/ || input == 'n') {
