@@ -71,7 +71,8 @@ int main(int argc, char **argv) {
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
-  while (isNotSelected(1) /*&& isNotSelected(2)*/) {usleep(1000); }
+  //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
+  getchar();
   usleep(100000);
   canvas->Clear();
   //delete image_gen;
@@ -89,17 +90,17 @@ int main(int argc, char **argv) {
           image_gen1->Start();
       }
 
-			//input = getchar();
+			input = getchar();
 
-			if (isDown(1) || isDown(2) || input == 'w') {
+			if (/*isDown(1) || isDown(2) || */input == 'w') {
 				players = 2;
 				//printf("players: %d\n", players);
 			} 
-			else if (isUp(1) || isUp(2) || input == 's') {
+			else if (/*isUp(1) || isUp(2) ||*/ input == 's') {
 				players = 1;
 				//printf("players: %d\n", players);
 			}
-			else if (isSelected(1) || isSelected(2) || input == 'n') {
+			else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
 				if (players == 1) { 
 					mode++;
           usleep(1000);
@@ -115,11 +116,11 @@ int main(int argc, char **argv) {
 		}
 				
 		while (mode == 2) {
-            ThreadedCanvasManipulator *image_gen2 = NULL;
-			if(difficulty%3 == 1) {
-                image_gen2 = new BoardTextfile(canvas, "easy.txt");
-                if (image_gen2 == NULL) return -1;
-                image_gen2->Start();
+      ThreadedCanvasManipulator *image_gen2 = NULL;
+      if(difficulty%3 == 1) {
+      image_gen2 = new BoardTextfile(canvas, "easy.txt");
+      if (image_gen2 == NULL) return -1;
+      image_gen2->Start();
 			}
             else if (difficulty%3 == 2) {
                 image_gen2 = new BoardTextfile(canvas, "medium.txt");
@@ -131,18 +132,18 @@ int main(int argc, char **argv) {
                 if (image_gen2 == NULL) return -1;
                 image_gen2->Start();
 			}
-     		    input = getchar();
+     		  input = getchar();
 			    canvas->Clear();
 				
-				if (isDown(1) /*|| isDown(2)*/ || input == 'w') {
+				if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
 					difficulty++;
 					printf("difficulty: %d\n", difficulty);
 				}
-				else if (isUp(1) /*|| isUp(2)*/) {
+				else if (/*isUp(1) || isUp(2)*/ input == 's') {
 					difficulty--;
 					printf("difficulty: %d\n", difficulty);
 				}
-				else if (isSelected(1) /*|| isSelected(2)*/ || input == 'n') {
+				else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
 					mode++;
 					if(difficulty%3 == 1) {
 						
