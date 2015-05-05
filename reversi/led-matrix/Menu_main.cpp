@@ -188,7 +188,7 @@ int main(int argc, char **argv) {
 				if(size%2 == 1) {
 					reversi_main8(players, difficulty);	
 					} else if (size%2 == 0) {
-						reversi_main8(players, difficulty);	 
+						reversi_main16(players, difficulty);	 
 					}
 				}
 				else {
