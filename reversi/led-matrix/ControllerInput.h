@@ -25,6 +25,9 @@ int controllerInit() {
 	if (!bcm2835_init()) {
         return 1;
     }
+    else {
+	return 0;
+    }
 }
 
 int controllerCleanup() {

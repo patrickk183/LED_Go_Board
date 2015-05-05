@@ -22,6 +22,8 @@ int get_score(char board[][SIZE], char player);
 int reversi_main8(int player_count, int depth);
 
 int main(int argc, char **argv) {
+	controllerInit();
+
 	//Go interface section of startup
 	int rows = 32;
 	int chain = 1;
@@ -56,17 +58,17 @@ int main(int argc, char **argv) {
 	ThreadedCanvasManipulator *image_gen = NULL;
 	//image_gen = new Menu(canvas, mode, players, difficulty, size);
  
-  image_gen = new ChooseColorMenu(canvas, "color_1.txt");
-  if (image_gen == NULL) return -1;
-  image_gen->Start();
-  while (!isSelected(1)) {
-    sleep(.01);
-  }
+//  image_gen = new ChooseColorMenu(canvas, "color_1.txt");
+//  if (image_gen == NULL) return -1;
+//  image_gen->Start();
+//  while (!isSelected(1)) {
+//    sleep(.01);
+//  }
   
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
-  while (isNotSelected(1) /*&& isNotSelected(2)*/) {}
+  while (isNotSelected(1) /*&& isNotSelected(2)*/) {usleep(1000); }
   usleep(100000);
   canvas->Clear();
   //delete image_gen;
@@ -111,7 +113,6 @@ int main(int argc, char **argv) {
                                 usleep(500000);
 
 			}
-                        printf("players: %d\n", players);
 			//delete image_gen1;
 		}
 				
@@ -186,9 +187,6 @@ int main(int argc, char **argv) {
 				else if (isSelected(1) /*|| isSelected(2)*/ || input == 'n') {
 				if(size%2 == 1) {
 					reversi_main8(players, difficulty);	
-					} else if (size%2 == 0) {
-						reversi_main16(players, difficulty);	 
-					}
 				}
 				else {
 				//delete image_gen3;
@@ -197,7 +195,7 @@ int main(int argc, char **argv) {
 				if (mode > 3 || mode < 1) {
 					std::cout << "menu failed in Menu_main.c" << std::endl;
 				}
-			
+			}			
 	canvas->Clear();
 	delete image_gen;
     delete canvas;
