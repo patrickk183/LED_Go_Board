@@ -1,7 +1,7 @@
-Struct Color 
+struct Color 
 {
 	double R, G, B;
-}
+};
 
 //Percentage is percentage from c1 to c2
 Color interpolate(Color c1, Color c2, int percentage) {
@@ -13,7 +13,7 @@ Color interpolate(Color c1, Color c2, int percentage) {
 	c3.B = 0;
 
 
-	c3.R = c1.R + (c2.R - C1.R)*fraction;
+	c3.R = c1.R + (c2.R - c1.R)*fraction;
 	c3.R = c1.R + (c2.R - C1.R)*fraction;
 	c3.R = c1.R + (c2.R - C1.R)*fraction;
 
