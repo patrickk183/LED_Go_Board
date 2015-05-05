@@ -30,10 +30,10 @@ public:
             canvas()->SetPixel(j, i, 200, 0, 0);
             break;
           case 'O':
-            canvas()->SetPixel(j, i, 200, 200, 200);
+            canvas()->SetPixel(j, i, 0, 0, 200);
             break;
           default:
-            canvas()->SetPixel(j, i, 0, 0, 0);
+            canvas()->SetPixel(j, i, 100, 100, 100);
             break;
         }
       }

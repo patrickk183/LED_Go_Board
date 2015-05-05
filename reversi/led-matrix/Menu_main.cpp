@@ -60,11 +60,11 @@ int main(int argc, char **argv) {
         canvas->Clear();
         //delete image_gen;
 
-	/*switch (pid = fork()) {
+	switch (pid = fork()) {
 		case -1: 
 			perror("fork");
 			break;
-		case 0:*/
+		case 0:
 			while (mode == 1) {
 				ThreadedCanvasManipulator *image_gen1 = NULL;
                 if(players%2 == 1) {             
@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
 					players--;
 					printf("players: %d\n", players);
 				}
-				else if (input == '\n') {
+				else if (input == 'n') {
 					if (players%2 == 1) { 
 						mode++;
 						child_args[1] = "1";
@@ -130,7 +130,7 @@ int main(int argc, char **argv) {
 						difficulty--;
 						printf("difficulty: %d\n", difficulty);
 					}
-					else if (input == '\n') {
+					else if (input == 'n') {
 						mode++;
 						if(difficulty%3 == 1) {
 							child_args[2] = "1";
@@ -145,7 +145,7 @@ int main(int argc, char **argv) {
 					//delete image_gen2;
 				}
 					
-				if (mode == 3) {
+				while (mode == 3) {
 					ThreadedCanvasManipulator *image_gen3 = NULL;
 					if(size%2 == 1) {
 						image_gen3 = new BoardTextfile(canvas, "8x8.txt");
@@ -170,17 +170,17 @@ int main(int argc, char **argv) {
 						size--;
 						printf("size: %d\n", size);
 					}
-					else if (input == '\n') {
+					else if (input == 'n') {
 						if(size%2 == 1) {
-							/*child_args[0] = "./Othello_size8";
+							child_args[0] = "./Othello_size8";
 							execv("./Othello_size8 ",  child_args);
 							puts("Uh oh! If this prints, execv() must have failed");
-							exit(EXIT_FAILURE);*/
+							exit(EXIT_FAILURE);
 						} else if (size%2 == 0) {
-							/*child_args[0] = "./Othello_size16";
+							child_args[0] = "./Othello_size16";
 							execv("./Othello_size16 ",  child_args);
 							puts("Uh oh! If this prints, execv() must have failed");
-							exit(EXIT_FAILURE);*/
+							exit(EXIT_FAILURE);
 						}
 					}
 					//delete image_gen3;
@@ -188,13 +188,13 @@ int main(int argc, char **argv) {
 				if (mode > 3 || mode < 1) {
 					std::cout << "menu failed in Menu_main.c" << std::endl;
 				}
-		/*default:
+		default:
 			puts("End of fork\n");
 			break;
-	}*/
+	}
 
 	canvas->Clear();
 	delete image_gen;
-    delete canvas;
+        delete canvas;
 	return 0; 
 }

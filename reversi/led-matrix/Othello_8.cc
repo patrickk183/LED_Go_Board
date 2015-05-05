@@ -10,7 +10,7 @@
 #include "include/threaded-canvas-manipulator.h"
 
 /* Function prototypes */
-void display(char board[][SIZE], Canvas *canvas, ThreadedCanvasManipulator *image_gen);
+void display(char board[SIZE][SIZE]);
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -39,10 +39,26 @@ int main(int argc, char **argv)
   int x = 0;                        /* Row number          */
   char again = 0;                   /* Replay choice input */
   int player = 0;                   /* Player indicator    */
-  
-   Canvas *canvas;
+ 
    
+   GPIO io;
+   if (!io.Init()) {
+        printf("IO init error.\n");
+  }
+
+
    ThreadedCanvasManipulator *image_gen = NULL;
+  
+   RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+   Canvas *canvas = matrix;
+   matrix->set_luminance_correct(true);
+
+
+
+
+
+
+
 
 
    printf("\nREVERSI\n\n");
@@ -76,7 +92,14 @@ int main(int argc, char **argv)
      do
      {
        
-	   display(board, canvas, image_gen);             /* Display the board  */
+    image_gen = new BoardArray(canvas, board);
+        if (image_gen == NULL) {
+                printf("Image gen error.\n");
+        }
+
+        image_gen->Start();
+
+	   display(board);             /* Display the board  */
 	   
        if(player++ % 2)
        { /*   It is the player's turn                    */
@@ -126,7 +149,7 @@ int main(int argc, char **argv)
              printf("\nNeither of us can go, so the game is over.\n");
          }
        } else if(player_count == 2) {
-		display(board, canvas, image_gen);             /* Display the board  */
+		display(board);             /* Display the board  */
        //if(player++ % 2) { /*   It is the player's turn                    */
          if(valid_moves(board, moves, '@'))
          {
@@ -164,7 +187,7 @@ int main(int argc, char **argv)
      }while(no_of_moves < SIZE*SIZE && invalid_moves<2);
 
      /* Game is over */
-     display(board, canvas, image_gen);  /* Show final board */
+     display(board);  /* Show final board */
 	 
      /* Get final scores and display them */
      comp_score = user_score = 0; 
@@ -196,28 +219,11 @@ int main(int argc, char **argv)
  * letters to identify squares.                *
  * Parameter is the board array.               *
  ***********************************************/
-void display(char board[][SIZE], Canvas *canvas, ThreadedCanvasManipulator *image_gen)
+void display(char board[SIZE][SIZE])
 {
    int row  = 0;          /* Row index      */
    int col = 0;           /* Column index   */
    char col_label = 'a';  /* Column label   */
-	
-   GPIO io;
-   if (!io.Init()) {
-	printf("IO init error.\n");
-  }
-   
-   
-   RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-   canvas = matrix; 
-   matrix->set_luminance_correct(true);
-	
-    image_gen = new BoardArray(canvas, board);
-	if (image_gen == NULL) {
-		printf("Image gen error.\n");
-	}
-	
-	image_gen->Start();
 		
    printf("\n ");         /* Start top line */
    for(col = 0 ; col<SIZE ;col++)
