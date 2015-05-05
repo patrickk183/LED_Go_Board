@@ -72,18 +72,19 @@ int main(int argc, char **argv) {
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
-  while (isNotSelected(1) && isNotSelected(2)) {}
+  while (isNotSelected(1) /*&& isNotSelected(2)*/) {}
+  usleep(100000);
   canvas->Clear();
   //delete image_gen;
 	
 	while (mode == 1) {
 	ThreadedCanvasManipulator *image_gen1 = NULL;
-            if(players%2 == 1) {             
+            if(players == 1) {             
                 image_gen1 = new BoardTextfile(canvas, "players_1.txt");
                 if (image_gen1 == NULL) return -1;
                 image_gen1->Start();
             }
-            else if (players%2 == 0) {
+            else if (players == 2) {
                 image_gen1 = new BoardTextfile(canvas, "players_2.txt");
                 if (image_gen1 == NULL) return -1;
                 image_gen1->Start();
@@ -93,24 +94,30 @@ int main(int argc, char **argv) {
 
 			canvas->Clear();
 		
-			if (isUp(1) || isRight(1) || isUp(2) || isRight(2) || input == 'w') {
-				players++;
-				printf("players: %d\n", players);
+			if (isDown(1) /*|| isDown(2)*/ || input == 'w') {
+				players = 2;
+				//printf("players: %d\n", players);
+                                usleep(1000);
 			} 
-			else if (isDown(1) || isLeft(1) || isDown(2) || isLeft(2) || input == 's') {
-				players--;
-				printf("players: %d\n", players);
+			else if (isUp(1) /*|| isUp(2)*/ || input == 's') {
+				players = 1;
+				//printf("players: %d\n", players);
+                                usleep(1000);
+
 			}
-			else if (isSelected(1) || isSelected(2) || input == 'n') {
-				if (players%2 == 1) { 
+			else if (isSelected(1) /*|| isSelected(2)*/ || input == 'n') {
+				if (players == 1) { 
 					mode++;
 					
 				}
-				else if(players%2 == 0) { 
+				else if(players == 2) { 
 					
 					mode = mode+2;
 				}
+                                usleep(500000);
+
 			}
+                        printf("players: %d\n", players);
 			//delete image_gen1;
 		}
 				
@@ -431,7 +438,7 @@ void display(char board[SIZE][SIZE])
 }
 
 /***********************************************
-/* Calculates which squares are valid moves    *
+ * Calculates which squares are valid moves    *
  * for player. Valid moves are recorded in the *
  * moves array - 1 indicates a valid move,     *
  * 0 indicates an invalid move.                *
