@@ -77,45 +77,41 @@ int main(int argc, char **argv) {
   //delete image_gen;
 	
 	while (mode == 1) {
-	         ThreadedCanvasManipulator *image_gen1 = NULL;
-            if(players == 1) {             
-                image_gen1 = new BoardTextfile(canvas, "players_1.txt");
-                if (image_gen1 == NULL) return -1;
-                image_gen1->Start();
-            }
-            else if (players == 2) {
-                image_gen1 = new BoardTextfile(canvas, "players_2.txt");
-                if (image_gen1 == NULL) return -1;
-                image_gen1->Start();
-            }
+     ThreadedCanvasManipulator *image_gen1 = NULL;
+      if(players == 1) {             
+          image_gen1 = new BoardTextfile(canvas, "players_1.txt");
+          if (image_gen1 == NULL) return -1;
+          image_gen1->Start();
+      }
+      else if (players == 2) {
+          image_gen1 = new BoardTextfile(canvas, "players_2.txt");
+          if (image_gen1 == NULL) return -1;
+          image_gen1->Start();
+      }
 
 			//input = getchar();
 
-			//canvas->Clear();
-		
-			if (isDown(1) /*|| isDown(2)*/ || input == 'w') {
+			if (isDown(1) || isDown(2) || input == 'w') {
 				players = 2;
 				//printf("players: %d\n", players);
-        usleep(1000);
 			} 
-			else if (isUp(1) /*|| isUp(2)*/ || input == 's') {
+			else if (isUp(1) || isUp(2) || input == 's') {
 				players = 1;
 				//printf("players: %d\n", players);
-        usleep(1000);
-
 			}
-			else if (isSelected(1) /*|| isSelected(2)*/ || input == 'n') {
+			else if (isSelected(1) || isSelected(2) || input == 'n') {
 				if (players == 1) { 
 					mode++;
+          usleep(1000);
 				}
 				else if(players == 2) { 
-					
 					mode = mode+2;
+          usleep(1000);
 				}
-        usleep(1000);
-
 			}
+      usleep(1000);
 			//delete image_gen1;
+      canvas->Clear();
 		}
 				
 		while (mode == 2) {
