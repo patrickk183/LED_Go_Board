@@ -23,6 +23,8 @@ int reversi_main8(int player_count, int depth);
 int reversi_main16(int player_count, int depth);
 
 int main(int argc, char **argv) {
+  controllerInit();
+
 	//Go interface section of startup
 	int rows = 32;
 	int chain = 1;
@@ -201,7 +203,10 @@ int main(int argc, char **argv) {
 			
 	canvas->Clear();
 	delete image_gen;
-    delete canvas;
+  delete canvas;
+
+  controllerCleanup();
+
 	return 0; 
 }
 

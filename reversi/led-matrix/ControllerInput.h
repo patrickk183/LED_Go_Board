@@ -21,9 +21,18 @@ enum controller { Left, Right, Up, Down, Select, Nothing };
 //chan 6 = UNDEFINED
 //chan 7 - UNDEFINED
 
+int controllerInit() {
+	if (!bcm2835_init()) {
+        return 1;
+    }
+}
+
+int controllerCleanup() {
+	bcm2835_spi_end();
+    bcm2835_close();
+}
+
 int Read(int chan) {
-    if (!bcm2835_init())
-            return 1;
 
     bcm2835_spi_begin();
     bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      // The default
@@ -61,8 +70,6 @@ int Read(int chan) {
 
     //printf("\nThe Result is: %d\n", a2dVal);
 
-    bcm2835_spi_end();
-    bcm2835_close();
     return a2dVal;
 }
 
