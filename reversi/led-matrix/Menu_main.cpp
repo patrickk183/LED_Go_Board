@@ -75,7 +75,7 @@ int main(int argc, char **argv) {
   getchar();
   usleep(100000);
   canvas->Clear();
-  //delete image_gen;
+  delete image_gen;
 	
 	while (mode == 1) {
      ThreadedCanvasManipulator *image_gen1 = NULL;
@@ -111,26 +111,26 @@ int main(int argc, char **argv) {
 				}
 			}
       usleep(1000);
-			//delete image_gen1;
       canvas->Clear();
+			delete image_gen1;
 		}
 				
 		while (mode == 2) {
-      ThreadedCanvasManipulator *image_gen2 = NULL;
+      ThreadedCanvasManipulator *image_gen = NULL;
       if(difficulty%3 == 1) {
-      image_gen2 = new BoardTextfile(canvas, "easy.txt");
-      if (image_gen2 == NULL) return -1;
-      image_gen2->Start();
+      image_gen = new BoardTextfile(canvas, "easy.txt");
+      if (image_gen == NULL) return -1;
+      image_gen->Start();
 			}
             else if (difficulty%3 == 2) {
-                image_gen2 = new BoardTextfile(canvas, "medium.txt");
-                if (image_gen2 == NULL) return -1;
-                image_gen2->Start();
+                image_gen = new BoardTextfile(canvas, "medium.txt");
+                if (image_gen == NULL) return -1;
+                image_gen->Start();
 			}
             else if (difficulty%3 == 0) {
-                image_gen2 = new BoardTextfile(canvas, "hard.txt");
-                if (image_gen2 == NULL) return -1;
-                image_gen2->Start();
+                image_gen = new BoardTextfile(canvas, "hard.txt");
+                if (image_gen == NULL) return -1;
+                image_gen->Start();
 			}
      		  input = getchar();
 			    canvas->Clear();
@@ -155,7 +155,7 @@ int main(int argc, char **argv) {
 						
 					}
 				}
-				//delete image_gen2;
+				delete image_gen;
 			}
 				
 			reversi_main8(players, difficulty);
@@ -190,6 +190,7 @@ int reversi_main8(int player_count, int depth)
   printf("Select a square for your move by typing a digit for the row\n "
     "and a letter for the column with no spaces between.\n");
   printf("\nGood luck!  Press Enter to start.\n");
+  fpurge();
   scanf("%c", &again);
 
    /* Prompt for how to play - as before */
