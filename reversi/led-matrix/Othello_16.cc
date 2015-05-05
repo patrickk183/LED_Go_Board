@@ -17,7 +17,7 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
 int best_move(char board[][SIZE], int moves[][SIZE], char player);
 int get_score(char board[][SIZE], char player);
 
-int main(int argc, char **argv)
+int reversi_main16(int argc, char **argv)
 {
   int player_count = 1;
   int depth = 3;
