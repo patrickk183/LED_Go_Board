@@ -103,35 +103,36 @@ public:
       if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1;}
       if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2;}
       while(percentage != 1000) {
-        for (int i = 0; i < MATRIX_SIZE; ++i) {
+        for (int i = 0; i < MATRIX_SIZE; i++) {
             for (int j = 0; j < MATRIX_SIZE; j++) {
+              fs >> value;
               if ((i < 12 || i > 20) || (j < 12 || j > 20)) {
-                fs >> value;
                 if (!fs.good()) break;
                 switch (value) {
                   case 1:
-                    canvas()->SetPixel(j, i, 200, 0, 0);
+                    canvas()->SetPixel(i, j, 200, 0, 0);
                     break;
                   case 2:
-                    canvas()->SetPixel(j, i, 200, 200, 200);
+                    canvas()->SetPixel(i, j, 200, 200, 200);
                     break;
                   default:
-                    canvas()->SetPixel(j, i, 0, 0, 0);
+                    canvas()->SetPixel(i, j, 0, 0, 0);
                     break;
                 }
-            }
-            else {
-              display = interpolate(former, latter, percentage);
-              canvas()->SetPixel(i, j, display.R, display.G, display.B);
-            }
+              }
+              else {
+                display = interpolate(former, latter, percentage);
+                canvas()->SetPixel(i, j, display.R, display.G, display.B);
+              }
             }
         }
-      percentage++;
-      sleep(.001);
-      if (isSelected(1)) {
-        isLeaving = true;
-        break;
-      }
+        percentage++;
+        sleep(.001);
+        if (isSelected(1)) {
+          isLeaving = true;
+          canvas->clear();
+          break;
+        }
       }
       percentage = 0;
 

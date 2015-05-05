@@ -59,9 +59,10 @@ int main(int argc, char **argv) {
   image_gen = new ChooseColorMenu(canvas, "color_1.txt");
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  getchar();
-  canvas->Clear();
-        
+  while (!isSelected(1)) {
+    sleep(.01);
+  }
+  
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
