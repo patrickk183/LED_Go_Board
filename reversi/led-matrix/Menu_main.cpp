@@ -60,12 +60,11 @@ int main(int argc, char **argv) {
         canvas->Clear();
         //delete image_gen;
 
-	switch (pid = fork()) {
-		case -1: 
-			perror("fork");
-			break;
-		case 0:
-			while (mode == 1) {
+	if ((pid = fork())< 0) { 
+	    perror("fork");
+	}
+	else if (pid == 0) {
+		while (mode == 1) {
 				ThreadedCanvasManipulator *image_gen1 = NULL;
                 if(players%2 == 1) {             
                     image_gen1 = new BoardTextfile(canvas, "players_1.txt");
@@ -188,10 +187,9 @@ int main(int argc, char **argv) {
 				if (mode > 3 || mode < 1) {
 					std::cout << "menu failed in Menu_main.c" << std::endl;
 				}
-		default:
+		} else {
 			puts("End of fork\n");
-			break;
-	}
+		}
 
 	canvas->Clear();
 	delete image_gen;
