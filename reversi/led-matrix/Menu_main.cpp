@@ -398,12 +398,17 @@ int reversi_main8(int player_count, int depth)
          comp_score += board[row][col] == '@';
          user_score += board[row][col] == 'O';
        }
-     printf("The final score is:\n");
-     printf("Computer %d\n    User %d\n\n", comp_score, user_score);
+     // printf("The final score is:\n");
+     // printf("Computer %d\n    User %d\n\n", comp_score, user_score);
 	 
-     fflush(stdin);               /* Flush the input buffer */
-     printf("Do you want to play again (y/n): ");
-     scanf("%c", &again);         /* Get y or n             */
+     // fflush(stdin);                Flush the input buffer 
+     // printf("Do you want to play again (y/n): ");
+     // scanf("%c", &again);         /* Get y or n             */
+
+       mage_gen = new BoardTextFile(board, "gameover.txt");
+       image_gen->start();
+       sleep(1);
+       display(board);
    }while(tolower(again) == 'y'); /* Go again on y          */
 
    printf("\nGoodbye\n"); 
