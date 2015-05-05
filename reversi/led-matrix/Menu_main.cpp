@@ -252,25 +252,25 @@ int reversi_main8(int player_count, int depth)
              // y = tolower(y) - 'a';         /* Convert to column index */
              // x--;                           Convert to row index    
             while (isNotSelected()) {
-                if (isUp()) {
+                if (isUp(1)) {
                   if (curs.gety()-1 >= 0) {
                     curs.setY(curs.gety()-1);
                     display(board);
                   }
                 }
-                if (isDown()) {
+                if (isDown(1)) {
                   if (curs.gety()+1 < SIZE) {
                     curs.setY(curs.gety()+1);
                     display(board);;
                   }
                 }
-                if (isLeft()) {
+                if (isLeft(1)) {
                   if (curs.getx()-1 >= 0) {
                     curs.setX(curs.getx()-1);
                     display(board);
                   }
                 }
-                if (isRight()) {
+                if (isRight(1)) {
                   if (curs.getx()+1 < SIZE) {
                     curs.setX(curs.getx()+1);
                     display(board);
@@ -289,7 +289,7 @@ int reversi_main8(int player_count, int depth)
                image_gen = new BoardTextFile(board, "illegal.txt");
                image_gen->start();
                sleep(1);
-               display(board;
+               display(board);
            }
          }
          else                              /* No valid moves */
@@ -319,26 +319,58 @@ int reversi_main8(int player_count, int depth)
              printf("\nNeither of us can go, so the game is over.\n");
          }
        } else if(player_count == 2) {
-		display(board);             /* Display the board  */
-       //if(player++ % 2) { /*   It is the player's turn                    */
-         if(valid_moves(board, moves, '@'))
-         {
+		      display(board);             /* Display the board  */
+          //if(player++ % 2) { /*   It is the player's turn                    */
+          if(valid_moves(board, moves, '@'))
+          {
            /* Read player moves until a valid move is entered */
            for(;;)
            {
-             fflush(stdin);              /* Flush the keyboard buffer */
-             printf("Please enter your move (row column): "); 
-             scanf("%d%c", &x, &y);              /* Read input        */
-             y = tolower(y) - 'a';         /* Convert to column index */
-             x--;                          /* Convert to row index    */
-             if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
+             // fflush(stdin);              /* Flush the keyboard buffer */
+             // printf("Please enter your move (row column): "); 
+             // scanf("%d%c", &x, &y);              /* Read input        */
+             // y = tolower(y) - 'a';         /* Convert to column index */
+             // x--;                          /* Convert to row index    */
+             // if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
+            while (isNotSelected()) {
+                if (isUp(1)) {
+                  if (curs.gety()-1 >= 0) {
+                    curs.setY(curs.gety()-1);
+                    display(board);
+                  }
+                }
+                if (isDown(1)) {
+                  if (curs.gety()+1 < SIZE) {
+                    curs.setY(curs.gety()+1);
+                    display(board);;
+                  }
+                }
+                if (isLeft(1)) {
+                  if (curs.getx()-1 >= 0) {
+                    curs.setX(curs.getx()-1);
+                    display(board);
+                  }
+                }
+                if (isRight(1)) {
+                  if (curs.getx()+1 < SIZE) {
+                    curs.setX(curs.getx()+1);
+                    display(board);
+                  }
+                }
+                usleep(10000);
+              }
+
+             if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()])
              {
-               make_move(board, x, y, '@');
+               make_move(board, curs.getx(), curs.gety(), '@');
                no_of_moves++;              /* Increment move count */
                break;
              }
              else
-               printf("Not a valid move, try again.\n");
+               mage_gen = new BoardTextFile(board, "illegal.txt");
+               image_gen->start();
+               sleep(1);
+               display(board);
            }
          }
          else                              /* No valid moves */
