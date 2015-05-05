@@ -182,10 +182,12 @@ int main(int argc, char **argv) {
 						exit(EXIT_FAILURE);
 					}
 				}
+				else {
 				//delete image_gen3;
-			}		
-			if (mode > 3 || mode < 1) {
-				std::cout << "menu failed in Menu_main.c" << std::endl;
+				}		
+				if (mode > 3 || mode < 1) {
+					std::cout << "menu failed in Menu_main.c" << std::endl;
+				}
 			}
 		}
 		else {
