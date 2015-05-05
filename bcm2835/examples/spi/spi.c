@@ -42,6 +42,19 @@ int main(int argc, char **argv)
     printf("Sent to SPI: 0x%02X. Read back from SPI: 0x%02X.\n", send_data, read_data);
     if (send_data != read_data)
       printf("Do you have the loopback from MOSI to MISO connected?\n");
+
+    send_data = 0x25;
+    read_data = bcm2835_spi_transfer(send_data);
+    printf("Sent to SPI: 0x%02X. Read back from SPI: 0x%02X.\n", send_data, read_data);
+    if (send_data != read_data)
+      printf("Do you have the loopback from MOSI to MISO connected?\n");
+
+    send_data = 0x27;
+    read_data = bcm2835_spi_transfer(send_data);
+    printf("Sent to SPI: 0x%02X. Read back from SPI: 0x%02X.\n", send_data, read_data);
+    if (send_data != read_data)
+      printf("Do you have the loopback from MOSI to MISO connected?\n");
+
     bcm2835_spi_end();
     bcm2835_close();
     return 0;
