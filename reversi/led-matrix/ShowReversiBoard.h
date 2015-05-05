@@ -18,14 +18,14 @@ public:
   {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
-            board[j][i] = b[j][i];
+            board[i][j] = b[i][j];
         }
     } 
   }
   void Run() {
     for (int i = 0; i < SIZE; ++i) {
       for (int j = 0; j < SIZE; j++) {
-        switch (board[j][i]) {
+        switch (board[i][j]) {
           case '@':
             canvas()->SetPixel(j, i, 200, 0, 0);
             break;
