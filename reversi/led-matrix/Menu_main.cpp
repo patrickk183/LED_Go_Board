@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 	ThreadedCanvasManipulator *image_gen = NULL;
 	//image_gen = new Menu(canvas, mode, players, difficulty, size);
  
-  image_gen = new ChooseColorMenu(canvas, c1, c2);
+  image_gen = new ChooseColorMenu(canvas, "color_1.txt");
   if (image_gen == NULL) return -1;
   image_gen->Start();
   getchar();
