@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
 	//image_gen = new Menu(canvas, mode, players, difficulty, size);
-    image_gen = new BoardTextfile(canvas, "reversi.txt", 32);
+    image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
     image_gen->Start();
 	char input = getchar();
@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
 	canvas->Clear();
 	//delete image_gen;
 
-	image_gen = new BoardTextfile(canvas, "players_1.txt", 32);
+	image_gen = new BoardTextfile(canvas, "players_1.txt");
 	if (image_gen == NULL)
 	return -1;
 	getchar();
@@ -70,7 +70,7 @@ int main(int argc, char **argv) {
 
 	// Image generating demo is created. Now start the thread.
 	image_gen->Start();
-	char input = getchar();
+	input = getchar();
 	//change settings
 	/*
 	switch (pid = fork()) {

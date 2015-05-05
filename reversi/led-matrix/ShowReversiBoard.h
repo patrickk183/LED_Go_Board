@@ -7,18 +7,24 @@
 #include <string.h>
 #include <fstream>
 
+#define SIZE 16
+#define MATRIX_SIZE 32
+
 using namespace rgb_matrix;
 
 class BoardArray : public ThreadedCanvasManipulator { 
 public: 
-  BoardArray(Canvas *m, char[][] b, int s)  : ThreadedCanvasManipulator(m)
+  BoardArray(Canvas *m, char b[][SIZE])  : ThreadedCanvasManipulator(m)
   {
-    board = b;
-    size = s;
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            board[j][i] = b[j][i];
+        }
+    } 
   }
   void Run() {
-    for (int i = 0; i < size; ++i) {
-      for (int j = 0; j < size; j++) {
+    for (int i = 0; i < SIZE; ++i) {
+      for (int j = 0; j < SIZE; j++) {
         switch (board[j][i]) {
           case '@':
             canvas()->SetPixel(j, i, 200, 0, 0);
@@ -35,22 +41,20 @@ public:
   }
 
   private:
-    char[][] board;
-    int size;
+    char board[][SIZE];
 };
 
 class BoardTextfile : public ThreadedCanvasManipulator { 
 public: 
-  BoardTextfile(Canvas *m, std::string f, int s)  : ThreadedCanvasManipulator(m)
+  BoardTextfile(Canvas *m, std::string f)  : ThreadedCanvasManipulator(m)
   {
     filename = "../../assets/" + f;
-    size = s;
   }
   void Run() {
     std::fstream fs(filename.c_str(), std::ios_base::in);
     int value = 0;
-    for (int i = 0; i < size; ++i) {
-      for (int j = 0; j < size; j++) {
+    for (int i = 0; i < MATRIX_SIZE; ++i) {
+      for (int j = 0; j < MATRIX_SIZE; j++) {
         fs >> value;
         if (!fs.good()) break;
         switch (value) {
@@ -71,7 +75,6 @@ public:
 
 private:
   std::string filename;
-  int size;
 };
 
 class Menu : public ThreadedCanvasManipulator { 
@@ -139,7 +142,6 @@ private:
   //mode indicates which set of images to check
   int mode;
 };
-*/
 
 class ShowReversiBoard : public ThreadedCanvasManipulator {
 public:
@@ -168,6 +170,7 @@ public:
       } 
       
       //Draw board state
+      /*
       for (int i = 0; i < 19; i++) {
         for (int j = 0; j < 19; j++) {
           if (BOARD(i, j) == WHITE) {
@@ -180,7 +183,7 @@ public:
             canvas()->SetPixel(i+5, j+5, 150, 0, 0);
           }
         }
-      }
+      }*/
 
 	  }
 	  
@@ -202,7 +205,8 @@ public:
       } 
 
       //Draw board state
-      for (int i = 0; i < 19; i++) {
+     /* 
+     for (int i = 0; i < 19; i++) {
         for (int j = 0; j < 19; j++) {
           if (BOARD(i, j) == WHITE) {
             canvas()->SetPixel(i+5, j+5, 200, 200, 200);
@@ -215,7 +219,7 @@ public:
           }
         }
       }
-
+*/
 	}
 
     else if (boardSize == 8) { //change pixels to 8
