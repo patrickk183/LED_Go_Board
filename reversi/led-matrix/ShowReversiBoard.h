@@ -10,6 +10,7 @@
 #include "ControllerInput.h"
 
 #define SIZE 8
+#define SIZE2 16
 #define MATRIX_SIZE 32
 
 using namespace rgb_matrix;

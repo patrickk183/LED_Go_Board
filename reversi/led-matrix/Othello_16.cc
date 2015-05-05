@@ -39,11 +39,6 @@ int reversi_main16(int argc, char **argv)
   int x = 0;                        /* Row number          */
   char again = 0;                   /* Replay choice input */
   int player = 0;                   /* Player indicator    */
-  
-   Canvas *canvas;
-   
-   ThreadedCanvasManipulator *image_gen = NULL;
-
 
    printf("\nREVERSI\n\n");
   printf("You can go first on the first game, then we will take turns.\n");
@@ -189,7 +184,173 @@ int reversi_main16(int argc, char **argv)
    printf("\nGoodbye\n"); 
    return 0;
 }
+int reversi_main16(int argc, char **argv)
+{
+  int player_count = 1;
+  int depth = 3;
+  if(argc > 1) {
+	player_count = atol(argv[1]);
+	depth = atol(argv[2]);
+  }
+  depth = depth+2;
+  char board [SIZE][SIZE] = {0};  /* The board           */
+  int moves[SIZE][SIZE] = { 0 };    /* Valid moves         */
+  int row = 0;                      /* Board row index     */
+  int col = 0;                      /* Board column index  */
+  int no_of_games = 0;              /* Number of games     */
+  int no_of_moves = 0;              /* Count of moves      */
+  int invalid_moves = 0;            /* Invalid move count  */
+  int comp_score = 0;               /* Computer score      */
+  int user_score = 0;               /* Player score        */
+  char y = 0;                       /* Column letter       */
+  int x = 0;                        /* Row number          */
+  char again = 0;                   /* Replay choice input */
+  int player = 0;                   /* Player indicator    */
 
+   printf("\nREVERSI\n\n");
+  printf("You can go first on the first game, then we will take turns.\n");
+  printf("   You will be white - (O)\n   I will be black   - (@).\n");
+  printf("Select a square for your move by typing a digit for the row\n "
+    "and a letter for the column with no spaces between.\n");
+  printf("\nGood luck!  Press Enter to start.\n");
+  scanf("%c", &again);
+
+   /* Prompt for how to play - as before */
+
+   /* The main game loop */
+   do
+   {
+     /* On even games the player starts; */
+     /* on odd games the computer starts */
+     player = ++no_of_games % 2; 
+     no_of_moves = 4;                /* Starts with four counters */
+
+     /* Blank all the board squares */    
+     for(row = 0; row < SIZE; row++)
+       for(col = 0; col < SIZE; col++)
+         board[row][col] = ' ';
+
+     /* Place the initial four counters in the center */
+     board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
+     board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
+
+     /* The game play loop */
+     do
+     {
+       
+	   display(board, canvas, image_gen);             /* Display the board  */
+	   
+       if(player++ % 2)
+       { /*   It is the player's turn                    */
+         if(valid_moves(board, moves, 'O'))
+         {
+           /* Read player moves until a valid move is entered */
+           for(;;)  {
+             fflush(stdin);              /* Flush the keyboard buffer */
+             printf("Please enter your move (row column): "); 
+             scanf("%d%c", &x, &y);              /* Read input        */
+             y = tolower(y) - 'a';         /* Convert to column index */
+             x--;                          /* Convert to row index    */
+             if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
+             {
+               make_move(board, x, y, 'O');
+               no_of_moves++;              /* Increment move count */
+               break;
+             }
+             else
+               printf("Not a valid move, try again.\n");
+           }
+         }
+         else                              /* No valid moves */
+           if(++invalid_moves<2)
+           {
+             fflush(stdin);
+             printf("\nYou have to pass, press return");
+             scanf("%c", &again);
+           }
+           else
+             printf("\nNeither of us can go, so the game is over.\n");
+       }
+       else if(player_count == 1) {
+		 /* It is the computer's turn                    */
+         if(valid_moves(board, moves, '@')) /* Check for valid moves */
+         {
+           invalid_moves = 0;               /* Reset invalid count   */
+           printf("Othello is thinking!");
+		   computer_move(board, moves, '@', depth);
+           no_of_moves++;                   /* Increment move count  */
+         }
+         else
+         {
+           if(++invalid_moves<2)
+             printf("\nI have to pass, your go\n"); /* No valid move */
+           else
+             printf("\nNeither of us can go, so the game is over.\n");
+         }
+       } else if(player_count == 2) {
+		display(board, canvas, image_gen);             /* Display the board  */
+       //if(player++ % 2) { /*   It is the player's turn                    */
+         if(valid_moves(board, moves, '@'))
+         {
+           /* Read player moves until a valid move is entered */
+           for(;;)
+           {
+             fflush(stdin);              /* Flush the keyboard buffer */
+             printf("Please enter your move (row column): "); 
+             scanf("%d%c", &x, &y);              /* Read input        */
+             y = tolower(y) - 'a';         /* Convert to column index */
+             x--;                          /* Convert to row index    */
+             if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
+             {
+               make_move(board, x, y, '@');
+               no_of_moves++;              /* Increment move count */
+               break;
+             }
+             else
+               printf("Not a valid move, try again.\n");
+           }
+         }
+         else                              /* No valid moves */
+           if(++invalid_moves<2)
+           {
+             fflush(stdin);
+             printf("\nYou have to pass, press return");
+             scanf("%c", &again);
+           }
+           else
+             printf("\nNeither of us can go, so the game is over.\n");
+      // }
+	   delete image_gen;
+	   canvas->Clear();
+	   }
+     }while(no_of_moves < SIZE*SIZE && invalid_moves<2);
+
+     /* Game is over */
+     display(board, canvas, image_gen);  /* Show final board */
+	 
+     /* Get final scores and display them */
+     comp_score = user_score = 0; 
+     for(row = 0; row < SIZE; row++)
+       for(col = 0; col < SIZE; col++)
+       {
+         comp_score += board[row][col] == '@';
+         user_score += board[row][col] == 'O';
+       }
+     printf("The final score is:\n");
+     printf("Computer %d\n    User %d\n\n", comp_score, user_score);
+	 
+	 delete image_gen;
+	 canvas->Clear();
+	 delete canvas;
+	 
+     fflush(stdin);               /* Flush the input buffer */
+     printf("Do you want to play again (y/n): ");
+     scanf("%c", &again);         /* Get y or n             */
+   }while(tolower(again) == 'y'); /* Go again on y          */
+
+   printf("\nGoodbye\n"); 
+   return 0;
+}
 /***********************************************
  * Function to display the board in it's       *
  * current state with row numbers and column   *
@@ -268,15 +429,15 @@ int valid_moves(char board[][SIZE], int moves[][SIZE], char player)
    char opponent1 = (player == 'O')? '@' : 'O';    
 
    /* Initialize moves array to zero */
-   for(row = 0; row < SIZE; row++)
-     for(col = 0; col < SIZE; col++)
+   for(row = 0; row < SIZE2; row++)
+     for(col = 0; col < SIZE2; col++)
        moves[row][col] = 0;
 
    /* Find squares for valid moves.                           */
    /* A valid move must be on a blank square and must enclose */
    /* at least one opponent square between two player squares */
-   for(row = 0; row < SIZE; row++)
-     for(col = 0; col < SIZE; col++)
+   for(row = 0; row < SIZE2; row++)
+     for(col = 0; col < SIZE2; col++)
      {
        if(board[row][col] != ' ')   /* Is it a blank square?  */
          continue;                  /* No - so on to the next */
@@ -287,8 +448,8 @@ int valid_moves(char board[][SIZE], int moves[][SIZE], char player)
          for(coldelta = -1; coldelta <= 1; coldelta++)
          { 
            /* Don't check outside the array, or the current square */
-           if(row + rowdelta < 0 || row + rowdelta >= SIZE ||
-              col + coldelta < 0 || col + coldelta >= SIZE || 
+           if(row + rowdelta < 0 || row + rowdelta >= SIZE2 ||
+              col + coldelta < 0 || col + coldelta >= SIZE2 || 
                                        (rowdelta==0 && coldelta==0))
              continue;
 
@@ -307,7 +468,7 @@ int valid_moves(char board[][SIZE], int moves[][SIZE], char player)
                y += coldelta;                  /* in delta direction*/
 
                /* If we move outside the array, give up */
-               if(x < 0 || x >= SIZE || y < 0 || y >= SIZE)
+               if(x < 0 || x >= SIZE2 || y < 0 || y >= SIZE2)
                  break;
 
                /* If we find a blank square, give up */ 
