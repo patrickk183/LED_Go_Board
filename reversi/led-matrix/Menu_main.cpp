@@ -20,10 +20,12 @@ int main(int argc, char **argv) {
 	int chain = 1;
 	int parallel = 1;
 	bool do_luminance_correct = true;
+	char input;
 	
 	pid_t pid;
 	char *child_args[5];
-
+	child_args[1] = "1";
+	child_args[2] = "3";
 	if (getuid() != 0) {
 	//"Must run as root to be able to access /dev/mem
 	//Prepend 'sudo' to the command
@@ -55,52 +57,30 @@ int main(int argc, char **argv) {
 	if (image_gen == NULL) return -1;
         image_gen->Start();
 	getchar();
-        canvas->Clear();
-        delete image_gen;
-
-        char board [SIZE][SIZE] = { 0 };
-        /* Blank all the board squares */
-        for(int row = 0; row < SIZE; row++)
-           for(int col = 0; col < SIZE; col++)
-              board[row][col] = ' ';
-
-        /* Place the initial four counters in the center */
-        board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
-        board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
-
-        image_gen = new BoardArray(canvas, board);
-        if (image_gen == NULL){
-           printf("image_gen is Null");
-           return -1;
-        }
-        image_gen->Start();
-        getchar();
-        canvas->Clear();
-        delete image_gen;
+    canvas->Clear();
+    delete image_gen;
 
 	image_gen = new BoardTextfile(canvas, "players_1.txt");
 	if (image_gen == NULL) return -1;
 	image_gen->Start();
 	getchar();
-        canvas->Clear();
-        delete image_gen;
+    canvas->Clear();
+    delete image_gen;
 
-	// Image generating demo is created. Now start the thread.
-	//image_gen->Start();
-	//input = getchar();
-	//change settings
-	/*
 	switch (pid = fork()) {
 		case -1: 
 			perror("fork");
 			break;
-			
 		case 0:
 			switch (mode) {
 				case 1:
-					if (input == 'w' && players == 1) {
+				input = getchar();
+				canvas->Clear();
+				delete image_gen;
+				
+				if (input == 'w' && players == 1) {
 						players++;
-					}
+					} 
 					else if (input == 's' && players == 2) {
 						players--;
 					}
@@ -110,12 +90,28 @@ int main(int argc, char **argv) {
 							child_args[1] = "1";
 						}
 						else { 
-						child_args[0] = "2"; 
-						mode+2;
+							child_args[0] = "2"; 
+							mode+2;
 						}
 					}
+					
+					if(players == 1) {
+						image_gen = new BoardTextfile(canvas, "players_1.txt");
+						if (image_gen == NULL) return -1;
+						image_gen->Start();
+					} 
+					else if (players == 2) {
+						image_gen = new BoardTextfile(canvas, "players_2.txt");
+						if (image_gen == NULL) return -1;
+						image_gen->Start();
+					}
 					break;
+					
 				case 2:
+					input = getchar();
+				    canvas->Clear();
+				    delete image_gen;
+					
 					if (input == 'w' && difficulty < 3) {
 						difficulty++;
 					}
@@ -124,10 +120,42 @@ int main(int argc, char **argv) {
 					}
 					else if (input == '\n') {
 						mode++;
-						child_args[2] = "3";
+						if(difficulty == 1) {
+							child_args[2] = "1";
+						} 
+						else if (difficulty == 2) {
+							child_args[2] = "2";
+						}
+						else if (difficulty == 3) {
+							child_args[2] = "4";
+						}
+					}
+					
+					if(difficulty == 1) {
+						image_gen = new BoardTextfile(canvas, "easy.txt");
+						if (image_gen == NULL) return -1;
+						image_gen->Start();
+					
+					} 
+					else if (difficulty == 2) {
+						image_gen = new BoardTextfile(canvas, "medium.txt");
+						if (image_gen == NULL) return -1;
+						image_gen->Start();
+					
+					} 
+					else if (difficulty == 3) {
+						image_gen = new BoardTextfile(canvas, "hard.txt");
+						if (image_gen == NULL) return -1;
+						image_gen->Start();
+					
 					}
 					break;
+					
 				case 3:
+					input = getchar();
+				    canvas->Clear();
+				    delete image_gen;
+					
 					if (input == 'w' && size == 1) {
 						size++;
 					}
@@ -135,36 +163,41 @@ int main(int argc, char **argv) {
 						size--;
 					}
 					else if (input == '\n') {
-						child_args[0] = "./Othello_size8";
-						execv("./Othello_size8 ",  child_args);
-						puts("Uh oh! If this prints, execv() must have failed");
-						exit(EXIT_FAILURE);
-					break;
+						if(size == 1) {
+							child_args[0] = "./Othello_size8";
+							execv("./Othello_size8 ",  child_args);
+							puts("Uh oh! If this prints, execv() must have failed");
+							exit(EXIT_FAILURE);
+						} else {
+							child_args[0] = "./Othello_size8";
+							execv("./Othello_size8 ",  child_args);
+							puts("Uh oh! If this prints, execv() must have failed");
+							exit(EXIT_FAILURE);
+						}
 					}
+					if(size == 1) {
+						image_gen = new BoardTextfile(canvas, "8x8.txt");
+						if (image_gen == NULL) return -1;
+						image_gen->Start();
+					}
+					else {
+						image_gen = new BoardTextfile(canvas, "16x16.txt");
+						if (image_gen == NULL) return -1;
+						image_gen->Start();
+					}
+					break;
+					
 				default:
-					std::cout << "menu failed in main.c" << std::endl;
+					std::cout << "menu failed in Menu_main.c" << std::endl;
 					break;
 				}
 		default:
 			puts("End of fork\n");
 			break;
 	}
-		canvas->Clear();
-		delete image_gen;
-		image_gen = new Menu(canvas, mode, players, difficulty, size);
-		image_gen->Start();
 
-	
-  
 	canvas->Clear();
 	delete image_gen;
-
-	image_gen = new ShowReversiBoard(canvas, size, 0, 0);
-	getchar();
-	*/
-
-	// Stop image generating thread.
-	//delete image_gen;
-        delete canvas;
+    delete canvas;
 	return 0; 
 }
