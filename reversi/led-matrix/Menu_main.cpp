@@ -4,6 +4,7 @@
 
 
 #include "ShowReversiBoard.h"
+#include "ControllerInput.h"
 #include "include/led-matrix.h"
 #include "include/threaded-canvas-manipulator.h"
 #include <stdlib.h>
@@ -71,7 +72,7 @@ int main(int argc, char **argv) {
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
-  getchar();
+  while (isNotSelected(1) && isNotSelected(2)) {}
   canvas->Clear();
   //delete image_gen;
 	
@@ -88,18 +89,19 @@ int main(int argc, char **argv) {
                 image_gen1->Start();
             }
 
-			input = getchar();
+			//input = getchar();
+
 			canvas->Clear();
 		
-			if (input == 'w') {
+			if (isUp(1) || isRight(1) || isUp(2) || isRight(2) || input == 'w') {
 				players++;
 				printf("players: %d\n", players);
 			} 
-			else if (input == 's') {
+			else if (isDown(1) || isLeft(1) || isDown(2) || isLeft(2) || input == 's') {
 				players--;
 				printf("players: %d\n", players);
 			}
-			else if (input == 'n') {
+			else if (isSelected(1) || isSelected(2) || input == 'n') {
 				if (players%2 == 1) { 
 					mode++;
 					
