@@ -14,10 +14,32 @@
 
 using namespace rgb_matrix;
 
+class Cursor {
+  int x, y;
+public:
+  Cursor() {
+    x = 0;
+    y = 0;
+  }
+  int x() {
+    return x;
+  }
+  int y() {
+    return y;
+  }
+  void setX(int a) {
+    x = a;
+  }
+  void setY(int a) {
+    y = a;
+  }
+};
+
 class BoardArray : public ThreadedCanvasManipulator { 
 public: 
-  BoardArray(Canvas *m, char b[SIZE][SIZE])  : ThreadedCanvasManipulator(m)
+  BoardArray(Canvas *m, char b[SIZE][SIZE], Cursor a_curs)  : ThreadedCanvasManipulator(m)
   {
+    curs = a_curs;
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             board[i][j] = b[i][j];
@@ -27,6 +49,13 @@ public:
   void Run() {
     for (int i = 0; i < SIZE; ++i) {
       for (int j = 0; j < SIZE; j++) {
+        if (j == curs.x() && i == curs.y()) {
+          canvas()->SetPixel(2*j+ 8, 2*i+ 8, 200, 50, 200);
+          canvas()->SetPixel(2*j+ 8, 2*i+1+ 8, 200, 50, 200);
+          canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 200, 50, 200);
+          canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 200, 50, 200);
+        }
+        else {
         switch (board[i][j]) {
           case '@':
             canvas()->SetPixel(2*j+ 8, 2*i+ 8, 200, 0, 0);
@@ -47,12 +76,14 @@ public:
             canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 100, 100, 100);
             break;
         }
+       }
       }
     }
   }
 
   private:
     char board[SIZE][SIZE];
+    Cursor curs;
 };
 
 class BoardTextfile : public ThreadedCanvasManipulator { 

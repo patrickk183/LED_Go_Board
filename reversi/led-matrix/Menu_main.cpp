@@ -21,6 +21,8 @@ int best_move(char board[][SIZE], int moves[][SIZE], char player);
 int get_score(char board[][SIZE], char player);
 int reversi_main8(int player_count, int depth);
 
+Cursor curs;
+
 int main(int argc, char **argv) {
 
 	//Go interface section of startup
@@ -161,43 +163,8 @@ int main(int argc, char **argv) {
 				//delete image_gen2;
 			}
 				
-			while (mode == 3) {
-				ThreadedCanvasManipulator *image_gen3 = NULL;
-				if(size%2 == 1) {
-					image_gen3 = new BoardTextfile(canvas, "8x8.txt");
-					if (image_gen3 == NULL) return -1;
-					image_gen3->Start();
-				}
-				else if (size%2 == 0) {
-					image_gen3 = new BoardTextfile(canvas, "16x16.txt");
-					if (image_gen3 == NULL) return -1;
-					image_gen3->Start();
-				}
-				
-				input = getchar();
-			    canvas->Clear();
-			    //delete image_gen;
-				
-				if (isDown(1) /*|| isDown(2)*/ || input == 'w') {
-					size++;
-					printf("size: %d\n", size);
-				}
-				else if (isUp(1) /*|| isUp(2)*/) {
-					size--;
-					printf("size: %d\n", size);
-				}
-				else if (isSelected(1) /*|| isSelected(2)*/ || input == 'n') {
-				if(size%2 == 1) {
-					reversi_main8(players, difficulty);	
-				}
-				else {
-				//delete image_gen3;
-				  }
-				}
-				if (mode > 3 || mode < 1) {
-					std::cout << "menu failed in Menu_main.c" << std::endl;
-				}
-			}			
+			reversi_main8(players, difficulty);
+			
 	canvas->Clear();
 	delete image_gen;
     delete canvas;
@@ -261,7 +228,7 @@ int reversi_main8(int player_count, int depth)
 	Canvas *canvas = matrix;
 	matrix->set_luminance_correct(true);
 
-	image_gen = new BoardArray(canvas, board);
+	image_gen = new BoardArray(canvas, board, curs);
         if (image_gen == NULL) {
                 printf("Image gen error.\n");
         }
@@ -409,7 +376,7 @@ void display(char board[SIZE][SIZE])
    Canvas *canvas = matrix;
    matrix->set_luminance_correct(true);
 
-   image_gen = new BoardArray(canvas, board);
+   image_gen = new BoardArray(canvas, board, curs);
         if (image_gen == NULL) {
                 printf("Image gen error.\n");
         }
