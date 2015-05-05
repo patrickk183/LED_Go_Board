@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
         image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
         image_gen->Start();
-	getchar();
+	    getchar();
         canvas->Clear();
         //delete image_gen;
 
@@ -66,122 +66,124 @@ int main(int argc, char **argv) {
 			break;
 		case 0:*/
 			while (mode == 1) {
-                                if(players == 1) {
-                                        ThreadedCanvasManipulator *image_gen1 = NULL;
-                                        image_gen1 = new BoardTextfile(canvas, "players_1.txt");
-                                        if (image_gen == NULL) return -1;
-                                        image_gen->Start();
-                                }
-                                else if (players == 2) {
-                                        image_gen = new BoardTextfile(canvas, "players_2.txt");
-                                        if (image_gen == NULL) return -1;
-                                        image_gen->Start();
-                                }
+				ThreadedCanvasManipulator *image_gen1 = NULL;
+                if(players%2 == 1) {             
+                    image_gen1 = new BoardTextfile(canvas, "players_1.txt");
+                    if (image_gen1 == NULL) return -1;
+                    image_gen1->Start();
+                }
+                else if (players%2 == 0) {
+                    image_gen1 = new BoardTextfile(canvas, "players_2.txt");
+                    if (image_gen1 == NULL) return -1;
+                    image_gen1->Start();
+                }
 
 				input = getchar();
 				canvas->Clear();
-				//delete image_gen;
-				
-				if (input == 'w' && players == 1) {
-						players++;
+			
+				if (input == 'w') {
+					players++;
+					printf("players: %d\n", players);
 				} 
-				else if (input == 's' && players == 2) {
+				else if (input == 's') {
 					players--;
+					printf("players: %d\n", players);
 				}
 				else if (input == '\n') {
-					if (players == 1) { 
+					if (players%2 == 1) { 
 						mode++;
 						child_args[1] = "1";
 					}
-					else { 
+					else if(players%2 == 0) { 
 						child_args[0] = "2"; 
 						mode = mode+2;
 					}
 				}
-				
+				//delete image_gen1;
 			}
 					
 			while (mode == 2) {
-                                        if(difficulty == 1) {
-                                                image_gen = new BoardTextfile(canvas, "easy.txt");
-                                                if (image_gen == NULL) return -1;
-                                                image_gen->Start();
-
-                                        }
-                                        else if (difficulty == 2) {
-                                                image_gen = new BoardTextfile(canvas, "medium.txt");
-                                                if (image_gen == NULL) return -1;
-                                                image_gen->Start();
-
-                                        }
-                                        else if (difficulty == 3) {
-                                                image_gen = new BoardTextfile(canvas, "hard.txt");
-                                                if (image_gen == NULL) return -1;
-                                                image_gen->Start();
-
-                                        }
-		
-
-	       			input = getchar();
+                ThreadedCanvasManipulator *image_gen2 = NULL;
+				if(difficulty%3 == 1) {
+                    image_gen2 = new BoardTextfile(canvas, "easy.txt");
+                    if (image_gen2 == NULL) return -1;
+                    image_gen2->Start();
+				}
+                else if (difficulty%3 == 2) {
+                    image_gen2 = new BoardTextfile(canvas, "medium.txt");
+                    if (image_gen2 == NULL) return -1;
+                    image_gen2->Start();
+				}
+                else if (difficulty%3 == 0) {
+                    image_gen2 = new BoardTextfile(canvas, "hard.txt");
+                    if (image_gen2 == NULL) return -1;
+                    image_gen2->Start();
+				}
+	     		    input = getchar();
 				    canvas->Clear();
-				   // delete image_gen;
 					
-					if (input == 'w' && difficulty < 3) {
+					if (input == 'w') {
 						difficulty++;
+						printf("difficulty: %d\n", difficulty);
 					}
-					else if (input == 's' && difficulty > 1) {
+					else if (input == 's') {
 						difficulty--;
+						printf("difficulty: %d\n", difficulty);
 					}
 					else if (input == '\n') {
 						mode++;
-						if(difficulty == 1) {
+						if(difficulty%3 == 1) {
 							child_args[2] = "1";
 						} 
-						else if (difficulty == 2) {
+						else if (difficulty%3 == 2) {
 							child_args[2] = "2";
 						}
-						else if (difficulty == 3) {
-							child_args[2] = "4";
+						else if (difficulty%3 == 3) {
+							child_args[2] = "0";
 						}
 					}
-					
+					//delete image_gen2;
 				}
 					
 				if (mode == 3) {
+					ThreadedCanvasManipulator *image_gen3 = NULL;
+					if(size%2 == 1) {
+						image_gen3 = new BoardTextfile(canvas, "8x8.txt");
+						if (image_gen3 == NULL) return -1;
+						image_gen3->Start();
+					}
+					else if (size%2 == 0) {
+						image_gen3 = new BoardTextfile(canvas, "16x16.txt");
+						if (image_gen3 == NULL) return -1;
+						image_gen3->Start();
+					}
+					
 					input = getchar();
 				    canvas->Clear();
-				    delete image_gen;
+				    //delete image_gen;
 					
-					if (input == 'w' && size == 1) {
+					if (input == 'w') {
 						size++;
+						printf("size: %d\n", size);
 					}
-					else if (input == 's' && size == 2) {
+					else if (input == 's') {
 						size--;
+						printf("size: %d\n", size);
 					}
 					else if (input == '\n') {
-						if(size == 1) {
+						if(size%2 == 1) {
 							/*child_args[0] = "./Othello_size8";
 							execv("./Othello_size8 ",  child_args);
 							puts("Uh oh! If this prints, execv() must have failed");
 							exit(EXIT_FAILURE);*/
-						} else {
+						} else if (size%2 == 0) {
 							/*child_args[0] = "./Othello_size16";
 							execv("./Othello_size16 ",  child_args);
 							puts("Uh oh! If this prints, execv() must have failed");
 							exit(EXIT_FAILURE);*/
 						}
 					}
-					if(size == 1) {
-						image_gen = new BoardTextfile(canvas, "8x8.txt");
-						if (image_gen == NULL) return -1;
-						image_gen->Start();
-					}
-					else {
-						image_gen = new BoardTextfile(canvas, "16x16.txt");
-						if (image_gen == NULL) return -1;
-						image_gen->Start();
-					}
-			        
+					//delete image_gen3;
 				}		
 				if (mode > 3 || mode < 1) {
 					std::cout << "menu failed in Menu_main.c" << std::endl;
