@@ -336,8 +336,7 @@ int reversi_main8(int player_count, int depth)
            else
              printf("\nNeither of us can go, so the game is over.\n");
       // }
-	   delete image_gen;
-	   canvas->Clear();
+	
 	   }
      }while(no_of_moves < SIZE*SIZE && invalid_moves<2);
 
@@ -354,10 +353,6 @@ int reversi_main8(int player_count, int depth)
        }
      printf("The final score is:\n");
      printf("Computer %d\n    User %d\n\n", comp_score, user_score);
-	 
-	 delete image_gen;
-	 canvas->Clear();
-	 delete canvas;
 	 
      fflush(stdin);               /* Flush the input buffer */
      printf("Do you want to play again (y/n): ");
@@ -384,7 +379,7 @@ void display(char board[SIZE][SIZE])
    for(col = 0 ; col<SIZE ;col++)
      printf("   %c", col_label+col); /* Display the top line */
    printf("\n");                     /* End the top line     */
-
+	
    GPIO io;
    if (!io.Init()) {
         printf("IO init error.\n");
@@ -403,7 +398,7 @@ void display(char board[SIZE][SIZE])
         }
 
     image_gen->Start();
-		
+	sleep(.3);	
    /* Display the intermediate rows */  
    for(row = 0; row < SIZE; row++)
    {
@@ -416,7 +411,9 @@ void display(char board[SIZE][SIZE])
        printf(" %c |", board[row][col]);  /* Display counters in row */
      printf("\n");    
    }
-
+	delete image_gen;
+	canvas->Clear();
+	delete canvas;
    printf("  +");                  /* Start the bottom line   */
    for(col = 0 ; col<SIZE ;col++)
      printf("---+");               /* Display the bottom line */
