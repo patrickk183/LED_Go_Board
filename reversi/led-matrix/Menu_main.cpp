@@ -21,12 +21,12 @@ int best_move(char board[][SIZE], int moves[][SIZE], char player);
 int get_score(char board[][SIZE], char player);
 int reversi_main8(int player_count, int depth);
 
-void display2(char board[SIZE][SIZE]);
-int valid_moves2(char board[][SIZE], int moves[][SIZE], char player); 
-void make_move2(char board[][SIZE], int row, int col, char player);  
-void computer_move2(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
-int best_move2(char board[][SIZE], int moves[][SIZE], char player);
-int get_score2(char board[][SIZE], char player);
+void display2(char board[SIZE2][SIZE2]);
+int valid_moves2(char board[][SIZE2], int moves[][SIZE2], char player); 
+void make_move2(char board[][SIZE2], int row, int col, char player);  
+void computer_move2(char board[][SIZE2], int moves[][SIZE2], char player, int deptha);  
+int best_move2(char board[][SIZE2], int moves[][SIZE2], char player);
+int get_score2(char board[][SIZE2], char player);
 int reversi_main16(int player_count, int depth);
 
 int main(int argc, char **argv) {
@@ -751,7 +751,7 @@ int reversi_main16(int player_count, int depth)
      do
      {
 
-	   display(board);             /* Display the board  */
+	   display2(board);             /* Display the board  */
 	   
        if(player++ % 2)
        { /*   It is the player's turn                    */
@@ -1051,7 +1051,7 @@ void computer_move2(char board[][SIZE2], int moves[][SIZE2], char player, int de
 		
 		
    /* Make the best move */
-   make_move(board, best_row, best_col, player); 
+   make_move2(board, best_row, best_col, player); 
 }
 
 /************
