@@ -94,8 +94,8 @@ public:
     Color c2 = {0, 200, 0};
     Color c3 = {0, 0, 200};
     Color display = {0, 0, 0};
-    Color former = ;
-    Color latter = ;
+    Color former = {0, 0, 0};
+    Color latter = {0, 0, 0};
 
     while (true) {
       if (former == c1) {former = c2; latter = c3;}
