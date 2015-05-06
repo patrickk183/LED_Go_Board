@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
   getchar();
   usleep(100000);
   canvas->Clear();
-  //delete image_gen;
+  delete image_gen;
 	
 	while (mode == 1) {
      ThreadedCanvasManipulator *image_gen1 = NULL;
