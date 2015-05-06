@@ -440,8 +440,8 @@ int reversi_main8(int player_count, int depth)
 
 void transition(int player) 
 {
-  if (player == 1) { transArg1 = p2color; transArg1 = p1color; }
-  else { transArg1 = p1color; transArg1 = p2color; }
+  if (player == 1) { transArg1 = p2color; transArg2 = p1color; }
+  else { transArg1 = p1color; transArg2 = p2color; }
 
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
