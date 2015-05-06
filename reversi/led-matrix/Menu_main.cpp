@@ -259,7 +259,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              delete image_gen;
+              // delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -364,7 +364,7 @@ int reversi_main8(int player_count, int depth)
     // fflush(stdin);                Flush the input buffer 
     // printf("Do you want to play again (y/n): ");
     // scanf("%c", &again);         /* Get y or n             */
-    delete image_gen;
+    // delete image_gen;
     image_gen = new BoardTextfile(canvas, "gameover.txt");
     image_gen->Start();
     sleep(1);
