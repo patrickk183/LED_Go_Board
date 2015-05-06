@@ -705,9 +705,9 @@ void make_move(char board[][SIZE], int row, int col, char player)
    
    board[row][col] = player;           /* Place the player counter   */
 
-  // for(row = 0; row < SIZE; row++)
-  //   for(col = 0; col < SIZE; col++)
-  //     transition_tiles[row][col] = false;
+  for(int i = 0; i < SIZE; i++)
+    for(int j = 0; j < SIZE; j++)
+      transition_tiles[i][j] = false;
 
    /* Check all the squares around this square */
    /* for the opponents counter                */
