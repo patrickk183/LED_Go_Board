@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
   // The ThreadedCanvasManipulator objects are filling
   // the matrix continuously.
   
-  delete image_gen;
+  image_gen = NULL;
   image_gen = new SplashScreen(canvas);
   if (image_gen == NULL) { return -1; }
   image_gen->Start();
@@ -392,7 +392,7 @@ void transition(int player)
 {
   if (player == 1) { transArg1 = p1color; transArg2 = p2color; }
   else { transArg1 = p2color; transArg2 = p1color; }
-
+  delete image_gen;
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
