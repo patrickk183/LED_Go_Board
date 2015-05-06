@@ -223,11 +223,6 @@ int reversi_main8(int player_count, int depth)
         if(valid_moves(board, moves, 'O')) {
           /* Read player moves until a valid move is entered */
           for(;;)  {
-            // fflush(stdin);              /* Flush the keyboard buffer */
-            // printf("Please enter your move (row column): "); 
-            // scanf("%d%c", &x, &y);              /* Read input        */
-            // y = tolower(y) - 'a';         /* Convert to column index */
-            // x--;                           //Convert to row index    
 
             while (isNotSelected(1)) {
               if (isUp(1)) {
@@ -268,7 +263,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              delete image_gen;
+              // delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -344,7 +339,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              delete image_gen;
+              // delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
