@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
   image_gen->Start();
   
   while (getchar() != '\n') { usleep(10000); }
-  p1color_set = true;
+  pcolor_set = true;
   sleep(1);
   delete image_gen;
   image_gen = NULL;
@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
   image_gen->Start();
   
   while (getchar() != '\n') { usleep(10000); }
-  p1color_set = true;
+  pcolor_set = true;
   usleep(10000);
   delete image_gen;
   image_gen = NULL;
