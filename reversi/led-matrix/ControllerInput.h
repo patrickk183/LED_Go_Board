@@ -48,11 +48,11 @@ int Read(int chan) {
     bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
 
     uint8_t send_data = chan;
-    printf("chan: %d\n", chan);
-    printf("send_data: %u\n", send_data);
+    //printf("chan: %d\n", chan);
+    //printf("send_data: %u\n", send_data);
     uint8_t read_data = bcm2835_spi_transfer(send_data);
     read_data = bcm2835_spi_transfer(send_data);
-    printf("read_data: %u\n", read_data);
+    //printf("read_data: %u\n", read_data);
 	bcm2835_spi_end();
 	bcm2835_close();
 
