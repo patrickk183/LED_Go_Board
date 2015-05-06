@@ -164,7 +164,7 @@ public:
               }
               else {
                 display = interpolate(former, latter, percentage);
-                cout << display.R << " " << display.G << " " << display.B << std::endl;
+                std::cout << display.R << " " << display.G << " " << display.B << std::endl;
                 canvas()->SetPixel(j, i, display.R, display.G, display.B);
               }
             }
