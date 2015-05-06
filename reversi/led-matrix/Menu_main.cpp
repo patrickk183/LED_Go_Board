@@ -423,53 +423,52 @@ int reversi_main8(int player_count, int depth)
  ***********************************************/
 void display(char board[SIZE][SIZE])
 {
-   int row  = 0;          /* Row index      */
-   int col = 0;           /* Column index   */
-   char col_label = 'a';  /* Column label   */
-		
-   printf("\n ");         /* Start top line */
-   for(col = 0 ; col<SIZE ;col++)
-     printf("   %c", col_label+col); /* Display the top line */
-   printf("\n");                     /* End the top line     */
-	
-   GPIO io;
-   if (!io.Init()) {
-        printf("IO init error.\n");
-    }
+  int row  = 0;          /* Row index      */
+  int col = 0;           /* Column index   */
+  char col_label = 'a';  /* Column label   */
+
+  printf("\n ");         /* Start top line */
+  for(col = 0 ; col<SIZE ;col++)
+  printf("   %c", col_label+col); /* Display the top line */
+  printf("\n");                     /* End the top line     */
+
+  GPIO io;
+  if (!io.Init()) {
+      printf("IO init error.\n");
+  }
 
 
-   ThreadedCanvasManipulator *image_gen = NULL;
-  
-   RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-   Canvas *canvas = matrix;
-   matrix->set_luminance_correct(true);
+  ThreadedCanvasManipulator *image_gen = NULL;
 
-   image_gen = new BoardArray(canvas, board, curs);
-        if (image_gen == NULL) {
-                printf("Image gen error.\n");
-        }
+  // RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+  // Canvas *canvas = matrix;
+  // matrix->set_luminance_correct(true);
 
-    image_gen->Start();
-	sleep(.3);	
-   /* Display the intermediate rows */  
-   for(row = 0; row < SIZE; row++)
-   {
-     printf("  +");
-     for(col = 0; col<SIZE; col++)
-       printf("---+");
-     printf("\n%2d|",row + 1); 
+  // image_gen = new BoardArray(canvas, board, curs);
+  // if (image_gen == NULL) {
+  //         printf("Image gen error.\n");
+  // }
 
-     for(col = 0; col<SIZE; col++)
-       printf(" %c |", board[row][col]);  /* Display counters in row */
-     printf("\n");    
-   }
-	//delete image_gen;
-	canvas->Clear();
-	//delete canvas;
-   printf("  +");                  /* Start the bottom line   */
-   for(col = 0 ; col<SIZE ;col++)
-     printf("---+");               /* Display the bottom line */
-   printf("\n");                   /* End the bottom  line    */
+  // image_gen->Start();
+
+  /* Display the intermediate rows */  
+  for(row = 0; row < SIZE; row++) {
+   printf("  +");
+   for(col = 0; col<SIZE; col++)
+     printf("---+");
+   printf("\n%2d|",row + 1); 
+
+   for(col = 0; col<SIZE; col++)
+     printf(" %c |", board[row][col]);  /* Display counters in row */
+   printf("\n");    
+  }
+  //delete image_gen;
+  //canvas->Clear();
+  //delete canvas;
+  printf("  +");                  /* Start the bottom line   */
+  for(col = 0 ; col<SIZE ;col++)
+   printf("---+");               /* Display the bottom line */
+  printf("\n");                   /* End the bottom  line    */
 }
 
 /***********************************************
