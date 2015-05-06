@@ -21,7 +21,11 @@ int best_move(char board[][SIZE], int moves[][SIZE], char player);
 int get_score(char board[][SIZE], char player);
 int reversi_main8(int player_count, int depth);
 
+RGBMatrix *matrix;
+Canvas *canvas;
+ThreadedCanvasManipulator image_gen;
 Cursor curs;
+GPIO io;
 
 int main(int argc, char **argv) {
 
@@ -46,10 +50,10 @@ int main(int argc, char **argv) {
   //controllerInit();
 
 	// The matrix, our 'frame buffer' and display updater.
-	RGBMatrix *matrix = new RGBMatrix(&io, rows, chain, parallel);
+	matrix = new RGBMatrix(&io, rows, chain, parallel);
 	matrix->set_luminance_correct(do_luminance_correct);
 
-	Canvas *canvas = matrix;
+	canvas = matrix;
 
 	int players = 1;
 	int mode = 1;
@@ -58,7 +62,7 @@ int main(int argc, char **argv) {
 
 	// The ThreadedCanvasManipulator objects are filling
 	// the matrix continuously.
-	ThreadedCanvasManipulator *image_gen = NULL;
+	image_gen = NULL;
 
   image_gen = new SplashScreen(canvas);
 	if (image_gen == NULL) { return -1; }
@@ -218,18 +222,6 @@ int reversi_main8(int player_count, int depth)
     /* Place the initial four counters in the center */
     board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
     board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
-
-  	GPIO io;
-  	if (!io.Init()) {
-      printf("IO init error.\n");
-    }
-
-    //Display the board
-  	ThreadedCanvasManipulator *image_gen = NULL;
-    
-	  RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-	  Canvas *canvas = matrix;
-	  matrix->set_luminance_correct(true);
 
      /* The game play loop */
     do {
@@ -447,18 +439,6 @@ void display(char board[SIZE][SIZE])
   for(col = 0 ; col<SIZE ;col++)
   printf("   %c", col_label+col); /* Display the top line */
   printf("\n");                     /* End the top line     */
-
-  GPIO io;
-  if (!io.Init()) {
-      printf("IO init error.\n");
-  }
-
-
-  ThreadedCanvasManipulator *image_gen = NULL;
-
-  RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-  Canvas *canvas = matrix;
-  matrix->set_luminance_correct(true);
 
   image_gen = new BoardArray(canvas, board, curs);
   if (image_gen == NULL) {
