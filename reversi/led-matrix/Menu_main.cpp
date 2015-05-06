@@ -33,42 +33,42 @@ Color transArg2;
 
 int main(int argc, char **argv) {
 
-	//Go interface section of startup
-	int rows = 32;
-	int chain = 1;
-	int parallel = 1;
-	bool do_luminance_correct = true;
-	char input;
-	
-	if (getuid() != 0) {
-	//"Must run as root to be able to access /dev/mem
-	//Prepend 'sudo' to the command
-	return 1;
-	}
+  //Go interface section of startup
+  int rows = 32;
+  int chain = 1;
+  int parallel = 1;
+  bool do_luminance_correct = true;
+  char input;
+  
+  if (getuid() != 0) {
+  //"Must run as root to be able to access /dev/mem
+  //Prepend 'sudo' to the command
+  return 1;
+  }
 
-	// Initialize GPIO pins. This might fail when we don't have permissions.
-	GPIO io;
-	if (!io.Init())
-		return 1;
+  // Initialize GPIO pins. This might fail when we don't have permissions.
+  GPIO io;
+  if (!io.Init())
+    return 1;
 
   controllerInit();
 
-	// The matrix, our 'frame buffer' and display updater.
-	matrix = new RGBMatrix(&io, rows, chain, parallel);
-	matrix->set_luminance_correct(do_luminance_correct);
-	canvas = matrix;
+  // The matrix, our 'frame buffer' and display updater.
+  matrix = new RGBMatrix(&io, rows, chain, parallel);
+  matrix->set_luminance_correct(do_luminance_correct);
+  canvas = matrix;
 
-	int players = 1;
-	int mode = 1;
-	int size = 1;
-	int difficulty = 31;
+  int players = 1;
+  int mode = 1;
+  int size = 1;
+  int difficulty = 31;
 
-	// The ThreadedCanvasManipulator objects are filling
-	// the matrix continuously.
-	image_gen = NULL;
+  // The ThreadedCanvasManipulator objects are filling
+  // the matrix continuously.
+  image_gen = NULL;
 
   image_gen = new SplashScreen(canvas);
-	if (image_gen == NULL) { return -1; }
+  if (image_gen == NULL) { return -1; }
   image_gen->Start();
   while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   //debug
@@ -101,7 +101,7 @@ int main(int argc, char **argv) {
   image_gen = NULL;
   pcolor_set = false;
 
-	while (mode == 1) {
+  while (mode == 1) {
     if(abs(players)%2 == 1) {             
         image_gen = new BoardTextfile(canvas, "players_1.txt");
         if (image_gen == NULL) return -1;
@@ -113,35 +113,35 @@ int main(int argc, char **argv) {
         image_gen->Start();
     }
 
-  	if (isDown(1) || isDown(2)) {
-  		players++;
-  	} 
-  	else if (isUp(1) || isUp(2)) {
-  		players--;
-  	}
-  	else if (isSelected(1) || isSelected(2)) {
-  		if (abs(players)%2 == 1) { 
+    if (isDown(1) || isDown(2)) {
+      players--;
+    } 
+    else if (isUp(1) || isUp(2)) {
+      players++;
+    }
+    else if (isSelected(1) || isSelected(2)) {
+      if (abs(players)%2 == 1) { 
         players = 1;
-  			mode = 2;
-  		}
-  		else if(abs(players)%2 == 0) { 
+        mode = 2;
+      }
+      else if(abs(players)%2 == 0) { 
         players = 2;
         mode = 3;
-  		}
+      }
       usleep(50000);
-  	}
-    usleep(10000);
+    }
+    usleep(1000);
     canvas->Clear();
-  	// delete image_gen;
+    // delete image_gen;
   }
-		
+    
   while (mode == 2) {
     image_gen = NULL;
     if(abs(difficulty)%3 == 1) {
       image_gen = new BoardTextfile(canvas, "easy.txt");
       if (image_gen == NULL) { return -1; }
       image_gen->Start();
-  	}
+    }
     else if (abs(difficulty)%3 == 2) {
         image_gen = new BoardTextfile(canvas, "medium.txt");
         if (image_gen == NULL) return -1;
@@ -152,31 +152,30 @@ int main(int argc, char **argv) {
         if (image_gen == NULL) { return -1; }
         image_gen->Start();
     }  
-  	
+    
     canvas->Clear();
-  		
-  	if (isDown(1) || isDown(2)) {
-  		difficulty++;
-  	}
-  	else if (isUp(1) || isUp(2)) {
-  		difficulty--;
-  	}
-  	else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
+      
+    if (isDown(1) || isDown(2)) {
+      difficulty--;
+    }
+    else if (isUp(1) || isUp(2)) {
+      difficulty++;
+    }
+    else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
       if (abs(difficulty)%3 == 1) { difficulty = 2;}
       if (abs(difficulty)%3 == 2) { difficulty = 3;}
       if (abs(difficulty)%3 == 0) { difficulty = 4;}
-  		mode = 3;
-  	}
-    usleep(10000)
-  	// delete image_gen;
+      mode = 3;
+    }
+    // delete image_gen;
   }
-	
+  
   reversi_main8(players, difficulty);
-			
-	canvas->Clear();
-	delete image_gen;
+      
+  canvas->Clear();
+  delete image_gen;
   delete canvas;
-	return 0; 
+  return 0; 
 }
 
 int reversi_main8(int player_count, int depth)
@@ -281,11 +280,11 @@ int reversi_main8(int player_count, int depth)
         }
       }
       else if(player_count == 1) {
-  	    /* It is the computer's turn                    */
+        /* It is the computer's turn                    */
         if(valid_moves(board, moves, '@')) /* Check for valid moves */
         {
           invalid_moves = 0;               /* Reset invalid count   */
-  	      computer_move(board, moves, '@', depth);
+          computer_move(board, moves, '@', depth);
           transition(2);
           no_of_moves++;                   /* Increment move count  */
         }
@@ -294,7 +293,7 @@ int reversi_main8(int player_count, int depth)
         }
       } 
       else if(player_count == 2) {
-  	    display(board);             /* Display the board  */
+        display(board);             /* Display the board  */
         //if(player++ % 2) { /*   It is the player's turn                    */
         if(valid_moves(board, moves, '@')) {
           /* Read player moves until a valid move is entered */
@@ -558,13 +557,13 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
          for(j = 0; j < SIZE; j++)
            temp_board[i][j] = board[i][j];
    
-		/* Now make this move on the temporary board */
-		make_move(temp_board, row, col, player); 
-		
-		if(depth > 0) 
-			computer_move(temp_board,moves, player, depth-1); //goes through again to make sure it is the best possible move.
-			//higher the depth the longer it takes
-			
+    /* Now make this move on the temporary board */
+    make_move(temp_board, row, col, player); 
+    
+    if(depth > 0) 
+      computer_move(temp_board,moves, player, depth-1); //goes through again to make sure it is the best possible move.
+      //higher the depth the longer it takes
+      
        /* find valid moves for the opponent after this move */
        valid_moves(temp_board, temp_moves, opponent);
 
@@ -576,9 +575,9 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
          best_row = row;  /* Record best move row             */
          best_col = col;  /* and column                       */
          }
-		}
-		
-		
+    }
+    
+    
    /* Make the best move */
    make_move(board, best_row, best_col, player); 
 }
