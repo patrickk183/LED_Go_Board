@@ -14,7 +14,7 @@
 #include <exception>
 
 void display(char board[SIZE][SIZE]);
-void Transition();
+void transition();
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -284,7 +284,7 @@ int reversi_main8(int player_count, int depth)
               usleep(10000);
             }
             if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.getx()][curs.gety()]) {
-              make_move(board, curs.gety(), curs.getx(), 'O');
+              make_move(board, curs.getx(), curs.gety(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
               display(board);
@@ -375,7 +375,7 @@ int reversi_main8(int player_count, int depth)
               usleep(10000);
             }
             if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.getx()][curs.gety()]) {
-              make_move(board, curs.gety(), curs.getx(), '@');
+              make_move(board, curs.getx(), curs.gety(), '@');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
               display(board);
@@ -475,7 +475,7 @@ void display(char board[SIZE][SIZE])
   printf("\n");                   /* End the bottom  line    */
 }
 
-void Transition() 
+void transition() 
 {
   //Transition
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
@@ -630,7 +630,7 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
 
    //Transition
   transition();
-  display();
+  display(board);
 }
 
 /************
