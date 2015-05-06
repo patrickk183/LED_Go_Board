@@ -179,12 +179,12 @@ public:
         }
       }
       percentage = 0;
+      fs.clear(0);
+      fs.seekg(0, std::ios::beg);
 
       if (p1color_set == true) {
         break;
       }
-      fs.clear();
-      fs.seekg(0, std::ios::beg);
   }
 
   fs.close();
