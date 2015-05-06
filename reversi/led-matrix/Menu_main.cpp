@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 	if (!io.Init())
 		return 1;
 
-  controllerInit();
+  //controllerInit();
 
 	// The matrix, our 'frame buffer' and display updater.
 	RGBMatrix *matrix = new RGBMatrix(&io, rows, chain, parallel);
@@ -59,14 +59,16 @@ int main(int argc, char **argv) {
 	// The ThreadedCanvasManipulator objects are filling
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
- 
-//  image_gen = new ChooseColorMenu(canvas, "color_1.txt");
-//  if (image_gen == NULL) return -1;
-//  image_gen->Start();
-//  while (!isSelected(1)) {
-//    sleep(.01);
-//  }
+
+  image_gen = new ChooseColorMenu(canvas, "color_1.txt");
+  if (image_gen == NULL) return -1;
+  image_gen->Start();
   
+  while (color_selected != true) { usleep(10000); }
+  usleep(10000);
+  delete image_gen;
+  image_gen = NULL;
+
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();

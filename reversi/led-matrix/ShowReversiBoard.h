@@ -35,6 +35,9 @@ public:
   }
 };
 
+bool p1color_set = false, p2color_set = false;
+Color p1color = {0, 0, 0}, p2color = {0, 0, 0};
+
 class BoardArray : public ThreadedCanvasManipulator { 
 public: 
   BoardArray(Canvas *m, char b[SIZE][SIZE], Cursor a_curs)  : ThreadedCanvasManipulator(m)
@@ -167,15 +170,16 @@ public:
         }
         percentage++;
         sleep(.001);
-        if (isSelected(1)) {
-          isLeaving = true;
+        if (/*isSelected(1)*/ getchar() == '\n') {
+          p1color_set = true;
+          p1color = display; 
           canvas()->Clear();
           break;
         }
       }
       percentage = 0;
 
-      if (isLeaving == true) {
+      if (p1color_set == true) {
         break;
       }
     fs.close();
