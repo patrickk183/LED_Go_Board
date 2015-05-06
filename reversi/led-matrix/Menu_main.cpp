@@ -38,6 +38,7 @@ int main(int argc, char **argv) {
   int chain = 1;
   int parallel = 1;
   bool do_luminance_correct = true;
+  char input;
   
   if (getuid() != 0) {
   //"Must run as root to be able to access /dev/mem
@@ -57,12 +58,13 @@ int main(int argc, char **argv) {
 
   int players = 1;
   int mode = 1;
+  int size = 1;
   int difficulty = 31;
 
   // The ThreadedCanvasManipulator objects are filling
   // the matrix continuously.
   
-  image_gen = NULL;
+  delete image_gen;
   image_gen = new SplashScreen(canvas);
   if (image_gen == NULL) { return -1; }
   image_gen->Start();
@@ -181,8 +183,8 @@ int main(int argc, char **argv) {
 int reversi_main8(int player_count, int depth)
 {
   
-  char board [SIZE][SIZE] = {{0}};  /* The board           */
-  int moves[SIZE][SIZE] = {{0}};    /* Valid moves         */
+  char board [SIZE][SIZE] = {0};  /* The board           */
+  int moves[SIZE][SIZE] = { 0 };    /* Valid moves         */
   int row = 0;                      /* Board row index     */
   int col = 0;                      /* Board column index  */
   int no_of_games = 0;              /* Number of games     */
@@ -190,6 +192,8 @@ int reversi_main8(int player_count, int depth)
   int invalid_moves = 0;            /* Invalid move count  */
   int comp_score = 0;               /* Computer score      */
   int user_score = 0;               /* Player score        */
+  char y = 0;                       /* Column letter       */
+  int x = 0;                        /* Row number          */
   char again = 0;                   /* Replay choice input */
   int player = 0;                   /* Player indicator    */
 
@@ -219,6 +223,11 @@ int reversi_main8(int player_count, int depth)
         if(valid_moves(board, moves, 'O')) {
           /* Read player moves until a valid move is entered */
           for(;;)  {
+            // fflush(stdin);              /* Flush the keyboard buffer */
+            // printf("Please enter your move (row column): "); 
+            // scanf("%d%c", &x, &y);              /* Read input        */
+            // y = tolower(y) - 'a';         /* Convert to column index */
+            // x--;                           //Convert to row index    
 
             while (isNotSelected(1)) {
               if (isUp(1)) {
@@ -259,7 +268,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              // delete image_gen;
+              delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -292,6 +301,10 @@ int reversi_main8(int player_count, int depth)
           /* Read player moves until a valid move is entered */
           for(;;) {
 
+            fflush(stdin);
+            char input;
+            //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
+
             while (isNotSelected(2)) {
               if (isUp(2)) {
                 if (curs.gety()-1 >= 0) {
@@ -323,7 +336,7 @@ int reversi_main8(int player_count, int depth)
               }
               usleep(100000);
             }
-            if(moves[curs.gety()][curs.getx()]) {
+            if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), '@');
               no_of_moves++;              /* Increment move count */
               transition(2);
@@ -331,7 +344,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              // delete image_gen;
+              delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -364,7 +377,7 @@ int reversi_main8(int player_count, int depth)
     // fflush(stdin);                Flush the input buffer 
     // printf("Do you want to play again (y/n): ");
     // scanf("%c", &again);         /* Get y or n             */
-    // delete image_gen;
+    delete image_gen;
     image_gen = new BoardTextfile(canvas, "gameover.txt");
     image_gen->Start();
     sleep(1);
@@ -379,8 +392,9 @@ void transition(int player)
 {
   if (player == 1) { transArg1 = p1color; transArg2 = p2color; }
   else { transArg1 = p2color; transArg2 = p1color; }
-  // delete image_gen;
+
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
+  // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
   image_gen->Start();
   sleep(.5);
@@ -394,14 +408,14 @@ void transition(int player)
  ***********************************************/
 void display(char board[SIZE][SIZE])
 {
-  // int row  = 0;          /* Row index      */
-  // int col = 0;           /* Column index   */
-  // char col_label = 'a';  /* Column label   */
+  int row  = 0;          /* Row index      */
+  int col = 0;           /* Column index   */
+  char col_label = 'a';  /* Column label   */
 
-  // printf("\n ");          //Start top line 
-  // for(col = 0 ; col<SIZE ;col++)
-  // printf("   %c", col_label+col); /* Display the top line */
-  // printf("\n");                     /* End the top line     */
+  printf("\n ");          //Start top line 
+  for(col = 0 ; col<SIZE ;col++)
+  printf("   %c", col_label+col); /* Display the top line */
+  printf("\n");                     /* End the top line     */
 
   delete image_gen;
   image_gen = new BoardArray(canvas, board, curs);
@@ -411,21 +425,21 @@ void display(char board[SIZE][SIZE])
   image_gen->Start();
 
   /* Display the intermediate rows */  
-  // for(row = 0; row < SIZE; row++) {
-  //  printf("  +");
-  //  for(col = 0; col<SIZE; col++)
-  //    printf("---+");
-  //  printf("\n%2d|",row + 1); 
+  for(row = 0; row < SIZE; row++) {
+   printf("  +");
+   for(col = 0; col<SIZE; col++)
+     printf("---+");
+   printf("\n%2d|",row + 1); 
 
-  //  for(col = 0; col<SIZE; col++)
-  //    printf(" %c |", board[row][col]);  /* Display counters in row */
-  //  printf("\n");    
-  // }
+   for(col = 0; col<SIZE; col++)
+     printf(" %c |", board[row][col]);  /* Display counters in row */
+   printf("\n");    
+  }
   // delete image_gen;
-  // printf("  +");                  /* Start the bottom line   */
-  // for(col = 0 ; col<SIZE ;col++)
-  //  printf("---+");               /* Display the bottom line */
-  // printf("\n");                   /* End the bottom  line    */
+  printf("  +");                  /* Start the bottom line   */
+  for(col = 0 ; col<SIZE ;col++)
+   printf("---+");               /* Display the bottom line */
+  printf("\n");                   /* End the bottom  line    */
 }
 
 /***********************************************
@@ -610,7 +624,9 @@ int best_move(char board[][SIZE], int moves[][SIZE], char player)
    int i = 0;       /* Loop index   */
    int j = 0;       /* Loop index   */
 
-   char new_board[SIZE][SIZE] = {{0}};  /* Local copy of board    */
+   char opponent1 = (player == 'O')? '@' : 'O';  /* Identify opponent */
+
+   char new_board[SIZE][SIZE] = { 0 };  /* Local copy of board    */
    int score = 0;                       /* Best score             */
    int new_score = 0;                   /* Score for current move */
 
