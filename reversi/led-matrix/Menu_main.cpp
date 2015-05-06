@@ -403,7 +403,7 @@ void display(char board[SIZE][SIZE])
   // printf("   %c", col_label+col); /* Display the top line */
   // printf("\n");                     /* End the top line     */
 
-  delete image_gen;
+  // delete image_gen;
   image_gen = new BoardArray(canvas, board, curs);
   if (image_gen == NULL) {
     printf("Image gen error.\n");
