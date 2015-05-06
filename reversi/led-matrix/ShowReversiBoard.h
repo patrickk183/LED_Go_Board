@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <fstream>
+#include <iostream>
 #include "Color.h"
 #include "ControllerInput.h"
 
