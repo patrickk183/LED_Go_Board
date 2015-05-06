@@ -165,13 +165,12 @@ public:
               }
               else {
                 display = interpolate(former, latter, percentage);
-                std::cout << percentage << " " << display.R << " " << display.G << " " << display.B << std::endl;
                 canvas()->SetPixel(j, i, display.R, display.G, display.B);
               }
             }
         }
         percentage++;
-        usleep(1000);
+        usleep(3000);
         if (/*isSelected(1)*/ p1color_set == true) {
           p1color_set = true;
           p1color = display; 
