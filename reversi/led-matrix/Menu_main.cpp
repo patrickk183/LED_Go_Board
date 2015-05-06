@@ -60,8 +60,8 @@ int main(int argc, char **argv) {
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
 
-  image_gen = new BoardTextfile(canvas, "reversi.txt");
-	if (image_gen == NULL) return -1;
+  image_gen = new SplashScreen(canvas);
+	if (image_gen == NULL) { return -1; }
   image_gen->Start();
   getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   usleep(100000);
