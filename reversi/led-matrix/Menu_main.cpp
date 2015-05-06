@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
   while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   //debug
   //getchar();
-  usleep(50000);
+  sleep(1);
   splash_done = true;
   canvas->Clear();
   delete image_gen;
@@ -130,7 +130,7 @@ int main(int argc, char **argv) {
       }
       usleep(50000);
     }
-    usleep(1000);
+    usleep(10000);
     canvas->Clear();
     // delete image_gen;
   }
@@ -167,6 +167,7 @@ int main(int argc, char **argv) {
       if (abs(difficulty)%3 == 0) { difficulty = 4;}
       mode = 3;
     }
+    usleep(10000);
     // delete image_gen;
   }
   
