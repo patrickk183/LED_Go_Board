@@ -222,11 +222,7 @@ int reversi_main8(int player_count, int depth)
     board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
     board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
 
-    display(board);
-
-    sleep(50);
-
-     /* The game play loop */
+    /* The game play loop */
     do {
 
       display(board);             /* Display the board  */
@@ -279,10 +275,8 @@ int reversi_main8(int player_count, int depth)
                 }
               }
               if (input == 'n') {
-                std::cout << "move received: " << curs.getx() << " " << curs.gety() << std::endl;
                 break;
               }
-              std::cout << "cursor " << curs.getx() << " " << curs.gety() << std::endl;
               usleep(10000);
             }
             if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()]) {
@@ -298,6 +292,7 @@ int reversi_main8(int player_count, int depth)
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
+              canvas->Clear();
               display(board);
             }
           }
@@ -386,6 +381,7 @@ int reversi_main8(int player_count, int depth)
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
+              canvas->Clear();
               display(board);
             }
           }
@@ -442,14 +438,14 @@ int reversi_main8(int player_count, int depth)
  ***********************************************/
 void display(char board[SIZE][SIZE])
 {
-  // int row  = 0;          /* Row index      */
-  // int col = 0;           /* Column index   */
-  // char col_label = 'a';  /* Column label   */
+  int row  = 0;          /* Row index      */
+  int col = 0;           /* Column index   */
+  char col_label = 'a';  /* Column label   */
 
-  // printf("\n ");          Start top line 
-  // for(col = 0 ; col<SIZE ;col++)
-  // printf("   %c", col_label+col); /* Display the top line */
-  // printf("\n");                     /* End the top line     */
+  printf("\n ");          Start top line 
+  for(col = 0 ; col<SIZE ;col++)
+  printf("   %c", col_label+col); /* Display the top line */
+  printf("\n");                     /* End the top line     */
 
   image_gen = new BoardArray(canvas, board, curs);
   if (image_gen == NULL) {
@@ -458,21 +454,21 @@ void display(char board[SIZE][SIZE])
   image_gen->Start();
 
   /* Display the intermediate rows */  
-  // for(row = 0; row < SIZE; row++) {
-  //  printf("  +");
-  //  for(col = 0; col<SIZE; col++)
-  //    printf("---+");
-  //  printf("\n%2d|",row + 1); 
+  for(row = 0; row < SIZE; row++) {
+   printf("  +");
+   for(col = 0; col<SIZE; col++)
+     printf("---+");
+   printf("\n%2d|",row + 1); 
 
-  //  for(col = 0; col<SIZE; col++)
-  //    printf(" %c |", board[row][col]);  /* Display counters in row */
-  //  printf("\n");    
-  // }
-  // // delete image_gen;
-  // printf("  +");                  /* Start the bottom line   */
-  // for(col = 0 ; col<SIZE ;col++)
-  //  printf("---+");               /* Display the bottom line */
-  // printf("\n");                   /* End the bottom  line    */
+   for(col = 0; col<SIZE; col++)
+     printf(" %c |", board[row][col]);  /* Display counters in row */
+   printf("\n");    
+  }
+  // delete image_gen;
+  printf("  +");                  /* Start the bottom line   */
+  for(col = 0 ; col<SIZE ;col++)
+   printf("---+");               /* Display the bottom line */
+  printf("\n");                   /* End the bottom  line    */
 }
 
 /***********************************************
