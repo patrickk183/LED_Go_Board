@@ -63,8 +63,8 @@ int main(int argc, char **argv) {
   image_gen = new SplashScreen(canvas);
 	if (image_gen == NULL) { return -1; }
   image_gen->Start();
-  getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   fflush(stdin);
+  getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   splash_done = true;
   canvas->Clear();
   delete image_gen;
@@ -74,8 +74,8 @@ int main(int argc, char **argv) {
   image_gen = new ChooseColorMenu(canvas, "color_1.txt", 1);
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  while (getchar() != '\n') { usleep(10000); }
   fflush(stdin);
+  while (getchar() != '\n') { usleep(10000); }
   pcolor_set = true;
   sleep(1);
   delete image_gen;
@@ -86,8 +86,8 @@ int main(int argc, char **argv) {
   image_gen = new ChooseColorMenu(canvas, "color_2.txt", 2);
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  while (getchar() != '\n') { usleep(10000); }
   fflush(stdin);
+  while (getchar() != '\n') { usleep(10000); }
   pcolor_set = true;
   sleep(1);
   delete image_gen;
@@ -105,9 +105,8 @@ int main(int argc, char **argv) {
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
-
-  	input = getchar();
     fflush(stdin);
+  	input = getchar();
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
   		players++;
@@ -150,8 +149,8 @@ int main(int argc, char **argv) {
         image_gen->Start();
     }  
   	
-    input = getchar();
     fflush(stdin);
+    input = getchar();
     canvas->Clear();
   		
   	if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
@@ -255,7 +254,9 @@ int reversi_main8(int player_count, int depth)
 
             std::cout << "getting a move" << std::endl;
 
+            fflush(stdin);
             char input = getchar();
+
             while (input == 'w') {
               if (isUp(2)) {
                 if (curs.gety()-1 >= 0) {
@@ -331,6 +332,8 @@ int reversi_main8(int player_count, int depth)
         if(valid_moves(board, moves, '@')) {
           /* Read player moves until a valid move is entered */
           for(;;) {
+
+            fflush(stdin);
             char input = getchar();
             while (input == 'w') {
               if (isUp(2)) {
