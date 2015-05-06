@@ -381,7 +381,6 @@ void transition(int player)
   else { transArg1 = p2color; transArg2 = p1color; }
   delete image_gen;
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
-  // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
   image_gen->Start();
   sleep(.5);
