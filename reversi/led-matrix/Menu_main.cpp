@@ -611,9 +611,7 @@ int best_move(char board[][SIZE], int moves[][SIZE], char player)
    int i = 0;       /* Loop index   */
    int j = 0;       /* Loop index   */
 
-   char opponent1 = (player == 'O')? '@' : 'O';  /* Identify opponent */
-
-   char new_board[SIZE][SIZE] = { 0 };  /* Local copy of board    */
+   char new_board[SIZE][SIZE] = {{0}};  /* Local copy of board    */
    int score = 0;                       /* Best score             */
    int new_score = 0;                   /* Score for current move */
 
