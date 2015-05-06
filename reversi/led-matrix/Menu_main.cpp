@@ -247,6 +247,9 @@ int reversi_main8(int player_count, int depth)
             // scanf("%d%c", &x, &y);              /* Read input        */
             // y = tolower(y) - 'a';         /* Convert to column index */
             // x--;                           //Convert to row index    
+
+            std::cout << "getting a move" << std::endl;
+
             char input = getchar();
             while (input == 'w') {
               if (isUp(2)) {
