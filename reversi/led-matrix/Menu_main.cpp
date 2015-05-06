@@ -63,8 +63,7 @@ int main(int argc, char **argv) {
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
-  //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
-  getchar();
+  getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   usleep(100000);
   canvas->Clear();
   delete image_gen;
@@ -74,104 +73,99 @@ int main(int argc, char **argv) {
   image_gen = new ChooseColorMenu(canvas, "color_1.txt", 1);
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  
   while (getchar() != '\n') { usleep(10000); }
   pcolor_set = true;
   sleep(1);
   delete image_gen;
   image_gen = NULL;
-
   pcolor_set = false;
 
   //player 2 color select
   image_gen = new ChooseColorMenu(canvas, "color_2.txt", 2);
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  
   while (getchar() != '\n') { usleep(10000); }
   pcolor_set = true;
-  usleep(10000);
+  sleep(1);
   delete image_gen;
   image_gen = NULL;
-	
+  pcolor_set = false;
+
 	while (mode == 1) {
-     ThreadedCanvasManipulator *image_gen1 = NULL;
-      if(players == 1) {             
-          image_gen1 = new BoardTextfile(canvas, "players_1.txt");
-          if (image_gen1 == NULL) return -1;
-          image_gen1->Start();
-      }
-      else if (players == 2) {
-          image_gen1 = new BoardTextfile(canvas, "players_2.txt");
-          if (image_gen1 == NULL) return -1;
-          image_gen1->Start();
-      }
+    if(players == 1) {             
+        image_gen = new BoardTextfile(canvas, "players_1.txt");
+        if (image_gen == NULL) return -1;
+        image_gen->Start();
+    }
+    else if (players == 2) {
+        image_gen = new BoardTextfile(canvas, "players_2.txt");
+        if (image_gen == NULL) return -1;
+        image_gen->Start();
+    }
 
-			input = getchar();
+  	input = getchar();
 
-			if (/*isDown(1) || isDown(2) || */input == 'w') {
-				players = 2;
-				//printf("players: %d\n", players);
-			} 
-			else if (/*isUp(1) || isUp(2) ||*/ input == 's') {
-				players = 1;
-				//printf("players: %d\n", players);
-			}
-			else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
-				if (players == 1) { 
-					mode = 2;
-          usleep(1000);
-				}
-				else if(players == 2) { 
-          mode = 3;
-          usleep(1000);
-				}
-			}
-      usleep(1000);
-      canvas->Clear();
-			//delete image_gen1;
-      sleep(1000);
-		}
-				
-		while (mode == 2) {
-      ThreadedCanvasManipulator *image_gen = NULL;
-      if(difficulty%3 == 1) {
+  	if (/*isDown(1) || isDown(2) || */input == 'w') {
+  		players = 2;
+  		//printf("players: %d\n", players);
+  	} 
+  	else if (/*isUp(1) || isUp(2) ||*/ input == 's') {
+  		players = 1;
+  		//printf("players: %d\n", players);
+  	}
+  	else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
+  		if (players == 1) { 
+  			mode = 2;
+        // usleep(1000);
+  		}
+  		else if(players == 2) { 
+        mode = 3;
+        // usleep(1000);
+  		}
+  	}
+    // usleep(1000);
+    canvas->Clear();
+  	//delete image_gen1;
+  }
+		
+  while (mode == 2) {
+    image_gen = NULL;
+    if(difficulty%3 == 1) {
       image_gen = new BoardTextfile(canvas, "easy.txt");
-      if (image_gen == NULL) return -1;
+      if (image_gen == NULL) { return -1; }
       image_gen->Start();
-			}
-            else if (difficulty%3 == 2) {
-                image_gen = new BoardTextfile(canvas, "medium.txt");
-                if (image_gen == NULL) return -1;
-                image_gen->Start();
-			}
-            else if (difficulty%3 == 0) {
-                image_gen = new BoardTextfile(canvas, "hard.txt");
-                if (image_gen == NULL) return -1;
-                image_gen->Start();
-			}
-     		  input = getchar();
-			    canvas->Clear();
-				
-				if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
-					difficulty++;
-					//printf("difficulty: %d\n", difficulty);
-				}
-				else if (/*isUp(1) || isUp(2)*/ input == 's') {
-					difficulty--;
-					//printf("difficulty: %d\n", difficulty);
-				}
-				else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
-					mode = 3;
-				}
-				//delete image_gen;
-			}
-			if(mode == 3)	
-			 reversi_main8(players, difficulty);
+  	}
+    else if (difficulty%3 == 2) {
+        image_gen = new BoardTextfile(canvas, "medium.txt");
+        if (image_gen == NULL) return -1;
+        image_gen->Start();
+    }
+    else if (difficulty%3 == 0) {
+        image_gen = new BoardTextfile(canvas, "hard.txt");
+        if (image_gen == NULL) { return -1; }
+        image_gen->Start();
+    }  
+  	
+    input = getchar();
+    canvas->Clear();
+  		
+  	if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
+  		difficulty++;
+  	}
+  	else if (/*isUp(1) || isUp(2)*/ input == 's') {
+  		difficulty--;
+  	}
+  	else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
+  		mode = 3;
+  	}
+  	//delete image_gen;
+  }
+	
+  reversi_main8(players, difficulty);
 			
 	canvas->Clear();
-	//delete image_gen;
-    //delete canvas;
+	delete image_gen;
+  delete canvas;
 	return 0; 
 }
 
