@@ -232,16 +232,15 @@ int reversi_main8(int player_count, int depth)
 	  Canvas *canvas = matrix;
 	  matrix->set_luminance_correct(true);
 
-  	image_gen = new BoardArray(canvas, board, curs);
-    if (image_gen == NULL) {
-      printf("Image gen error.\n");
-    }
-    image_gen->Start();
-
      /* The game play loop */
     do {
 
       //display(board);             /* Display the board  */
+      image_gen = new BoardArray(canvas, board, curs);
+      if (image_gen == NULL) {
+        printf("Image gen error.\n");
+      }
+      image_gen->Start();
       
       if(player++ % 2) { /*   It is the player's turn                    */
         if(valid_moves(board, moves, 'O')) {
