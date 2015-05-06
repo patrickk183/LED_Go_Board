@@ -204,9 +204,9 @@ public:
   void Run() {
     int percentage = 0;
     int value = 0;
-    Color c1 = {200, 0, 0};
-    Color c2 = {0, 200, 0};
-    Color c3 = {0, 0, 200};
+    Color c1 = {50, 0, 0};
+    Color c2 = {0, 50, 0};
+    Color c3 = {0, 0, 50};
     Color display = {0, 0, 0};
     Color former = c1;
     Color latter = c2;
@@ -225,7 +225,7 @@ public:
               if (fs.good()) {
                 switch (value) {
                   case 1:
-                    canvas()->SetPixel(j, i, 50, 50, 50);
+                    canvas()->SetPixel(j, i, 200, 200, 200);
                     break;
                   default:
                     canvas()->SetPixel(j, i, display.R, display.G, display.B);
