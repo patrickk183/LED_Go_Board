@@ -36,6 +36,10 @@ void controllerCleanup() {
 
 int Read(int chan) {
 
+	if (!bcm2835_init()) {
+        return 1;
+    }
+
     bcm2835_spi_begin();
     bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      // The default
     bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                   // The default
@@ -50,6 +54,7 @@ int Read(int chan) {
     read_data = bcm2835_spi_transfer(send_data);
     printf("read_data: %u\n", read_data);
 	bcm2835_spi_end();
+	bcm2835_close();
 
     return (int) read_data;
 }
