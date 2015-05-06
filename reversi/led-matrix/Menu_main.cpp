@@ -284,7 +284,7 @@ int reversi_main8(int player_count, int depth)
               }
               usleep(10000);
             }
-            if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.getx()][curs.gety()]) {
+            if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
@@ -377,7 +377,7 @@ int reversi_main8(int player_count, int depth)
               }
               usleep(10000);
             }
-            if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.getx()][curs.gety()]) {
+            if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), '@');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
