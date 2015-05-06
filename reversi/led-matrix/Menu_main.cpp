@@ -27,6 +27,8 @@ ThreadedCanvasManipulator* image_gen;
 Cursor curs;
 GPIO io;
 
+bool transition_tiles[SIZE][SIZE];
+
 int main(int argc, char **argv) {
 
 	//Go interface section of startup
@@ -698,6 +700,11 @@ void make_move(char board[][SIZE], int row, int col, char player)
    int y = 0;                          /* Column index for searching */
    char opponent1 = (player == 'O')? '@' : 'O';  /* Identify opponent */
    char opponent2 = (player == '@')? 'O' : '@'; 
+
+   //intialize transition tiles
+   for(row = 0; row < SIZE; row++)
+     for(col = 0; col < SIZE; col++)
+       trasition_tiles[row][col] = false;
    
    board[row][col] = player;           /* Place the player counter   */
 
@@ -739,9 +746,20 @@ void make_move(char board[][SIZE], int row, int col, char player)
            {
              while((board[x-=rowdelta][y-=coldelta]==opponent1) || (board[row + rowdelta][col + coldelta] == opponent2)) /* Opponent? */
                board[x][y] = player;    /* Yes, change it */
+               transition_tiles[x][y] = true;
              break;                     /* We are done    */
            } 
          }
        }
      }
+
+  Color arg1, arg2;
+  if (player == 'O') { arg1 = p1color; arg2 = p2color;}
+  else {arg1 = p2color; arg2 = p1color;}
+  //Transition
+  image_gen = new TransitionDisplay(canvas, transition_tiles, arg1, arg2);
+  if (image_gen == NULL) {
+    printf("Image gen error.\n");
+  }
+  image_gen->Start();
 }

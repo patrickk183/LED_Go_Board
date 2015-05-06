@@ -373,3 +373,58 @@ private:
   //mode indicates which set of images to check
   int mode;
 };
+
+class TransitionDisplay : public ThreadedCanvasManipulator { 
+public: 
+  //In this case, b is an array of pieces to transition from c1 to c2
+  TransitionDisplay(Canvas *m, char b[SIZE][SIZE], Color a_c1, Color a_c2)  : ThreadedCanvasManipulator(m)
+  {
+    for (int i = 0; i < SIZE; i++) {
+        for (int j = 0; j < SIZE; j++) {
+            board[i][j] = b[i][j];
+        }
+    } 
+    c1 = a_c1;
+    c2 = a_c2;
+  }
+  void Run() {
+
+    int percentage = 0;
+
+    while (percentage != 100) {
+      display = interpolate(c1, c2, percentage);
+      for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; j++) {
+          switch (board[i][j]) {
+            case '1':
+              canvas()->SetPixel(4*j, 4*i, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j, 4*i+1, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j, 4*i+2, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j, 4*i+3, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+1, 4*i, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+1, 4*i+1, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+1, 4*i+2, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+1, 4*i+3, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+2, 4*i, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+2, 4*i+1, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+2, 4*i+2, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+2, 4*i+3, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+3, 4*i, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+3, 4*i+1, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+3, 4*i+2, display.R, display.G, display.B);
+              canvas()->SetPixel(4*j+3, 4*i+3, display.R, display.G, display.B);
+              break;
+            default:
+              break;
+          }
+        }
+        percentage++;
+      }
+    }
+  }
+
+  private:
+    char board[SIZE][SIZE];
+    Color c1;
+    Color c2;
+};
