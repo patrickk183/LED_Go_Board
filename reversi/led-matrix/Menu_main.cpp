@@ -156,10 +156,10 @@ int main(int argc, char **argv) {
     canvas->Clear();
       
     if (isDown(1) || isDown(2)) {
-      difficulty--;
+      difficulty++;
     }
     else if (isUp(1) || isUp(2)) {
-      difficulty++;
+      difficulty--;
     }
     else if (isSelected(1) || isSelected(2) ) {
       if (abs(difficulty)%3 == 1) { difficulty = 2;}
