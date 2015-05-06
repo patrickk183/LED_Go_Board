@@ -390,6 +390,7 @@ public:
   void Run() {
 
     int percentage = 0;
+    Color display = {0, 0, 0};
 
     while (percentage != 100) {
       display = interpolate(c1, c2, percentage);
