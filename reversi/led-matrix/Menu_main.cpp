@@ -60,16 +60,6 @@ int main(int argc, char **argv) {
 	// the matrix continuously.
 	ThreadedCanvasManipulator *image_gen = NULL;
 
-  image_gen = new ChooseColorMenu(canvas, "color_1.txt");
-  if (image_gen == NULL) return -1;
-  image_gen->Start();
-  
-  while (getchar() != '\n') { usleep(10000); }
-  p1color_set = true;
-  usleep(10000);
-  delete image_gen;
-  image_gen = NULL;
-
   image_gen = new BoardTextfile(canvas, "reversi.txt");
 	if (image_gen == NULL) return -1;
   image_gen->Start();
@@ -78,6 +68,31 @@ int main(int argc, char **argv) {
   usleep(100000);
   canvas->Clear();
   delete image_gen;
+  image_gen = NULL;
+
+  //player 1 color select
+  image_gen = new ChooseColorMenu(canvas, "color_1.txt", 1);
+  if (image_gen == NULL) return -1;
+  image_gen->Start();
+  
+  while (getchar() != '\n') { usleep(10000); }
+  p1color_set = true;
+  sleep(1);
+  delete image_gen;
+  image_gen = NULL;
+
+  pcolor_set = false;
+
+  //player 2 color select
+  image_gen = new ChooseColorMenu(canvas, "color_2.txt", 2);
+  if (image_gen == NULL) return -1;
+  image_gen->Start();
+  
+  while (getchar() != '\n') { usleep(10000); }
+  p1color_set = true;
+  usleep(10000);
+  delete image_gen;
+  image_gen = NULL;
 	
 	while (mode == 1) {
      ThreadedCanvasManipulator *image_gen1 = NULL;

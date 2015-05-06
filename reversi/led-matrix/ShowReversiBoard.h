@@ -36,7 +36,7 @@ public:
   }
 };
 
-bool p1color_set = false, p2color_set = false;
+bool pcolor_set = false;
 Color p1color = {0, 0, 0}, p2color = {0, 0, 0};
 
 class BoardArray : public ThreadedCanvasManipulator { 
@@ -125,8 +125,9 @@ private:
 
 class ChooseColorMenu : public ThreadedCanvasManipulator { 
 public: 
-  ChooseColorMenu(Canvas *m, std::string arg)  : ThreadedCanvasManipulator(m) {
+  ChooseColorMenu(Canvas *m, std::string arg, int a_player)  : ThreadedCanvasManipulator(m) {
     filename = "../../assets/" + arg;
+    player = a_player;
   }
 
   void Run() {
@@ -171,17 +172,17 @@ public:
         }
         percentage++;
         usleep(5000);
-        if (/*isSelected(1)*/ p1color_set == true) {
-          p1color_set = true;
-          p1color = display; 
-          canvas()->Clear();
+        if (/*isSelected(1)*/ pcolor_set == true) {
+          pcolor_set = true;
+          if (player == 1) { p1color = display; }
+          else { p2color = display; }
           break;
         }
       }
       percentage = 0;
       fs.clear();
       fs.seekg(0, std::ios::beg);
-      if (p1color_set == true) {
+      if (pcolor_set == true) {
         break;
       }
     }
@@ -192,6 +193,7 @@ public:
 
 private:
   std::string filename;
+  int player;
 };
 
 class Menu : public ThreadedCanvasManipulator { 
