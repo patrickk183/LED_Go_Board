@@ -147,7 +147,7 @@ class BoardTextfile : public ThreadedCanvasManipulator {
 public: 
   BoardTextfile(Canvas *m, std::string f)  : ThreadedCanvasManipulator(m)
   {
-    filename = "../../assets/" + f;
+    filename = "../assets/" + f;
   }
   void Run() {
     std::fstream fs(filename.c_str(), std::ios_base::in);
@@ -179,7 +179,7 @@ private:
 class ChooseColorMenu : public ThreadedCanvasManipulator { 
 public: 
   ChooseColorMenu(Canvas *m, std::string arg, int a_player)  : ThreadedCanvasManipulator(m) {
-    filename = "../../assets/" + arg;
+    filename = "../assets/" + arg;
     player = a_player;
   }
 
@@ -263,7 +263,7 @@ public:
     Color display = {0, 0, 0};
     Color former = c1;
     Color latter = c2;
-    std::string filename = "../../assets/reversi.txt";
+    std::string filename = "../assets/reversi.txt";
     std::fstream fs(filename.c_str(), std::ios_base::in);
 
     while (true) {
@@ -317,7 +317,7 @@ public:
     size = a_size;
   }
     void Run() {
-      std::string filename = "../../assets/";
+      std::string filename = "../assets/";
 
       switch (mode) {
         case 1:
