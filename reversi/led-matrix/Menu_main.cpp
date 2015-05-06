@@ -443,7 +443,7 @@ void transition(int player)
   if (player == 1) { transArg1 = p2color; transArg1 = p1color; }
   else { transArg1 = p1color; transArg1 = p2color; }
 
-  image_gen = new TransitionDisplay(canvas, transition_tiles, p2color, p1color);
+  image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
   image_gen->Start();
