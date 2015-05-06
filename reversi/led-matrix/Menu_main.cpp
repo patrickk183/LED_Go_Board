@@ -161,7 +161,7 @@ int main(int argc, char **argv) {
     else if (isUp(1) || isUp(2)) {
       difficulty++;
     }
-    else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
+    else if (isSelected(1) || isSelected(2) ) {
       if (abs(difficulty)%3 == 1) { difficulty = 2;}
       if (abs(difficulty)%3 == 2) { difficulty = 3;}
       if (abs(difficulty)%3 == 0) { difficulty = 4;}
