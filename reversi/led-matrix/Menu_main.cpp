@@ -288,6 +288,7 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.gety(), curs.getx(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
+              transition();
               display(board);
               sleep(5);
               break;
@@ -320,6 +321,7 @@ int reversi_main8(int player_count, int depth)
           invalid_moves = 0;               /* Reset invalid count   */
           printf("Othello is thinking!");
   	      computer_move(board, moves, '@', depth);
+          transition();
           no_of_moves++;                   /* Increment move count  */
         }
         else {
@@ -379,6 +381,7 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.gety(), curs.getx(), '@');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
+              transition();
               display(board);
               break;
             }
