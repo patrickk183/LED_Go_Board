@@ -90,7 +90,7 @@ bool isSelected(int player) {
 			exit(1);
 			break;
 	}
-    if (Read(channel) < 100) 
+    if (Read(channel) < 50) 
     	return true;
     else
     	return false;
@@ -110,7 +110,7 @@ bool isNotSelected(int player) {
 			exit(1);
 			break;
 	}
-    if (Read(channel) > 900) 
+    if (Read(channel) > 200) 
     	return true;
     else
     	return false;
@@ -130,7 +130,7 @@ bool isUp(int player) {
 			exit(1);
 			break;
 	}
-    if (Read(channel) > 900) 
+    if (Read(channel) > 200) 
     	return true;
     else
     	return false;
@@ -150,7 +150,7 @@ bool isDown(int player) {
 			exit(1);
 			break;
 	}
-    if (Read(channel) < 100) 
+    if (Read(channel) < 50) 
     	return true;
     else
     	return false;
@@ -171,7 +171,7 @@ bool isRight(int player) {
 			exit(1);
 			break;
 	}
-    if (Read(channel) > 900) 
+    if (Read(channel) > 200) 
     	return true;
     else
     	return false;
@@ -191,7 +191,7 @@ bool isLeft(int player) {
 			exit(1);
 			break;
 	}
-    if (Read(channel) < 100) 
+    if (Read(channel) < 50) 
     	return true;
     else
     	return false;
