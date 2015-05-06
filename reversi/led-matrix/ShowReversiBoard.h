@@ -170,7 +170,7 @@ public:
             }
         }
         percentage++;
-        usleep(3000);
+        usleep(5000);
         if (/*isSelected(1)*/ p1color_set == true) {
           p1color_set = true;
           p1color = display; 
