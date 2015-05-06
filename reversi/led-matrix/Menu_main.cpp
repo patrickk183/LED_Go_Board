@@ -130,17 +130,17 @@ int main(int argc, char **argv) {
 		
   while (mode == 2) {
     image_gen = NULL;
-    if(difficulty%3 == 1) {
+    if(abs(difficulty)%3 == 1) {
       image_gen = new BoardTextfile(canvas, "easy.txt");
       if (image_gen == NULL) { return -1; }
       image_gen->Start();
   	}
-    else if (difficulty%3 == 2) {
+    else if (asb(difficulty)%3 == 2) {
         image_gen = new BoardTextfile(canvas, "medium.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
-    else if (difficulty%3 == 0) {
+    else if (abs(difficulty)%3 == 0) {
         image_gen = new BoardTextfile(canvas, "hard.txt");
         if (image_gen == NULL) { return -1; }
         image_gen->Start();
@@ -156,6 +156,9 @@ int main(int argc, char **argv) {
   		difficulty--;
   	}
   	else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
+      if (abs(difficulty)%3 == 1) { difficulty = 2}
+      if (abs(difficulty)%3 == 2) { difficulty = 3}
+      if (abs(difficulty)%3 == 0) { difficulty = 4}
   		mode = 3;
   	}
   	//delete image_gen;
@@ -172,7 +175,6 @@ int main(int argc, char **argv) {
 int reversi_main8(int player_count, int depth)
 {
   
-  depth = depth+2;
   char board [SIZE][SIZE] = {0};  /* The board           */
   int moves[SIZE][SIZE] = { 0 };    /* Valid moves         */
   int row = 0;                      /* Board row index     */
