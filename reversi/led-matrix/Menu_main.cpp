@@ -287,6 +287,7 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.getx(), curs.gety(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
+              transition();
               display(board);
               sleep(5);
               break;
@@ -378,6 +379,7 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.getx(), curs.gety(), '@');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
+              transition();
               display(board);
               break;
             }
