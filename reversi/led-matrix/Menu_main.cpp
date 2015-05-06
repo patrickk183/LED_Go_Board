@@ -14,6 +14,7 @@
 #include <exception>
 
 void display(char board[SIZE][SIZE]);
+void transition() ;
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -432,6 +433,14 @@ int reversi_main8(int player_count, int depth)
 
   printf("\nGoodbye\n"); 
   return 0;
+}
+
+void transition() 
+{
+  image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
+  if (image_gen == NULL) { return -1; }
+  image_gen->Start();
+  slep(.5);
 }
 
 /***********************************************
