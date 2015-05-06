@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
 	if (image_gen == NULL) { return -1; }
   image_gen->Start();
   getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
-  usleep(100000);
+  splash_done = true;
   canvas->Clear();
   delete image_gen;
   image_gen = NULL;

@@ -37,6 +37,7 @@ public:
 };
 
 bool pcolor_set = false;
+bool splash_done;
 Color p1color = {0, 0, 0}, p2color = {0, 0, 0};
 
 class BoardArray : public ThreadedCanvasManipulator { 
@@ -236,10 +237,16 @@ public:
         }
         percentage++;
         usleep(7500);
+        if (splash_done == true) {
+          break;
+        }
       }
       percentage = 0;
       fs.clear();
       fs.seekg(0, std::ios::beg);
+      if (splash_done == true) {
+          break;
+      }
     }
 
    fs.close();
