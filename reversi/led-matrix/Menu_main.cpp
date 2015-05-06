@@ -64,6 +64,7 @@ int main(int argc, char **argv) {
 	if (image_gen == NULL) { return -1; }
   image_gen->Start();
   getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
+  fflush(stdin);
   splash_done = true;
   canvas->Clear();
   delete image_gen;
@@ -74,6 +75,7 @@ int main(int argc, char **argv) {
   if (image_gen == NULL) return -1;
   image_gen->Start();
   while (getchar() != '\n') { usleep(10000); }
+  fflush(stdin);
   pcolor_set = true;
   sleep(1);
   delete image_gen;
@@ -85,6 +87,7 @@ int main(int argc, char **argv) {
   if (image_gen == NULL) return -1;
   image_gen->Start();
   while (getchar() != '\n') { usleep(10000); }
+  fflush(stdin);
   pcolor_set = true;
   sleep(1);
   delete image_gen;
@@ -104,6 +107,7 @@ int main(int argc, char **argv) {
     }
 
   	input = getchar();
+    fflush(stdin);
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
   		players++;
@@ -147,6 +151,7 @@ int main(int argc, char **argv) {
     }  
   	
     input = getchar();
+    fflush(stdin);
     canvas->Clear();
   		
   	if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
