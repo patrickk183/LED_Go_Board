@@ -102,15 +102,13 @@ int main(int argc, char **argv) {
   pcolor_set = false;
 
   while (mode == 1) {
+    delete image_gen;
     if(abs(players)%2 == 1) { 
-        delete image_gen;            
         image_gen = new BoardTextfile(canvas, "players_1.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
     else if (abs(players)%2 == 0) {
-  delete image_gen;
-        delete image_gen;    
         image_gen = new BoardTextfile(canvas, "players_2.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
@@ -140,20 +138,18 @@ int main(int argc, char **argv) {
     
   while (mode == 2) {
     image_gen = NULL;
+    delete image_gen;    
     if(abs(difficulty)%3 == 1) {
-      delete image_gen;    
       image_gen = new BoardTextfile(canvas, "easy.txt");
       if (image_gen == NULL) { return -1; }
       image_gen->Start();
     }
     else if (abs(difficulty)%3 == 2) {
-        delete image_gen;    
         image_gen = new BoardTextfile(canvas, "medium.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
     else if (abs(difficulty)%3 == 0) {
-        delete image_gen;    
         image_gen = new BoardTextfile(canvas, "hard.txt");
         if (image_gen == NULL) { return -1; }
         image_gen->Start();
