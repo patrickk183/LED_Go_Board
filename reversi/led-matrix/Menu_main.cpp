@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
   	}
     // usleep(1000);
     canvas->Clear();
-  	delete image_gen;
+  	// delete image_gen;
   }
 		
   while (mode == 2) {
@@ -161,7 +161,7 @@ int main(int argc, char **argv) {
       if (abs(difficulty)%3 == 0) { difficulty = 4;}
   		mode = 3;
   	}
-  	delete image_gen;
+  	// delete image_gen;
   }
 	
   reversi_main8(players, difficulty);
@@ -223,9 +223,9 @@ int reversi_main8(int player_count, int depth)
     //Display the board
   	ThreadedCanvasManipulator *image_gen = NULL;
     
-  	 RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-  	 Canvas *canvas = matrix;
-  	 matrix->set_luminance_correct(true);
+	  RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+	  Canvas *canvas = matrix;
+	  matrix->set_luminance_correct(true);
 
   	// image_gen = new BoardArray(canvas, board, curs);
    //  if (image_gen == NULL) {
