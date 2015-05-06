@@ -184,10 +184,11 @@ public:
       if (p1color_set == true) {
         break;
       }
-  }
+    }
 
-  fs.close();
+   fs.close();
 
+   }
   }
 
 private:
