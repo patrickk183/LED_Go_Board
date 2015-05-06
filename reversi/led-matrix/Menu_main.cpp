@@ -250,7 +250,7 @@ int reversi_main8(int player_count, int depth)
            printf("Please enter your move (row column): "); 
            scanf("%d%c", &x, &y);              /* Read input        */
            y = tolower(y) - 'a';         /* Convert to column index */
-           x--;                           Convert to row index    
+           x--;                           //Convert to row index    
           // while (isNotSelected(1)) {
           //     if (isUp(1)) {
           //       if (curs.gety()-1 >= 0) {
