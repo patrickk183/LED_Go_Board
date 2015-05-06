@@ -31,7 +31,6 @@ int controllerInit() {
 }
 
 void controllerCleanup() {
-	bcm2835_spi_end();
     bcm2835_close();
 }
 
@@ -50,6 +49,7 @@ int Read(int chan) {
     uint8_t read_data = bcm2835_spi_transfer(send_data);
     read_data = bcm2835_spi_transfer(send_data);
     printf("read_data: %u\n", read_data);
+	bcm2835_spi_end();
 
     return (int) read_data;
 }
