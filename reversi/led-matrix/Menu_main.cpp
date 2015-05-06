@@ -287,7 +287,7 @@ int reversi_main8(int player_count, int depth)
               usleep(10000);
             }
             if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()]) {
-              make_move(board, curs.getx(), curs.gety(), 'O');
+              make_move(board, curs.gety(), curs.gety(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
               display(board);
@@ -295,6 +295,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
+              std::cout << "illegal move" << std::endl;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
