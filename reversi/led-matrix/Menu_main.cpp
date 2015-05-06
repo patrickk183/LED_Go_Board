@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
   	}
     // usleep(1000);
     canvas->Clear();
-  	//delete image_gen1;
+  	delete image_gen;
   }
 		
   while (mode == 2) {
@@ -161,7 +161,7 @@ int main(int argc, char **argv) {
       if (abs(difficulty)%3 == 0) { difficulty = 4;}
   		mode = 3;
   	}
-  	//delete image_gen;
+  	delete image_gen;
   }
 	
   reversi_main8(players, difficulty);
