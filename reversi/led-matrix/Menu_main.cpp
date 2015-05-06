@@ -1,17 +1,16 @@
 
 #include <exception>  // terminate()
 #include <cstdlib>    // abort()
-
-
-#include "ShowReversiBoard.h"
-#include "include/led-matrix.h"
-#include "include/threaded-canvas-manipulator.h"
 #include <stdlib.h>
 #include <iostream>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <exception>
+
+#include "ShowReversiBoard.h"
+#include "include/led-matrix.h"
+#include "include/threaded-canvas-manipulator.h"
 
 void display(char board[SIZE][SIZE]);
 void transition(int player) ;
