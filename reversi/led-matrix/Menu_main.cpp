@@ -150,10 +150,10 @@ int main(int argc, char **argv) {
     canvas->Clear();
   		
   	if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
-  		difficulty++;
+  		difficulty--;
   	}
   	else if (/*isUp(1) || isUp(2)*/ input == 's') {
-  		difficulty--;
+  		difficulty++;
   	}
   	else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
       if (abs(difficulty)%3 == 1) { difficulty = 2;}
