@@ -170,6 +170,7 @@ public:
             }
         }
         percentage++;
+        std::cout << "incrementing percentage" << std::cout;
         usleep(1000);
         if (/*isSelected(1)*/ getchar() == '\n') {
           p1color_set = true;
