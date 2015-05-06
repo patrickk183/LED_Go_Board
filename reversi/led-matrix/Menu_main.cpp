@@ -114,11 +114,11 @@ int main(int argc, char **argv) {
   		//printf("players: %d\n", players);
   	}
   	else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
-  		if (players == 1) { 
+  		if (abs(players)%2 == 1) { 
   			mode = 2;
         // usleep(1000);
   		}
-  		else if(players == 2) { 
+  		else if(abs(players)%2 == 0) { 
         mode = 3;
         // usleep(1000);
   		}
