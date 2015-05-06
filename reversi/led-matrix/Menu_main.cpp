@@ -440,7 +440,8 @@ int reversi_main8(int player_count, int depth)
 
 void transition() 
 {
-  image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
+  image_gen = new TransitionDisplay(canvas, transition_tiles, p2color, p1color);
+  // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
   image_gen->Start();
   sleep(.5);
