@@ -290,7 +290,6 @@ int reversi_main8(int player_count, int depth)
               no_of_moves++;              /* Increment move count */
               transition(1);
               display(board);
-              sleep(5);
               break;
             }
             else {
