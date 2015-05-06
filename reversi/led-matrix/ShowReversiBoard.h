@@ -219,6 +219,7 @@ public:
       else if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1;}
       else if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2;}
       while(percentage != 100) {
+        display = interpolate(former, latter, percentage);
         for (int i = 0; i < MATRIX_SIZE; i++) {
             for (int j = 0; j < MATRIX_SIZE; j++) {
               fs >> value;
@@ -228,7 +229,6 @@ public:
                     canvas()->SetPixel(j, i, 200, 200, 200);
                     break;
                   default:
-                    display = interpolate(former, latter, percentage);
                     canvas()->SetPixel(j, i, display.R, display.G, display.B);
                     break;
                 }
@@ -236,14 +236,14 @@ public:
             }
         }
         percentage++;
+        fs.clear();
+        fs.seekg(0, std::ios::beg);
         usleep(7500);
         if (splash_done == true) {
           break;
         }
       }
       percentage = 0;
-      fs.clear();
-      fs.seekg(0, std::ios::beg);
       if (splash_done == true) {
           break;
       }
