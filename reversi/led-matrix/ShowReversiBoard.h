@@ -130,7 +130,6 @@ public:
   }
 
   void Run() {
-    bool isLeaving = false;
     int percentage = 0;
     int value = 0;
     Color c1 = {200, 0, 0};
@@ -165,6 +164,7 @@ public:
               }
               else {
                 display = interpolate(former, latter, percentage);
+                cout << display.R << " " << display.G << " " << display.B << std::endl;
                 canvas()->SetPixel(j, i, display.R, display.G, display.B);
               }
             }
@@ -179,7 +179,7 @@ public:
         }
       }
       percentage = 0;
-      fs.clear(0);
+      fs.clear();
       fs.seekg(0, std::ios::beg);
 
       if (p1color_set == true) {
