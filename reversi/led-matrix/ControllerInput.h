@@ -44,36 +44,12 @@ int Read(int chan) {
     bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
     bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
 
-
-    int a2dVal = 0;
-    int a2dChannel = chan;
-
-    char data_buffer[3];
-    data_buffer[0] = 0b00000001;  //  first byte transmitted -> start bit
-    data_buffer[1] = 0b10000000 |( ((a2dChannel & 7) << 4)); // second byte transmitted -> (SGL/DIF = 1, D2=D1=D0=0)
-    data_buffer[2] = 0b00000000; // third byte transmitted....don't care
-/*
-    printf("\nBefore Transfer: ");
-    int i;
-    for (i = 0; i < 3; i++)
-                  printf("%02X ", data_buffer[i]);
-*/
-
-    bcm2835_spi_transfern(data_buffer, sizeof(data_buffer));
-
-/*
-    printf("\nAfter Transfer: ");
-    for (i = 0; i < 3; i++)
-                  printf("%02X ", data_buffer[i]);
-*/
-
-    a2dVal = 0;
-    a2dVal = (data_buffer[1]<< 8) & 0b1100000000; //merge data[1] & data[2] to get result
-    a2dVal |=  (data_buffer[2] & 0xff);
+    uint8_t send_data = (uint8_t) chan;
+    uint8_t read_data = bcm2835_spi_transfer(send_data);
 
     //printf("\nThe Result is: %d\n", a2dVal);
 
-    return a2dVal;
+    return (int) read_data;
 }
 
 bool isSelected(int player) {
