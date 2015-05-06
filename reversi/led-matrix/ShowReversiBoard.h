@@ -377,7 +377,7 @@ private:
 class TransitionDisplay : public ThreadedCanvasManipulator { 
 public: 
   //In this case, b is an array of pieces to transition from c1 to c2
-  TransitionDisplay(Canvas *m, char b[SIZE][SIZE], Color a_c1, Color a_c2) : ThreadedCanvasManipulator(m)
+  TransitionDisplay(Canvas *m, bool b[SIZE][SIZE], Color a_c1, Color a_c2) : ThreadedCanvasManipulator(m)
   {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
