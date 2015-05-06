@@ -442,7 +442,7 @@ void display(char board[SIZE][SIZE])
   int col = 0;           /* Column index   */
   char col_label = 'a';  /* Column label   */
 
-  printf("\n ");          Start top line 
+  printf("\n ");          //Start top line 
   for(col = 0 ; col<SIZE ;col++)
   printf("   %c", col_label+col); /* Display the top line */
   printf("\n");                     /* End the top line     */
