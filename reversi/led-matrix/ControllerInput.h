@@ -56,17 +56,19 @@ bool isSelected(int player) {
 	int channel;
 	switch (player) {
 		case 1:
-			channel = 2;
+			channel = 3;
 			break;
 		case 2:
-			channel = 5;
+			channel = 6;
 			break;
 		default:
 		    printf("Select Player 1 or 2");
 			exit(1);
 			break;
 	}
-    if (Read(channel) < 50) 
+	int rc = Read(channel);
+	printf("Val: %d\n", rc);
+    if (rc < 50) 
     	return true;
     else
     	return false;
@@ -76,6 +78,28 @@ bool isNotSelected(int player) {
 	int channel;
 	switch (player) {
 		case 1:
+			channel = 3;
+			break;
+		case 2:
+			channel = 6;
+			break;
+		default:
+		    printf("Select Player 1 or 2");
+			exit(1);
+			break;
+	}
+    int rc = Read(channel);
+    printf("Val: %d\n", rc);
+    if (rc > 200) 
+    	return true;
+    else
+    	return false;
+}
+
+bool isUp(int player) {
+	int channel;
+	switch (player) {
+		case 1:
 			channel = 2;
 			break;
 		case 2:
@@ -86,27 +110,9 @@ bool isNotSelected(int player) {
 			exit(1);
 			break;
 	}
-    if (Read(channel) > 200) 
-    	return true;
-    else
-    	return false;
-}
-
-bool isUp(int player) {
-	int channel;
-	switch (player) {
-		case 1:
-			channel = 1;
-			break;
-		case 2:
-			channel = 4;
-			break;
-		default:
-		    printf("Select Player 1 or 2");
-			exit(1);
-			break;
-	}
-    if (Read(channel) > 200) 
+    int rc = Read(channel);
+    printf("Val: %d\n", rc);
+    if (rc > 200) 
     	return true;
     else
     	return false;
@@ -116,17 +122,19 @@ bool isDown(int player) {
 	int channel;
 	switch (player) {
 		case 1:
-			channel = 1;
+			channel = 2;
 			break;
 		case 2:
-			channel = 4;
+			channel = 5;
 			break;
 		default:
 		    printf("Select Player 1 or 2");
 			exit(1);
 			break;
 	}
-    if (Read(channel) < 50) 
+    int rc = Read(channel);
+    printf("Val: %d\n", rc);
+    if (rc < 50) 
     	return true;
     else
     	return false;
@@ -137,17 +145,19 @@ bool isRight(int player) {
 	int channel;
 	switch (player) {
 		case 1:
-			channel = 0;
+			channel = 1;
 			break;
 		case 2:
-			channel = 3;
+			channel = 4;
 			break;
 		default:
 		    printf("Select Player 1 or 2");
 			exit(1);
 			break;
 	}
-    if (Read(channel) > 200) 
+    int rc = Read(channel);
+    printf("Val: %d\n", rc);
+    if (rc > 200) 
     	return true;
     else
     	return false;
@@ -157,17 +167,19 @@ bool isLeft(int player) {
 	int channel;
 	switch (player) {
 		case 1:
-			channel = 0;
+			channel = 1;
 			break;
 		case 2:
-			channel = 3;
+			channel = 4;
 			break;
 		default:
 		    printf("Select Player 1 or 2");
 			exit(1);
 			break;
 	}
-    if (Read(channel) < 50) 
+    int rc = Read(channel);
+    printf("Val: %d\n", rc);
+    if (rc < 50) 
     	return true;
     else
     	return false;
