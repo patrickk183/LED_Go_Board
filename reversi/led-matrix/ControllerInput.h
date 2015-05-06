@@ -46,6 +46,7 @@ int Read(int chan) {
 
     uint8_t send_data = (uint8_t) chan;
     uint8_t read_data = bcm2835_spi_transfer(send_data);
+    read_data = bcm2835_spi_transfer(send_data);
 
     //printf("\nThe Result is: %d\n", a2dVal);
 
