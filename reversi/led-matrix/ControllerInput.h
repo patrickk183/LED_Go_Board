@@ -90,14 +90,10 @@ bool isNotSelected(int player) {
 			break;
 	}
     
-    if (Read(channel) > 200) {
-    	printf("true INS");
+    if (Read(channel) > 200)
 	return true;
-    }
-    else{
-    	printf("false INS");
+    else
 	return false;
-    }
 }
 
 bool isUp(int player) {
