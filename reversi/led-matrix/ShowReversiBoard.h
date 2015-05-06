@@ -141,26 +141,23 @@ public:
     std::fstream fs(filename.c_str(), std::ios_base::in);
 
     while (true) {
-      if (former.R == c1.R && former.G == c1.G && former.B == c1.B) {former = c2; latter = c3;}
-      if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1;}
-      if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2;}
       while(percentage != 100) {
         for (int i = 0; i < MATRIX_SIZE; i++) {
             for (int j = 0; j < MATRIX_SIZE; j++) {
               fs >> value;
               if ((i < 12 || i > 20) || (j < 12 || j > 20)) {
-                if (!fs.good()) break;
-                switch (value) {
-                  case 1:
-                    canvas()->SetPixel(j, i, 200, 0, 0);
-                    break;
-                  case 2:
-                    canvas()->SetPixel(j, i, 200, 200, 200);
-                    break;
-                  default:
-                    canvas()->SetPixel(j, i, 0, 0, 0);
-                    break;
-                }
+                if (fs.good()) {
+                  switch (value) {
+                    case 1:
+                      canvas()->SetPixel(j, i, 200, 0, 0);
+                      break;
+                    case 2:
+                      canvas()->SetPixel(j, i, 200, 200, 200);
+                      break;
+                    default:
+                      canvas()->SetPixel(j, i, 0, 0, 0);
+                      break;
+                  }
               }
               else {
                 display = interpolate(former, latter, percentage);
@@ -170,7 +167,6 @@ public:
             }
         }
         percentage++;
-        std::cout << "incrementing percentage" << std::endl;
         usleep(1000);
         if (/*isSelected(1)*/ p1color_set == true) {
           p1color_set = true;
@@ -182,7 +178,9 @@ public:
       percentage = 0;
       fs.clear();
       fs.seekg(0, std::ios::beg);
-
+      if (former.R == c1.R && former.G == c1.G && former.B == c1.B) {former = c2; latter = c3;}
+      if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1;}
+      if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2;}
       if (p1color_set == true) {
         break;
       }
