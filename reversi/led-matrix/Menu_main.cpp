@@ -259,7 +259,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              // delete image_gen;
+              delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -323,7 +323,7 @@ int reversi_main8(int player_count, int depth)
               }
               usleep(100000);
             }
-            if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.gety()][curs.getx()]) {
+            if(moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), '@');
               no_of_moves++;              /* Increment move count */
               transition(2);
@@ -331,7 +331,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              // delete image_gen;
+              delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -379,7 +379,7 @@ void transition(int player)
 {
   if (player == 1) { transArg1 = p1color; transArg2 = p2color; }
   else { transArg1 = p2color; transArg2 = p1color; }
-  delete image_gen;
+  // delete image_gen;
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
   image_gen->Start();
