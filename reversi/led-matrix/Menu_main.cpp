@@ -762,4 +762,5 @@ void make_move(char board[][SIZE], int row, int col, char player)
     printf("Image gen error.\n");
   }
   image_gen->Start();
+  sleep(.5);
 }
