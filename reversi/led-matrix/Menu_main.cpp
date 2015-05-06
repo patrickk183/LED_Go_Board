@@ -14,6 +14,7 @@
 #include <exception>
 
 void display(char board[SIZE][SIZE]);
+void Transition();
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -626,7 +627,7 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
 		
    /* Make the best move */
    make_move(board, best_row, best_col, player); 
-   
+
    //Transition
   transition();
   display();
