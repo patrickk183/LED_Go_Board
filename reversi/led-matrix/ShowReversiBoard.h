@@ -54,13 +54,14 @@ public:
   void Run() {
     for (int i = 0; i < SIZE; ++i) {
       for (int j = 0; j < SIZE; j++) {
-        if (j == curs.getx() && i == curs.gety()) {
-          canvas()->SetPixel(2*j+ 8, 2*i+ 8, 75, 25, 75);
-          canvas()->SetPixel(2*j+ 8, 2*i+1+ 8, 75, 25, 75);
-          canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 75, 25, 75);
-          canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 75, 25, 75);
-        }
-        else {
+
+        // if (j == curs.getx() && i == curs.gety()) {
+        //   canvas()->SetPixel(2*j+ 8, 2*i+ 8, 75, 25, 75);
+        //   canvas()->SetPixel(2*j+ 8, 2*i+1+ 8, 75, 25, 75);
+        //   canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 75, 25, 75);
+        //   canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 75, 25, 75);
+        // }
+        // else {
         switch (board[i][j]) {
           case '@':
             canvas()->SetPixel(2*j+ 8, 2*i+ 8, p1color.R, p1color.G, p1color.B);
@@ -80,8 +81,9 @@ public:
             canvas()->SetPixel(2*j+1+ 8, 2*i+ 8, 50, 50, 50);
             canvas()->SetPixel(2*j+1+ 8, 2*i+1+ 8, 50, 50, 50);
             break;
-        }
-       }
+          }
+        // }
+        
       }
     }
   }
