@@ -45,11 +45,11 @@ int Read(int chan) {
     bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
 
     uint8_t send_data = chan;
-    // printf("chan: %d\n", chan);
-    // printf("send_data: %u\n", send_data);
+    printf("chan: %d\n", chan);
+    printf("send_data: %u\n", send_data);
     uint8_t read_data = bcm2835_spi_transfer(send_data);
     // read_data = bcm2835_spi_transfer(send_data);
-    // printf("read_data: %u\n", read_data);
+    printf("read_data: %u\n", read_data);
 
     return (int) read_data;
 }
@@ -89,11 +89,14 @@ bool isNotSelected(int player) {
 			exit(1);
 			break;
 	}
-    
-    if (Read(channel) > 200)
-	return true;
-    else
-	return false;
+
+    if (Read(channel) > 220) {
+    	return true;
+    }
+    else{
+    	return false;
+    }
+>>>>>>> 49868cdbb905bcb65bae8378fa2436fce5e3be15
 }
 
 bool isUp(int player) {
