@@ -44,11 +44,12 @@ int Read(int chan) {
     bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
     bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
 
-    uint8_t send_data = (uint8_t) chan;
+    uint8_t send_data = chan;
+    printf("chan: %d\n", chan);
+    printf("send_data: %d\n", send_data);
     uint8_t read_data = bcm2835_spi_transfer(send_data);
     read_data = bcm2835_spi_transfer(send_data);
-
-    //printf("\nThe Result is: %d\n", a2dVal);
+    printf("read_data: %d\n", read_data);
 
     return (int) read_data;
 }
@@ -67,9 +68,8 @@ bool isSelected(int player) {
 			exit(1);
 			break;
 	}
-	int rc = Read(channel);
-	printf("Val: %d\n", rc);
-    if (rc < 50) 
+
+    if (Read(channel) < 50) 
     	return true;
     else
     	return false;
@@ -89,9 +89,8 @@ bool isNotSelected(int player) {
 			exit(1);
 			break;
 	}
-    int rc = Read(channel);
-    printf("Val: %d\n", rc);
-    if (rc > 200) 
+
+    if (Read(channel) > 200) 
     	return true;
     else
     	return false;
@@ -111,9 +110,7 @@ bool isUp(int player) {
 			exit(1);
 			break;
 	}
-    int rc = Read(channel);
-    printf("Val: %d\n", rc);
-    if (rc > 200) 
+    if (Read(channel) > 200) 
     	return true;
     else
     	return false;
@@ -133,9 +130,8 @@ bool isDown(int player) {
 			exit(1);
 			break;
 	}
-    int rc = Read(channel);
-    printf("Val: %d\n", rc);
-    if (rc < 50) 
+
+    if (Read(channel) < 50) 
     	return true;
     else
     	return false;
@@ -156,9 +152,8 @@ bool isRight(int player) {
 			exit(1);
 			break;
 	}
-    int rc = Read(channel);
-    printf("Val: %d\n", rc);
-    if (rc > 200) 
+
+    if (Read(channel) > 200) 
     	return true;
     else
     	return false;
@@ -178,9 +173,8 @@ bool isLeft(int player) {
 			exit(1);
 			break;
 	}
-    int rc = Read(channel);
-    printf("Val: %d\n", rc);
-    if (rc < 50) 
+
+    if (Read(channel) < 50) 
     	return true;
     else
     	return false;
