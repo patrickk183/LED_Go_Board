@@ -396,8 +396,7 @@ public:
       display = interpolate(c1, c2, percentage);
       for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; j++) {
-          switch (board[i][j]) {
-            case '1':
+          if (board[i][j] == true) {
               canvas()->SetPixel(4*j, 4*i, display.R, display.G, display.B);
               canvas()->SetPixel(4*j, 4*i+1, display.R, display.G, display.B);
               canvas()->SetPixel(4*j, 4*i+2, display.R, display.G, display.B);
@@ -414,9 +413,6 @@ public:
               canvas()->SetPixel(4*j+3, 4*i+1, display.R, display.G, display.B);
               canvas()->SetPixel(4*j+3, 4*i+2, display.R, display.G, display.B);
               canvas()->SetPixel(4*j+3, 4*i+3, display.R, display.G, display.B);
-              break;
-            default:
-              break;
           }
         }
       }
