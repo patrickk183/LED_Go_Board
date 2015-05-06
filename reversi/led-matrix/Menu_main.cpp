@@ -135,7 +135,7 @@ int main(int argc, char **argv) {
       if (image_gen == NULL) { return -1; }
       image_gen->Start();
   	}
-    else if (asb(difficulty)%3 == 2) {
+    else if (abs(difficulty)%3 == 2) {
         image_gen = new BoardTextfile(canvas, "medium.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
@@ -156,9 +156,9 @@ int main(int argc, char **argv) {
   		difficulty--;
   	}
   	else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
-      if (abs(difficulty)%3 == 1) { difficulty = 2}
-      if (abs(difficulty)%3 == 2) { difficulty = 3}
-      if (abs(difficulty)%3 == 0) { difficulty = 4}
+      if (abs(difficulty)%3 == 1) { difficulty = 2;}
+      if (abs(difficulty)%3 == 2) { difficulty = 3;}
+      if (abs(difficulty)%3 == 0) { difficulty = 4;}
   		mode = 3;
   	}
   	//delete image_gen;
