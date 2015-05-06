@@ -256,7 +256,7 @@ int reversi_main8(int player_count, int depth)
             std::cout << "getting a move" << std::endl;
 
             fflush(stdin);
-            //char input = getchar();
+            char input;
             //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
             while (getchar()) {
@@ -339,7 +339,7 @@ int reversi_main8(int player_count, int depth)
           for(;;) {
 
             fflush(stdin);
-            //char input = getchar();
+            char input;
             //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
             while (getchar()) {
