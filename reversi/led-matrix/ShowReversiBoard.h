@@ -210,7 +210,7 @@ public:
     Color display = {0, 0, 0};
     Color former = c1;
     Color latter = c2;
-    string filename = "../../assets/reversi.txt";
+    std::string filename = "../../assets/reversi.txt";
     std::fstream fs(filename.c_str(), std::ios_base::in);
 
     while (true) {
