@@ -283,6 +283,7 @@ int reversi_main8(int player_count, int depth)
                 std::cout << "move received: " << curs.getx() << " " << curs.gety() << std::endl;
                 break;
               }
+              std::cout << "cursor " << curs.getx() << " " << curs.gety() << std::endl;
               usleep(10000);
             }
             if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()]) {
