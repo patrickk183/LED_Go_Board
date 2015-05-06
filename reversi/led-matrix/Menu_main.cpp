@@ -763,4 +763,5 @@ void make_move(char board[][SIZE], int row, int col, char player)
   }
   image_gen->Start();
   sleep(.5);
+  display(board);
 }

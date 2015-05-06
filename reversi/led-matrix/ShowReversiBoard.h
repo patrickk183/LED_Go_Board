@@ -419,8 +419,9 @@ public:
               break;
           }
         }
-        percentage++;
       }
+      usleep(10000);
+      percentage++;
     }
   }
 
