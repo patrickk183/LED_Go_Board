@@ -96,7 +96,7 @@ bool isNotSelected(int player) {
     else{
     	return false;
     }
->>>>>>> 49868cdbb905bcb65bae8378fa2436fce5e3be15
+
 }
 
 bool isUp(int player) {
