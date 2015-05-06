@@ -107,18 +107,18 @@ int main(int argc, char **argv) {
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
   		players++;
-  		//printf("players: %d\n", players);
   	} 
   	else if (/*isUp(1) || isUp(2) ||*/ input == 's') {
   		players--;
-  		//printf("players: %d\n", players);
   	}
   	else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
   		if (abs(players)%2 == 1) { 
+        players = 1;
   			mode = 2;
         // usleep(1000);
   		}
   		else if(abs(players)%2 == 0) { 
+        players = 2;
         mode = 3;
         // usleep(1000);
   		}
