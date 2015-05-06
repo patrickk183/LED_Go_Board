@@ -105,8 +105,10 @@ int main(int argc, char **argv) {
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
+
     fflush(stdin);
-  	input = getchar();
+    input = getchar()
+  	while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar()}
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
   		players++;
