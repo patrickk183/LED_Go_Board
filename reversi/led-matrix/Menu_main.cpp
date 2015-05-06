@@ -23,7 +23,7 @@ int reversi_main8(int player_count, int depth);
 
 RGBMatrix *matrix;
 Canvas *canvas;
-ThreadedCanvasManipulator image_gen;
+ThreadedCanvasManipulator* image_gen;
 Cursor curs;
 GPIO io;
 
@@ -52,7 +52,6 @@ int main(int argc, char **argv) {
 	// The matrix, our 'frame buffer' and display updater.
 	matrix = new RGBMatrix(&io, rows, chain, parallel);
 	matrix->set_luminance_correct(do_luminance_correct);
-
 	canvas = matrix;
 
 	int players = 1;
