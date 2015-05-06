@@ -234,12 +234,7 @@ int reversi_main8(int player_count, int depth)
      /* The game play loop */
     do {
 
-      //display(board);             /* Display the board  */
-      image_gen = new BoardArray(canvas, board, curs);
-      if (image_gen == NULL) {
-        printf("Image gen error.\n");
-      }
-      image_gen->Start();
+      display(board);             /* Display the board  */
       
       if(player++ % 2) { /*   It is the player's turn                    */
         if(valid_moves(board, moves, 'O')) {
@@ -455,17 +450,17 @@ void display(char board[SIZE][SIZE])
   }
 
 
-  ThreadedCanvasManipulator *image_gen = NULL;
+  // ThreadedCanvasManipulator *image_gen = NULL;
 
-  RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-  Canvas *canvas = matrix;
-  matrix->set_luminance_correct(true);
+  // RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+  // Canvas *canvas = matrix;
+  // matrix->set_luminance_correct(true);
 
-  image_gen = new BoardArray(canvas, board, curs);
-  if (image_gen == NULL) {
-    printf("Image gen error.\n");
-  }
-  image_gen->Start();
+  // image_gen = new BoardArray(canvas, board, curs);
+  // if (image_gen == NULL) {
+  //   printf("Image gen error.\n");
+  // }
+  // image_gen->Start();
 
   /* Display the intermediate rows */  
   for(row = 0; row < SIZE; row++) {
