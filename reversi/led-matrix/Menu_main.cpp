@@ -279,26 +279,26 @@ int reversi_main8(int player_count, int depth)
           //     usleep(10000);
           //   }
           char input = getchar();
-          while (input == "w") {
+          while (input == 'w') {
             if (isUp(2)) {
               if (curs.gety()-1 >= 0) {
                 curs.setY(curs.gety()-1);
                 display(board);
               }
             }
-            if (input == "s") {
+            if (input == 's') {
               if (curs.gety()+1 < SIZE) {
                 curs.setY(curs.gety()+1);
                 display(board);;
               }
             }
-            if (input == "a") {
+            if (input == 'a') {
               if (curs.getx()-1 >= 0) {
                 curs.setX(curs.getx()-1);
                 display(board);
               }
             }
-            if (input == "d") {
+            if (input == 'd') {
               if (curs.getx()+1 < SIZE) {
                 curs.setX(curs.getx()+1);
                 display(board);
@@ -387,26 +387,26 @@ int reversi_main8(int player_count, int depth)
           //     usleep(10000);
           //   }
           char input = getchar();
-          while (input == "w") {
+          while (input == 'w') {
             if (isUp(2)) {
               if (curs.gety()-1 >= 0) {
                 curs.setY(curs.gety()-1);
                 display(board);
               }
             }
-            if (input == "s") {
+            if (input == 's') {
               if (curs.gety()+1 < SIZE) {
                 curs.setY(curs.gety()+1);
                 display(board);;
               }
             }
-            if (input == "a") {
+            if (input == 'a') {
               if (curs.getx()-1 >= 0) {
                 curs.setX(curs.getx()-1);
                 display(board);
               }
             }
-            if (input == "d") {
+            if (input == 'd') {
               if (curs.getx()+1 < SIZE) {
                 curs.setX(curs.getx()+1);
                 display(board);
