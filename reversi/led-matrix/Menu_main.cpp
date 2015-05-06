@@ -14,7 +14,6 @@
 #include <exception>
 
 void display(char board[SIZE][SIZE]);
-//void transition();
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -27,9 +26,6 @@ Canvas *canvas;
 ThreadedCanvasManipulator* image_gen;
 Cursor curs;
 GPIO io;
-
-Color transArg1, transArg2;
-bool transition_tiles[SIZE][SIZE];
 
 int main(int argc, char **argv) {
 
@@ -287,7 +283,6 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.getx(), curs.gety(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
-              // transition();
               display(board);
               sleep(5);
               break;
@@ -379,7 +374,6 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.getx(), curs.gety(), '@');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
-              // transition();
               display(board);
               break;
             }
@@ -476,17 +470,6 @@ void display(char board[SIZE][SIZE])
    printf("---+");               /* Display the bottom line */
   printf("\n");                   /* End the bottom  line    */
 }
-
-// void transition() 
-// {
-//   //Transition
-//   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
-//   if (image_gen == NULL) {
-//     printf("Image gen error.\n");
-//   }
-//   image_gen->Start();
-//   sleep(.5);
-// }
 
 /***********************************************
  * Calculates which squares are valid moves    *
@@ -715,11 +698,6 @@ void make_move(char board[][SIZE], int row, int col, char player)
    int y = 0;                          /* Column index for searching */
    char opponent1 = (player == 'O')? '@' : 'O';  /* Identify opponent */
    char opponent2 = (player == '@')? 'O' : '@'; 
-
-   //intialize transition tiles
-   // for(row = 0; row < SIZE; row++)
-   //   for(col = 0; col < SIZE; col++)
-   //     transition_tiles[row][col] = false;
    
    board[row][col] = player;           /* Place the player counter   */
 
@@ -759,16 +737,11 @@ void make_move(char board[][SIZE], int row, int col, char player)
            /* changing all the opponents counters to player         */
            if(board[x][y] == player)
            {
-             while((board[x-=rowdelta][y-=coldelta]==opponent1) || (board[row + rowdelta][col + coldelta] == opponent2)) // {/* Opponent? */
+             while((board[x-=rowdelta][y-=coldelta]==opponent1) || (board[row + rowdelta][col + coldelta] == opponent2)) /* Opponent? */
                board[x][y] = player;    /* Yes, change it */
-               // transition_tiles[x][y] = true;
-             // }
              break;                     /* We are done    */
            } 
          }
        }
      }
-
-  // if (player == 'O') {transArg1 = p1color; transArg2 = p2color;}
-  // else {transArg1 = p2color; transArg2 = p1color;}
 }
