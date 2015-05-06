@@ -14,7 +14,7 @@
 #include <exception>
 
 void display(char board[SIZE][SIZE]);
-void transition() ;
+void transition(int player) ;
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -288,7 +288,7 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.gety(), curs.getx(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
-              transition();
+              transition(1);
               display(board);
               sleep(5);
               break;
@@ -321,7 +321,7 @@ int reversi_main8(int player_count, int depth)
           invalid_moves = 0;               /* Reset invalid count   */
           printf("Othello is thinking!");
   	      computer_move(board, moves, '@', depth);
-          transition();
+          transition(2);
           no_of_moves++;                   /* Increment move count  */
         }
         else {
@@ -381,7 +381,7 @@ int reversi_main8(int player_count, int depth)
               make_move(board, curs.gety(), curs.getx(), '@');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
-              transition();
+              transition(2);
               display(board);
               break;
             }
@@ -438,8 +438,11 @@ int reversi_main8(int player_count, int depth)
   return 0;
 }
 
-void transition() 
+void transition(int player) 
 {
+  if (player == 1) { transArg1 = p2color; transArg1 = p1color; }
+  else { transArg1 = p1color; transArg1 = p2color; }
+
   image_gen = new TransitionDisplay(canvas, transition_tiles, p2color, p1color);
   // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
@@ -767,7 +770,4 @@ void make_move(char board[][SIZE], int row, int col, char player)
          }
        }
      }
-
-      if (player == 'O') { transArg1 = p2color; transArg1 = p1color; }
-      else { transArg1 = p1color; transArg1 = p2color; }
 }
