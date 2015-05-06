@@ -257,28 +257,28 @@ int reversi_main8(int player_count, int depth)
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);
                 }
               }
               if (input == 's') {
                 if (curs.gety()+1 < SIZE) {
                   curs.setY(curs.gety()+1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);;
                 }
               }
               if (input == 'a') {
                 if (curs.getx()-1 >= 0) {
                   curs.setX(curs.getx()-1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);
                 }
               }
               if (input == 'd') {
                 if (curs.getx()+1 < SIZE) {
                   curs.setX(curs.getx()+1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);
                 }
               }
@@ -349,28 +349,28 @@ int reversi_main8(int player_count, int depth)
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);
                 }
               }
               if (input == 's') {
                 if (curs.gety()+1 < SIZE) {
                   curs.setY(curs.gety()+1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);;
                 }
               }
               if (input == 'a') {
                 if (curs.getx()-1 >= 0) {
                   curs.setX(curs.getx()-1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);
                 }
               }
               if (input == 'd') {
                 if (curs.getx()+1 < SIZE) {
                   curs.setX(curs.getx()+1);
-                  canvas->clear();
+                  canvas->Clear();
                   display(board);
                 }
               }
