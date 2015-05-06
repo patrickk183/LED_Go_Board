@@ -92,12 +92,12 @@ int main(int argc, char **argv) {
   pcolor_set = false;
 
 	while (mode == 1) {
-    if(players == 1) {             
+    if(players%2 == 1) {             
         image_gen = new BoardTextfile(canvas, "players_1.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
-    else if (players == 2) {
+    else if (players%2 == 0) {
         image_gen = new BoardTextfile(canvas, "players_2.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
@@ -106,11 +106,11 @@ int main(int argc, char **argv) {
   	input = getchar();
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
-  		players = 2;
+  		players++;
   		//printf("players: %d\n", players);
   	} 
   	else if (/*isUp(1) || isUp(2) ||*/ input == 's') {
-  		players = 1;
+  		players--;
   		//printf("players: %d\n", players);
   	}
   	else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
