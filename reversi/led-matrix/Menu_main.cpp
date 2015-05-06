@@ -767,6 +767,10 @@ void make_move(char board[][SIZE], int row, int col, char player)
        }
      }
 
-      if (player == 'O') { transArg1 = p1color; transArg1 = p2color; }
-      else { transArg1 = p2color; transArg1 = p1color; }
+      if (player == 'O') { 
+        std::cout << "transargs set" << std::endl;
+        transArg1 = p1color; transArg1 = p2color; }
+      else { 
+         std::cout << "transargs set" << std::endl;
+         transArg1 = p2color; transArg1 = p1color; }
 }
