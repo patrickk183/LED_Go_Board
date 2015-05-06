@@ -343,7 +343,7 @@ int reversi_main8(int player_count, int depth)
             char input;
             //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
-            while (getchar()) {
+            while (input = getchar()) {
               getchar(); //eat newline
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
