@@ -440,7 +440,7 @@ void transition()
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
   image_gen->Start();
-  slep(.5);
+  sleep(.5);
 }
 
 /***********************************************
