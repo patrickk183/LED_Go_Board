@@ -64,7 +64,8 @@ int main(int argc, char **argv) {
   if (image_gen == NULL) return -1;
   image_gen->Start();
   
-  while (p1color_set != true) { usleep(10000); }
+  while (getchar()) { usleep(10000); }
+  p1color_set = true;
   usleep(10000);
   delete image_gen;
   image_gen = NULL;
