@@ -171,7 +171,7 @@ public:
             }
         }
         percentage++;
-        usleep(5000);
+        usleep(7500);
         if (/*isSelected(1)*/ pcolor_set == true) {
           pcolor_set = true;
           if (player == 1) { p1color = display; }
