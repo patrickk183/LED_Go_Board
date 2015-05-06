@@ -70,7 +70,8 @@ int main(int argc, char **argv) {
   image_gen = new SplashScreen(canvas);
 	if (image_gen == NULL) { return -1; }
   image_gen->Start();
-  getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
+  while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
+  usleep(50000);
   splash_done = true;
   canvas->Clear();
   delete image_gen;
@@ -80,7 +81,7 @@ int main(int argc, char **argv) {
   image_gen = new ChooseColorMenu(canvas, "color_1.txt", 1);
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  while (getchar() != '\n') { usleep(10000); }
+  while (isNotSelected(1)) { usleep(10000); }
   pcolor_set = true;
   sleep(1);
   delete image_gen;
@@ -91,8 +92,7 @@ int main(int argc, char **argv) {
   image_gen = new ChooseColorMenu(canvas, "color_2.txt", 2);
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  fflush(stdin);
-  while (getchar() != '\n') { usleep(10000); }
+  while (isNotSelected(2)) { usleep(10000); }
   pcolor_set = true;
   sleep(1);
   delete image_gen;
@@ -111,28 +111,24 @@ int main(int argc, char **argv) {
         image_gen->Start();
     }
 
-    input = getchar();
-    getchar(); //eat newline
-
-  	if (/*isDown(1) || isDown(2) || */input == 'w') {
+  	if (isDown(1) || isDown(2)) {
   		players++;
   	} 
-  	else if (/*isUp(1) || isUp(2) ||*/ input == 's') {
+  	else if (isUp(1) || isUp(2)) {
   		players--;
   	}
-  	else if (/*isSelected(1) || isSelected(2) || */input == 'n') {
+  	else if (isSelected(1) || isSelected(2)) {
   		if (abs(players)%2 == 1) { 
         players = 1;
   			mode = 2;
-        // usleep(1000);
   		}
   		else if(abs(players)%2 == 0) { 
         players = 2;
         mode = 3;
-        // usleep(1000);
   		}
+      usleep(50000);
   	}
-    // usleep(1000);
+    usleep(1000);
     canvas->Clear();
   	// delete image_gen;
   }
@@ -155,16 +151,13 @@ int main(int argc, char **argv) {
         image_gen->Start();
     }  
   	
-    fflush(stdin);
-    input = getchar();
-    getchar();
     canvas->Clear();
   		
-  	if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
-  		difficulty--;
-  	}
-  	else if (/*isUp(1) || isUp(2)*/ input == 's') {
+  	if (isDown(1) || isDown(2)) {
   		difficulty++;
+  	}
+  	else if (isUp(1) || isUp(2)) {
+  		difficulty--;
   	}
   	else if (/*isSelected(1) || isSelected(2) ||*/ input == 'n') {
       if (abs(difficulty)%3 == 1) { difficulty = 2;}
@@ -199,15 +192,6 @@ int reversi_main8(int player_count, int depth)
   int x = 0;                        /* Row number          */
   char again = 0;                   /* Replay choice input */
   int player = 0;                   /* Player indicator    */
- 
-  printf("\nREVERSI\n\n");
-  printf("You can go first on the first game, then we will take turns.\n");
-  printf("   You will be white - (O)\n   I will be black   - (@).\n");
-  printf("Select a square for your move by typing a digit for the row\n "
-    "and a letter for the column with no spaces between.\n");
-  printf("\nGood luck!  Press Enter to start.\n");
-
-   /* Prompt for how to play - as before */
 
    /* The main game loop */
   do {
@@ -241,49 +225,38 @@ int reversi_main8(int player_count, int depth)
             // y = tolower(y) - 'a';         /* Convert to column index */
             // x--;                           //Convert to row index    
 
-            std::cout << "getting a move" << std::endl;
-
-            fflush(stdin);
-            char input;
-            //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
-
-            while (input = getchar()) {
-              getchar(); //eat newline
-              std::cout << "restarting while loop" << std::endl;
-              if (input == 'w') {
+            while (isNotSelected(1)) {
+              if (isUp(1)) {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
                   canvas->Clear();
                   display(board);
                 }
               }
-              if (input == 's') {
+              if (isDown(1)) {
                 if (curs.gety()+1 < SIZE) {
                   curs.setY(curs.gety()+1);
                   canvas->Clear();
                   display(board);;
                 }
               }
-              if (input == 'a') {
+              if (isLeft(1)) {
                 if (curs.getx()-1 >= 0) {
                   curs.setX(curs.getx()-1);
                   canvas->Clear();
                   display(board);
                 }
               }
-              if (input == 'd') {
+              if (isRight(1)) {
                 if (curs.getx()+1 < SIZE) {
                   curs.setX(curs.getx()+1);
                   canvas->Clear();
                   display(board);
                 }
               }
-              if (input == 'n') {
-                break;
-              }
               usleep(10000);
             }
-            if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.gety()][curs.getx()]) {
+            if(moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), 'O');
               std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
@@ -292,7 +265,6 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              std::cout << "illegal move" << std::endl;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -302,14 +274,7 @@ int reversi_main8(int player_count, int depth)
           }
         }
         else {                         /* No valid moves */
-          if(++invalid_moves<2) {
-            fflush(stdin);
-            printf("\nYou have to pass, press return");
-            scanf("%c", &again);
-          }
-          else {
-            printf("\nNeither of us can go, so the game is over.\n");
-          }
+          ++invalid_moves;
         }
       }
       else if(player_count == 1) {
@@ -317,16 +282,12 @@ int reversi_main8(int player_count, int depth)
         if(valid_moves(board, moves, '@')) /* Check for valid moves */
         {
           invalid_moves = 0;               /* Reset invalid count   */
-          printf("Othello is thinking!");
   	      computer_move(board, moves, '@', depth);
           transition(2);
           no_of_moves++;                   /* Increment move count  */
         }
         else {
-          if(++invalid_moves<2)
-            printf("\nI have to pass, your go\n"); /* No valid move */
-          else
-             printf("\nNeither of us can go, so the game is over.\n");
+          ++invalid_moves;
         }
       } 
       else if(player_count == 2) {
@@ -340,38 +301,34 @@ int reversi_main8(int player_count, int depth)
             char input;
             //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
-            while (input = getchar()) {
-              getchar(); //eat newline
-              if (input == 'w') {
+            while (isNotSelected(2)) {
+              if (isUp(2)) {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
                   canvas->Clear();
                   display(board);
                 }
               }
-              if (input == 's') {
+              if (isDown(2)) {
                 if (curs.gety()+1 < SIZE) {
                   curs.setY(curs.gety()+1);
                   canvas->Clear();
                   display(board);;
                 }
               }
-              if (input == 'a') {
+              if (isLeft(2)) {
                 if (curs.getx()-1 >= 0) {
                   curs.setX(curs.getx()-1);
                   canvas->Clear();
                   display(board);
                 }
               }
-              if (input == 'd') {
+              if (isRight(2)) {
                 if (curs.getx()+1 < SIZE) {
                   curs.setX(curs.getx()+1);
                   canvas->Clear();
                   display(board);
                 }
-              }
-              if (input == 'n') {
-                break;
               }
               usleep(10000);
             }
@@ -393,20 +350,12 @@ int reversi_main8(int player_count, int depth)
           }
         }
         else {                           /* No valid moves */
-          if(++invalid_moves<2) {
-            fflush(stdin);
-            printf("\nYou have to pass, press return");
-            scanf("%c", &again);
-          }
-          else {
-            printf("\nNeither of us can go, so the game is over.\n");
-          }
+          ++invalid_moves;
         }
       }
     }
     while(no_of_moves < SIZE*SIZE && invalid_moves<2);
 
-    std::cout << "reached end" << std::endl; 
     /* Game is over */
     display(board);  /* Show final board */
 
@@ -432,7 +381,6 @@ int reversi_main8(int player_count, int depth)
   }
   while(tolower(again) == 'y'); /* Go again on y          */
 
-  printf("\nGoodbye\n"); 
   return 0;
 }
 
