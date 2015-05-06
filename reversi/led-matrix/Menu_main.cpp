@@ -379,9 +379,10 @@ int reversi_main8(int player_count, int depth)
     }
     while(no_of_moves < SIZE*SIZE && invalid_moves<2);
 
+    std::cout << "reached end" << std::endl; 
     /* Game is over */
     display(board);  /* Show final board */
- 
+
     /* Get final scores and display them */
     comp_score = user_score = 0; 
     for(row = 0; row < SIZE; row++) {
