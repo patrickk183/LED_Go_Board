@@ -195,62 +195,59 @@ int reversi_main8(int player_count, int depth)
   printf("Select a square for your move by typing a digit for the row\n "
     "and a letter for the column with no spaces between.\n");
   printf("\nGood luck!  Press Enter to start.\n");
-  scanf("%c", &again);
 
    /* Prompt for how to play - as before */
 
    /* The main game loop */
-   do
-   {
-     /* On even games the player starts; */
-     /* on odd games the computer starts */
-     player = ++no_of_games % 2; 
-     no_of_moves = 4;                /* Starts with four counters */
+  do {
+    /* On even games the player starts; */
+    /* on odd games the computer starts */
+    player = ++no_of_games % 2; 
+    no_of_moves = 4;                /* Starts with four counters */
 
-     /* Blank all the board squares */    
-     for(row = 0; row < SIZE; row++)
-       for(col = 0; col < SIZE; col++)
-         board[row][col] = ' ';
+    /* Blank all the board squares */    
+    for(row = 0; row < SIZE; row++) {
+      for(col = 0; col < SIZE; col++) {
+        board[row][col] = ' ';
+      }
+    }
+    /* Place the initial four counters in the center */
+    board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
+    board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
 
-     /* Place the initial four counters in the center */
-     board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
-     board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
-	
-	GPIO io;
-	if (!io.Init()) {
-        printf("IO init error.\n");
+  	GPIO io;
+  	if (!io.Init()) {
+      printf("IO init error.\n");
     }
 
 
-	ThreadedCanvasManipulator *image_gen = NULL;
-  
-	RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-	Canvas *canvas = matrix;
-	matrix->set_luminance_correct(true);
+  	ThreadedCanvasManipulator *image_gen = NULL;
+    
+  	RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+  	Canvas *canvas = matrix;
+  	matrix->set_luminance_correct(true);
 
-	image_gen = new BoardArray(canvas, board, curs);
-  if (image_gen == NULL) {
-          printf("Image gen error.\n");
-  }
+  	image_gen = new BoardArray(canvas, board, curs);
+    if (image_gen == NULL) {
+            printf("Image gen error.\n");
+    }
 
-  image_gen->Start();
-   /* The game play loop */
-   do
-   {
+    image_gen->Start();
+     /* The game play loop */
+    do
+    {
 
-   display(board);             /* Display the board  */
-   
-     if(player++ % 2)
-     { /*   It is the player's turn                    */
-       if(valid_moves(board, moves, 'O'))
-       {
-         /* Read player moves until a valid move is entered */
-         for(;;)  {
-           fflush(stdin);              /* Flush the keyboard buffer */
-           printf("Please enter your move (row column): "); 
-           scanf("%d%c", &x, &y);              /* Read input        */
-           y = tolower(y) - 'a';         /* Convert to column index */
-           x--;                           //Convert to row index    
+    display(board);             /* Display the board  */
+    
+    if(player++ % 2) { /*   It is the player's turn                    */
+      if(valid_moves(board, moves, 'O')) {
+        /* Read player moves until a valid move is entered */
+        for(;;)  {
+          fflush(stdin);              /* Flush the keyboard buffer */
+          printf("Please enter your move (row column): "); 
+          scanf("%d%c", &x, &y);              /* Read input        */
+          y = tolower(y) - 'a';         /* Convert to column index */
+          x--;                           //Convert to row index    
           // while (isNotSelected(1)) {
           //     if (isUp(1)) {
           //       if (curs.gety()-1 >= 0) {
@@ -306,171 +303,169 @@ int reversi_main8(int player_count, int depth)
             }
             usleep(10000);
           }
-           if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()])
-           {
-             make_move(board, curs.getx(), curs.gety(), 'O');
-             no_of_moves++;              /* Increment move count */
-             display(board);
-             sleep(5);
-             break;
-           }
-           else
-             image_gen = new BoardTextfile(canvas, "illegal.txt");
-             image_gen->Start();
-             sleep(1);
-             display(board);
-         }
-       }
-       else                              /* No valid moves */
-         if(++invalid_moves<2)
-         {
-           fflush(stdin);
-           printf("\nYou have to pass, press return");
-           scanf("%c", &again);
-         }
-         else
-           printf("\nNeither of us can go, so the game is over.\n");
-     }
-     else if(player_count == 1) {
-	 /* It is the computer's turn                    */
-       if(valid_moves(board, moves, '@')) /* Check for valid moves */
-       {
-         invalid_moves = 0;               /* Reset invalid count   */
-         printf("Othello is thinking!");
-	   computer_move(board, moves, '@', depth);
-         no_of_moves++;                   /* Increment move count  */
-       }
-       else
-       {
-         if(++invalid_moves<2)
-           printf("\nI have to pass, your go\n"); /* No valid move */
-         else
-           printf("\nNeither of us can go, so the game is over.\n");
-       }
-     } else if(player_count == 2) {
-	      display(board);             /* Display the board  */
-        //if(player++ % 2) { /*   It is the player's turn                    */
-        if(valid_moves(board, moves, '@'))
-        {
-         /* Read player moves until a valid move is entered */
-         for(;;)
-         {
-           // fflush(stdin);              /* Flush the keyboard buffer */
-           // printf("Please enter your move (row column): "); 
-           // scanf("%d%c", &x, &y);              /* Read input        */
-           // y = tolower(y) - 'a';         /* Convert to column index */
-           // x--;                          /* Convert to row index    */
-           // if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
-          // while (isNotSelected(2)) {
-          //     if (isUp(2)) {
-          //       if (curs.gety()-1 >= 0) {
-          //         curs.setY(curs.gety()-1);
-          //         display(board);
-          //       }
-          //     }
-          //     if (isDown(2)) {
-          //       if (curs.gety()+1 < SIZE) {
-          //         curs.setY(curs.gety()+1);
-          //         display(board);;
-          //       }
-          //     }
-          //     if (isLeft(2)) {
-          //       if (curs.getx()-1 >= 0) {
-          //         curs.setX(curs.getx()-1);
-          //         display(board);
-          //       }
-          //     }
-          //     if (isRight(2)) {
-          //       if (curs.getx()+1 < SIZE) {
-          //         curs.setX(curs.getx()+1);
-          //         display(board);
-          //       }
-          //     }
-          //     usleep(10000);
-          //   }
-          char input = getchar();
-          while (input == 'w') {
-            if (isUp(2)) {
-              if (curs.gety()-1 >= 0) {
-                curs.setY(curs.gety()-1);
-                display(board);
-              }
-            }
-            if (input == 's') {
-              if (curs.gety()+1 < SIZE) {
-                curs.setY(curs.gety()+1);
-                display(board);;
-              }
-            }
-            if (input == 'a') {
-              if (curs.getx()-1 >= 0) {
-                curs.setX(curs.getx()-1);
-                display(board);
-              }
-            }
-            if (input == 'd') {
-              if (curs.getx()+1 < SIZE) {
-                curs.setX(curs.getx()+1);
-                display(board);
-              }
-            }
-            usleep(10000);
+          if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()]) {
+            make_move(board, curs.getx(), curs.gety(), 'O');
+            no_of_moves++;              /* Increment move count */
+            display(board);
+            sleep(5);
+            break;
           }
+          else {
+            image_gen = new BoardTextfile(canvas, "illegal.txt");
+            image_gen->Start();
+            sleep(1);
+            display(board);
+          }
+        }
+      }
+      else {                         /* No valid moves */
+        if(++invalid_moves<2) {
+          fflush(stdin);
+          printf("\nYou have to pass, press return");
+          scanf("%c", &again);
+        }
+        else
+          printf("\nNeither of us can go, so the game is over.\n");
+      }
+      else if(player_count == 1) {
+  	    /* It is the computer's turn                    */
+        if(valid_moves(board, moves, '@')) /* Check for valid moves */
+        {
+          invalid_moves = 0;               /* Reset invalid count   */
+          printf("Othello is thinking!");
+  	      computer_move(board, moves, '@', depth);
+          no_of_moves++;                   /* Increment move count  */
+        }
+        else {
+          if(++invalid_moves<2)
+            printf("\nI have to pass, your go\n"); /* No valid move */
+          else
+             printf("\nNeither of us can go, so the game is over.\n");
+        }
+      } 
+      else if(player_count == 2) {
+  	    display(board);             /* Display the board  */
+        //if(player++ % 2) { /*   It is the player's turn                    */
+          if(valid_moves(board, moves, '@')) {
+            /* Read player moves until a valid move is entered */
+            for(;;)
+            {
+               // fflush(stdin);              /* Flush the keyboard buffer */
+               // printf("Please enter your move (row column): "); 
+               // scanf("%d%c", &x, &y);              /* Read input        */
+               // y = tolower(y) - 'a';         /* Convert to column index */
+               // x--;                          /* Convert to row index    */
+               // if( x>=0 && y>=0 && x<SIZE && y<SIZE && moves[x][y])
+              // while (isNotSelected(2)) {
+              //     if (isUp(2)) {
+              //       if (curs.gety()-1 >= 0) {
+              //         curs.setY(curs.gety()-1);
+              //         display(board);
+              //       }
+              //     }
+              //     if (isDown(2)) {
+              //       if (curs.gety()+1 < SIZE) {
+              //         curs.setY(curs.gety()+1);
+              //         display(board);;
+              //       }
+              //     }
+              //     if (isLeft(2)) {
+              //       if (curs.getx()-1 >= 0) {
+              //         curs.setX(curs.getx()-1);
+              //         display(board);
+              //       }
+              //     }
+              //     if (isRight(2)) {
+              //       if (curs.getx()+1 < SIZE) {
+              //         curs.setX(curs.getx()+1);
+              //         display(board);
+              //       }
+              //     }
+              //     usleep(10000);
+              //   }
+              char input = getchar();
+              while (input == 'w') {
+                if (isUp(2)) {
+                  if (curs.gety()-1 >= 0) {
+                    curs.setY(curs.gety()-1);
+                    display(board);
+                  }
+                }
+                if (input == 's') {
+                  if (curs.gety()+1 < SIZE) {
+                    curs.setY(curs.gety()+1);
+                    display(board);;
+                  }
+                }
+                if (input == 'a') {
+                  if (curs.getx()-1 >= 0) {
+                    curs.setX(curs.getx()-1);
+                    display(board);
+                  }
+                }
+                if (input == 'd') {
+                  if (curs.getx()+1 < SIZE) {
+                    curs.setX(curs.getx()+1);
+                    display(board);
+                  }
+                }
+                usleep(10000);
+              }
 
-           if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()])
-           {
-             make_move(board, curs.getx(), curs.gety(), '@');
-             no_of_moves++;              /* Increment move count */
-             display(board);
-             break;
-           }
-           else
-             image_gen = new BoardTextfile(canvas, "illegal.txt");
-             image_gen->Start();
-             sleep(1);
-             display(board);
-         }
+              if( curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && moves[curs.getx()][curs.gety()])
+              {
+                make_move(board, curs.getx(), curs.gety(), '@');
+                no_of_moves++;              /* Increment move count */
+                display(board);
+                break;
+              }
+              else
+                image_gen = new BoardTextfile(canvas, "illegal.txt");
+               image_gen->Start();
+                sleep(1);
+                display(board);
+            }
+          }
+          else                              /* No valid moves */
+            if(++invalid_moves<2)
+            {
+              fflush(stdin);
+              printf("\nYou have to pass, press return");
+              scanf("%c", &again);
+            }
+            else
+              printf("\nNeither of us can go, so the game is over.\n");
        }
-       else                              /* No valid moves */
-         if(++invalid_moves<2)
-         {
-           fflush(stdin);
-           printf("\nYou have to pass, press return");
-           scanf("%c", &again);
-         }
-         else
-           printf("\nNeither of us can go, so the game is over.\n");
-    // }
+     } 
+    while(no_of_moves < SIZE*SIZE && invalid_moves<2);
 
-   }
-   }while(no_of_moves < SIZE*SIZE && invalid_moves<2);
-
-   /* Game is over */
-   display(board);  /* Show final board */
+    /* Game is over */
+    display(board);  /* Show final board */
  
-   /* Get final scores and display them */
-   comp_score = user_score = 0; 
-   for(row = 0; row < SIZE; row++)
-     for(col = 0; col < SIZE; col++)
-     {
-       comp_score += board[row][col] == '@';
-       user_score += board[row][col] == 'O';
-     }
-   // printf("The final score is:\n");
-   // printf("Computer %d\n    User %d\n\n", comp_score, user_score);
- 
-   // fflush(stdin);                Flush the input buffer 
-   // printf("Do you want to play again (y/n): ");
-   // scanf("%c", &again);         /* Get y or n             */
+    /* Get final scores and display them */
+    comp_score = user_score = 0; 
+    for(row = 0; row < SIZE; row++) {
+      for(col = 0; col < SIZE; col++) {
+        comp_score += board[row][col] == '@';
+        user_score += board[row][col] == 'O';
+      }
+    }
+    // printf("The final score is:\n");
+    // printf("Computer %d\n    User %d\n\n", comp_score, user_score);
+  
+    // fflush(stdin);                Flush the input buffer 
+    // printf("Do you want to play again (y/n): ");
+    // scanf("%c", &again);         /* Get y or n             */
 
-     image_gen = new BoardTextfile(canvas, "gameover.txt");
-     image_gen->Start();
-     sleep(1);
-     display(board);
-   }while(tolower(again) == 'y'); /* Go again on y          */
+      image_gen = new BoardTextfile(canvas, "gameover.txt");
+      image_gen->Start();
+      sleep(1);
+      display(board);
+    }
+    while(tolower(again) == 'y'); /* Go again on y          */
 
-   printf("\nGoodbye\n"); 
-   return 0;
+    printf("\nGoodbye\n"); 
+    return 0;
 }
 
 /***********************************************
