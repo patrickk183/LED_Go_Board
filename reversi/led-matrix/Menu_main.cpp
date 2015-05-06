@@ -27,6 +27,7 @@ ThreadedCanvasManipulator* image_gen;
 Cursor curs;
 GPIO io;
 
+Color transArg1, transArg2;
 bool transition_tiles[SIZE][SIZE];
 
 int main(int argc, char **argv) {
@@ -473,6 +474,17 @@ void display(char board[SIZE][SIZE])
   printf("\n");                   /* End the bottom  line    */
 }
 
+void Transition() 
+{
+  //Transition
+  image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
+  if (image_gen == NULL) {
+    printf("Image gen error.\n");
+  }
+  image_gen->Start();
+  sleep(.5);
+}
+
 /***********************************************
  * Calculates which squares are valid moves    *
  * for player. Valid moves are recorded in the *
@@ -614,6 +626,10 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
 		
    /* Make the best move */
    make_move(board, best_row, best_col, player); 
+   
+   //Transition
+  transition();
+  display();
 }
 
 /************
@@ -753,15 +769,6 @@ void make_move(char board[][SIZE], int row, int col, char player)
        }
      }
 
-  Color arg1, arg2;
-  if (player == 'O') { arg1 = p1color; arg2 = p2color;}
-  else {arg1 = p2color; arg2 = p1color;}
-  //Transition
-  image_gen = new TransitionDisplay(canvas, transition_tiles, arg1, arg2);
-  if (image_gen == NULL) {
-    printf("Image gen error.\n");
-  }
-  image_gen->Start();
-  sleep(.5);
-  display(board);
+  if (player == 'O') {transArg1 = p1color; transArg2 = p2color;}
+  else {transArg1 = p2color; transArg2 = p1color;}
 }
