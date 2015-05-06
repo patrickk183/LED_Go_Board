@@ -224,7 +224,7 @@ public:
               display = interpolate(former, latter, percentage);
               if (fs.good()) {
                 switch (value) {
-                  case 2:
+                  case 1:
                     canvas()->SetPixel(j, i, display.R, display.G, display.B);
                     break;
                   default:
