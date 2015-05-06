@@ -65,8 +65,8 @@ int main(int argc, char **argv) {
 
   // The ThreadedCanvasManipulator objects are filling
   // the matrix continuously.
-  image_gen = NULL;
-
+  
+  delete image_gen;
   image_gen = new SplashScreen(canvas);
   if (image_gen == NULL) { return -1; }
   image_gen->Start();
@@ -76,10 +76,9 @@ int main(int argc, char **argv) {
   sleep(1);
   splash_done = true;
   canvas->Clear();
-  delete image_gen;
-  image_gen = NULL;
 
   //player 1 color select
+  delete image_gen;
   image_gen = new ChooseColorMenu(canvas, "color_1.txt", 1);
   if (image_gen == NULL) return -1;
   image_gen->Start();
@@ -91,6 +90,7 @@ int main(int argc, char **argv) {
   pcolor_set = false;
 
   //player 2 color select
+  delete image_gen;
   image_gen = new ChooseColorMenu(canvas, "color_2.txt", 2);
   if (image_gen == NULL) return -1;
   image_gen->Start();
@@ -102,12 +102,15 @@ int main(int argc, char **argv) {
   pcolor_set = false;
 
   while (mode == 1) {
-    if(abs(players)%2 == 1) {             
+    if(abs(players)%2 == 1) { 
+        delete image_gen;            
         image_gen = new BoardTextfile(canvas, "players_1.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
     else if (abs(players)%2 == 0) {
+  delete image_gen;
+        delete image_gen;    
         image_gen = new BoardTextfile(canvas, "players_2.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
@@ -138,16 +141,19 @@ int main(int argc, char **argv) {
   while (mode == 2) {
     image_gen = NULL;
     if(abs(difficulty)%3 == 1) {
+      delete image_gen;    
       image_gen = new BoardTextfile(canvas, "easy.txt");
       if (image_gen == NULL) { return -1; }
       image_gen->Start();
     }
     else if (abs(difficulty)%3 == 2) {
+        delete image_gen;    
         image_gen = new BoardTextfile(canvas, "medium.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
     else if (abs(difficulty)%3 == 0) {
+        delete image_gen;    
         image_gen = new BoardTextfile(canvas, "hard.txt");
         if (image_gen == NULL) { return -1; }
         image_gen->Start();
