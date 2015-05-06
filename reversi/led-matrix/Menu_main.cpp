@@ -38,7 +38,6 @@ int main(int argc, char **argv) {
   int chain = 1;
   int parallel = 1;
   bool do_luminance_correct = true;
-  char input;
   
   if (getuid() != 0) {
   //"Must run as root to be able to access /dev/mem
@@ -58,7 +57,6 @@ int main(int argc, char **argv) {
 
   int players = 1;
   int mode = 1;
-  int size = 1;
   int difficulty = 31;
 
   // The ThreadedCanvasManipulator objects are filling
@@ -183,8 +181,8 @@ int main(int argc, char **argv) {
 int reversi_main8(int player_count, int depth)
 {
   
-  char board [SIZE][SIZE] = {0};  /* The board           */
-  int moves[SIZE][SIZE] = { 0 };    /* Valid moves         */
+  char board [SIZE][SIZE] = {{0}};  /* The board           */
+  int moves[SIZE][SIZE] = {{0}};    /* Valid moves         */
   int row = 0;                      /* Board row index     */
   int col = 0;                      /* Board column index  */
   int no_of_games = 0;              /* Number of games     */
@@ -192,8 +190,6 @@ int reversi_main8(int player_count, int depth)
   int invalid_moves = 0;            /* Invalid move count  */
   int comp_score = 0;               /* Computer score      */
   int user_score = 0;               /* Player score        */
-  char y = 0;                       /* Column letter       */
-  int x = 0;                        /* Row number          */
   char again = 0;                   /* Replay choice input */
   int player = 0;                   /* Player indicator    */
 
@@ -295,10 +291,6 @@ int reversi_main8(int player_count, int depth)
         if(valid_moves(board, moves, '@')) {
           /* Read player moves until a valid move is entered */
           for(;;) {
-
-            fflush(stdin);
-            char input;
-            //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
             while (isNotSelected(2)) {
               if (isUp(2)) {
