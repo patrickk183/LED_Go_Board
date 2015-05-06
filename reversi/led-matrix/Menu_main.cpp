@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
 	int players = 1;
 	int mode = 1;
 	int size = 1;
-	int difficulty = 1;
+	int difficulty = 31;
 
 	// The ThreadedCanvasManipulator objects are filling
 	// the matrix continuously.
