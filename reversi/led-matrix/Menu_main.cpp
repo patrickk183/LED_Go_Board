@@ -259,6 +259,7 @@ int reversi_main8(int player_count, int depth)
             //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
             while (getchar()) {
+              std::cout << "restarting while loop" << std::endl;
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
