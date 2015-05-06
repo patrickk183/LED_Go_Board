@@ -454,17 +454,17 @@ void display(char board[SIZE][SIZE])
   }
 
 
-  // ThreadedCanvasManipulator *image_gen = NULL;
+  ThreadedCanvasManipulator *image_gen = NULL;
 
-  // RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
-  // Canvas *canvas = matrix;
-  // matrix->set_luminance_correct(true);
+  RGBMatrix *matrix = new RGBMatrix(&io, SIZE, 1, 1);
+  Canvas *canvas = matrix;
+  matrix->set_luminance_correct(true);
 
-  // image_gen = new BoardArray(canvas, board, curs);
-  // if (image_gen == NULL) {
-  //   printf("Image gen error.\n");
-  // }
-  // image_gen->Start();
+  image_gen = new BoardArray(canvas, board, curs);
+  if (image_gen == NULL) {
+    printf("Image gen error.\n");
+  }
+  image_gen->Start();
 
   /* Display the intermediate rows */  
   for(row = 0; row < SIZE; row++) {
@@ -477,9 +477,9 @@ void display(char board[SIZE][SIZE])
      printf(" %c |", board[row][col]);  /* Display counters in row */
    printf("\n");    
   }
-  //delete image_gen;
-  //canvas->Clear();
-  //delete canvas;
+  delete image_gen;
+  canvas->Clear();
+  delete canvas;
   printf("  +");                  /* Start the bottom line   */
   for(col = 0 ; col<SIZE ;col++)
    printf("---+");               /* Display the bottom line */
