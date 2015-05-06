@@ -186,9 +186,9 @@ public:
   void Run() {
     int percentage = 0;
     int value = 0;
-    Color c1 = {100, 0, 0};
-    Color c2 = {0, 100, 0};
-    Color c3 = {0, 0, 100};
+    Color c1 = {50, 0, 0};
+    Color c2 = {0, 50, 0};
+    Color c3 = {0, 0, 50};
     Color display = {0, 0, 0};
     Color former = c1;
     Color latter = c2;
