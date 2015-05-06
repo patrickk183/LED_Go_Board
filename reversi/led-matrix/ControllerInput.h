@@ -38,13 +38,6 @@ void controllerCleanup() {
 
 int Read(int chan) {
 
-	if (!bcm2835_init()) {
-        return 1;
-    }
-    else {
-	return 0;
-    }
-    bcm2835_spi_begin();
     bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      // The default
     bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                   // The default
     bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_65536); // The default
