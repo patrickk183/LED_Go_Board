@@ -92,12 +92,12 @@ int main(int argc, char **argv) {
   pcolor_set = false;
 
 	while (mode == 1) {
-    if(players%2 == 1) {             
+    if(abs(players)%2 == 1) {             
         image_gen = new BoardTextfile(canvas, "players_1.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
     }
-    else if (players%2 == 0) {
+    else if (abs(players)%2 == 0) {
         image_gen = new BoardTextfile(canvas, "players_2.txt");
         if (image_gen == NULL) return -1;
         image_gen->Start();
