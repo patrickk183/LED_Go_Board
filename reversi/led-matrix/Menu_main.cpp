@@ -63,7 +63,6 @@ int main(int argc, char **argv) {
   image_gen = new SplashScreen(canvas);
 	if (image_gen == NULL) { return -1; }
   image_gen->Start();
-  fflush(stdin);
   getchar(); //while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   splash_done = true;
   canvas->Clear();
@@ -74,7 +73,6 @@ int main(int argc, char **argv) {
   image_gen = new ChooseColorMenu(canvas, "color_1.txt", 1);
   if (image_gen == NULL) return -1;
   image_gen->Start();
-  fflush(stdin);
   while (getchar() != '\n') { usleep(10000); }
   pcolor_set = true;
   sleep(1);
@@ -106,8 +104,8 @@ int main(int argc, char **argv) {
         image_gen->Start();
     }
 
-    fflush(stdin);
     input = getchar();
+    getchar(); //eat newline
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
   		players++;
@@ -152,6 +150,7 @@ int main(int argc, char **argv) {
   	
     fflush(stdin);
     input = getchar();
+    getchar();
     canvas->Clear();
   		
   	if (/*isDown(1) || isDown(2) ||*/ input == 'w') {
@@ -259,6 +258,7 @@ int reversi_main8(int player_count, int depth)
             //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
             while (getchar()) {
+              getchar(); //eat newline
               std::cout << "restarting while loop" << std::endl;
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
@@ -344,6 +344,7 @@ int reversi_main8(int player_count, int depth)
             //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
             while (getchar()) {
+              getchar(); //eat newline
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
