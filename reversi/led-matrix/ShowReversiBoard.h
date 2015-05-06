@@ -104,13 +104,13 @@ public:
         if (!fs.good()) break;
         switch (value) {
           case 1:
-            canvas()->SetPixel(i, j, 200, 0, 0);
+            canvas()->SetPixel(j, i, 200, 0, 0);
             break;
           case 2:
-            canvas()->SetPixel(i, j, 200, 200, 200);
+            canvas()->SetPixel(j, i, 200, 200, 200);
             break;
           default:
-            canvas()->SetPixel(i, j, 0, 0, 0);
+            canvas()->SetPixel(j, i, 0, 0, 0);
             break;
         }
       }
@@ -152,19 +152,19 @@ public:
                 if (!fs.good()) break;
                 switch (value) {
                   case 1:
-                    canvas()->SetPixel(i, j, 200, 0, 0);
+                    canvas()->SetPixel(j, i, 200, 0, 0);
                     break;
                   case 2:
-                    canvas()->SetPixel(i, j, 200, 200, 200);
+                    canvas()->SetPixel(j, i, 200, 200, 200);
                     break;
                   default:
-                    canvas()->SetPixel(i, j, 0, 0, 0);
+                    canvas()->SetPixel(j, i, 0, 0, 0);
                     break;
                 }
               }
               else {
                 display = interpolate(former, latter, percentage);
-                canvas()->SetPixel(i, j, display.R, display.G, display.B);
+                canvas()->SetPixel(j, i, display.R, display.G, display.B);
               }
             }
         }
