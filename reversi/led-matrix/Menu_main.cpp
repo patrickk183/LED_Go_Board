@@ -629,10 +629,6 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
 		
    /* Make the best move */
    make_move(board, best_row, best_col, player); 
-
-   //Transition
-  // transition();
-  //display(board);
 }
 
 /************
@@ -721,9 +717,9 @@ void make_move(char board[][SIZE], int row, int col, char player)
    char opponent2 = (player == '@')? 'O' : '@'; 
 
    //intialize transition tiles
-   for(row = 0; row < SIZE; row++)
-     for(col = 0; col < SIZE; col++)
-       transition_tiles[row][col] = false;
+   // for(row = 0; row < SIZE; row++)
+   //   for(col = 0; col < SIZE; col++)
+   //     transition_tiles[row][col] = false;
    
    board[row][col] = player;           /* Place the player counter   */
 
