@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
 
     fflush(stdin);
     input = getchar()
-  	while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar()}
+  	while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
   		players++;
