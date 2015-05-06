@@ -138,9 +138,10 @@ public:
     Color display = {0, 0, 0};
     Color former = c1;
     Color latter = c2;
+    std::fstream fs(filename.c_str(), std::ios_base::in);
 
     while (true) {
-      std::fstream fs(filename.c_str(), std::ios_base::in);
+      fs.open(filename.c_str(), std::ios_base::in);
       if (former.R == c1.R && former.G == c1.G && former.B == c1.B) {former = c2; latter = c3;}
       if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1;}
       if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2;}
@@ -165,11 +166,12 @@ public:
               else {
                 display = interpolate(former, latter, percentage);
                 canvas()->SetPixel(j, i, display.R, display.G, display.B);
+                std::cout << "interpolating" << std::endl;
               }
             }
         }
         percentage++;
-        sleep(.001);
+        usleep(1000);
         if (/*isSelected(1)*/ getchar() == '\n') {
           p1color_set = true;
           p1color = display; 
