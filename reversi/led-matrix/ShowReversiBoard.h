@@ -166,7 +166,6 @@ public:
               else {
                 display = interpolate(former, latter, percentage);
                 canvas()->SetPixel(j, i, display.R, display.G, display.B);
-                std::cout << "interpolating" << std::endl;
               }
             }
         }
@@ -185,7 +184,7 @@ public:
         break;
       }
       fs.clear();
-      fs.seekg(0, ios::beg);
+      fs.seekg(0, std::ios::beg);
   }
 
   fs.close();
