@@ -757,8 +757,10 @@ void make_move(char board[][SIZE], int row, int col, char player)
            /* changing all the opponents counters to player         */
            if(board[x][y] == player)
            {
-             while((board[x-=rowdelta][y-=coldelta]==opponent1) || (board[row + rowdelta][col + coldelta] == opponent2)) /* Opponent? */
+             while((board[x-=rowdelta][y-=coldelta]==opponent1) || (board[row + rowdelta][col + coldelta] == opponent2)) {/* Opponent? */
                board[x][y] = player;    /* Yes, change it */
+               transition_tiles[x][y] = true;
+             }
              break;                     /* We are done    */
            } 
          }
