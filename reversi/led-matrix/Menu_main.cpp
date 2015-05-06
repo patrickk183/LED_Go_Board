@@ -632,7 +632,7 @@ void computer_move(char board[][SIZE], int moves[][SIZE], char player, int depth
 
    //Transition
   // transition();
-  display(board);
+  //display(board);
 }
 
 /************
