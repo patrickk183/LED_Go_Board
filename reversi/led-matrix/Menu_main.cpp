@@ -704,7 +704,7 @@ void make_move(char board[][SIZE], int row, int col, char player)
    //intialize transition tiles
    for(row = 0; row < SIZE; row++)
      for(col = 0; col < SIZE; col++)
-       trasition_tiles[row][col] = false;
+       transition_tiles[row][col] = false;
    
    board[row][col] = player;           /* Place the player counter   */
 
