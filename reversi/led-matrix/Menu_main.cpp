@@ -331,7 +331,7 @@ int reversi_main8(int player_count, int depth)
               break;
             }
             else {
-              delete image_gen;
+              // delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
