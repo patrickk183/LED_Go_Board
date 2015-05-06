@@ -142,7 +142,6 @@ public:
     std::fstream fs(filename.c_str(), std::ios_base::in);
 
     while (true) {
-      fs.open(filename.c_str(), std::ios_base::in);
       if (former.R == c1.R && former.G == c1.G && former.B == c1.B) {former = c2; latter = c3;}
       if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1;}
       if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2;}
@@ -185,8 +184,11 @@ public:
       if (p1color_set == true) {
         break;
       }
-    fs.close();
+      fs.clear();
+      fs.seekg(0, ios::beg);
   }
+
+  fs.close();
 
   }
 
