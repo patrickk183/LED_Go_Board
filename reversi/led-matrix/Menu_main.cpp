@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
   if (!io.Init())
     return 1;
 
-  controllerInit();
+  //controllerInit();
 
   // The matrix, our 'frame buffer' and display updater.
   matrix = new RGBMatrix(&io, rows, chain, parallel);
