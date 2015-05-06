@@ -222,6 +222,14 @@ int reversi_main8(int player_count, int depth)
     board[SIZE/2 - 1][SIZE/2 - 1] = board[SIZE/2][SIZE/2] = 'O';
     board[SIZE/2 - 1][SIZE/2] = board[SIZE/2][SIZE/2 - 1] = '@';
 
+    image_gen = new BoardArray(canvas, board, curs);
+    if (image_gen == NULL) {
+      printf("Image gen error.\n");
+    }
+    image_gen->Start();
+
+    sleep(50);
+
      /* The game play loop */
     do {
 
@@ -249,24 +257,28 @@ int reversi_main8(int player_count, int depth)
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
+                  canvas->clear();
                   display(board);
                 }
               }
               if (input == 's') {
                 if (curs.gety()+1 < SIZE) {
                   curs.setY(curs.gety()+1);
+                  canvas->clear();
                   display(board);;
                 }
               }
               if (input == 'a') {
                 if (curs.getx()-1 >= 0) {
                   curs.setX(curs.getx()-1);
+                  canvas->clear();
                   display(board);
                 }
               }
               if (input == 'd') {
                 if (curs.getx()+1 < SIZE) {
                   curs.setX(curs.getx()+1);
+                  canvas->clear();
                   display(board);
                 }
               }
@@ -337,24 +349,28 @@ int reversi_main8(int player_count, int depth)
               if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
+                  canvas->clear();
                   display(board);
                 }
               }
               if (input == 's') {
                 if (curs.gety()+1 < SIZE) {
                   curs.setY(curs.gety()+1);
+                  canvas->clear();
                   display(board);;
                 }
               }
               if (input == 'a') {
                 if (curs.getx()-1 >= 0) {
                   curs.setX(curs.getx()-1);
+                  canvas->clear();
                   display(board);
                 }
               }
               if (input == 'd') {
                 if (curs.getx()+1 < SIZE) {
                   curs.setX(curs.getx()+1);
+                  canvas->clear();
                   display(board);
                 }
               }
@@ -456,9 +472,7 @@ void display(char board[SIZE][SIZE])
      printf(" %c |", board[row][col]);  /* Display counters in row */
    printf("\n");    
   }
-  delete image_gen;
-  canvas->Clear();
-  delete canvas;
+  // delete image_gen;
   printf("  +");                  /* Start the bottom line   */
   for(col = 0 ; col<SIZE ;col++)
    printf("---+");               /* Display the bottom line */
