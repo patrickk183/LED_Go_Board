@@ -236,17 +236,17 @@ int reversi_main8(int player_count, int depth)
      /* The game play loop */
     do {
 
-      display(board);             /* Display the board  */
+      //display(board);             /* Display the board  */
       
       if(player++ % 2) { /*   It is the player's turn                    */
         if(valid_moves(board, moves, 'O')) {
           /* Read player moves until a valid move is entered */
           for(;;)  {
-            fflush(stdin);              /* Flush the keyboard buffer */
-            printf("Please enter your move (row column): "); 
-            scanf("%d%c", &x, &y);              /* Read input        */
-            y = tolower(y) - 'a';         /* Convert to column index */
-            x--;                           //Convert to row index    
+            // fflush(stdin);              /* Flush the keyboard buffer */
+            // printf("Please enter your move (row column): "); 
+            // scanf("%d%c", &x, &y);              /* Read input        */
+            // y = tolower(y) - 'a';         /* Convert to column index */
+            // x--;                           //Convert to row index    
             char input = getchar();
             while (input == 'w') {
               if (isUp(2)) {
