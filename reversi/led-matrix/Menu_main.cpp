@@ -237,7 +237,7 @@ int reversi_main8(int player_count, int depth)
       printf("Image gen error.\n");
     }
     image_gen->Start();
-    
+
      /* The game play loop */
     do {
 
@@ -285,6 +285,7 @@ int reversi_main8(int player_count, int depth)
                 }
               }
               if (input == 'n') {
+                std::cout << "move received: " << curs.getx() << " " << curs.gety() << std::endl;
                 break;
               }
               usleep(10000);
