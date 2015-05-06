@@ -14,7 +14,7 @@
 #include <exception>
 
 void display(char board[SIZE][SIZE]);
-void transition();
+//void transition();
 int valid_moves(char board[][SIZE], int moves[][SIZE], char player); 
 void make_move(char board[][SIZE], int row, int col, char player);  
 void computer_move(char board[][SIZE], int moves[][SIZE], char player, int deptha);  
@@ -477,16 +477,16 @@ void display(char board[SIZE][SIZE])
   printf("\n");                   /* End the bottom  line    */
 }
 
-void transition() 
-{
-  //Transition
-  image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
-  if (image_gen == NULL) {
-    printf("Image gen error.\n");
-  }
-  image_gen->Start();
-  sleep(.5);
-}
+// void transition() 
+// {
+//   //Transition
+//   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
+//   if (image_gen == NULL) {
+//     printf("Image gen error.\n");
+//   }
+//   image_gen->Start();
+//   sleep(.5);
+// }
 
 /***********************************************
  * Calculates which squares are valid moves    *
@@ -763,16 +763,16 @@ void make_move(char board[][SIZE], int row, int col, char player)
            /* changing all the opponents counters to player         */
            if(board[x][y] == player)
            {
-             while((board[x-=rowdelta][y-=coldelta]==opponent1) || (board[row + rowdelta][col + coldelta] == opponent2)) {/* Opponent? */
+             while((board[x-=rowdelta][y-=coldelta]==opponent1) || (board[row + rowdelta][col + coldelta] == opponent2)) // {/* Opponent? */
                board[x][y] = player;    /* Yes, change it */
-               transition_tiles[x][y] = true;
-             }
+               // transition_tiles[x][y] = true;
+             // }
              break;                     /* We are done    */
            } 
          }
        }
      }
 
-  if (player == 'O') {transArg1 = p1color; transArg2 = p2color;}
-  else {transArg1 = p2color; transArg2 = p1color;}
+  // if (player == 'O') {transArg1 = p1color; transArg2 = p2color;}
+  // else {transArg1 = p2color; transArg2 = p1color;}
 }
