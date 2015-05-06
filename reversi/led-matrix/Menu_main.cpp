@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
   image_gen->Start();
   while (isNotSelected(1) && isNotSelected(2)) {usleep(1000); }
   //debug
-  getchar();
+  //getchar();
   usleep(50000);
   splash_done = true;
   canvas->Clear();
