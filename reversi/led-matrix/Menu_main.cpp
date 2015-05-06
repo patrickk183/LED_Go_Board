@@ -108,7 +108,6 @@ int main(int argc, char **argv) {
 
     fflush(stdin);
     input = getchar();
-  	while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
   	if (/*isDown(1) || isDown(2) || */input == 'w') {
   		players++;
@@ -257,10 +256,11 @@ int reversi_main8(int player_count, int depth)
             std::cout << "getting a move" << std::endl;
 
             fflush(stdin);
-            char input = getchar();
+            //char input = getchar();
+            //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
 
-            while (input == 'w') {
-              if (isUp(2)) {
+            while (getchar()) {
+              if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
                   display(board);
@@ -283,6 +283,9 @@ int reversi_main8(int player_count, int depth)
                   curs.setX(curs.getx()+1);
                   display(board);
                 }
+              }
+              if (input == '\n') {
+                break;
               }
               usleep(10000);
             }
@@ -336,9 +339,11 @@ int reversi_main8(int player_count, int depth)
           for(;;) {
 
             fflush(stdin);
-            char input = getchar();
-            while (input == 'w') {
-              if (isUp(2)) {
+            //char input = getchar();
+            //while (input != 'w' || input != 's' || input != 'a' ||;input != 'd' || input != '\n') { input = getchar(); }
+
+            while (getchar()) {
+              if (input == 'w') {
                 if (curs.gety()-1 >= 0) {
                   curs.setY(curs.gety()-1);
                   display(board);
@@ -361,6 +366,9 @@ int reversi_main8(int player_count, int depth)
                   curs.setX(curs.getx()+1);
                   display(board);
                 }
+              }
+              if (input == '\n') {
+                break;
               }
               usleep(10000);
             }
