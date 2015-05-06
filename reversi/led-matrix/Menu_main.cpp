@@ -50,8 +50,6 @@ int main(int argc, char **argv) {
   if (!io.Init())
     return 1;
 
-  //controllerInit();
-
   // The matrix, our 'frame buffer' and display updater.
   matrix = new RGBMatrix(&io, rows, chain, parallel);
   matrix->set_luminance_correct(do_luminance_correct);
@@ -127,9 +125,9 @@ int main(int argc, char **argv) {
         players = 2;
         mode = 3;
       }
-      usleep(50000);
+      usleep(500000);
     }
-    usleep(20000);
+    usleep(200000);
     canvas->Clear();
     // delete image_gen;
   }
@@ -166,8 +164,9 @@ int main(int argc, char **argv) {
       if (abs(difficulty)%3 == 2) { difficulty = 3;}
       if (abs(difficulty)%3 == 0) { difficulty = 4;}
       mode = 3;
+      usleep(500000);
     }
-    usleep(20000);
+    usleep(200000);
     // delete image_gen;
   }
   
@@ -250,18 +249,17 @@ int reversi_main8(int player_count, int depth)
                   display(board);
                 }
               }
-              usleep(10000);
+              usleep(100000);
             }
             if(moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), 'O');
-              std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
               transition(1);
               display(board);
               break;
             }
             else {
-              delete image_gen;
+              // delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -323,18 +321,17 @@ int reversi_main8(int player_count, int depth)
                   display(board);
                 }
               }
-              usleep(10000);
+              usleep(100000);
             }
             if(moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), '@');
-              std::cout << "move made" << std::endl;
               no_of_moves++;              /* Increment move count */
               transition(2);
               display(board);
               break;
             }
             else {
-              delete image_gen;
+              // delete image_gen;
               image_gen = new BoardTextfile(canvas, "illegal.txt");
               image_gen->Start();
               sleep(1);
@@ -367,7 +364,7 @@ int reversi_main8(int player_count, int depth)
     // fflush(stdin);                Flush the input buffer 
     // printf("Do you want to play again (y/n): ");
     // scanf("%c", &again);         /* Get y or n             */
-    delete image_gen;
+    // delete image_gen;
     image_gen = new BoardTextfile(canvas, "gameover.txt");
     image_gen->Start();
     sleep(1);
