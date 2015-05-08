@@ -74,8 +74,6 @@ void testInput()
 
 int main(int argc, char **argv) {
 
-  testInput();
-
   //Go interface section of startup
   int rows = 32;
   int chain = 1;
@@ -92,6 +90,8 @@ int main(int argc, char **argv) {
   GPIO io;
   if (!io.Init())
     return 1;
+
+	testInput();
 
   // The matrix, our 'frame buffer' and display updater.
   matrix = new RGBMatrix(&io, rows, chain, parallel);
