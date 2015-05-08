@@ -299,7 +299,7 @@ public:
         percentage++;
         fs.clear();
         fs.seekg(0, std::ios::beg);
-        usleep(7500);
+        usleep(10000);
         if (splash_done == true) {
           break;
         }
