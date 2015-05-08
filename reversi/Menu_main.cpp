@@ -37,14 +37,17 @@ void testInput()
 		isDown(1) == true || 
 		isLeft(1) == true || 
 		isRight(1) == true ||
+		isSelected(1) == true ||
 		isUp(2) == true || 
 		isDown(2) == true || 
 		isLeft(2) == true || 
-		isRight(2) == true) {
+		isRight(2) == true || 
+		isSelected(2)) {
 
 		//exec the program
 		std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
 		char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
+		std::cout << "launching new process" << std::endl;
 		execv(filename.c_str(), args);
 		perror("execve");
 		exit(0);
