@@ -31,35 +31,34 @@ bool transition_tiles[SIZE][SIZE];
 Color transArg1;
 Color transArg2;
 
-// void testInput()
-// {
-// 	if (isUp(1) == true || 
-// 		isDown(1) == true || 
-// 		isLeft(1) == true || 
-// 		isRight(1) == true ||
-// 		isSelected(1) == true ||
-// 		isUp(2) == true || 
-// 		isDown(2) == true || 
-// 		isLeft(2) == true || 
-// 		isRight(2) == true || 
-// 		isSelected(2)) {
+void testInput()
+{
+	if (isUp(1) == true || 
+		isDown(1) == true || 
+		isLeft(1) == true || 
+		isRight(1) == true ||
+		isSelected(1) == true ||
+		isUp(2) == true || 
+		isDown(2) == true || 
+		isLeft(2) == true || 
+		isRight(2) == true || 
+		isSelected(2)) {
 
-// 		//exec the program
-// 		std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
-// 		char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
-// 		std::cout << "launching new process" << std::endl;
-// 		//execv(filename.c_str(), args);
-// 		int returnval = system("sudo ~/Documents/led-go/LED_Go_Board/reversi/Menu_main");
-// 		//perror("execve");
-// 		exit(0);
-// 	}
-// 	//else it works and return
-// 	return;
-// }
+		//exec the program
+		std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
+		char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
+		std::cout << "launching new process" << std::endl;
+		//execv(filename.c_str(), args);
+		//perror("execve");
+		exit(0);
+	}
+	//else it works and return
+	return;
+}
 
 int main(int argc, char **argv) {
 
-  // testInput();
+  testInput();
 
   //Go interface section of startup
   int rows = 32;
