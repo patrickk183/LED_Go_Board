@@ -171,6 +171,7 @@ int main(int argc, char **argv) {
       usleep(500000);
     }
     else if(getchar()) {
+    	delete image_gen;
     	testInput();
     }
     usleep(1000);
