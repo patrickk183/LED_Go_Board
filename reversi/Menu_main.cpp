@@ -47,9 +47,9 @@ void testInput()
 
 void testInputAndExec()
 {
-	for (int i = 0; i < 100; i++) {
-		testInput();
-	}
+	// for (int i = 0; i < 100; i++) {
+	// 	testInput();
+	// }
 
 	if (isUp(1) == true || 
 		isDown(1) == true || 
