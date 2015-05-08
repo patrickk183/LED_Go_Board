@@ -44,7 +44,7 @@ void testInput()
 
 		//exec the program
 		std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
-		char* args[2] = {filename.c_str(), NULL};
+		char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
 		execv(filename.c_str(), args);
 		perror("execve");
 		exit(0);
