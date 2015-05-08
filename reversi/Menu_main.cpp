@@ -33,23 +33,21 @@ Color transArg2;
 
 void testInput()
 {
-		std::cout << isUp(1) <<
-		isDown(1) <<
-		isLeft(1) << 
-		isRight(1) <<
-		isSelected(1) <<
-		isUp(2) <<
-		isDown(2) <<
-		isLeft(2) << 
-		isRight(2)  <<
-		isSelected(2) << std::endl;
+		isUp(1) ;
+		isDown(1) ;
+		isLeft(1) ;
+		isRight(1) ;
+		isSelected(1) ;
+		isUp(2) ;
+		isDown(2) ;
+		isLeft(2) ;
+		isRight(2) ;
+		isSelected(2);
 }
 
 void testInputAndExec()
 {
-	for (int i = 0; i < 10; i++) {
-		isDown(1);
-	}
+	testInput();
 
 	if (isUp(1) == true || 
 		isDown(1) == true || 
