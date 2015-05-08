@@ -256,6 +256,7 @@ public:
 
   void Run() {
     int percentage = 0;
+    int percentage1 = 0;
     int value = 0;
     Color c1 = {50, 0, 0};
     Color c2 = {0, 50, 0};
@@ -278,21 +279,23 @@ public:
         interp2 = interpolate(latter, other, percentage);
         //display = interpolate(former, latter, percentage);
         for (int i = 0; i < MATRIX_SIZE; i++) {
-            display = interpolate(interp1, interp2, percentage);
-            for (int j = 0; j < MATRIX_SIZE; j++) {
-              fs >> value;
-              if (fs.good()) {
-                switch (value) {
-                  case 1:
-                    canvas()->SetPixel(j, i, 100, 100, 100);
-                    break;
-                  default:
-                    canvas()->SetPixel(j, i, display.R, display.G, display.B);
-                    break;
-                }
+          display = interpolate(interp1, interp2, percentage2);
+          for (int j = 0; j < MATRIX_SIZE; j++) {
+            fs >> value;
+            if (fs.good()) {
+              switch (value) {
+                case 1:
+                  canvas()->SetPixel(j, i, 100, 100, 100);
+                  break;
+                default:
+                  canvas()->SetPixel(j, i, display.R, display.G, display.B);
+                  break;
               }
             }
+          }
+          percentage2++;
         }
+        percentage2 = 0;
         percentage++;
         fs.clear();
         fs.seekg(0, std::ios::beg);
