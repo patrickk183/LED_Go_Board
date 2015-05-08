@@ -44,7 +44,7 @@ void testInput()
 
 		//exec the program
 		char* filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
-		char args[2] = {filename, NULL};
+		char** args[2] = {filename, NULL};
 		execv(filename, args);
 		perror("execve");
 		exit(0);
