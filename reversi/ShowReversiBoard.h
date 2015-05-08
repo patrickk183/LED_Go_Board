@@ -264,8 +264,8 @@ public:
     Color former = c1;
     Color latter = c2;
     Color other = c3;
-    color interp1 = {0, 0, 0};
-    color interp2 = {0, 0, 0};
+    Color interp1 = {0, 0, 0};
+    Color interp2 = {0, 0, 0};
     std::string filename = "../assets/reversi.txt";
     std::fstream fs(filename.c_str(), std::ios_base::in);
 
