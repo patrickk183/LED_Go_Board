@@ -171,9 +171,9 @@ int main(int argc, char **argv) {
       }
       usleep(500000);
     }
-    else if(getchar()) {
-    	testInput();
-    }
+    // else if(getchar()) {
+    // 	testInput();
+    // }
     usleep(1000);
     canvas->Clear();
     // delete image_gen;

@@ -75,11 +75,11 @@ bool isSelected(int player) {
 	}
 	int val = Read(channel);
     if (val < 50) {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return true;
     }
     else {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return false;
     }
 }
@@ -101,11 +101,11 @@ bool isNotSelected(int player) {
 
 	int val = Read(channel);
     if (val > 220) {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return true;
     }
     else {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return false;
     }
 }
@@ -127,11 +127,11 @@ bool isUp(int player) {
 
 	int val = Read(channel);
     if (val > 200) {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return true;
     }
     else
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return false;
 }
 
@@ -153,10 +153,10 @@ bool isDown(int player) {
 	int val = Read(channel);
     if (val < 50) {
     	return true;
-   		std::cout << val << " " << std::endl;
+   		// std::cout << val << " " << std::endl;
    	}
     else {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return false;
     }
 }
@@ -179,11 +179,11 @@ bool isRight(int player) {
 
 	int val = Read(channel);
     if (val > 200) {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return true;
     }
     else {
-    	std::cout << val << " " <<std::endl;
+    	// std::cout << val << " " <<std::endl;
     	return false;
     }
 }
@@ -205,11 +205,11 @@ bool isLeft(int player) {
 
 	int val = Read(channel);
     if (val < 50) {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return true;
     }
     else {
-    	std::cout << val << " " << std::endl;
+    	// std::cout << val << " " << std::endl;
     	return false;
     }
 }
