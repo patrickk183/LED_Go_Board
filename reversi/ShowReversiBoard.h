@@ -256,7 +256,7 @@ public:
 
   void Run() {
     int percentage = 0;
-    int percentage1 = 0;
+    int percentage2 = 0;
     int value = 0;
     Color c1 = {50, 0, 0};
     Color c2 = {0, 50, 0};
