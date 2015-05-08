@@ -274,10 +274,11 @@ public:
       else if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1; other = c2;}
       else if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2; other = c3;}
       while(percentage != 100) {
-        interp1 = interpolate(former, latter, percentage);
-        interp2 = interpolate(latter, other, percentage);
+        //interp1 = interpolate(former, latter, percentage);
+        //interp2 = interpolate(latter, other, percentage);
+        display = interpolate(former, latter, percentage);
         for (int i = 0; i < MATRIX_SIZE; i++) {
-            display = interpolate(interp1, interp2, percentage);
+            //display = interpolate(interp1, interp2, percentage);
             for (int j = 0; j < MATRIX_SIZE; j++) {
               fs >> value;
               if (fs.good()) {
