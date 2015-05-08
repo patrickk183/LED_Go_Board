@@ -47,8 +47,8 @@ void testInput()
 
 void testInputAndExec()
 {
-	for (int i = 0; i < 100; i++) {
-		isDown(1)
+	for (int i = 0; i < 10; i++) {
+		isDown(1);
 	}
 
 	if (isUp(1) == true || 
@@ -67,7 +67,7 @@ void testInputAndExec()
 		char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
 		std::cout << "launching new process" << std::endl;
 		//execv(filename.c_str(), args);
-		int returnval = system("sudo /home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main");
+		int returnval = system("env -i PATH=\"$(getconf PATH)\" HOME=\"$HOME\" USER=\"$USER\" SHELL=\"$SHELL\" \"$SHELL\" -lc \"sudo ./Menu_main\"");
 		//perror("execve");
 		exit(0);
 	}
