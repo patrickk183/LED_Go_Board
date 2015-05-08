@@ -284,6 +284,7 @@ int reversi_main8(int player_count, int depth)
             if(moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), 'O');
               no_of_moves++;              /* Increment move count */
+              display(board);
               transition(1);
               display(board);
               break;
@@ -308,6 +309,7 @@ int reversi_main8(int player_count, int depth)
         {
           invalid_moves = 0;               /* Reset invalid count   */
           computer_move(board, moves, '@', depth);
+          display(board);
           transition(2);
           no_of_moves++;                   /* Increment move count  */
         }
@@ -356,6 +358,7 @@ int reversi_main8(int player_count, int depth)
             if(/* curs.getx() >= 0 && curs.gety() >= 0 && curs.getx() < SIZE && curs.gety() < SIZE && */moves[curs.gety()][curs.getx()]) {
               make_move(board, curs.gety(), curs.getx(), '@');
               no_of_moves++;              /* Increment move count */
+              display(board);
               transition(2);
               display(board);
               break;
@@ -404,7 +407,6 @@ void transition(int player)
 {
   if (player == 1) { transArg1 = p1color; transArg2 = p2color; }
   else { transArg1 = p2color; transArg2 = p1color; }
-  display(board);
   image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   // image_gen = new TransitionDisplay(canvas, transition_tiles, transArg1, transArg2);
   if (image_gen == NULL) { return; }
