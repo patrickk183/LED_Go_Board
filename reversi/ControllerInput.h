@@ -74,12 +74,14 @@ bool isSelected(int player) {
 			break;
 	}
 	int val = Read(channel);
-    if (val < 50) 
+    if (val < 50) {
     	std::cout << val << " " << std::endl;
     	return true;
-    else
+    }
+    else {
     	std::cout << val << " " << std::endl;
     	return false;
+    }
 }
 
 bool isNotSelected(int player) {
@@ -102,7 +104,7 @@ bool isNotSelected(int player) {
     	std::cout << val << " " << std::endl;
     	return true;
     }
-    else{
+    else {
     	std::cout << val << " " << std::endl;
     	return false;
     }
@@ -124,9 +126,10 @@ bool isUp(int player) {
 	}
 
 	int val = Read(channel);
-    if (val > 200) 
+    if (val > 200) {
     	std::cout << val << " " << std::endl;
     	return true;
+    }
     else
     	std::cout << val << " " << std::endl;
     	return false;
@@ -148,12 +151,14 @@ bool isDown(int player) {
 	}
 
 	int val = Read(channel);
-    if (val < 50) 
+    if (val < 50) {
     	return true;
    		std::cout << val << " " << std::endl;
-    else
+   	}
+    else {
     	std::cout << val << " " << std::endl;
     	return false;
+    }
 }
 
 
@@ -173,12 +178,14 @@ bool isRight(int player) {
 	}
 
 	int val = Read(channel);
-    if (val > 200) 
+    if (val > 200) {
     	std::cout << val << " " << std::endl;
     	return true;
-    else
+    }
+    else {
     	std::cout << val << " " <<std::endl;
     	return false;
+    }
 }
 
 bool isLeft(int player) {
@@ -197,12 +204,14 @@ bool isLeft(int player) {
 	}
 
 	int val = Read(channel);
-    if (val < 50) 
+    if (val < 50) {
     	std::cout << val << " " << std::endl;
     	return true;
-    else
+    }
+    else {
     	std::cout << val << " " << std::endl;
     	return false;
+    }
 }
 
 controller ReadPlayer(int player) {
