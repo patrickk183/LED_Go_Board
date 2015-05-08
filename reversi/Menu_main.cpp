@@ -43,7 +43,7 @@ void testInput()
 		isRight(2) == true) {
 
 		//exec the program
-		string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
+		std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
 		char* args[2] = {filename.c_str(), NULL};
 		execv(filename.c_str(), args);
 		perror("execve");
