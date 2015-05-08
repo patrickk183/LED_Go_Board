@@ -114,22 +114,22 @@ public:
             canvas()->SetPixel(4*j+3, 4*i+3, p2color.R, p2color.G, p2color.B);
             break;
           default:
-            canvas()->SetPixel(4*j, 4*i, 30, 30, 30);
-            canvas()->SetPixel(4*j, 4*i+1, 30, 30, 30);
-            canvas()->SetPixel(4*j, 4*i+2, 30, 30, 30);
-            canvas()->SetPixel(4*j, 4*i+3, 30, 30, 30);
-            canvas()->SetPixel(4*j+1, 4*i, 30, 30, 30);
-            canvas()->SetPixel(4*j+1, 4*i+1, 30, 30, 30);
-            canvas()->SetPixel(4*j+1, 4*i+2, 30, 30, 30);
-            canvas()->SetPixel(4*j+1, 4*i+3, 30, 30, 30);
-            canvas()->SetPixel(4*j+2, 4*i, 30, 30, 30);
-            canvas()->SetPixel(4*j+2, 4*i+1, 30, 30, 30);
-            canvas()->SetPixel(4*j+2, 4*i+2, 30, 30, 30);
-            canvas()->SetPixel(4*j+2, 4*i+3, 30, 30, 30);
-            canvas()->SetPixel(4*j+3, 4*i, 30, 30, 30);
-            canvas()->SetPixel(4*j+3, 4*i+1, 30, 30, 30);
-            canvas()->SetPixel(4*j+3, 4*i+2, 30, 30, 30);
-            canvas()->SetPixel(4*j+3, 4*i+3, 30, 30, 30);
+            canvas()->SetPixel(4*j, 4*i, 0, 0, 0);
+            canvas()->SetPixel(4*j, 4*i+1, 0, 0, 0);
+            canvas()->SetPixel(4*j, 4*i+2, 0, 0, 0);
+            canvas()->SetPixel(4*j, 4*i+3, 0, 0, 0);
+            canvas()->SetPixel(4*j+1, 4*i, 0, 0, 0);
+            canvas()->SetPixel(4*j+1, 4*i+1, 0, 0, 0);
+            canvas()->SetPixel(4*j+1, 4*i+2, 0, 0, 0);
+            canvas()->SetPixel(4*j+1, 4*i+3, 0, 0, 0);
+            canvas()->SetPixel(4*j+2, 4*i, 0, 0, 0);
+            canvas()->SetPixel(4*j+2, 4*i+1, 0, 0, 0);
+            canvas()->SetPixel(4*j+2, 4*i+2, 0, 0, 0);
+            canvas()->SetPixel(4*j+2, 4*i+3, 0, 0, 0);
+            canvas()->SetPixel(4*j+3, 4*i, 0, 0, 0);
+            canvas()->SetPixel(4*j+3, 4*i+1, 0, 0, 0);
+            canvas()->SetPixel(4*j+3, 4*i+2, 0, 0, 0);
+            canvas()->SetPixel(4*j+3, 4*i+3, 0, 0, 0);
             break;
           }
         }
