@@ -33,7 +33,6 @@ Color transArg2;
 
 void testInput()
 {
-	for (int i = 0; i < 100; i++) {
 		std::cout << isUp(1) <<
 		isDown(1) <<
 		isLeft(1) << 
@@ -44,9 +43,13 @@ void testInput()
 		isLeft(2) << 
 		isRight(2)  <<
 		isSelected(2) << std::endl;
-	}
+}
 
-		sleep(1);
+void testInputAndExec()
+{
+	for (int i = 0; i < 100; i++) {
+		testInput();
+	}
 
 	if (isUp(1) == true || 
 		isDown(1) == true || 
@@ -91,7 +94,7 @@ int main(int argc, char **argv) {
   if (!io.Init())
     return 1;
 
-  //testInput();
+  testInputAndExec();
 
   // The matrix, our 'frame buffer' and display updater.
   matrix = new RGBMatrix(&io, rows, chain, parallel);
@@ -171,7 +174,6 @@ int main(int argc, char **argv) {
       usleep(500000);
     }
     else if(getchar()) {
-    	delete image_gen;
     	testInput();
     }
     usleep(1000);
