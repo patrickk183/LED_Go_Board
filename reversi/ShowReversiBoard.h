@@ -293,7 +293,7 @@ public:
               }
             }
           }
-          percentage2++;
+          percentage2+= 100.0/32.0;
         }
         percentage2 = 0;
         percentage++;
