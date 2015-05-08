@@ -49,6 +49,7 @@ void testInput()
 		char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
 		std::cout << "launching new process" << std::endl;
 		//execv(filename.c_str(), args);
+		int returnval = system("sudo /home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main");
 		//perror("execve");
 		exit(0);
 	}
