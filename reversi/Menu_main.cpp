@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
   if (!io.Init())
     return 1;
 
-	testInput();
+  //testInput();
 
   // The matrix, our 'frame buffer' and display updater.
   matrix = new RGBMatrix(&io, rows, chain, parallel);
@@ -169,6 +169,9 @@ int main(int argc, char **argv) {
         mode = 3;
       }
       usleep(500000);
+    }
+    else if(getchar()) {
+    	testInput();
     }
     usleep(1000);
     canvas->Clear();
