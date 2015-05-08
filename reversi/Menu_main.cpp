@@ -44,6 +44,7 @@ void testInput()
 		isRight(2) == true <<
 		isSelected(2) << 
 		std::endl;
+		sleep(1);
 
 	if (isUp(1) == true || 
 		isDown(1) == true || 
