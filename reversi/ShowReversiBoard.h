@@ -186,9 +186,9 @@ public:
   void Run() {
     int percentage = 0;
     int value = 0;
-    Color c1 = {50, 0, 0};
-    Color c2 = {0, 50, 0};
-    Color c3 = {0, 0, 50};
+    Color c1 = {70, 0, 0};
+    Color c2 = {0, 70, 0};
+    Color c3 = {0, 0, 70};
     Color display = {0, 0, 0};
     Color former = c1;
     Color latter = c2;
@@ -263,16 +263,21 @@ public:
     Color display = {0, 0, 0};
     Color former = c1;
     Color latter = c2;
+    Color other = c3;
+    color interp1 = {0, 0, 0};
+    color interp2 = {0, 0, 0};
     std::string filename = "../assets/reversi.txt";
     std::fstream fs(filename.c_str(), std::ios_base::in);
 
     while (true) {
-      if (former.R == c1.R && former.G == c1.G && former.B == c1.B) {former = c2; latter = c3;}
-      else if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1;}
-      else if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2;}
+      if (former.R == c1.R && former.G == c1.G && former.B == c1.B) {former = c2; latter = c3; other = c1;}
+      else if (former.R == c2.R && former.G == c2.G && former.B == c2.B) {former = c3; latter = c1; other = c2;}
+      else if (former.R == c3.R && former.G == c3.G && former.B == c3.B) {former = c1; latter = c2; other = c3;}
       while(percentage != 100) {
-        display = interpolate(former, latter, percentage);
+        interp1 = interpolate(former, latter, percentage);
+        interp2 = interpolate(latter, other, percentage);
         for (int i = 0; i < MATRIX_SIZE; i++) {
+            display = interpolate(interp1, interp2, percentage);
             for (int j = 0; j < MATRIX_SIZE; j++) {
               fs >> value;
               if (fs.good()) {

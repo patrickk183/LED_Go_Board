@@ -31,7 +31,31 @@ bool transition_tiles[SIZE][SIZE];
 Color transArg1;
 Color transArg2;
 
+void testInput()
+{
+	if (isUp(1) == true || 
+		isDown(1) == true || 
+		isLeft(1) == true || 
+		isRight(1) == true ||
+		isUp(2) == true || 
+		isDown(2) == true || 
+		isLeft(2) == true || 
+		isRight(2) == true) {
+
+		//exec the program
+		string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
+		char args[2] = {filename, NULL};
+		execv("", args);
+		perror("execve");
+		exit(0);
+	}
+	//else it works and return
+	return;
+}
+
 int main(int argc, char **argv) {
+
+  testInput();
 
   //Go interface section of startup
   int rows = 32;
@@ -110,9 +134,11 @@ int main(int argc, char **argv) {
 
     if (isDown(1) || isDown(2)) {
       players--;
+      usleep(200000);
     } 
     else if (isUp(1) || isUp(2)) {
       players++;
+      usleep(200000);
     }
     else if (isSelected(1) || isSelected(2)) {
       if (abs(players)%2 == 1) { 
@@ -125,7 +151,7 @@ int main(int argc, char **argv) {
       }
       usleep(500000);
     }
-    usleep(200000);
+    usleep(1000);
     canvas->Clear();
     // delete image_gen;
   }
@@ -153,9 +179,11 @@ int main(int argc, char **argv) {
       
     if (isDown(1) || isDown(2)) {
       difficulty++;
+      usleep(200000);
     }
     else if (isUp(1) || isUp(2)) {
       difficulty--;
+      usleep(200000);
     }
     else if (isSelected(1) || isSelected(2) ) {
       if (abs(difficulty)%3 == 1) { difficulty = 2;}
@@ -164,7 +192,7 @@ int main(int argc, char **argv) {
       mode = 3;
       usleep(500000);
     }
-    usleep(200000);
+    usleep(1000);
     // delete image_gen;
   }
   
