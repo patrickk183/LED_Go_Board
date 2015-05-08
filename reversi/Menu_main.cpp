@@ -42,8 +42,7 @@ void testInput()
 		isDown(2) <<
 		isLeft(2) << 
 		isRight(2)  <<
-		isSelected(2) << 
-		std::endl;
+		isSelected(2);
 
 		sleep(1);
 
