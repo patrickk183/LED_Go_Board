@@ -54,7 +54,7 @@ int Read(int chan) {
     read_data = bcm2835_spi_transfer(send_data);
     //printf("read_data: %u\n", read_data);
 	bcm2835_spi_end();
-
+	bcm2835_close();
     return (int) read_data;
 }
 

@@ -64,6 +64,7 @@ void testInputAndExec()
 		//exec the program
 		//std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
 		//char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
+		controllerCleanup();
 		std::cout << "launching new process" << std::endl;
 		//execv(filename.c_str(), args);
 		//int returnval = system("env -i PATH=\"$(getconf PATH)\" HOME=\"$HOME\" USER=\"$USER\" SHELL=\"$SHELL\" \"$SHELL\" -lc \"sudo ./Menu_main\"");
@@ -93,7 +94,6 @@ int main(int argc, char **argv) {
   if (!io.Init())
     return 1;
 
- testInputAndExec();
 
   // The matrix, our 'frame buffer' and display updater.
   matrix = new RGBMatrix(&io, rows, chain, parallel);
@@ -103,7 +103,8 @@ int main(int argc, char **argv) {
   int players = 1;
   int mode = 1;
   int difficulty = 31;
-
+  
+ testInputAndExec();
   // The ThreadedCanvasManipulator objects are filling
   // the matrix continuously.
   
