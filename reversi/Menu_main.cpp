@@ -61,13 +61,13 @@ void testInputAndExec()
 		isSelected(2)) {
 
 		//exec the program
-		std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
-		char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
+		//std::string filename = "/home/pi/Documents/led-go/LED_Go_Board/reversi/Menu_main";
+		//char* args[2] = {const_cast<char*>(filename.c_str()), NULL};
 		std::cout << "launching new process" << std::endl;
 		//execv(filename.c_str(), args);
-		int returnval = system("env -i PATH=\"$(getconf PATH)\" HOME=\"$HOME\" USER=\"$USER\" SHELL=\"$SHELL\" \"$SHELL\" -lc \"sudo ./Menu_main\"");
+		//int returnval = system("env -i PATH=\"$(getconf PATH)\" HOME=\"$HOME\" USER=\"$USER\" SHELL=\"$SHELL\" \"$SHELL\" -lc \"sudo ./Menu_main\"");
 		//perror("execve");
-		exit(0);
+		exit(EXIT_FAILURE);
 	}
 	//else it works and return
 	return;
