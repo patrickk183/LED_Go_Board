@@ -43,6 +43,7 @@ void testInput()
 		isLeft(2) ;
 		isRight(2) ;
 		isSelected(2);
+		std::cout << isUp(1) << isDown(1) << isLeft(1) << isRight(1) << isUp(2) << isDown(2) << isLeft(2) << isRight(2) << std::endl;
 }
 
 void testInputAndExec()
@@ -92,7 +93,7 @@ int main(int argc, char **argv) {
   if (!io.Init())
     return 1;
 
-  //testInputAndExec();
+ testInputAndExec();
 
   // The matrix, our 'frame buffer' and display updater.
   matrix = new RGBMatrix(&io, rows, chain, parallel);
